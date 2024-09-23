@@ -72,15 +72,15 @@
 
 |Branch|From|To|Description|
 |:--:|:--:|:--:|--|
-|Master|X|X|항상 배포 가능한 상태로 유지하며, Administration만이 병합할 수 있도록 한다.| 
-|Develop|X|X|다음 버전을 배포하기 전에 사용하는 master 브랜치이다. 역시 Administration만이 병합할 수 있도록 한다.|
-|Release|Develop|Develop<br>Master|배포를 위한 최종적인 버그 수정 등의 개발을 수행한다. 이후 배포 가능한 상태가 되면 master 브랜치로 병합시키고, 출시된 master 브랜치에 버전 태그(ex, v1.0, v0.2)를 추가한다.<br>* 단, 이름의 명명은 <Release-{version}>로(으로) 한다. 이때, {version}은 master 브랜치에 적용될 버전이다.|
-|Feature|Develop|Develop|새로 변경될 개발코드를 분리하고, 기능을 다 완성할 때까지 유지한다. 이후 완성되면 develop 브랜치로 merge 하고 결과가 좋지 못하면 삭제한다.<br>* 단, 이름의 명명은 <{feature name}-Feature>로(으로) 한다. 이때, {feature name}은 기능의 이름이다.|
-|Hotfix|Develop|Develop<br>Master<br>(Release)|제품에서 버그가 발생했을 경우에는 처리를 위해 이 가지로 해당 정보들을 모아준다. 버그에 대한 수정이 완료된 후에는 develop, master에 곧장 반영해주며 tag를 통해 관련 정보를 기록해둔다.<br>* 단, 이름의 명명은 <Hotfix-{version}>로(으로) 한다. 이때, {version}은 master 브랜치에 적용될 버전이다.|
+|master|X|X|항상 배포 가능한 상태로 유지하며, administration만이 병합할 수 있도록 한다.| 
+|develop|X|X|다음 버전을 배포하기 전에 사용하는 master 브랜치이다. 역시 administration만이 병합할 수 있도록 한다.|
+|release|develop|develop<br>master|배포를 위한 최종적인 버그 수정 등의 개발을 수행한다. 이후 배포 가능한 상태가 되면 master 브랜치로 병합시키고, 출시된 master 브랜치에 버전 태그(ex, v1.0, v0.2)를 추가한다.<br>* 단, 이름의 명명은 <release-{version}>로(으로) 한다. 이때, {version}은 master 브랜치에 적용될 버전이다.|
+|feature|develop|develop|새로 변경될 개발코드를 분리하고, 기능을 다 완성할 때까지 유지한다. 이후 완성되면 develop 브랜치로 merge 하고 결과가 좋지 못하면 삭제한다.<br>* 단, 이름의 명명은 <feature-{feature name}>로(으로) 한다. 이때, {feature name}은 기능의 이름이다.|
+|hotfix|develop|develop<br>master<br>(release)|제품에서 버그가 발생했을 경우에는 처리를 위해 이 가지로 해당 정보들을 모아준다. 버그에 대한 수정이 완료된 후에는 develop, master에 곧장 반영해주며 tag를 통해 관련 정보를 기록해둔다.<br>* 단, 이름의 명명은 <hotfix-{version}>로(으로) 한다. 이때, {version}은 master 브랜치에 적용될 버전이다.|
 
 |Note|
 |--|
-|* 초기 배포 전 개발 단계에서는 Develop, Feature, Hotfix 브랜치만 사용한다.|
+|* 초기 배포 전 개발 단계에서는 develop, feature, hotfix 브랜치만 사용한다.|
 |* 상업적 목적이 없는 프로젝트이므로, 최종 배포(프로젝트 마무리)에는 master 브랜치를 제한 나머지 브랜치는 삭제한다.|
 
 <br>

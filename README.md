@@ -2,10 +2,10 @@
 [![license](https://img.shields.io/badge/License-MIT-red)](https://github.com/CHOULOKY/Isaac-Imitation?tab=MIT-1-ov-file)
 [![code](https://img.shields.io/badge/Code-C%23-purple)](https://dotnet.microsoft.com/ko-kr/platform/free)
 [![IDE](https://img.shields.io/badge/IDE-VS-blueviolet)](https://visualstudio.microsoft.com/ko/vs/)
-[![Engine](https://img.shields.io/badge/Engine-Unity(22.3.23f1)-black?logo=unity&logoColor=white)](https://unitysquare.co.kr/etc/eula)
+[![Engine](https://img.shields.io/badge/Engine-Unity(22.3.23f1)-white?logo=unity&logoColor=white)](https://unitysquare.co.kr/etc/eula)
 [![Server](https://img.shields.io/badge/Server-Photon-004480?logo=Photon&logoColor=white)](https://doc.photonengine.com/ko-kr/server/current/operations/licenses)
 [![Collabo](https://img.shields.io/badge/Collabo-Git-F05032?logo=Git&logoColor=white)](https://git-scm.com/)
-[![Collabo](https://img.shields.io/badge/Collabo-GithubDesktop-purple?logo=github&logoColor=purple)](https://docs.github.com/ko/desktop)
+[![Collabo](https://img.shields.io/badge/Collabo-GithubDesktop-purple)](https://docs.github.com/ko/desktop)
 
 <br><br><br>
 
@@ -88,7 +88,7 @@
 ### 6.2 Commit Convention
 #### Commit Structure
 ```
-type : Subject      # 제목은 커밋에 대한 주요 내용을 간결하고 명확하게 작성한다.
+type: Subject       # 제목은 커밋에 대한 주요 내용을 간결하고 명확하게 작성한다.
                     # 제목은 항상 입력해야 하며, type과 함께 작성되어야 한다.
                     # 제목은 최대 50자를 넘지 않도록 하고, 제목의 마지막에 마침표(.)를 찍지 않는다.
                     # Type은 항상 영문 소문자로 작성하며, 바로 아래의 표를 참고하여 작성한다.

@@ -2,10 +2,10 @@
 [![license](https://img.shields.io/badge/License-MIT-red)](https://github.com/CHOULOKY/Isaac-Imitation?tab=MIT-1-ov-file)
 [![code](https://img.shields.io/badge/Code-C%23-purple)](https://dotnet.microsoft.com/ko-kr/platform/free)
 [![IDE](https://img.shields.io/badge/IDE-VS-blueviolet)](https://visualstudio.microsoft.com/ko/vs/)
-[![Engine](https://img.shields.io/badge/Engine-Unity(22.3.23f1)-black?logo=unity&logoColor=white)](https://unitysquare.co.kr/etc/eula)
+[![Engine](https://img.shields.io/badge/Engine-Unity(22.3.23f1)-white?logo=unity&logoColor=white)](https://unitysquare.co.kr/etc/eula)
 [![Server](https://img.shields.io/badge/Server-Photon-004480?logo=Photon&logoColor=white)](https://doc.photonengine.com/ko-kr/server/current/operations/licenses)
 [![Collabo](https://img.shields.io/badge/Collabo-Git-F05032?logo=Git&logoColor=white)](https://git-scm.com/)
-[![Collabo](https://img.shields.io/badge/Collabo-GithubDesktop-purple?logo=github&logoColor=purple)](https://docs.github.com/ko/desktop)
+[![Collabo](https://img.shields.io/badge/Collabo-GithubDesktop-purple)](https://docs.github.com/ko/desktop)
 
 <br><br><br>
 

@@ -171,7 +171,7 @@ private void Awake() {
 private Vector2 inputVec = default;
 ```
 
-#### Variable Name: Camel Case
+#### Variable Name: Camel Case, Plural Form
 ```
 // More than two words: a + B + C
 private int inputVec;

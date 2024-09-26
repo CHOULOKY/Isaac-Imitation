@@ -11,7 +11,7 @@
 
 ## 1. Overview 
 - Project Name: The Binding of Isaac, imitation game
-- Description: The Binding of Isaac, imitation game using a Photon Server to add multi-play function
+- Description: The Binding of Isaac, imitation game using Photon Server to add multiplayer functionality
 - Development Period : 2024.09.28 ~ 2024.00.00
 
 <br><br>

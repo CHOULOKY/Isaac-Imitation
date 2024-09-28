@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -134,7 +134,826 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: TX_Isaac_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 899
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760c815e339137e4da4f29fa129fd972
+      internalID: -1900014048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 899
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 841a40d849d724c4f8b2f780f285e010
+      internalID: -144121848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_2
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 899
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18ac4e03cb9d949438393eb5e0796cbc
+      internalID: 223677672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_3
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 899
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dbe7f9c40c1d0546ad1fb54e3a4146f
+      internalID: 1608013753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_4
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 899
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 397a22cfd02900c4f9e91b697e201143
+      internalID: 1481216046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_5
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 899
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ef9ff639b183842a77d9c7eb7b0108
+      internalID: 302585458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_6
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 899
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6126278094155414ba711749dc302f5c
+      internalID: -1453983603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_7
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 899
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3786acb2c72794498f81ff771dba16a
+      internalID: 229349683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_8
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40fd2712189856e43aeb8f523dbaad69
+      internalID: 174395961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_9
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a21f4a5509e7464794920c87db0ba75
+      internalID: 621936240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_10
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13a7f4930cf283846ac5c3d3387cb8ce
+      internalID: 301195824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_11
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ec8c0a002f3604aa00710d3d3fb30e
+      internalID: -1359763783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_12
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ccb3967d35522440918e2b44e3f20a1
+      internalID: -1217498366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_13
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dc166a3b86aff84ebd2f13836a8dd2e
+      internalID: 55395339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_14
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c19aafb41b93ae41b79a3d8bed45870
+      internalID: -767365898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_15
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526c762478c8376479f8682950519553
+      internalID: 258208096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_16
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9634d58028dc94892ea8ac306e4d5a
+      internalID: -1148245707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_17
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 851
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a84d4780ecf6d0c419741c1f75d973dd
+      internalID: 1608909502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_18
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d119053fe3c679744a4fcabfaf92d2f8
+      internalID: 734242633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_19
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b539906b32279ec4491c1450a80059e1
+      internalID: 510672178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_20
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7daded888e294ff40848bfc3c1af73dc
+      internalID: 48269543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_21
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebc7cf6c9d134424496322085b64079e
+      internalID: 1087856142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_22
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ac1cf84b788d5b4da25468ffc47c713
+      internalID: 741680354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_23
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38f1b5eea8bd91a4abd0ba5940c6c14d
+      internalID: 369644755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_24
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f6e51499837fc645b733f8e1d7421b5
+      internalID: 265837604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_25
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bd886306e2e91847972dc3a684c5d45
+      internalID: -1683336896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_26
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd41ab8600d87a4582464c68982dfff
+      internalID: -1607189661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_27
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 808
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78fa4ec760136564a91750d1ddde5289
+      internalID: -650612454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_28
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 751
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5e154e9395eb34ca877f8586209344
+      internalID: -109955918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_29
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 751
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4542b6672065d047bcfb48f13ea006e
+      internalID: 237196947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_30
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 751
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27aad9c2adf7f13479c5c4b42edfad17
+      internalID: -1764066567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_31
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 751
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00ad71e7cbe47a945aec5759b1c01331
+      internalID: -1552629618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_32
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 688
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a4511cf9cfdc642a8aff56316e9851
+      internalID: 2087425607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_33
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 688
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fd09be9fc3829f4fb0d680b61c6bb56
+      internalID: 1189308144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_34
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 686
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af4598b5f20da16449bd89d34c98775e
+      internalID: 1993210189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_35
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 686
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1d86bb68cc524a49922e89f082e1d28
+      internalID: 284280783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_38
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 623
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52905b9775673d84e9fe76bf2cc65ef6
+      internalID: -61183646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_36
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 623
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 410d1611d5bd2dc489f05ea3e2888ea3
+      internalID: 2067261527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX_Isaac_37
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 623
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e042ca17257c8084c83880366f24050f
+      internalID: -45904946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +964,58 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TX_Isaac_0: -1900014048
+      TX_Isaac_1: -144121848
+      TX_Isaac_10: 301195824
+      TX_Isaac_11: -1359763783
+      TX_Isaac_12: -1217498366
+      TX_Isaac_13: 55395339
+      TX_Isaac_14: -767365898
+      TX_Isaac_15: 258208096
+      TX_Isaac_16: -1148245707
+      TX_Isaac_17: 1608909502
+      TX_Isaac_18: 734242633
+      TX_Isaac_19: 510672178
+      TX_Isaac_2: 223677672
+      TX_Isaac_20: 48269543
+      TX_Isaac_21: 1087856142
+      TX_Isaac_22: 741680354
+      TX_Isaac_23: 369644755
+      TX_Isaac_24: 265837604
+      TX_Isaac_25: -1683336896
+      TX_Isaac_26: -1607189661
+      TX_Isaac_27: -650612454
+      TX_Isaac_28: -109955918
+      TX_Isaac_29: 237196947
+      TX_Isaac_3: 1608013753
+      TX_Isaac_30: -1764066567
+      TX_Isaac_31: -1552629618
+      TX_Isaac_32: 2087425607
+      TX_Isaac_33: 1189308144
+      TX_Isaac_34: 1993210189
+      TX_Isaac_35: 284280783
+      TX_Isaac_36: 2067261527
+      TX_Isaac_37: -45904946
+      TX_Isaac_38: -61183646
+      TX_Isaac_39: 323362414
+      TX_Isaac_4: 1481216046
+      TX_Isaac_40: 1144686945
+      TX_Isaac_41: -769154167
+      TX_Isaac_42: -1592138496
+      TX_Isaac_43: 479833365
+      TX_Isaac_44: -1395791001
+      TX_Isaac_45: -1522957001
+      TX_Isaac_46: 296516849
+      TX_Isaac_47: -203548429
+      TX_Isaac_48: -1935326854
+      TX_Isaac_49: 1629431370
+      TX_Isaac_5: 302585458
+      TX_Isaac_50: 167174203
+      TX_Isaac_6: -1453983603
+      TX_Isaac_7: 229349683
+      TX_Isaac_8: 174395961
+      TX_Isaac_9: 621936240
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

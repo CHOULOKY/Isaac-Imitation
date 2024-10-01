@@ -14,5 +14,7 @@ public class README : MonoBehaviour {
     // IF YOU ENCOUNTER ANY OTHER BUG TELL ME SO VIA DISCORD (LINK IN THE DESCRIPTION :) ) !
 
     // https://github.com/BlackthornProd/Random-Dungeon-Generation
-
+    // https://github.com/Gongju-Unity-Bootcamp/Project-C-Isaac
+    // https://www.spriters-resource.com/pc_computer/bindingofisaacrebirth/
+    // https://www.sounds-resource.com/pc_computer/bindingofisaac/
 }

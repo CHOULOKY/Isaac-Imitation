@@ -12,7 +12,7 @@ public class RoomTemplates : MonoBehaviour
 	public GameObject[] leftRooms;
 	public GameObject[] rightRooms;
 
-	[SerializeField] public List<GameObject> rooms;
+	public List<GameObject> rooms;
     public int maxRoomCount = 10;
     public int minRoomCount = 5;
 

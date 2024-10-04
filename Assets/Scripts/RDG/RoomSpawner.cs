@@ -28,7 +28,7 @@ public class RoomSpawner : MonoBehaviour
 
 	private void Spawn()
 	{
-        if (templates.spawnedBoss) return;
+        if (templates.createdRooms) return;
         
 		if (spawned == false) {
 			int randStart = templates.rooms.Count < templates.minRoomCount ? 1 : 0;
@@ -59,7 +59,7 @@ public class RoomSpawner : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (templates.spawnedBoss) return;
+		if (templates.createdRooms) return;
 
 		if (other.CompareTag("SpawnPoint")) {
 			if (other.GetComponent<RoomSpawner>().spawned == false && this.spawned == false) {

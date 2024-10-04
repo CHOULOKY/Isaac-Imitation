@@ -9,6 +9,6 @@ public class AddRoom : MonoBehaviour
 	private void Start()
 	{
         templates = this.transform.parent.GetComponent<RoomTemplates>();
-        if (templates && !templates.spawnedBoss) templates.rooms.Add(this.gameObject);
+        if (templates && !templates.createdRooms) templates.rooms.Add(this.gameObject);
     }
 }

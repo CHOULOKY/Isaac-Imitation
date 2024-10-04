@@ -17,10 +17,10 @@ public class RoomTemplates : MonoBehaviour
 
     public int maxRoomCount = 10;
     public int minRoomCount = 5;
+	public bool refreshedRooms;
 
 	public float waitTime;
-	public bool spawnedBoss;
-	public GameObject boss;
+	public bool createdRooms;
 
 	private void Update()
 	{
@@ -29,9 +29,8 @@ public class RoomTemplates : MonoBehaviour
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 
-		if (waitTime <= 0 && spawnedBoss == false) {
-            Instantiate(boss, rooms[^1].transform.position, Quaternion.identity);
-            spawnedBoss = true;
+		if (waitTime <= 0 && createdRooms == false) {
+            createdRooms = true;
             StartCoroutine(RefreshRooms());
         } else if (rooms.Count >= minRoomCount && waitTime > 0) {
 			waitTime -= Time.deltaTime;
@@ -46,5 +45,6 @@ public class RoomTemplates : MonoBehaviour
 			}
             yield return new WaitForSeconds(0.1f);
         }
+		refreshedRooms = true;
     }
 }

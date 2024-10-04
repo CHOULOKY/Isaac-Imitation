@@ -19,7 +19,7 @@ public class Modifyer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (templates.spawnedBoss) return;
+        if (templates.createdRooms) return;
 
         if (other.CompareTag("SpawnPoint")) {
             directionList.Add(other.GetComponent<RoomSpawner>().openingDirection);

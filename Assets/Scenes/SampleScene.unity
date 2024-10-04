@@ -474,6 +474,7 @@ MonoBehaviour:
   - {fileID: 3044139107348673138, guid: 1e478b67afb2c41419982bdff69fea7b, type: 3}
   - {fileID: 5192515622183775909, guid: 25afa53cd4e2be14abcd7ab6ef001d52, type: 3}
   rooms: []
+  closedRoom: {fileID: 3937356944287193075, guid: d94619ca1108a834da7f01a1f1dcba49, type: 3}
   maxRoomCount: 10
   minRoomCount: 5
   waitTime: 2

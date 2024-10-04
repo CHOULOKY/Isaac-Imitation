@@ -29,7 +29,7 @@ public class Modifyer : MonoBehaviour
     public void RefreshRoom()
     {
         string thisName = this.transform.parent.name;
-        if (!thisName.Contains("TLRB")) {
+        if (!thisName.Contains("Closed")) {
             if (thisName.Contains('B')) directionList.Add(1);
             if (thisName.Contains('T')) directionList.Add(2);
             if (thisName.Contains('L')) directionList.Add(3);

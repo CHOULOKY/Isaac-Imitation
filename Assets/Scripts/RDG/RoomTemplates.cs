@@ -13,6 +13,8 @@ public class RoomTemplates : MonoBehaviour
 	public GameObject[] rightRooms;
 
 	public List<GameObject> rooms;
+    public GameObject closedRoom;
+
     public int maxRoomCount = 10;
     public int minRoomCount = 5;
 
@@ -38,7 +40,7 @@ public class RoomTemplates : MonoBehaviour
 
 	private IEnumerator RefreshRooms()
 	{
-        for (int i = 0; i < rooms.Count; i++) {
+        for (int i = 1; i < rooms.Count; i++) {
 			if (rooms[i].GetComponentInChildren<Modifyer>()) {
 				rooms[i].GetComponentInChildren<Modifyer>().RefreshRoom();
 			}

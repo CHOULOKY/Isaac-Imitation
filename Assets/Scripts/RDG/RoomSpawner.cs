@@ -18,10 +18,14 @@ public class RoomSpawner : MonoBehaviour
 
 	public float waitTime = 4f;
 
-	private void Start()
+    private void Awake()
+    {
+        templates = this.transform.parent.parent.parent.GetComponent<RoomTemplates>();
+    }
+
+    private void Start()
 	{
 		Destroy(gameObject, waitTime);
-		templates = this.transform.parent.parent.parent.GetComponent<RoomTemplates>();
 		Invoke(nameof(Spawn), 0.1f);
 	}
 

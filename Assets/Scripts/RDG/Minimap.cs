@@ -21,6 +21,11 @@ public class Minimap : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SetResolution();
+    }
+
     private void Update()
     {
         if (templates.refreshedRooms && !isSetMinimap) {
@@ -39,5 +44,23 @@ public class Minimap : MonoBehaviour
             }
             Instantiate(boss, miniRoomsList[^1].transform.position, Quaternion.identity);
         }
+    }
+
+    private void SetResolution()
+    {
+        // 미니맵 카메라의 기본 비율 설정
+        float miniMapX = 0.74f;
+        float miniMapY = 0.74f;
+        float miniMapW = 0.25f;
+        float miniMapH = 0.25f;
+
+        // 메인 카메라의 Rect 비율을 참고해 미니맵 비율도 맞춤
+        Rect mainRect = Camera.main.rect;
+        this.transform.parent.GetComponent<Camera>().rect = new Rect(
+            mainRect.x + miniMapX * mainRect.width,
+            mainRect.y + miniMapY * mainRect.height,
+            miniMapW * mainRect.width,
+            miniMapH * mainRect.height
+        );
     }
 }

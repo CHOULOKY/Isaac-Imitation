@@ -10,7 +10,7 @@ public class Modifyer : MonoBehaviour
 
     private List<int> directionList;
 
-    private void Start()
+    private void Awake()
     {
         templates = this.transform.parent.parent.GetComponent<RoomTemplates>();
 

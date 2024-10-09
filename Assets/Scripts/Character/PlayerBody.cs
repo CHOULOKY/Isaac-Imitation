@@ -27,6 +27,14 @@ public class PlayerBody : MonoBehaviour
     {
         inputVec.x = Input.GetAxisRaw("Horizontal WASD");
         inputVec.y = Input.GetAxisRaw("Vertical WASD");
+
+        if (inputVec.x > 0) {
+            spriteRenderer.flipX = false;
+        } else if (inputVec.x < 0) {
+            spriteRenderer.flipX = true;
+        }
+        animator.SetInteger("XAxisRaw", (int)inputVec.x);
+        animator.SetInteger("YAxisRaw", (int)inputVec.y);
     }
 
     private void FixedUpdate()

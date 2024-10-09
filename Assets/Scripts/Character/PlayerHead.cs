@@ -9,7 +9,7 @@ public class PlayerHead : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    private Vector2 inputVec;
+    public Vector2 inputVec;
 
     private void Awake()
     {
@@ -21,7 +21,26 @@ public class PlayerHead : MonoBehaviour
 
     private void Update()
     {
-        inputVec.x = Input.GetAxisRaw("Horizontal Arrow");
-        inputVec.y = Input.GetAxisRaw("Vertical Arrow");
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            inputVec.x = -1;
+            inputVec.y = 0;
+        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            inputVec.x = 1;
+            inputVec.y = 0;
+        } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            inputVec.x = 0;
+            inputVec.y = 1;
+        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            inputVec.x = 0;
+            inputVec.y = -1;
+        }
+
+        if (inputVec.x > 0) {
+            spriteRenderer.flipX = false;
+        } else if (inputVec.x < 0) {
+            spriteRenderer.flipX = true;
+        }
+        animator.SetInteger("XAxisRaw", (int)inputVec.x);
+        animator.SetInteger("YAxisRaw", (int)inputVec.y);
     }
 }

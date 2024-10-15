@@ -11,8 +11,8 @@ public class IssacBody : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Vector2 inputVec;
-    public float moveForce;
-    public float maxVelocity;
+    public float moveForce = 20; // +5
+    public float maxVelocity = 5; // moveForce/5 + 1
 
     private void Awake()
     {

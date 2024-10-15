@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 721383515921455607}
+  - component: {fileID: -7780218932888215296}
   - component: {fileID: 1886374461064200541}
   - component: {fileID: -6069476032879387650}
   - component: {fileID: 1220607871606219738}
   m_Layer: 0
-  m_Name: isaac_tear
+  m_Name: isaac_basictear
   m_TagString: Tear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,6 +35,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7780218932888215296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923474546267978425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6275063b1d065024f976f5941380305c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tearDamage: 1
+  gravitySetTime: 0.15
+  gravityScale: 0.3
 --- !u!212 &1886374461064200541
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -74,8 +90,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 981670271
   m_SortingLayer: 4
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 868878271, guid: 17e27b5bd135b5d4ab8676ff78c6ae70, type: 3}
+  m_SortingOrder: 100
+  m_Sprite: {fileID: 1400116802, guid: 17e27b5bd135b5d4ab8676ff78c6ae70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,7 +128,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1220607871606219738
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -147,4 +163,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.23
+  m_Radius: 0.2

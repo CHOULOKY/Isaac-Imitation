@@ -19,7 +19,7 @@ public class RoomTemplates : MonoBehaviour
     public int minRoomCount = 5;
 	public bool refreshedRooms;
 
-	public float waitTime;
+	public float waitTime = 2f;
 	public bool createdRooms;
 
 	private void Update()
@@ -31,19 +31,18 @@ public class RoomTemplates : MonoBehaviour
 
 		if (waitTime <= 0 && createdRooms == false) {
             createdRooms = true;
-            StartCoroutine(RefreshRooms());
+			RefreshRooms();
         } else if (rooms.Count >= minRoomCount && waitTime > 0) {
 			waitTime -= Time.deltaTime;
 		}
 	}
 
-	private IEnumerator RefreshRooms()
+	private void RefreshRooms()
 	{
         for (int i = 1; i < rooms.Count; i++) {
 			if (rooms[i].GetComponentInChildren<Modifyer>()) {
 				rooms[i].GetComponentInChildren<Modifyer>().RefreshRoom();
 			}
-            yield return new WaitForSeconds(0.1f);
         }
 		refreshedRooms = true;
     }

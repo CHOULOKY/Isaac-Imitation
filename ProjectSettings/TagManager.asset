@@ -8,6 +8,8 @@ TagManager:
   - Rooms
   - Room
   - Tear
+  - Wall
+  - Monster
   layers:
   - Default
   - TransparentFX

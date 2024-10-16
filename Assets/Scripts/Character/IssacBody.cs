@@ -25,19 +25,35 @@ public class IssacBody : MonoBehaviour
 
     private void Update()
     {
+        GetInputVec();
+
+        SetBodyDirection();
+    }
+
+    private void FixedUpdate()
+    {
+        MoveBody();
+    }
+
+    private void GetInputVec()
+    {
         inputVec.x = Input.GetAxisRaw("Horizontal WASD");
         inputVec.y = Input.GetAxisRaw("Vertical WASD");
+    }
 
+    private void SetBodyDirection()
+    {
         if (inputVec.x > 0) {
             spriteRenderer.flipX = false;
-        } else if (inputVec.x < 0) {
+        }
+        else if (inputVec.x < 0) {
             spriteRenderer.flipX = true;
         }
         animator.SetInteger("XAxisRaw", (int)inputVec.x);
         animator.SetInteger("YAxisRaw", (int)inputVec.y);
     }
 
-    private void FixedUpdate()
+    private void MoveBody()
     {
         rigid.AddForce(inputVec.normalized * moveForce, ForceMode2D.Force);
         if (rigid.velocity.magnitude > maxVelocity) {

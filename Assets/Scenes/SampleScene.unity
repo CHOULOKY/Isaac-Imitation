@@ -1293,7 +1293,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2203963244471043829, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
       propertyPath: attackSpeed
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2203963244471043829, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
       propertyPath: status.tearSpeed

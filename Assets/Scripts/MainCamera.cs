@@ -7,6 +7,8 @@ public class MainCamera : MonoBehaviour
     private void Start()
     {
         SetResolution();
+
+        this.transform.position = Vector3.zero + Vector3.back * 10;
     }
 
     private void SetResolution()

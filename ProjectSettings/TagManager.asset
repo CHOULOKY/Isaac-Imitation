@@ -10,6 +10,7 @@ TagManager:
   - Tear
   - Wall
   - Monster
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Wall
   - 
   - 
   - 

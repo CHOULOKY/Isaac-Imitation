@@ -1564,6 +1564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574b113a1431ad2489b46dd20fdf7dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClear: 0
 --- !u!61 &-480555138216503959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2074,7 +2075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 577421263016570864}
   - component: {fileID: 1666302053835880593}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tear Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}

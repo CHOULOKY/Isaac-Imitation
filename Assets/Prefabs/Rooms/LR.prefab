@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8508959701442486862}
   - component: {fileID: 4574959973636845150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tear Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1641,6 +1641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574b113a1431ad2489b46dd20fdf7dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClear: 0
 --- !u!61 &4205154932582761231
 BoxCollider2D:
   m_ObjectHideFlags: 0

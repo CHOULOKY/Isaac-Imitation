@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IssacBody : MonoBehaviour
+public class IsaacBody : MonoBehaviour
 {
-    private IssacHead head;
+    private IsaacHead head;
 
     private Rigidbody2D rigid;
     private Animator animator;
@@ -20,7 +20,7 @@ public class IssacBody : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        head = GetComponentInChildren<IssacHead>();
+        head = GetComponentInChildren<IsaacHead>();
     }
 
     private void Update()

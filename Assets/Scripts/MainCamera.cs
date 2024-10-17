@@ -1,14 +1,37 @@
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
+    public IsaacBody Isaac;
+    public float lerpSpeed;
+
+    private Vector3 offset;
+    private Vector3 targetPos;
+    public Vector2 maxBoundary;
+    public Vector2 minBoundary;
+
+    private void Awake()
+    {
+        Isaac = Isaac != null ? Isaac : FindAnyObjectByType<IsaacBody>();
+    }
+
     private void Start()
     {
         SetResolution();
 
-        this.transform.position = Vector3.zero + Vector3.back * 10;
+        offset = Vector3.back * 10;
+        this.transform.position = Vector3.zero + offset;
+    }
+
+    private void LateUpdate()
+    {
+        targetPos = Isaac.transform.position + offset;
+        targetPos.x = Mathf.Clamp(targetPos.x, minBoundary.x, maxBoundary.x);
+        targetPos.y = Mathf.Clamp(targetPos.y, minBoundary.y, maxBoundary.y);
+        transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed);
     }
 
     private void SetResolution()

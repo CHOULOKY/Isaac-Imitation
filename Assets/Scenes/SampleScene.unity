@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &261532684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2944303971341980172, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
+  m_PrefabInstance: {fileID: 1338228467143218785}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3959ae2a01474304ab4c5baed99c6343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &286522170
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +292,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 1073741951
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -320,6 +331,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb09654c95c93284c9fd2edff9a09bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Isaac: {fileID: 261532684}
+  lerpSpeed: 0.01
+  maxBoundary: {x: 2, y: 1}
+  minBoundary: {x: -2, y: -1}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +533,7 @@ MonoBehaviour:
   - {fileID: 1709453575458850, guid: 64f6c8c24b727dc499a8f082e0148b8b, type: 3}
   boss: {fileID: 4693404639613211504, guid: d87228ae60ca5864bacda83a723d6657, type: 3}
   templates: {fileID: 1968339328}
+  mainCamera: {fileID: 519420033}
 --- !u!1 &1147742126
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810764540388321131, guid: ccbc4f0e5361f1d40b72ed4020f7a686, type: 3}
+      propertyPath: templates
+      value: 
+      objectReference: {fileID: 1968339328}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1299,9 +1319,17 @@ PrefabInstance:
       propertyPath: status.tearSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2944303971341980172, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
+      propertyPath: wallRayDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3835276316754223441, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
       propertyPath: m_Name
       value: isaac_body
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835276316754223441, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7761193500244283223, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
       propertyPath: m_LocalPosition.x

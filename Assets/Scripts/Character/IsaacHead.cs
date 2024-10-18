@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class IssacHead : MonoBehaviour
+public class IsaacHead : MonoBehaviour
 {
-    private IssacBody body;
+    private IsaacBody body;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -24,7 +24,7 @@ public class IssacHead : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        body = transform.parent.GetComponent<IssacBody>();
+        body = transform.parent.GetComponent<IsaacBody>();
     }
 
     private void Update()

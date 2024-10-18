@@ -24,7 +24,7 @@ public class IsaacTear : MonoBehaviour
     private void OnEnable()
     {
         rigid.simulated = true;
-
+        
         StartCoroutine(SetGravityAfter(gravitySetTime));
         StartCoroutine(AfterActiveTime(tearActiveTime));
     }

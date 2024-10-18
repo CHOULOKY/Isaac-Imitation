@@ -9,7 +9,7 @@ public class MainCamera : MonoBehaviour
     public float lerpSpeed;
 
     private Vector3 offset;
-    private Vector3 targetPos;
+    private Vector3 targetPos = Vector3.zero;
     public Vector2 maxBoundary;
     public Vector2 minBoundary;
 
@@ -26,12 +26,21 @@ public class MainCamera : MonoBehaviour
         this.transform.position = Vector3.zero + offset;
     }
 
+    private float _lerpSpeed, _distance;
     private void LateUpdate()
     {
+        _distance = (transform.position - targetPos).magnitude;
+        if (_distance >= 15 && _distance <= 25) {
+            _lerpSpeed = 0.7f;
+        }
+        else {
+            _lerpSpeed = lerpSpeed;
+        }
+
         targetPos = Isaac.transform.position + offset;
         targetPos.x = Mathf.Clamp(targetPos.x, minBoundary.x, maxBoundary.x);
         targetPos.y = Mathf.Clamp(targetPos.y, minBoundary.y, maxBoundary.y);
-        transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed);
+        transform.position = Vector3.Lerp(transform.position, targetPos, _lerpSpeed);
     }
 
     private void SetResolution()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public RoomTemplates templates;
+
     private AddRoom thisRoom;
 
     public int doorDirection;
@@ -16,7 +18,7 @@ public class Door : MonoBehaviour
     private Vector2 nextRoomPos = Vector2.zero;
     private BoxCollider2D nextRoomCollider = null;
 
-    private IsaacBody isaac;
+    public IsaacBody isaac;
 
     private MainCamera mainCamera;
     public Vector2 maxBoundaryFromCenter;
@@ -24,32 +26,51 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
-        thisRoom = transform.parent.parent.GetComponent<AddRoom>();
+        templates = transform.parent.parent.GetComponent<RoomTemplates>();
+        templates = templates != null ? templates : transform.parent.parent.parent.GetComponent<RoomTemplates>();
+
+        thisRoom = transform.parent.GetComponent<AddRoom>();
+        thisRoom = thisRoom != null ? thisRoom : transform.parent.parent.GetComponent<AddRoom>();
+
+        if (doorDirection == 0) {
+            isaac = isaac != null ? isaac : FindAnyObjectByType<IsaacBody>();
+        }
+    }
+
+    private void Start()
+    {
+        if (doorDirection == 0) {
+            foreach (Door door in GetComponentsInChildren<Door>()) {
+                door.isaac = door.isaac != null ? door.isaac : isaac;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && thisRoom.isClear) {
+        if (!templates.refreshedRooms) return;
+
+        if (collision.CompareTag("Player") && thisRoom.isClear && doorDirection != 0) {
             isaac = isaac != null ? isaac : collision.GetComponent<IsaacBody>();
 
             if (nextRoomPos == Vector2.zero) {
                 switch (doorDirection) {
                     case 1:
-                        nextRoomPos.y += 40;
+                        nextRoomPos.y += 40 - (transform.position.y - thisRoom.transform.position.y);
                         break;
                     case 2:
-                        nextRoomPos.y += -40;
+                        nextRoomPos.y += 40 - (thisRoom.transform.position.y - transform.position.y);
                         break;
                     case 3:
-                        nextRoomPos.x += 40;
+                        nextRoomPos.y += 40 - (transform.position.x - thisRoom.transform.position.x);
                         break;
                     case 4:
-                        nextRoomPos.x += -40;
+                        nextRoomPos.y += 40 - (thisRoom.transform.position.x - transform.position.x);
                         break;
                 }
             }
 
-            StartCoroutine(CreateAndRemoveCollider(nextRoomPos));
+            StartCoroutine(CreateAndDisableCollider(nextRoomPos));
         }
         else if (collision.CompareTag("Door") && doorDirection == 0) {
             int beforeDirection = collision.GetComponent<Door>().doorDirection;
@@ -74,20 +95,20 @@ public class Door : MonoBehaviour
                     Vector2 nextIsaacPos = door.transform.position;
                     switch (door.doorDirection) {
                         case 1:
-                            nextIsaacPos.y += -3;
+                            nextIsaacPos.y += -1;
                             break;
                         case 2:
-                            nextIsaacPos.y += 3;
+                            nextIsaacPos.y += 1;
                             break;
                         case 3:
-                            nextIsaacPos.x += -5.4f;
+                            nextIsaacPos.x += -1;
                             break;
                         case 4:
-                            nextIsaacPos.x += -5.4f;
+                            nextIsaacPos.x += 1;
                             break;
                     }
                     isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
-
+                    
                     SetBoundaryForCamera();
                     break;
                 }
@@ -95,7 +116,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    private IEnumerator CreateAndRemoveCollider(Vector2 _nextRoomPos)
+    private IEnumerator CreateAndDisableCollider(Vector2 _nextRoomPos)
     {
         if (nextRoomCollider == null) {
             nextRoomCollider = gameObject.AddComponent<BoxCollider2D>();
@@ -106,7 +127,7 @@ public class Door : MonoBehaviour
         }
 
         nextRoomCollider.enabled = true;
-
+        
         yield return new WaitForSeconds(0.25f);
 
         nextRoomCollider.enabled = false;

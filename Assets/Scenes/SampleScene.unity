@@ -332,7 +332,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Isaac: {fileID: 261532684}
-  lerpSpeed: 0
+  lerpSpeed: 0.01
+  maxBoundary: {x: 2, y: 1}
+  minBoundary: {x: -2, y: -1}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810764540388321131, guid: ccbc4f0e5361f1d40b72ed4020f7a686, type: 3}
+      propertyPath: templates
+      value: 
+      objectReference: {fileID: 1968339328}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

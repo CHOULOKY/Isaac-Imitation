@@ -971,6 +971,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorDirection: 0
+  maxBoundaryFromCenter: {x: 2, y: 1}
+  minBoundaryFromCenter: {x: -2, y: -1}
 --- !u!61 &4798586665824772804
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1599,6 +1601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorDirection: 4
+  maxBoundaryFromCenter: {x: 0, y: 0}
+  minBoundaryFromCenter: {x: 0, y: 0}
 --- !u!68 &6433672806231620209
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1972,6 +1976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorDirection: 1
+  maxBoundaryFromCenter: {x: 0, y: 0}
+  minBoundaryFromCenter: {x: 0, y: 0}
 --- !u!68 &5111411892457593370
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -2737,6 +2743,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorDirection: 2
+  maxBoundaryFromCenter: {x: 0, y: 0}
+  minBoundaryFromCenter: {x: 0, y: 0}
 --- !u!68 &2929283500405465422
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -3084,6 +3092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorDirection: 3
+  maxBoundaryFromCenter: {x: 0, y: 0}
+  minBoundaryFromCenter: {x: 0, y: 0}
 --- !u!68 &8260031126806771827
 EdgeCollider2D:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Minimap : MonoBehaviour
 {
     public GameObject[] miniRooms;
-    private List<GameObject> miniRoomsList;
+    public List<GameObject> miniRoomsList;
     public GameObject boss;
 
     public RoomTemplates templates;
@@ -34,7 +34,6 @@ public class Minimap : MonoBehaviour
 
     private void Update()
     {
-        // transform.parent.position = Vector3.Lerp(transform.parent.position, mainCamera.transform.position + offsetFromMain, mainCamera.lerpSpeed);
         transform.parent.position = mainCamera.transform.position + offsetFromMain;
 
         if (templates.refreshedRooms && !isSetMinimap) {

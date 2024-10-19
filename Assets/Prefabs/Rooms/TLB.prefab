@@ -166,7 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
-  bossDoor: {fileID: 0}
   doorDirection: 2
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -474,7 +473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
-  bossDoor: {fileID: 0}
   doorDirection: 1
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -568,7 +566,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
-  bossDoor: {fileID: 0}
   doorDirection: 4
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -2627,7 +2624,6 @@ Transform:
   - {fileID: 7779773187271548112}
   - {fileID: 7672006049081582595}
   - {fileID: 9188114725951814151}
-  - {fileID: 6801844350160572500}
   m_Father: {fileID: 7884431496385601668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2924904348972257055
@@ -2644,7 +2640,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
-  bossDoor: {fileID: 0}
   doorDirection: 0
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 2, y: 1}
@@ -3073,72 +3068,6 @@ Transform:
   - {fileID: 5213375332654167098}
   m_Father: {fileID: 7884431496385601668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &5583980013944159594
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5666189568132164915}
-    m_Modifications:
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1912331490872487615, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_Name
-      value: BossDoor
-      objectReference: {fileID: 0}
-    - target: {fileID: 1912331490872487615, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
---- !u!4 &6801844350160572500 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1376774765625486654, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
-  m_PrefabInstance: {fileID: 5583980013944159594}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7601410407454379175
 PrefabInstance:
   m_ObjectHideFlags: 0

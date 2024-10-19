@@ -7,6 +7,9 @@ public class Door : MonoBehaviour
     public RoomTemplates templates;
 
     private AddRoom thisRoom;
+    public Animator[] doorAnimators;
+
+    private GameObject bossDoor;
 
     public int doorDirection;
     // 0 --> center
@@ -33,7 +36,19 @@ public class Door : MonoBehaviour
         thisRoom = thisRoom != null ? thisRoom : transform.parent.parent.GetComponent<AddRoom>();
 
         if (doorDirection == 0) {
+            doorAnimators = GetComponentsInChildren<Animator>();
             isaac = isaac != null ? isaac : FindAnyObjectByType<IsaacBody>();
+            foreach (Transform _transform in transform) {
+                if (_transform.name == "BossDoor") {
+                    bossDoor = _transform.gameObject;
+                    if (bossDoor) {
+                        foreach (Door door in GetComponentsInChildren<Door>()) {
+                            door.bossDoor = bossDoor;
+                        }
+                    }
+                    break;
+                }
+            }
         }
     }
 
@@ -42,6 +57,30 @@ public class Door : MonoBehaviour
         if (doorDirection == 0) {
             foreach (Door door in GetComponentsInChildren<Door>()) {
                 door.isaac = door.isaac != null ? door.isaac : isaac;
+                if (thisRoom.isClear) {
+                    DoorAnimatorsPlay("Open");
+                }
+            }
+        }
+    }
+
+    private bool isDoorOpen = false, spawnedBossDoor = false;
+    private void Update()
+    {
+        if (doorDirection == 0) {
+            if (templates.refreshedRooms && templates.rooms[^1] == thisRoom && !spawnedBossDoor) {
+                spawnedBossDoor = true;
+                doorAnimators[0].gameObject.SetActive(false);
+                
+            }
+
+            if (thisRoom.isClear && !isDoorOpen) {
+                isDoorOpen = true;
+                DoorAnimatorsPlay("Open");
+            }
+            else if (!thisRoom.isClear && isDoorOpen) {
+                isDoorOpen = false;
+                DoorAnimatorsPlay("Close");
             }
         }
     }
@@ -110,9 +149,11 @@ public class Door : MonoBehaviour
                     isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
                     
                     SetBoundaryForCamera();
-                    break;
+                    // break;
                 }
             }
+
+
         }
     }
 
@@ -139,5 +180,12 @@ public class Door : MonoBehaviour
 
         mainCamera.maxBoundary = (Vector2)transform.position + maxBoundaryFromCenter;
         mainCamera.minBoundary = (Vector2)transform.position + minBoundaryFromCenter;
+    }
+
+    private void DoorAnimatorsPlay(string _name)
+    {
+        for (int i = 0; i < doorAnimators.Length; i++) {
+            doorAnimators[i].SetTrigger(_name);
+        }
     }
 }

@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AOC_BossDoor
+  m_Controller: {fileID: 9100000, guid: a75389fa05f34824c88dd01d74ba29f2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 73964c3ead4edc34a8ac63c97e228192, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fc54538d44bc3984780784ac2e954986, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0b6eefa87edb08c409e99a2623c89f28, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6ff95c3474b252c4cb704a5d96e6833a, type: 2}

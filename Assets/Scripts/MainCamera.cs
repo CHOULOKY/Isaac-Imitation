@@ -32,6 +32,9 @@ public class MainCamera : MonoBehaviour
         _distance = (transform.position - targetPos).magnitude;
         if (_distance >= 15 && _distance <= 25) {
             _lerpSpeed = 0.7f;
+            if (Mathf.Abs(transform.position.x - targetPos.x) > Mathf.Abs(transform.position.y - targetPos.y)) {
+                _lerpSpeed = 0.5f;
+            }
         }
         else {
             _lerpSpeed = lerpSpeed;

@@ -29,7 +29,7 @@
 ||박인희<sub>Park Inhee</sub>|김가빈<sub>Kim Garbin</sub>|황재연<sub>Hwang Jaeyeon</sub>|최태성<sub>Choi Taesung</sub>|
 |--|--|--|--|--|
 |Project Planning & Management|O|X|X|X|
-|Team Reading & Communication|O|X|X|X|
+|Team Leading & Communication|O|X|X|X|
 |Player Development|O|O|X|X|
 |Monster Development|O|X|X|O|
 |Item Development|O|X|O|X|

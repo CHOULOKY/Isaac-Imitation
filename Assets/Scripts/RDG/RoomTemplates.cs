@@ -17,12 +17,12 @@ public class RoomTemplates : MonoBehaviour
 
     public int maxRoomCount = 10;
     public int minRoomCount = 5;
-	public bool refreshedRooms;
 
 	public float waitTime = 2f;
 	public bool createdRooms;
+    public bool refreshedRooms;
 
-	[Header("Doors")]
+    [Header("Doors")]
     public GameObject bossDoor;
 
     private void Update()

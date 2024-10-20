@@ -448,6 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
   isaacTearFactory: {fileID: 0}
+  minimap: {fileID: 1064030008}
 --- !u!4 &879869780
 Transform:
   m_ObjectHideFlags: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   - {fileID: 1384366362914734, guid: 23e94b54c0847b34185fbecb7f64d3d9, type: 3}
   - {fileID: 1709453575458850, guid: d071c1469356bd3418dd32bfd6adaec0, type: 3}
   - {fileID: 1709453575458850, guid: 64f6c8c24b727dc499a8f082e0148b8b, type: 3}
+  miniRoomsList: []
   boss: {fileID: 4693404639613211504, guid: d87228ae60ca5864bacda83a723d6657, type: 3}
   templates: {fileID: 1968339328}
   mainCamera: {fileID: 519420033}

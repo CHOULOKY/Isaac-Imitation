@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -78,7 +79,7 @@ public class Door : MonoBehaviour
                 }
             }
             else {
-                MoveIsaacPositionToDoor(needThisDoor);
+                MoveIsaacPositionToDoor(collision, needThisDoor);
             }
         }
     }
@@ -144,7 +145,7 @@ public class Door : MonoBehaviour
         return needThisDoor;
     }
 
-    private void MoveIsaacPositionToDoor(int thisDoor)
+    private void MoveIsaacPositionToDoor(Collider2D collision, int thisDoor)
     {
         foreach (Door door in GetComponentsInChildren<Door>()) {
             if (door.doorDirection == thisDoor) {
@@ -165,19 +166,40 @@ public class Door : MonoBehaviour
                 }
                 isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
 
-                SetForCameras();
+                SetForCameras(collision, thisDoor);
                 break;
             }
         }
     }
 
     // doorDirection == 0
-    private void SetForCameras()
+    private void SetForCameras(Collider2D collision, int thisDoor)
     {
         mainCamera = mainCamera != null ? mainCamera : Camera.main.GetComponent<MainCamera>();
 
         mainCamera.maxBoundary = (Vector2)transform.position + maxBoundaryFromCenter;
         mainCamera.minBoundary = (Vector2)transform.position + minBoundaryFromCenter;
+
+        Transform minimapTransform = GameManager.Instance.minimap.transform;
+        Vector3 offset = Vector3.zero;
+        switch (thisDoor) {
+            case 1:
+                offset.y += 0.5f;
+                break;
+            case 2:
+                offset.y += -0.5f;
+                break;
+            case 3:
+                offset.x += 0.5f;
+                break;
+            case 4:
+                offset.x += -0.5f;
+                break;
+        }
+        minimapTransform.position += offset;
+
+        collision.GetComponent<Door>().thisRoom.CurrentRoom = false;
+        thisRoom.CurrentRoom = true;
     }
 
     // doorDirection == 0
@@ -204,6 +226,7 @@ public class Door : MonoBehaviour
 
         nextRoomPosition = GetNextRoomPosition(nextRoomPosition);
         yield return StartCoroutine(CreateAndDisableCollider(nextRoomPosition));
+        yield return null;
 
         RefreshDoorAnimators();
     }

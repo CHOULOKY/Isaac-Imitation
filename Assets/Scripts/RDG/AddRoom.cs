@@ -4,13 +4,90 @@ using UnityEngine;
 
 public class AddRoom : MonoBehaviour
 {
-	private RoomTemplates templates;
+    private RoomTemplates templates;
 
-    public bool isClear = false;
+    [SerializeField] private bool isClear = false;
+    public bool IsClear
+    {
+        get { return isClear; }
+        set {
+            if (isClear != value) {
+                isClear = value;
+                if (isClear) {
+                    OnBoolChanged(1, 1, 1, 0.5f);
+                }
+                else {
+                    OnBoolChanged(1, 1, 1, 0.2f);
+                }
+            }
+        }
+    }
+
+    [SerializeField] private bool currentRoom = false;
+    public bool CurrentRoom
+    {
+        get { return currentRoom; }
+        set {
+            if (currentRoom != value) {
+                currentRoom = value;
+                if (currentRoom) {
+                    OnBoolChanged(1, 1, 0, 0.75f);
+                }
+                else {
+                    if (isClear) {
+                        if (isBossRoom) OnBoolChanged(0, 1, 0, 0.75f);
+                        else OnBoolChanged(1, 1, 1, 0.5f);
+                    }
+                    else {
+                        OnBoolChanged(1, 1, 1, 0.2f);
+                    }
+                }
+            }
+        }
+    }
+
+    [SerializeField] private bool isBossRoom = false;
+    public bool IsBossRoom
+    {
+        get { return isBossRoom; }
+        set {
+            if (isBossRoom != value) {
+                isBossRoom = value;
+                if (isBossRoom) {
+                    OnBoolChanged(1, 0, 0, 0.75f);
+                }
+            }
+        }
+    }
 
     private void Start()
 	{
         templates = this.transform.parent.GetComponent<RoomTemplates>();
         if (templates && !templates.createdRooms) templates.rooms.Add(this.gameObject);
+        if (this.gameObject == templates.rooms[0]) StartCoroutine(InitialRoomSetCoroutine());
+    }
+
+    private IEnumerator InitialRoomSetCoroutine()
+    {
+        yield return new WaitUntil(() => templates.refreshedRooms);
+        yield return null;
+        
+        IsClear = true;
+        CurrentRoom = true;
+
+        yield return null;
+
+        AddRoom bossRoom = templates.rooms[^1].GetComponent<AddRoom>();
+        bossRoom.IsBossRoom = true;
+    }
+
+    private void OnBoolChanged(float r, float g, float b, float a)
+    {
+        if (!templates.refreshedRooms) return;
+
+        GameObject miniRoom = GameManager.Instance.minimap.miniRoomsList[templates.rooms.IndexOf(this.gameObject)];
+        foreach (SpriteRenderer renderer in miniRoom.GetComponentsInChildren<SpriteRenderer>()) {
+            renderer.color = new(r, g, b, a);
+        }
     }
 }

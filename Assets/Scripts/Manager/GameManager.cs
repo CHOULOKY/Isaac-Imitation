@@ -9,12 +9,16 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public IsaacTearFactory isaacTearFactory;
 
+    public Minimap minimap;
+
     private void Awake()
     {
         instance = this;
 
         uiManager = GetComponentInChildren<UIManager>();
         isaacTearFactory = GetComponentInChildren<IsaacTearFactory>();
+
+        minimap = minimap != null ? minimap : FindAnyObjectByType<Minimap>();
     }
 
     public static GameManager Instance

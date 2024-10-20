@@ -17,12 +17,15 @@ public class RoomTemplates : MonoBehaviour
 
     public int maxRoomCount = 10;
     public int minRoomCount = 5;
-	public bool refreshedRooms;
 
 	public float waitTime = 2f;
 	public bool createdRooms;
+    public bool refreshedRooms;
 
-	private void Update()
+    [Header("Doors")]
+    public GameObject bossDoor;
+
+    private void Update()
 	{
 		// Test code
 		if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -45,5 +48,10 @@ public class RoomTemplates : MonoBehaviour
 			}
         }
 		refreshedRooms = true;
+
+		foreach (Door door in rooms[^1].GetComponentsInChildren<Door>()) {
+			if (door.doorDirection == 0) continue;
+			else StartCoroutine(door.ChangeToSelectedDoorCoroutine(bossDoor));
+		}
     }
 }

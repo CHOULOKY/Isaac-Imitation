@@ -56,7 +56,7 @@ public class Modifyer : MonoBehaviour
             }
         }
         roomName += dirB == default ? "" : dirB;
-        
+
         for (int i = 0; i < templates.allRooms.Length; i++) {
             if (templates.allRooms[i].name.Equals(roomName)) {
                 templates.rooms[templates.rooms.IndexOf(this.transform.parent.gameObject)] =

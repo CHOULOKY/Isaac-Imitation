@@ -13,7 +13,6 @@
 ## 1. Overview 
 - Project Name: The Binding of Isaac, imitation game
 - Description: The Binding of Isaac, imitation game using Photon Server to add multiplayer functionality
-- Development Period : 2024.09.28 ~ 2024.00.00
 
 <br><br>
 
@@ -44,11 +43,13 @@
 - **Random Room**
   - ﻿4방향이 있는 시작 지점에서 각 방향에 맞는 방을 랜덤으로 생성하면서 뻗어나가는 기능
 - **Room Management**
-  - 보스 룸이 시작 지점 옆에 배치되는 것을 막고, 각 룸이 클리어된 방인지 아닌지를 확인하는 등의 룸 관리 기능
+  - 보스 방이 시작 지점 옆에 배치되는 것을 막고, 각 방이 클리어된 방인지 아닌지를 확인하는 등 방의 상태 관리 기능
+- **Minimap**
+  - 생성된 방들을 미니맵과 연동하여 전체적인 맵 구조를 작은 화면으로 따로 보여주는 기능
 - **Player Control**
   - 플레이어가 플레이어 캐릭터를 조작할 수 있는 기능(이동, 공격, 아이템 사용 등)
 - **Monster AI**
-  - 몬스터와 보스를 FSM(유한 상태 기계) 디자인 패턴과 팩토리 디자인 패턴 등을 사용하여, 플레이어를 자동으로 감지, 추격, 공격하는 기능
+  - 몬스터와 보스를 FSM(유한 상태 기계) 디자인 패턴과 팩토리 디자인 패턴 등을 사용하여, 플레이어를 자동으로 감지 및 추격하고 공격하는 기능
 - **Item Management**
   - 각 룸이나 오브젝트 등이 보상을 드랍하는 여부와 플레이어가 획득할 아이템 및 획득한 아이템을 관리하는 기능
 - **Multi-Play**
@@ -60,7 +61,7 @@
 
 ## 5. Directory Structure
 ```
-
+ ...
 ```
 
 <br><br>

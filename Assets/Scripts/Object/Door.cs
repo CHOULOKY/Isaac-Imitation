@@ -166,14 +166,17 @@ public class Door : MonoBehaviour
                 }
                 isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
 
-                SetForCameras(collision, thisDoor);
+                collision.GetComponent<Door>().thisRoom.CurrentRoom = false;
+                thisRoom.CurrentRoom = true;
+
+                SetForCameras(thisDoor);
                 break;
             }
         }
     }
 
     // doorDirection == 0
-    private void SetForCameras(Collider2D collision, int thisDoor)
+    private void SetForCameras(int thisDoor)
     {
         mainCamera = mainCamera != null ? mainCamera : Camera.main.GetComponent<MainCamera>();
 
@@ -197,9 +200,6 @@ public class Door : MonoBehaviour
                 break;
         }
         minimapTransform.position += offset;
-
-        collision.GetComponent<Door>().thisRoom.CurrentRoom = false;
-        thisRoom.CurrentRoom = true;
     }
 
     // doorDirection == 0

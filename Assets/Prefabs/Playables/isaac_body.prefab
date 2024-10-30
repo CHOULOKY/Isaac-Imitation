@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 239925099095062435}
   - component: {fileID: 2203963244471043829}
+  - component: {fileID: 1989534844673613733}
   - component: {fileID: 8144474635582434122}
   - component: {fileID: 1228604921049859906}
   m_Layer: 3
@@ -47,6 +48,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tearSpeed: 6
+  attackSpeed: 0.5
+--- !u!114 &1989534844673613733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937234102064734114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6115c9835d8a8a428939e9c3d2530f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: e7e6409857a4eea46b0ab0d8ddc4d0ea, type: 2}
+  flashDuration: 0
 --- !u!212 &8144474635582434122
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7761193500244283223}
   - component: {fileID: 2944303971341980172}
+  - component: {fileID: 68028189956549890}
   - component: {fileID: 6339911062599843842}
   - component: {fileID: 5366006990610755284}
   - component: {fileID: 4501392415703798651}
@@ -171,6 +188,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForce: 20
   maxVelocity: 5
+  health: 0
+  maxHealth: 6
+--- !u!114 &68028189956549890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3835276316754223441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6115c9835d8a8a428939e9c3d2530f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: e7e6409857a4eea46b0ab0d8ddc4d0ea, type: 2}
+  flashDuration: 0.05
 --- !u!212 &6339911062599843842
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -29,6 +29,8 @@ public class IsaacHead : MonoBehaviour
 
     private void Update()
     {
+        if (body.IsHurt) return;
+
         GetInputVec();
 
         SetHeadDirection();
@@ -119,5 +121,15 @@ public class IsaacHead : MonoBehaviour
                 tearRigid.AddForce(inputVec * tearSpeed + Vector2.up + tearVelocity, ForceMode2D.Impulse);
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        inputVec = Vector2.zero;
+
+        spriteRenderer.flipX = false;
+
+        animator.SetInteger("XAxisRaw", 0);
+        animator.SetInteger("YAxisRaw", 0);
     }
 }

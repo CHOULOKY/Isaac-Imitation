@@ -6,23 +6,23 @@ using UnityEngine.UI;
 
 public class FadeController : MonoBehaviour
 {
-    private CanvasGroup feadGroup;
+    private CanvasGroup feadeGroup;
 
     private void Awake()
     {
-        feadGroup = GetComponent<CanvasGroup>();
+        feadeGroup = GetComponent<CanvasGroup>();
     }
 
     public IEnumerator FadeInCoroutine(CanvasGroup uiElement = null, float duration = 1.0f)
     {
-        uiElement = uiElement != null ? uiElement : feadGroup;
+        uiElement = uiElement != null ? uiElement : feadeGroup;
 
         yield return FadeCoroutine(uiElement, duration, 0f, 1f);
     }
 
     public IEnumerator FadeOutCoroutine(CanvasGroup uiElement = null, float duration = 1.0f)
     {
-        uiElement = uiElement != null ? uiElement : feadGroup;
+        uiElement = uiElement != null ? uiElement : feadeGroup;
 
         yield return FadeCoroutine(uiElement, duration, 1f, 0f);
     }

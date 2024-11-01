@@ -1,0 +1,1192 @@
+fileFormatVersion: 2
+guid: 435a6028b63c1074985a6da834f75732
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 18
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: The Sad Onion_front0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 242
+        width: 46
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f31defad53f712242951c81bbaf50941
+      internalID: -797271033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 242
+        width: 46
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9af5ec8b24a1e1f47bb00e235767dc2f
+      internalID: -1015559463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_Right0
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 242
+        width: 42
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 044c1b5c4a844bd40a6f1329cbf8cdf9
+      internalID: 95970584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_3
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 242
+        width: 44
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2067501412aa699469d5f6d588e9601a
+      internalID: -185054499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_6
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 242
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c420ed19eafe1294eb2cb2237a67d48d
+      internalID: -2001687741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_7
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 242
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39ebb6cda53fed46b01fe0df66f3f2e
+      internalID: 1251622659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 242
+        width: 41
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbc1e486674427548a2d1404cab139cf
+      internalID: -1507557191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_9
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 242
+        width: 40
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9efc6fc0bff4e424e984e546f0881be4
+      internalID: -235711577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_front1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 199
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dd57d3880c40034781a55ffebf31545
+      internalID: -101719499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 199
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 990d55a189f42234ea04d812181ee672
+      internalID: 2018699639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_Right1
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 199
+        width: 42
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87fb89ea233de214280c68d6ec9c6285
+      internalID: -734709010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_11
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 199
+        width: 44
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d9fe8e45d09e194d98576298bd5c557
+      internalID: -321102546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_12
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 199
+        width: 45
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f7d85e98186927488e6578f468669dd
+      internalID: 1184495198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_13
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 199
+        width: 45
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eed3373ebd6099449e4e81cb7362570
+      internalID: -841597536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_14
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 199
+        width: 41
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a596a6e48d1a3b4987a69a5f2d6538f
+      internalID: 1139389630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_15
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 199
+        width: 41
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f523b18b892a71143a7b01509ac6a6bb
+      internalID: 369874389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_front2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 158
+        width: 46
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb2c4f2b6a28e734e9ff89af9bac5636
+      internalID: -1749333274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_17
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 158
+        width: 46
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c72ec4f1e4a0fc439c99c1f9aabc155
+      internalID: -1996299326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_Right2
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 158
+        width: 42
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 059df59b34b4f7946a1877856e4c4565
+      internalID: -543472197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IThe Sad Onion_9
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 158
+        width: 44
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80c62945d6772364db3fc5b073cdd828
+      internalID: -1031345797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_21
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 158
+        width: 45
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3738bd23940b045b0e103074c8096c
+      internalID: -195056369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_22
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 157
+        width: 45
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa90f5fbc1cdbfb4db4c37da8182dfd8
+      internalID: 1685285831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_23
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 158
+        width: 41
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3740cd00464c5c745b3f2ead589d88dd
+      internalID: 1312191679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion_24
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 158
+        width: 41
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d2d8d18012164e4d8531432723ee41e
+      internalID: 1503233108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 121
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5093045f9c845a4880b081dbe58e22d
+      internalID: -1008613757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_12
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 123
+        width: 45
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5119412, y: 0.5223897}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e7fc700a19a6214eaada198d19ada16
+      internalID: -1742476559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_18
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 122
+        width: 41
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa975862d1c6c0c4e901c1c9dff0719c
+      internalID: 1372430437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_22
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 79
+        width: 41
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1751e191ade7afe46af169a421453b5c
+      internalID: -550257045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_4
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 78
+        width: 46
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4413af00abc1af0498309daf031a973f
+      internalID: -1659308989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_19
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 81
+        width: 41
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc8df410bd55a0e4aa58da05b9f97d30
+      internalID: -602397125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_21
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 120
+        width: 41
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa8b8d0c48b09a04fa84e06933b979b7
+      internalID: 1523457207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_5
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 37
+        width: 46
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e705d47a5a37f14a8ace150ea661668
+      internalID: 2068400312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_20
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 40
+        width: 41
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a403138ed4258f4a87e7fcec7e016f4
+      internalID: -1315845863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_23
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 38
+        width: 41
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71eceb00175b04b4c85767ac03ad8223
+      internalID: -1983975882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Sad Onion
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9022039c8540d94eb74f1f3d0b075a1
+      internalID: -162919538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_3
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 120
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c6b130410fb96e40b31c662b1a37043
+      internalID: -467485100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 80
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1124b660f6040d742952605f89961992
+      internalID: 1762434539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_2
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 39
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 002c1c7bde6364c46ae3079b1ebaceef
+      internalID: -1295856553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_7
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 80
+        width: 42
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7707ade137edae4682f3a38e7058626
+      internalID: 1793503076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_8
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 39
+        width: 42
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77a7f0327d3bf3746b09775db55d54e2
+      internalID: -276918886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_9
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 119
+        width: 42
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33c033c83e638e54d9c9074af666bc96
+      internalID: 1353352010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_10
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 78
+        width: 42
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff30dd86887a9ab44aae8480be237ce4
+      internalID: -1181645566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_11
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 37
+        width: 42
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce1251ae3c95d8f448f4d0b8c15695bd
+      internalID: 1903368312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_13
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 82
+        width: 45
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5119398, y: 0.5141623}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7160736b0c43c142a6f91ea794ae285
+      internalID: -1220721043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_14
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 41
+        width: 45
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5119412, y: 0.5223897}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 597b2acece06f6c4abaa1feb748895d0
+      internalID: -73884000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 122
+        width: 45
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5119412, y: 0.5223897}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25670f1db18a0064c9ede1b40bda499a
+      internalID: -1050335320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_16
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 81
+        width: 45
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5119412, y: 0.5223897}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b5f596f7fe23d418be30f8a431b1e2
+      internalID: -1665325024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_17
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 40
+        width: 45
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5119412, y: 0.5223897}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc78b0aacd7fe8c44aecb002d9e0cc12
+      internalID: -1546922813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isaac_The Sad Onion_6
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 121
+        width: 42
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27d96007aae20354899da5e87125da55
+      internalID: 1919986191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      IThe Sad Onion_9: -1031345797
+      Isaac_The Sad Onion_0: -1008613757
+      Isaac_The Sad Onion_1: 1762434539
+      Isaac_The Sad Onion_10: -1181645566
+      Isaac_The Sad Onion_11: 1903368312
+      Isaac_The Sad Onion_12: -1742476559
+      Isaac_The Sad Onion_13: -1220721043
+      Isaac_The Sad Onion_14: -73884000
+      Isaac_The Sad Onion_15: -1050335320
+      Isaac_The Sad Onion_16: -1665325024
+      Isaac_The Sad Onion_17: -1546922813
+      Isaac_The Sad Onion_18: 1372430437
+      Isaac_The Sad Onion_19: -602397125
+      Isaac_The Sad Onion_2: -1295856553
+      Isaac_The Sad Onion_20: -1315845863
+      Isaac_The Sad Onion_21: 1523457207
+      Isaac_The Sad Onion_22: -550257045
+      Isaac_The Sad Onion_23: -1983975882
+      Isaac_The Sad Onion_3: -467485100
+      Isaac_The Sad Onion_4: -1659308989
+      Isaac_The Sad Onion_5: 2068400312
+      Isaac_The Sad Onion_6: 1919986191
+      Isaac_The Sad Onion_7: 1793503076
+      Isaac_The Sad Onion_8: -276918886
+      Isaac_The Sad Onion_9: 1353352010
+      The Sad Onion: -162919538
+      The Sad Onion_: -1507557191
+      The Sad Onion_1: -1015559463
+      The Sad Onion_11: -321102546
+      The Sad Onion_12: 1184495198
+      The Sad Onion_13: -841597536
+      The Sad Onion_14: 1139389630
+      The Sad Onion_15: 369874389
+      The Sad Onion_17: -1996299326
+      The Sad Onion_21: -195056369
+      The Sad Onion_22: 1685285831
+      The Sad Onion_23: 1312191679
+      The Sad Onion_24: 1503233108
+      The Sad Onion_3: -185054499
+      The Sad Onion_5: 2018699639
+      The Sad Onion_6: -2001687741
+      The Sad Onion_7: 1251622659
+      The Sad Onion_9: -235711577
+      The Sad Onion_Right0: 95970584
+      The Sad Onion_Right1: -734709010
+      The Sad Onion_Right2: -543472197
+      The Sad Onion_front0: -797271033
+      The Sad Onion_front1: -101719499
+      The Sad Onion_front2: -1749333274
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

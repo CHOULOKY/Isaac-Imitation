@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IsaacBody : MonoBehaviour
 {
@@ -84,22 +85,40 @@ public class IsaacBody : MonoBehaviour
         get { return isHurt; }
         set {
             if (isHurt != value) {
-                this.animator.SetTrigger("Hit");
+                isHurt = value;
+                if (health <= 0) {
+                    IsDeath = true;
+                    return;
+                }
 
-                isHurt = true;
+                this.animator.SetTrigger("Hit");
                 flashEffect.Flash(new Color(1, 1, 0, 1));
             }
         }
     }
 
+    // For animation event
     public void ResetIsHurtAfterAnimation()
     {
         isHurt = false;
     }
 
+    // For animation event
     public void SetHeadSpriteAlpha(float _alpha)
     {
         head.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, _alpha);
+    }
+
+    private bool isDeath = false;
+    public bool IsDeath
+    {
+        get { return isDeath; }
+        set {
+            if (isDeath != value) {
+                isDeath = value;
+                GameManager.Instance.GameOver();
+            }
+        }
     }
 
     private void OnDisable()

@@ -191,8 +191,8 @@ namespace ChargerStates
 
         private void MoveMonster()
         {
-            rigid.AddForce(inputVec.normalized * (monster.stat.moveForce + 5), ForceMode2D.Force);
-            if (rigid.velocity.magnitude > monster.stat.maxVelocity + 1) {
+            rigid.AddForce(inputVec.normalized * (monster.stat.moveForce + 10), ForceMode2D.Force);
+            if (rigid.velocity.magnitude > monster.stat.maxVelocity + 2) {
                 rigid.velocity = rigid.velocity.normalized * (monster.stat.maxVelocity + 1);
             }
         }

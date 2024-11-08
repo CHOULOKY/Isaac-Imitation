@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashWhite : MonoBehaviour
+public class FlashEffect : MonoBehaviour
 {
     public Material flashMaterial;
     public float flashDuration;

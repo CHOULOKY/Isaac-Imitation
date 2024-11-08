@@ -39,25 +39,39 @@ public class IsaacTear : MonoBehaviour
         else if (collision.CompareTag("Monster")) {
             DisableTear();
 
-            MonoBehaviour[] collisionScript = collision.gameObject.GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour script in collisionScript) {
-                Type baseType = script.GetType()?.BaseType;
-                if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(Monster<>)) {
-                    // stat 변수에 접근 (protected 또는 private라면 BindingFlags 사용)
-                    FieldInfo statField = baseType.GetField("stat", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
-                    if (statField != null) {
-                        MonsterStat monsterStat = statField.GetValue(script) as MonsterStat;
-                        monsterStat.health -= tearDamage;
-                    }
-                    else {
-                        Debug.LogWarning("stat 필드를 찾을 수 없습니다.");
-                    }
-                    break;
+            if (TryGetMonsterFields(collision, out MonoBehaviour script, out FieldInfo statField, out FieldInfo isHurtField)) {
+                if (statField.GetValue(script) is MonsterStat monsterStat) {
+                    monsterStat.health -= tearDamage;
+                    isHurtField.SetValue(script, false);
                 }
+            }
+            else {
+                Debug.LogWarning("stat 필드를 찾을 수 없습니다.");
             }
         }
     }
 
+    private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out FieldInfo statField, out FieldInfo isHurtField)
+    {
+        script = null;
+        statField = isHurtField = null;
+
+        MonoBehaviour[] scripts = collision.gameObject.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour s in scripts) {
+            Type baseType = s.GetType()?.BaseType; // 부모: Monster
+            if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(Monster<>)) {
+                statField = baseType.GetField("stat", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                isHurtField = baseType.GetField("IsHurt", BindingFlags.Instance | BindingFlags.Public);
+                if (statField != null && isHurtField != null) {
+                    script = s;
+                    return true;
+                }
+                break;
+            }
+        }
+        return false;
+    }
+    
     private void OnDisable()
     {
         transform.position = transform.parent.position;

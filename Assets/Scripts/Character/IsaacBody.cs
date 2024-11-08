@@ -11,7 +11,7 @@ public class IsaacBody : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    private FlashWhite flashEffect;
+    private FlashEffect flashEffect;
 
     private Vector2 inputVec;
     public float moveForce = 20; // +5
@@ -28,7 +28,7 @@ public class IsaacBody : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        flashEffect = GetComponent<FlashWhite>();
+        flashEffect = GetComponent<FlashEffect>();
     }
 
     private void OnEnable()
@@ -114,8 +114,8 @@ public class IsaacBody : MonoBehaviour
     {
         get { return isDeath; }
         set {
-            if (isDeath != value) {
-                isDeath = value;
+            if (isDeath == false) {
+                isDeath = true;
                 GameManager.Instance.GameOver();
             }
         }

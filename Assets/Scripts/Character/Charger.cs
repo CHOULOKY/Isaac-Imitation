@@ -104,7 +104,8 @@ public class Charger : Monster<Charger>
 
     private IEnumerator ParticleSystemCoroutine(ParticleSystem effect)
     {
-        yield return Instantiate(effect, rigid.position + Vector2.down * 0.25f, effect.transform.rotation);
+        yield return Instantiate(effect, 
+            rigid.position + Vector2.down * 0.25f, effect.transform.rotation, this.transform);
         yield return new WaitUntil(() => !effect.isPlaying);
         yield return new WaitForSeconds(1f);
 

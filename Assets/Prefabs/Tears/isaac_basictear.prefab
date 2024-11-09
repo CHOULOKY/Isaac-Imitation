@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tearDamage: 1
-  gravitySetTime: 0.15
+  gravitySetTime: 1
   gravityScale: 0.25
+  tearDirection: 0
   tearActiveTime: 1.25
 --- !u!212 &1886374461064200541
 SpriteRenderer:

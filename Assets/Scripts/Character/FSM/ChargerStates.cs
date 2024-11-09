@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ChargerStates
 {
@@ -58,10 +59,13 @@ namespace ChargerStates
         public MoveState(Charger _monster) : base(_monster) { }
 
         private bool isStateExit = false;
+        private Transform[] shadow = new Transform[2]; // 0: XShadow, 1: YShadow
 
         public override void OnStateEnter()
         {
             base.OnStateEnter();
+            shadow[0] = monster.transform.GetChild(0);
+            shadow[1] = monster.transform.GetChild(1);
 
             SetInputVec(5);
             SetInputVec();
@@ -69,7 +73,7 @@ namespace ChargerStates
 
         public override void OnStateUpdate()
         {
-            if (monster.OnSenseForward(0.85f, "Wall", "Obstacle")) {
+            if (monster.OnSenseForward(0.95f, "Wall", "Obstacle")) {
                 SetInputVec();
             }
 
@@ -117,9 +121,17 @@ namespace ChargerStates
         {
             if (monster.inputVec.x > 0) {
                 spriteRenderer.flipX = false;
+                shadow[0].gameObject.SetActive(true);
+                shadow[1].gameObject.SetActive(false);
             }
             else if (monster.inputVec.x < 0) {
                 spriteRenderer.flipX = true;
+                shadow[0].gameObject.SetActive(true);
+                shadow[1].gameObject.SetActive(false);
+            }
+            else if (monster.inputVec.y != 0) {
+                shadow[0].gameObject.SetActive(false);
+                shadow[1].gameObject.SetActive(true);
             }
             animator.SetInteger("XAxisRaw", (int)monster.inputVec.x);
             animator.SetInteger("YAxisRaw", (int)monster.inputVec.y);
@@ -200,8 +212,8 @@ namespace ChargerStates
         private void AttackPlayer()
         {
             RaycastHit2D playerHit = monster.OnSenseForward(0.45f, "Player");
-            if (playerHit && !monster.isAttacked) {
-                monster.isAttacked = true;
+            if (playerHit && !monster.isAttack) {
+                monster.isAttack = true;
 
                 if (playerHit.transform.TryGetComponent<IsaacBody>(out var player)) {
                     if (!player.IsHurt) {

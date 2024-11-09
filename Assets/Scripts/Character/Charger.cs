@@ -16,7 +16,7 @@ public class Charger : Monster<Charger>
     [HideInInspector] public Vector2 inputVec;
 
     public RaycastHit2D playerHit;
-    public bool isAttacked = false;
+    [HideInInspector] public bool isAttack = false;
     private float curAttackCooltime = 0;
 
 
@@ -69,9 +69,9 @@ public class Charger : Monster<Charger>
                 if (OnDead()) {
                     ChangeState(States.Dead);
                 }
-                else if (OnSenseForward(0.85f, "Wall", "Obstacle") || isAttacked) {
+                else if (OnSenseForward(0.95f, "Wall", "Obstacle") || isAttack) {
+                    isAttack = false;
                     ChangeState(States.Move);
-                    isAttacked = false;
                 }
                 break;
             case States.Dead:
@@ -112,7 +112,7 @@ public class Charger : Monster<Charger>
         isSpawned = true;
     }
 
-    public RaycastHit2D OnSenseForward(float _distance = 0.85f, params string[] _layers)
+    public RaycastHit2D OnSenseForward(float _distance = 0.95f, params string[] _layers)
     {
         return Physics2D.Raycast(rigid.position, inputVec, _distance, LayerMask.GetMask(_layers));
     }

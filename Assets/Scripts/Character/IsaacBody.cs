@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,8 @@ public class IsaacBody : MonoBehaviour
     private Vector2 inputVec;
     public float moveForce = 20; // +5
     public float maxVelocity = 5; // moveForce/5 + 1
+    private float curMoveForce;
+    private float curMaxVelocity;
 
     public int health;
     public int maxHealth;
@@ -34,6 +37,8 @@ public class IsaacBody : MonoBehaviour
     private void OnEnable()
     {
         health = maxHealth;
+        curMoveForce = moveForce;
+        curMaxVelocity = maxVelocity;
     }
 
     private void Update()
@@ -73,9 +78,9 @@ public class IsaacBody : MonoBehaviour
 
     private void MoveBody()
     {
-        rigid.AddForce(inputVec.normalized * moveForce, ForceMode2D.Force);
-        if (rigid.velocity.magnitude > maxVelocity) {
-            rigid.velocity = rigid.velocity.normalized * maxVelocity;
+        rigid.AddForce(inputVec.normalized * curMoveForce, ForceMode2D.Force);
+        if (rigid.velocity.magnitude > curMaxVelocity) {
+            rigid.velocity = rigid.velocity.normalized * curMaxVelocity;
         }
     }
 
@@ -84,12 +89,15 @@ public class IsaacBody : MonoBehaviour
     {
         get { return isHurt; }
         set {
-            if (isHurt != value) {
-                isHurt = value;
+            if (isHurt == false) {
+                isHurt = true;
                 if (health <= 0) {
                     IsDeath = true;
                     return;
                 }
+
+                curMoveForce = moveForce + 10;
+                curMaxVelocity = maxVelocity + 2;
 
                 this.animator.SetTrigger("Hit");
                 flashEffect.Flash(new Color(1, 1, 0, 1));
@@ -98,9 +106,13 @@ public class IsaacBody : MonoBehaviour
     }
 
     // For animation event
-    public void ResetIsHurtAfterAnimation()
+    public async void ResetIsHurtAfterAnimation()
     {
+        await Task.Delay(500); // 0.5 second
+
         isHurt = false;
+        curMoveForce = moveForce;
+        curMaxVelocity = maxVelocity;
     }
 
     // For animation event
@@ -125,8 +137,6 @@ public class IsaacBody : MonoBehaviour
     {
         inputVec = Vector2.zero;
         rigid.velocity = Vector2.zero;
-
-        spriteRenderer.flipX = false;
 
         animator.SetInteger("XAxisRaw", 0);
         animator.SetInteger("YAxisRaw", 0);

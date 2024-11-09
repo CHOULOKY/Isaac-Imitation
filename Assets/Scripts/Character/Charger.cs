@@ -7,13 +7,7 @@ using System.Threading;
 public class Charger : Monster<Charger>
 {
     private enum States { Idle, Move, Attack, Dead }
-    private States curState;
-
-    private Rigidbody2D rigid;
-
-    private bool isSpawned = false;
-
-    [HideInInspector] public Vector2 inputVec;
+    private States? curState;
 
     public RaycastHit2D playerHit;
     [HideInInspector] public bool isAttack = false;
@@ -32,11 +26,11 @@ public class Charger : Monster<Charger>
         fsm = new FSM<Charger>(new IdleState(this));
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        stat.health = stat.maxHealth;
+        base.OnEnable();
 
-        StartCoroutine(ParticleSystemCoroutine(spawnEffect.GetComponent<ParticleSystem>()));
+        if (curState != null) ChangeState(States.Idle);
     }
 
     private void Update()
@@ -102,15 +96,6 @@ public class Charger : Monster<Charger>
         }
     }
 
-    private IEnumerator ParticleSystemCoroutine(ParticleSystem effect)
-    {
-        yield return Instantiate(effect, 
-            rigid.position + Vector2.down * 0.25f, effect.transform.rotation, this.transform);
-        yield return new WaitUntil(() => !effect.isPlaying);
-        yield return new WaitForSeconds(1f);
-
-        isSpawned = true;
-    }
 
     public RaycastHit2D OnSenseForward(float _distance = 0.95f, params string[] _layers)
     {
@@ -128,11 +113,6 @@ public class Charger : Monster<Charger>
         }
 
         return playerHit;
-    }
-
-    private bool OnDead()
-    {
-        return stat.health <= 0;
     }
 
     private void OnDrawGizmos()

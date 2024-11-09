@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 310199021245730222}
   - component: {fileID: -6069476032879387650}
   - component: {fileID: 1220607871606219738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: isaac_basictear
   m_TagString: Tear
   m_Icon: {fileID: 0}
@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tearDamage: 1
+  knockPower: 0.75
+  tearDirection: 0
   gravitySetTime: 1
   gravityScale: 0.25
-  tearDirection: 0
   tearActiveTime: 1.25
 --- !u!212 &1886374461064200541
 SpriteRenderer:

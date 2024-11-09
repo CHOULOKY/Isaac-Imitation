@@ -15,6 +15,8 @@ namespace ChargerStates
         protected Animator animator;
         protected SpriteRenderer spriteRenderer;
 
+        protected Transform[] shadow = new Transform[2]; // 0: XShadow, 1: YShadow
+
         public ChargerState(Charger _monster) : base(_monster) { }
 
         public override void OnStateEnter()
@@ -22,6 +24,9 @@ namespace ChargerStates
             rigid = monster.GetComponent<Rigidbody2D>();
             animator = monster.GetComponent<Animator>();
             spriteRenderer = monster.GetComponent<SpriteRenderer>();
+
+            shadow[0] = monster.transform.GetChild(0);
+            shadow[1] = monster.transform.GetChild(1);
         }
 
         public override void OnStateUpdate()
@@ -59,13 +64,10 @@ namespace ChargerStates
         public MoveState(Charger _monster) : base(_monster) { }
 
         private bool isStateExit = false;
-        private Transform[] shadow = new Transform[2]; // 0: XShadow, 1: YShadow
 
         public override void OnStateEnter()
         {
             base.OnStateEnter();
-            shadow[0] = monster.transform.GetChild(0);
-            shadow[1] = monster.transform.GetChild(1);
 
             SetInputVec(5);
             SetInputVec();
@@ -89,7 +91,7 @@ namespace ChargerStates
         {
             for (int i = 0; i < _time; ++i) {
                 if (isStateExit) return;
-                await Task.Delay(1000);
+                await Task.Delay(1000); // 1 second
             }
 
             SetInputVec();
@@ -192,9 +194,17 @@ namespace ChargerStates
         {
             if (inputVec.x > 0) {
                 spriteRenderer.flipX = false;
+                shadow[0].gameObject.SetActive(true);
+                shadow[1].gameObject.SetActive(false);
             }
             else if (inputVec.x < 0) {
                 spriteRenderer.flipX = true;
+                shadow[0].gameObject.SetActive(true);
+                shadow[1].gameObject.SetActive(false);
+            }
+            else if (inputVec.y != 0) {
+                shadow[0].gameObject.SetActive(false);
+                shadow[1].gameObject.SetActive(true);
             }
             animator.SetInteger("XAxisRaw", (int)inputVec.x);
             animator.SetInteger("YAxisRaw", (int)inputVec.y);
@@ -231,9 +241,7 @@ namespace ChargerStates
 
         public override void OnStateEnter()
         {
-            base.OnStateEnter();
-
-            rigid.velocity = Vector2.zero;
+            // 
         }
 
         public override void OnStateUpdate()

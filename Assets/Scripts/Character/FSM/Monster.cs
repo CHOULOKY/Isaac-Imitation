@@ -2,34 +2,77 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+internal enum MonsterType { Charger, Gaper }
 public class Monster<T> : MonoBehaviour where T : class
 {
+    [SerializeField] private MonsterType monsterType;
+
+    protected Rigidbody2D rigid;
+
     protected FSM<T> fsm;
 
     public MonsterStat stat;
+    [HideInInspector] public Vector2 inputVec;
 
-    public Transform effectParent;
     public GameObject spawnEffect;
-    public GameObject[] deathEffect;
-    private FlashEffect flashEffect;
+    public GameObject liquidEffect;
+    protected FlashEffect flashEffect;
+
+    protected bool isSpawned = false;
+
+    public Transform bloodParent;
+    public GameObject[] deathBloods;
 
     protected void Awake()
     {
-        if (effectParent == null) {
-            effectParent = GameObject.Find("Effect Parent").transform;
-        }
+        rigid = GetComponent<Rigidbody2D>();
+
         if (spawnEffect == null) {
             spawnEffect = Resources.Load<GameObject>("FX_MonsterSpawn Variant");
         }
-        if (deathEffect == null || deathEffect.Length == 0) {
-            deathEffect = new GameObject[2];
-            deathEffect[0] = Resources.Load<GameObject>("Blood1 Variant");
-            deathEffect[1] = Resources.Load<GameObject>("Blood2 Variant");
+        if (liquidEffect == null) {
+            liquidEffect = Resources.Load<GameObject>("FX_BloodLiquid Variant");
         }
         flashEffect = GetComponent<FlashEffect>();
+
+        if (bloodParent == null) {
+            bloodParent = GameObject.Find("Blood Parent").transform;
+        }
+        if (deathBloods == null || deathBloods.Length == 0) {
+            deathBloods = new GameObject[3];
+            for (int i = 0; i < deathBloods.Length; i++) {
+                deathBloods[i] = Resources.Load<GameObject>($"Blood{i} Variant");
+            }
+        }
     }
 
-    private bool isHurt = false;
+    protected virtual void OnEnable()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Monster");
+
+        IsDeath = false;
+        stat.health = stat.maxHealth;
+
+        StartCoroutine(ParticleSystemCoroutine(spawnEffect.GetComponent<ParticleSystem>()));
+    }
+
+    protected virtual void OnDisable()
+    {
+        rigid.velocity = Vector2.zero;
+    }
+
+    protected IEnumerator ParticleSystemCoroutine(ParticleSystem effect)
+    {
+        yield return Instantiate(effect,
+            rigid.position + Vector2.down * 0.25f, effect.transform.rotation, this.transform);
+        yield return new WaitUntil(() => !effect.isPlaying);
+        yield return new WaitForSeconds(1f);
+
+        isSpawned = true;
+    }
+
+
+    protected bool isHurt = false;
     public bool IsHurt
     {
         get { return isHurt; }
@@ -41,31 +84,50 @@ public class Monster<T> : MonoBehaviour where T : class
                     return;
                 }
 
-                // this.animator.SetTrigger("Hit");
+                // hurt effect
                 flashEffect.Flash(new Color(1, 0, 0, 1));
+                foreach (FlashEffect effect in GetComponentsInChildren<FlashEffect>()) {
+                    effect.Flash(new Color(1, 0, 0, 1));
+                }
                 isHurt = false;
             }
         }
     }
 
-    private bool isDeath = false;
+    protected bool isDeath = false;
     public bool IsDeath
     {
         get { return isDeath; }
         set {
-            if (isDeath == false) {
-                isDeath = true;
-                this.gameObject.layer = LayerMask.NameToLayer("Destroyed");
-                Instantiate(deathEffect[UnityEngine.Random.Range(0, 2)], 
-                    this.transform.position, Quaternion.identity, effectParent);
-                GetComponent<Animator>().SetBool("isDeath", true);
+            if (isDeath != value) {
+                isDeath = value;
+                if (isDeath == true) {
+                    SetAfterDeath();
+                }
             }
         }
     }
 
-    public void DisableMonster()
+    protected bool OnDead()
     {
+        return stat.health <= 0;
+    }
+
+    protected void SetAfterDeath()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Destroyed");
+
+        SpawnBloodEffects();
+
         this.gameObject.SetActive(false);
+    }
+
+    public void SpawnBloodEffects()
+    {
+        // spawn blood puddle & blood splash
+        Instantiate(deathBloods[UnityEngine.Random.Range(0, 2)],
+                    this.transform.position, Quaternion.identity, bloodParent);
+        Instantiate(liquidEffect, this.transform.position, Quaternion.identity);
     }
 }
 

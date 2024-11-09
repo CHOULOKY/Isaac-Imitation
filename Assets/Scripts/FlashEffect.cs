@@ -12,11 +12,16 @@ public class FlashEffect : MonoBehaviour
 
     private Coroutine flashRoutine;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
         flashMaterial = new Material(flashMaterial);
+    }
+
+    private void OnEnable()
+    {
+        spriteRenderer.material = originalMaterial;
     }
 
     public void Flash(Color _color)

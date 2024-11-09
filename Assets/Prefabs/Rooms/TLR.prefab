@@ -178,6 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 3
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -697,6 +699,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1109203751038244380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7372873189766809158}
+  m_Layer: 0
+  m_Name: Monsters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7372873189766809158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109203751038244380}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5200928926511538782}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1131383653902705079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,6 +1392,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 0
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 2, y: 1}
@@ -1694,6 +1729,7 @@ Transform:
   - {fileID: 198835717715753578}
   - {fileID: 5756887494467787394}
   - {fileID: 2442459740468978033}
+  - {fileID: 7372873189766809158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4753184699978764880
@@ -1709,6 +1745,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClear: 0
+  currentRoom: 0
+  isBossRoom: 0
 --- !u!61 &-4526455349366364850
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2164,6 +2202,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 4
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -2635,6 +2675,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 1
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}

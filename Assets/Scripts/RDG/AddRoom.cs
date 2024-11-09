@@ -32,10 +32,13 @@ public class AddRoom : MonoBehaviour
                 currentRoom = value;
                 if (currentRoom) {
                     OnBoolChanged(1, 1, 0, 0.75f);
+                    if (!IsClear) {
+                        spawnMonsters();
+                    }
                 }
                 else {
-                    if (isClear) {
-                        if (isBossRoom) OnBoolChanged(0, 1, 0, 0.75f);
+                    if (IsClear) {
+                        if (IsBossRoom) OnBoolChanged(0, 1, 0, 0.75f);
                         else OnBoolChanged(1, 1, 1, 0.5f);
                     }
                     else {
@@ -64,10 +67,10 @@ public class AddRoom : MonoBehaviour
 	{
         templates = this.transform.parent.GetComponent<RoomTemplates>();
         if (templates && !templates.createdRooms) templates.rooms.Add(this.gameObject);
-        if (this.gameObject == templates.rooms[0]) StartCoroutine(InitialRoomSetCoroutine());
+        if (this.gameObject == templates.rooms[0]) StartCoroutine(SetInitialRoomCoroutine());
     }
 
-    private IEnumerator InitialRoomSetCoroutine()
+    private IEnumerator SetInitialRoomCoroutine()
     {
         yield return new WaitUntil(() => templates.refreshedRooms);
         yield return null;
@@ -88,6 +91,20 @@ public class AddRoom : MonoBehaviour
         GameObject miniRoom = GameManager.Instance.minimap.miniRoomsList[templates.rooms.IndexOf(this.gameObject)];
         foreach (SpriteRenderer renderer in miniRoom.GetComponentsInChildren<SpriteRenderer>()) {
             renderer.color = new(r, g, b, a);
+        }
+    }
+
+    private void spawnMonsters()
+    {
+        foreach (Transform child in GetComponentsInChildren<Transform>(true))
+        {
+            if (child.CompareTag("Monster"))
+            {
+                if (!child.parent.gameObject.activeSelf) {
+                    child.parent.gameObject.SetActive(true);
+                    break;
+                }
+            }
         }
     }
 }

@@ -178,6 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 2
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -355,6 +357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 3
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -1121,6 +1125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 0
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 2, y: 1}
@@ -1629,6 +1635,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &6454490241967046209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1755594394754591222}
+  m_Layer: 0
+  m_Name: Monsters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1755594394754591222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454490241967046209}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8802223896306547627}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6619206266959890451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,6 +1798,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 4
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -2730,6 +2769,7 @@ Transform:
   - {fileID: 3549366275592615271}
   - {fileID: 696596908594784315}
   - {fileID: 5751397430122848900}
+  - {fileID: 1755594394754591222}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3317837802521347500
@@ -2745,6 +2785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClear: 0
+  currentRoom: 0
+  isBossRoom: 0
 --- !u!61 &6982701983311777779
 BoxCollider2D:
   m_ObjectHideFlags: 0

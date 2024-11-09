@@ -29,6 +29,8 @@ public class IsaacHead : MonoBehaviour
 
     private void Update()
     {
+        if (body.IsHurt) return;
+
         GetInputVec();
 
         SetHeadDirection();
@@ -76,48 +78,80 @@ public class IsaacHead : MonoBehaviour
                 curAttackTime = 0;
 
                 GameObject curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, false);
-                Rigidbody2D tearRigid = curTear.GetComponent<Rigidbody2D>();
-
-                float x = default, y = default;
-                tearWhatEye = tearWhatEye * -1;
-                if (inputVec.x == 1) {
-                    x = 0.3f;
-                    y = 0.2f * tearWhatEye;
-                    curTear.GetComponent<IsaacTear>().gravitySetTime = 0.1f;
-                }
-                else if (inputVec.x == -1) {
-                    x = -0.3f;
-                    y = 0.2f * tearWhatEye;
-                    curTear.GetComponent<IsaacTear>().gravitySetTime = 0.1f;
-                }
-                else if (inputVec.y == 1) {
-                    x = 0.2f * tearWhatEye;
-                    y = 0.3f;
-                    curTear.GetComponent<IsaacTear>().gravitySetTime = 0f;
-                }
-                else if (inputVec.y == -1) {
-                    x = 0.2f * tearWhatEye;
-                    y = -0.3f;
-                    curTear.GetComponent<IsaacTear>().gravitySetTime = 0.15f;
-                }
-
-                Vector2 tearVelocity = Vector2.zero;
-                Rigidbody2D bodyRigid = body.GetComponent<Rigidbody2D>();
-                float velocityByBody;
-                if (bodyRigid.velocity.x > 1 || bodyRigid.velocity.x < -1) {
-                    velocityByBody = bodyRigid.velocity.x / 1 * 0.35f;
-                    tearVelocity = new Vector2(tearVelocity.x + velocityByBody, tearVelocity.y);
-                }
-                if (bodyRigid.velocity.y > 1 || bodyRigid.velocity.y < -1) {
-                    velocityByBody = bodyRigid.velocity.y / 1 * 0.35f;
-                    tearVelocity = new Vector2(tearVelocity.x, tearVelocity.y + velocityByBody);
-                }
-
-                curTear.SetActive(true);
-                tearRigid.position = (Vector2)this.transform.position + new Vector2(x, y);
-                tearRigid.velocity = Vector2.zero;
-                tearRigid.AddForce(inputVec * tearSpeed + Vector2.up + tearVelocity, ForceMode2D.Impulse);
+                SetTearPositionAndGravityTime(curTear, out float x, out float y);
+                SetTearVelocity(out Vector2 tearVelocity);
+                ShootSettedTear(curTear, tearVelocity, x, y);
             }
         }
+    }
+
+    private void SetTearPositionAndGravityTime(GameObject curTear, out float x, out float y)
+    {
+        if (curTear.GetComponent<IsaacTear>() is IsaacTear tear) {
+            tearWhatEye *= -1;
+            // Up: 0, Down: 1, Right: 2, Left: 3
+            if (inputVec.x == 1) {
+                x = 0.3f;
+                y = 0.2f * tearWhatEye;
+                tear.tearDirection = 2;
+            }
+            else if (inputVec.x == -1) {
+                x = -0.3f;
+                y = 0.2f * tearWhatEye;
+                tear.tearDirection = 3;
+            }
+            else if (inputVec.y == 1) {
+                x = 0.2f * tearWhatEye;
+                y = 0.3f;
+                tear.tearDirection = 0;
+            }
+            else {
+                // inputVec.y == -1
+                x = 0.2f * tearWhatEye;
+                y = -0.3f;
+                tear.tearDirection = 1;
+            }
+        }
+        else {
+            x = y = default;
+        }
+    }
+
+    private void SetTearVelocity(out Vector2 tearVelocity)
+    {
+        tearVelocity = Vector2.zero;
+
+        if (body.GetComponent<Rigidbody2D>() is Rigidbody2D bodyRigid) {
+            float velocityByBody;
+            if (bodyRigid.velocity.x > 1 || bodyRigid.velocity.x < -1) {
+                velocityByBody = bodyRigid.velocity.x / 1 * 0.35f;
+                tearVelocity = new Vector2(tearVelocity.x + velocityByBody, tearVelocity.y);
+            }
+            if (bodyRigid.velocity.y > 1 || bodyRigid.velocity.y < -1) {
+                velocityByBody = bodyRigid.velocity.y / 1 * 0.35f;
+                tearVelocity = new Vector2(tearVelocity.x, tearVelocity.y + velocityByBody);
+            }
+        }
+    }
+
+    private void ShootSettedTear(GameObject curTear, Vector2 tearVelocity, float x, float y)
+    {
+        if (curTear.GetComponent<Rigidbody2D>() is Rigidbody2D tearRigid) {
+            curTear.SetActive(true);
+            tearRigid.position = (Vector2)this.transform.position + new Vector2(x, y);
+            tearRigid.velocity = Vector2.zero;
+            // tearRigid.AddForce(inputVec * tearSpeed + Vector2.up / 2 + tearVelocity, ForceMode2D.Impulse);
+            tearRigid.AddForce(inputVec * tearSpeed + tearVelocity, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnDisable()
+    {
+        inputVec = Vector2.zero;
+
+        spriteRenderer.flipX = false;
+
+        animator.SetInteger("XAxisRaw", 0);
+        animator.SetInteger("YAxisRaw", 0);
     }
 }

@@ -30,15 +30,7 @@ public class MainCamera : MonoBehaviour
     private void LateUpdate()
     {
         _distance = (transform.position - targetPos).magnitude;
-        if (_distance >= 15 && _distance <= 25) {
-            _lerpSpeed = 0.7f;
-            if (Mathf.Abs(transform.position.x - targetPos.x) > Mathf.Abs(transform.position.y - targetPos.y)) {
-                _lerpSpeed = 0.5f;
-            }
-        }
-        else {
-            _lerpSpeed = lerpSpeed;
-        }
+        _lerpSpeed = _distance >= 10 ? 1 : lerpSpeed;
 
         targetPos = Isaac.transform.position + offset;
         targetPos.x = Mathf.Clamp(targetPos.x, minBoundary.x, maxBoundary.x);

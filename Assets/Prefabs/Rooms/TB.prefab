@@ -84,6 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 0
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 2, y: 1}
@@ -1492,6 +1494,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 2
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -1574,6 +1578,7 @@ Transform:
   - {fileID: 3300850167653851058}
   - {fileID: 4681071408080859416}
   - {fileID: 4686513232305110064}
+  - {fileID: 8907041134771423673}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4977151611150394560
@@ -1589,6 +1594,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClear: 0
+  currentRoom: 0
+  isBossRoom: 0
 --- !u!61 &-5262035403803187269
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1830,6 +1837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templates: {fileID: 0}
   doorAnimators: []
+  doorObject: {fileID: 0}
+  isChangedDoor: 0
   doorDirection: 1
   isaac: {fileID: 0}
   maxBoundaryFromCenter: {x: 0, y: 0}
@@ -2852,6 +2861,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.6875, y: 1.625}
   m_EdgeRadius: 0
+--- !u!1 &8674525838997798414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8907041134771423673}
+  m_Layer: 0
+  m_Name: Monsters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8907041134771423673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674525838997798414}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2226590440989209216}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1444653724784828794
 PrefabInstance:
   m_ObjectHideFlags: 0

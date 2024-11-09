@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bce6a817a388324b88d98fa7e2e092f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterType: 0
   stat:
     health: 0
     maxHealth: 5
@@ -58,12 +59,14 @@ MonoBehaviour:
     maxVelocity: 2
     attackDamage: 1
     attackSpeed: 1
-  effectParent: {fileID: 0}
+  inputVec: {x: 0, y: 0}
   spawnEffect: {fileID: 5813445722853631470, guid: 097019ca84c45bb488601ba4173f03fb, type: 3}
-  deathEffect:
+  liquidEffect: {fileID: 5978601803282426345, guid: 22eb9526ea7536a4da5fbf0f4329d8e3, type: 3}
+  bloodParent: {fileID: 0}
+  deathBloods:
   - {fileID: 85568774224688937, guid: 0cb422df04dfadc4a87a84fc3586b7cb, type: 3}
   - {fileID: 5711774673240134256, guid: 41df23f776c49e246b01e3e123b9b01f, type: 3}
-  inputVec: {x: 0, y: 0}
+  - {fileID: 3758476903617809035, guid: b68debe55527d94439c29edf1dd6edc0, type: 3}
   isAttack: 0
 --- !u!114 &8811943342449755156
 MonoBehaviour:
@@ -122,7 +125,7 @@ SpriteRenderer:
   m_SortingOrder: -1
   m_Sprite: {fileID: -687529752, guid: f6d784eb60dfdf54398f5f715ea878b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}

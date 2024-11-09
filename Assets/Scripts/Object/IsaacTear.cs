@@ -11,6 +11,7 @@ public class IsaacTear : MonoBehaviour
     private Animator animator;
 
     public int tearDamage = 1;
+    public float knockPower;
 
     [HideInInspector] public int tearDirection; // Up: 0, Down: 1, Right: 2, Left: 3
     [Tooltip("Up: 15%, Down: 40%, Left&Right: 65%")]
@@ -42,10 +43,13 @@ public class IsaacTear : MonoBehaviour
         else if (collision.CompareTag("Monster")) {
             DisableTear();
 
-            if (TryGetMonsterFields(collision, out MonoBehaviour script, out FieldInfo statField, out PropertyInfo isHurtProperty)) {
-                if (statField.GetValue(script) is MonsterStat monsterStat) {
+            if (TryGetMonsterFields(collision, out MonoBehaviour script, out FieldInfo statField, 
+                out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)) {
+                if (statField.GetValue(script) is MonsterStat monsterStat &&
+                    monsterTypeField.GetValue(script) is MonsterType monsterType) {
                     monsterStat.health -= tearDamage;
-                    isHurtProperty.SetValue(script, false);
+                    isHurtProperty.SetValue(script, true);
+                    ApplyKnockToMonster(monsterType, script.GetComponent<Rigidbody2D>());
                 }
             }
             else {
@@ -54,19 +58,27 @@ public class IsaacTear : MonoBehaviour
         }
     }
 
-    private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out FieldInfo statField, out PropertyInfo isHurtProperty)
+    private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out FieldInfo statField, 
+        out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)
     {
+        // 초기화
         script = null;
         statField = null;
         isHurtProperty = null;
+        monsterTypeField = null;
 
-        MonoBehaviour[] scripts = collision.gameObject.GetComponents<MonoBehaviour>();
+        MonoBehaviour[] scripts = collision.GetComponents<MonoBehaviour>();
+        if (scripts.Length <= 1) scripts = collision.GetComponentsInParent<MonoBehaviour>();
         foreach (MonoBehaviour s in scripts) {
             Type baseType = s.GetType()?.BaseType; // 부모: Monster
             if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(Monster<>)) {
+                // stat 필드와 IsHurt 프로퍼티 찾기
                 statField = baseType.GetField("stat", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
                 isHurtProperty = baseType.GetProperty("IsHurt", BindingFlags.Instance | BindingFlags.Public);
-                if (statField != null && isHurtProperty != null) {
+                // MonsterType 열거형 필드 찾기
+                monsterTypeField = baseType.GetField("monsterType", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                
+                if (statField != null && isHurtProperty != null && monsterTypeField != null) {
                     script = s;
                     return true;
                 }
@@ -74,6 +86,14 @@ public class IsaacTear : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void ApplyKnockToMonster(MonsterType monsterType, Rigidbody2D monsterRigid)
+    {
+        if (monsterType == MonsterType.Charger) return;
+        
+        monsterRigid.velocity = Vector2.zero;
+        monsterRigid.AddForce((monsterRigid.position - rigid.position).normalized * knockPower, ForceMode2D.Impulse);
     }
     
     private void OnDisable()

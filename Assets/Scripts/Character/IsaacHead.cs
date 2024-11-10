@@ -122,15 +122,8 @@ public class IsaacHead : MonoBehaviour
         tearVelocity = Vector2.zero;
 
         if (body.GetComponent<Rigidbody2D>() is Rigidbody2D bodyRigid) {
-            float velocityByBody;
-            if (bodyRigid.velocity.x > 1 || bodyRigid.velocity.x < -1) {
-                velocityByBody = bodyRigid.velocity.x / 1 * 0.35f;
-                tearVelocity = new Vector2(tearVelocity.x + velocityByBody, tearVelocity.y);
-            }
-            if (bodyRigid.velocity.y > 1 || bodyRigid.velocity.y < -1) {
-                velocityByBody = bodyRigid.velocity.y / 1 * 0.35f;
-                tearVelocity = new Vector2(tearVelocity.x, tearVelocity.y + velocityByBody);
-            }
+            tearVelocity.x = body.inputVec.x == -inputVec.x ? bodyRigid.velocity.x * 0.25f : bodyRigid.velocity.x * 0.5f;
+            tearVelocity.y = body.inputVec.y == -inputVec.y ? bodyRigid.velocity.y * 0.25f : bodyRigid.velocity.y * 0.5f;
         }
     }
 
@@ -140,8 +133,10 @@ public class IsaacHead : MonoBehaviour
             curTear.SetActive(true);
             tearRigid.position = (Vector2)this.transform.position + new Vector2(x, y);
             tearRigid.velocity = Vector2.zero;
+
+            float adjustedSpeed = inputVec.y < 0 ? tearSpeed * 0.75f : tearSpeed;
             // tearRigid.AddForce(inputVec * tearSpeed + Vector2.up / 2 + tearVelocity, ForceMode2D.Impulse);
-            tearRigid.AddForce(inputVec * tearSpeed + tearVelocity, ForceMode2D.Impulse);
+            tearRigid.AddForce(inputVec * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
         }
     }
 

@@ -14,7 +14,7 @@ public class IsaacBody : MonoBehaviour
 
     private FlashEffect flashEffect;
 
-    private Vector2 inputVec;
+    [HideInInspector] public Vector2 inputVec;
     public float moveForce = 20; // +5
     public float maxVelocity = 5; // moveForce/5 + 1
     private float curMoveForce;

@@ -14,7 +14,6 @@ public class IsaacTear : MonoBehaviour
     public float knockPower;
 
     [HideInInspector] public int tearDirection; // Up: 0, Down: 1, Right: 2, Left: 3
-    [Tooltip("Up: 15%, Down: 40%, Left&Right: 65%")]
     public float gravitySetTime = 0.15f;
     public float gravityScale = 0.3f;
 
@@ -101,15 +100,17 @@ public class IsaacTear : MonoBehaviour
         transform.position = transform.parent.position;
     }
 
+    [Header("Gravity Set Time (Up: 0, Down: 1, Right: 2, Left: 3)")]
+    [SerializeField] private float Up;
+    [SerializeField] private float Down, Right, Left;
     private void SetGravitySetTimeByDirection(out float curGravitySetTime)
     {
-        // Up: 15%, Down: 40%, Left&Right: 65%
-        // Up: 0, Down: 1, Right: 2, Left: 3
         curGravitySetTime = tearDirection switch
         {
-            0 => 0.15f,
-            1 => gravitySetTime * 0.4f,
-            _ => gravitySetTime * 0.65f,
+            0 => Up,
+            1 => gravitySetTime * Down,
+            2 => gravitySetTime * Right,
+            _ => gravitySetTime * Left,
         };
     }
     

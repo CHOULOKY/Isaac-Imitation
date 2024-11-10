@@ -87,8 +87,13 @@ namespace ChargerStates
             isStateExit = true;
         }
 
-        private async void SetInputVec(float _time)
+        private async void SetInputVec(int _time)
         {
+            if (_time < 1) {
+                Debug.LogError($"{monster.name}: SetInputVec 호출 시간이 잘못되었습니다. (0 이하)");
+                return;
+            }
+
             for (int i = 0; i < _time; ++i) {
                 if (isStateExit) return;
                 await Task.Delay(1000); // 1 second
@@ -97,7 +102,7 @@ namespace ChargerStates
             SetInputVec();
             SetInputVec(_time);
         }
-
+        
         private void SetInputVec()
         {
             // 0: up, 1: down, 2: right, 3: left
@@ -154,6 +159,8 @@ namespace ChargerStates
 
         private Vector2 inputVec;
 
+        private bool isNullPlayerHit = false;
+
         public override void OnStateEnter()
         {
             base.OnStateEnter();
@@ -172,10 +179,17 @@ namespace ChargerStates
 
                 SetSpriteDirection();
             }
+            else {
+                Debug.LogWarning($"{monster.name}: AttackState에서 monster.playerHit를 찾지 못했습니다.");
+                monster.isAttack = true;
+                isNullPlayerHit = true;
+            }
         }
 
         public override void OnStateUpdate()
         {
+            if (isNullPlayerHit) return;
+
             if (monster.inputVec != inputVec) {
                 monster.inputVec = inputVec;
             }
@@ -187,6 +201,8 @@ namespace ChargerStates
 
         public override void OnStateExit()
         {
+            if (isNullPlayerHit) return;
+
             animator.SetBool("isAttack", false);
         }
 

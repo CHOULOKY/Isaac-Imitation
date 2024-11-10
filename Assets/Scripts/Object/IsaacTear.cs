@@ -89,10 +89,20 @@ public class IsaacTear : MonoBehaviour
 
     private void ApplyKnockToMonster(MonsterType monsterType, Rigidbody2D monsterRigid)
     {
-        if (monsterType == MonsterType.Charger) return;
+        float adjustedKnockPower = knockPower;
+        switch (monsterType) {
+            case MonsterType.Gaper:
+                break;
+            case MonsterType.Pooter:
+                adjustedKnockPower *= 2;
+                break;
+            default:
+                // Knockback not applied
+                return;
+        }
         
         monsterRigid.velocity = Vector2.zero;
-        monsterRigid.AddForce((monsterRigid.position - rigid.position).normalized * knockPower, ForceMode2D.Impulse);
+        monsterRigid.AddForce((monsterRigid.position - rigid.position).normalized * adjustedKnockPower, ForceMode2D.Impulse);
     }
     
     private void OnDisable()

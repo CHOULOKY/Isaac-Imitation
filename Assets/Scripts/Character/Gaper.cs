@@ -16,12 +16,6 @@ public class Gaper : Monster<Gaper>
     public int followDelay;
 
 
-    private new void Awake()
-    {
-        base.Awake();
-        rigid = GetComponent<Rigidbody2D>();
-    }
-
     private void Start()
     {
         curState = States.Idle;
@@ -43,7 +37,10 @@ public class Gaper : Monster<Gaper>
 
         switch (curState) {
             case States.Idle:
-                if (isSpawned) {
+                if (OnDead()) {
+                    ChangeState(States.Dead);
+                }
+                else if (isSpawned) {
                     ChangeState(States.Move);
                 }
                 break;

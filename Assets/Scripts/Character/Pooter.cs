@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ChargerStates;
-using System.Threading;
+using PooterStates;
+using Photon.Pun.Demo.PunBasics;
 
-public class Charger : Monster<Charger>
+public class Pooter : Monster<Pooter>
 {
     private enum States { Idle, Move, Attack, Dead }
     private States? curState;
 
     [HideInInspector] public RaycastHit2D playerHit;
-    [HideInInspector] public bool isAttack = false;
     private float curAttackCooltime = 0;
+    private bool isAttackFinished = false;
+    public void SetIsAttackFinished(int value) => isAttackFinished = value == 0 ? false : true; // for animation event
 
 
     private void Start()
     {
         curState = States.Idle;
-        fsm = new FSM<Charger>(new IdleState(this));
+        fsm = new FSM<Pooter>(new IdleState(this));
     }
 
     protected override void OnEnable()
@@ -32,7 +33,7 @@ public class Charger : Monster<Charger>
         if (curState == States.Dead) {
             return;
         }
-        
+
         switch (curState) {
             case States.Idle:
                 if (OnDead()) {
@@ -45,7 +46,7 @@ public class Charger : Monster<Charger>
             case States.Move:
                 curAttackCooltime = curAttackCooltime >= stat.attackSpeed ?
                     stat.attackSpeed : curAttackCooltime + Time.deltaTime;
-                
+
                 if (OnDead()) {
                     ChangeState(States.Dead);
                 }
@@ -60,8 +61,8 @@ public class Charger : Monster<Charger>
                 if (OnDead()) {
                     ChangeState(States.Dead);
                 }
-                else if (OnSenseForward(0.95f, "Wall", "Obstacle") || isAttack) {
-                    isAttack = false;
+                else if (isAttackFinished) {
+                    isAttackFinished = false;
                     ChangeState(States.Move);
                 }
                 break;
@@ -93,19 +94,13 @@ public class Charger : Monster<Charger>
         }
     }
 
-
-    public RaycastHit2D OnSenseForward(float _distance = 0.95f, params string[] _layers)
-    {
-        return Physics2D.Raycast(rigid.position, inputVec, _distance, LayerMask.GetMask(_layers));
-    }
-
     public RaycastHit2D CanSeePlayer()
     {
         Vector2[] directions = { Vector2.right, Vector2.left, Vector2.down, Vector2.up };
         RaycastHit2D playerHit = default;
 
         foreach (var direction in directions) {
-            playerHit = Physics2D.Raycast(rigid.position, direction, 4, LayerMask.GetMask("Player"));
+            playerHit = Physics2D.Raycast(rigid.position, direction, 5, LayerMask.GetMask("Player"));
             if (playerHit) break; // 플레이어를 발견하면 루프를 종료
         }
 
@@ -115,11 +110,6 @@ public class Charger : Monster<Charger>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        // Gizmos.DrawRay(this.transform.position, inputVec * 3);
-        // Gizmos.DrawRay(this.transform.position, Vector2.right * 4f);
-
-        Gizmos.color = Color.yellow;
-        // Gizmos.DrawRay(this.transform.position, inputVec * 0.85f);
-        // Gizmos.DrawRay(this.transform.position, Vector2.right * 0.4f);
+        // Gizmos.DrawRay(this.transform.position, Vector2.right * 5f);
     }
 }

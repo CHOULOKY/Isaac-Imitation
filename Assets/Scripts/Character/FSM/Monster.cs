@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-internal enum MonsterType { Charger, Gaper }
+internal enum MonsterType { Charger, Gaper, Pooter }
 public class Monster<T> : MonoBehaviour where T : class
 {
     [SerializeField] private MonsterType monsterType;
@@ -23,7 +23,7 @@ public class Monster<T> : MonoBehaviour where T : class
     public Transform bloodParent;
     public GameObject[] deathBloods;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
 

@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerHead : MonoBehaviour
 {
     public Vector2 inputVec;
-    public float speed = 5f; // 기본 속도 설정
-    public InputActionAsset inputActions; // InputActionAsset 추가
+    public float speed = 5f;
+    public InputActionAsset inputActions;
 
     private Rigidbody2D rigid;
     private SpriteRenderer spriter;
@@ -22,14 +22,12 @@ public class PlayerHead : MonoBehaviour
 
     void Update()
     {
-        // InputActionAsset 사용하여 입력값 읽기
         if (inputActions != null)
         {
             inputVec = inputActions.FindAction("Move").ReadValue<Vector2>();
         }
         else
         {
-            // 기존 Input 방식
             inputVec.x = Input.GetAxis("Horizontal");
             inputVec.y = Input.GetAxis("Vertical");
         }
@@ -37,7 +35,6 @@ public class PlayerHead : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 입력 벡터 정규화 및 이동 처리
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
     }
@@ -46,9 +43,30 @@ public class PlayerHead : MonoBehaviour
     {
         anim.SetFloat("speed", inputVec.magnitude);
 
-        if (inputVec.x != 0)
+        // 방향에 따른 애니메이션 상태 설정
+        if (inputVec.y > 0) // 위로 이동
         {
-            spriter.flipX = inputVec.x < 0;
+            anim.SetBool("isBack", true);
+            anim.SetBool("isLeft", false);
+            anim.SetBool("isRight", false);
+        }
+        else if (inputVec.x < 0) // 왼쪽으로 이동
+        {
+            anim.SetBool("isBack", false);
+            anim.SetBool("isLeft", true);
+            anim.SetBool("isRight", false);
+        }
+        else if (inputVec.x > 0) // 오른쪽으로 이동
+        {
+            anim.SetBool("isBack", false);
+            anim.SetBool("isLeft", false);
+            anim.SetBool("isRight", true);
+        }
+        else // 정지 상태
+        {
+            anim.SetBool("isBack", false);
+            anim.SetBool("isLeft", false);
+            anim.SetBool("isRight", false);
         }
     }
 }

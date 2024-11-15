@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6894676441476253951}
+  - component: {fileID: 5773539223599019358}
   - component: {fileID: 4825152016724182516}
   - component: {fileID: 4992629225775067574}
   - component: {fileID: 1824029131086863521}
@@ -35,6 +36,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5773539223599019358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484281429530794322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092a406b1197e544cb4ebff4a67f9a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tearDamage: 1
+  knockPower: 0
+  tearDirection: 0
+  gravitySetTime: 0.75
+  gravityScale: 0.75
+  tearActiveTime: 1
+  Up: 0.5
+  Down: 1
+  Right: 0.75
+  Left: 0.75
 --- !u!212 &4825152016724182516
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -97,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 3484281429530794322}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: bf322d1913d11b0488d93bd4e015343f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

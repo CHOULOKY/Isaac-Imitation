@@ -6,8 +6,7 @@ public class Pooter : MonoBehaviour
 {
     public float moveSpeed = 1.5f;
     public float shootingInterval = 2f;
-    public float chaseDistance = 8f;
-    public float stopChaseDistance = 10f;
+    public float attackDistance = 8f; // 사정거리
     public float wanderRange = 2f; // 주변에서 비행할 범위
 
     public GameObject bulletPrefab;
@@ -18,7 +17,6 @@ public class Pooter : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private float nextShootTime;
-    private bool isChasing = false;
     private Vector2 wanderTarget;
 
     void Start()
@@ -38,35 +36,23 @@ public class Pooter : MonoBehaviour
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-            if (distanceToPlayer <= chaseDistance)
+            // 플레이어가 사정거리 안에 있는 경우 발사
+            if (distanceToPlayer <= attackDistance)
             {
-                isChasing = true;
-                MoveTowardsPlayer();
-
                 if (Time.time >= nextShootTime)
                 {
                     animator.SetTrigger("isShooting"); // 발사 애니메이션 트리거
                     nextShootTime = Time.time + shootingInterval;
                 }
-            }
-            else if (distanceToPlayer > stopChaseDistance)
-            {
-                isChasing = false;
-            }
 
-            if (!isChasing)
-            {
-                WanderAround(); // 주변 비행
+                // 플레이어 방향으로 바라보게 하기
+                FlipSprite();
             }
-
-            FlipSprite();
+            else
+            {
+                WanderAround(); // 플레이어가 사정거리 밖에 있으면 주변 비행
+            }
         }
-    }
-
-    void MoveTowardsPlayer()
-    {
-        Vector2 direction = (player.position - transform.position).normalized;
-        rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
     }
 
     // 애니메이션 이벤트에 의해 호출되는 메서드
@@ -74,7 +60,7 @@ public class Pooter : MonoBehaviour
     {
         if (player == null || tailPosition == null) return;
 
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 direction = (player.position - tailPosition.position).normalized;
 
         GameObject bullet = Instantiate(bulletPrefab, tailPosition.position, Quaternion.identity);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();

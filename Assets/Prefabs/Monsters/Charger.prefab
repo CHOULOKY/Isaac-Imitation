@@ -59,6 +59,7 @@ MonoBehaviour:
     maxVelocity: 2
     attackDamage: 1
     attackSpeed: 1
+    tearSpeed: 0
   inputVec: {x: 0, y: 0}
   spawnEffect: {fileID: 5813445722853631470, guid: 097019ca84c45bb488601ba4173f03fb, type: 3}
   liquidEffect: {fileID: 5978601803282426345, guid: 22eb9526ea7536a4da5fbf0f4329d8e3, type: 3}

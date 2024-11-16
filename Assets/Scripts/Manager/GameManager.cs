@@ -1,47 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
+      private static GameManager instance;
 
-    public UIManager uiManager;
-    public IsaacTearFactory isaacTearFactory;
+      public UIManager uiManager;
+      public IsaacTearFactory isaacTearFactory;
+      public MonsterTearFactory monsterTearFactory;
 
-    public Minimap minimap;
+      public Minimap minimap;
 
-    private void Awake()
-    {
-        instance = this;
+      private void Awake()
+      {
+            instance = this;
 
-        uiManager = GetComponentInChildren<UIManager>();
-        isaacTearFactory = GetComponentInChildren<IsaacTearFactory>();
+            uiManager = GetComponentInChildren<UIManager>();
+            isaacTearFactory = GetComponentInChildren<IsaacTearFactory>();
+            monsterTearFactory = GetComponentInChildren<MonsterTearFactory>();
 
-        minimap = minimap != null ? minimap : FindAnyObjectByType<Minimap>();
-    }
+            minimap = minimap != null ? minimap : FindAnyObjectByType<Minimap>();
+      }
 
-    public static GameManager Instance
-    {
-        get {
-            if (instance == null) return null;
-            return instance;
-        }
-    }
+      public static GameManager Instance
+      {
+            get {
+                  if (instance == null) return null;
+                  return instance;
+            }
+      }
 
-    private void Start()
-    {
-        GameStart();
-    }
+      private void Start()
+      {
+            GameStart();
+      }
 
-    public void GameStart()
-    {
-        uiManager.GameStart();
-    }
+      public void GameStart()
+      {
+            uiManager.GameStart();
+      }
 
-    public void GameOver()
-    {
-        SceneManager.LoadScene(0);
-    }
+      public void GameOver()
+      {
+            SceneManager.LoadScene(0);
+      }
 }

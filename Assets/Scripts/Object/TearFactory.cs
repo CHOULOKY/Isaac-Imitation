@@ -54,3 +54,15 @@ public class TearFactory : MonoBehaviour
             return selected;
       }
 }
+
+
+public interface ITearShooter
+{
+      public void AttackUsingTear(GameObject curTear = default);
+
+      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid);
+
+      public void SetTearVelocity(out Vector2 tearVelocity, Rigidbody2D tearRigid);
+
+      public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity);
+}

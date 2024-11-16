@@ -1,6 +1,7 @@
+using System.Threading;
 using UnityEngine;
 
-public class IsaacHead : MonoBehaviour, TearShooter
+public class IsaacHead : MonoBehaviour, ITearShooter
 {
       private IsaacBody body;
 
@@ -67,54 +68,64 @@ public class IsaacHead : MonoBehaviour, TearShooter
             animator.SetInteger("YAxisRaw", (int)inputVec.y);
       }
 
-      public void AttackUsingTear()
+      public void AttackUsingTear(GameObject curTear = default)
       {
             curAttackTime += Time.deltaTime;
             if (curAttackTime > attackSpeed) {
                   if (Input.GetButton("Horizontal Arrow") || Input.GetButton("Vertical Arrow")) {
                         curAttackTime = 0;
 
-                        GameObject curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, false);
-                        SetTearPositionAndGravityTime(curTear, out float x, out float y);
-                        SetTearVelocity(out Vector2 tearVelocity);
-                        ShootSettedTear(curTear, tearVelocity, x, y);
+                        curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, true);
+                        SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
+                        if (tearRigid == default) {
+                              Debug.LogWarning($"{this.name}'s tears don't have Rigidbody2D!");
+                              return;
+                        }
+                        
+                        SetTearVelocity(out Vector2 tearVelocity, tearRigid);
+                        ShootSettedTear(curTear, tearRigid, tearVelocity);
                   }
             }
       }
 
-      public void SetTearPositionAndGravityTime(GameObject curTear, out float x, out float y)
+      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid)
       {
-            if (curTear.GetComponent<IsaacTear>() is IsaacTear tear) {
+            if (curTear.GetComponent<Tear>() is Tear tear &&
+                  curTear.GetComponent<Rigidbody2D>() is Rigidbody2D curRigid) {
                   tearWhatEye *= -1;
+                  Vector2 offset = default;
                   // Up: 0, Down: 1, Right: 2, Left: 3
                   if (inputVec.x == 1) {
-                        x = 0.3f;
-                        y = 0.2f * tearWhatEye;
+                        offset.x = 0.3f;
+                        offset.y = 0.2f * tearWhatEye;
                         tear.tearDirection = 2;
                   }
                   else if (inputVec.x == -1) {
-                        x = -0.3f;
-                        y = 0.2f * tearWhatEye;
+                        offset.x = -0.3f;
+                        offset.y = 0.2f * tearWhatEye;
                         tear.tearDirection = 3;
                   }
                   else if (inputVec.y == 1) {
-                        x = 0.2f * tearWhatEye;
-                        y = 0.3f;
+                        offset.x = 0.2f * tearWhatEye;
+                        offset.y = 0.3f;
                         tear.tearDirection = 0;
                   }
                   else {
                         // inputVec.y == -1
-                        x = 0.2f * tearWhatEye;
-                        y = -0.3f;
+                        offset.x = 0.2f * tearWhatEye;
+                        offset.y = -0.3f;
                         tear.tearDirection = 1;
                   }
+
+                  tearRigid = curRigid;
+                  tearRigid.position = (Vector2)transform.position + offset;
             }
             else {
-                  x = y = default;
+                  tearRigid = default;
             }
       }
 
-      public void SetTearVelocity(out Vector2 tearVelocity)
+      public void SetTearVelocity(out Vector2 tearVelocity, Rigidbody2D tearRigid)
       {
             tearVelocity = Vector2.zero;
 
@@ -122,20 +133,17 @@ public class IsaacHead : MonoBehaviour, TearShooter
                   tearVelocity.x = body.inputVec.x == -inputVec.x ? bodyRigid.velocity.x * 0.25f : bodyRigid.velocity.x * 0.5f;
                   tearVelocity.y = body.inputVec.y == -inputVec.y ? bodyRigid.velocity.y * 0.25f : bodyRigid.velocity.y * 0.5f;
             }
+
+            tearRigid.velocity = Vector2.zero;
       }
 
-      public void ShootSettedTear(GameObject curTear, Vector2 tearVelocity, float x, float y)
+      public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity)
       {
-            if (curTear.GetComponent<Rigidbody2D>() is Rigidbody2D tearRigid) {
-                  curTear.SetActive(true);
-                  tearRigid.position = (Vector2)this.transform.position + new Vector2(x, y);
-                  tearRigid.velocity = Vector2.zero;
-
-                  float adjustedSpeed = inputVec.y < 0 ? tearSpeed * 0.75f : tearSpeed;
-                  // tearRigid.AddForce(inputVec * tearSpeed + Vector2.up / 2 + tearVelocity, ForceMode2D.Impulse);
-                  tearRigid.AddForce(inputVec * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
-            }
+            float adjustedSpeed = inputVec.y < 0 ? tearSpeed * 0.75f : tearSpeed;
+            // tearRigid.AddForce(inputVec * tearSpeed + Vector2.up / 2 + tearVelocity, ForceMode2D.Impulse);
+            tearRigid.AddForce(inputVec * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
       }
+      
 
       private void OnDisable()
       {

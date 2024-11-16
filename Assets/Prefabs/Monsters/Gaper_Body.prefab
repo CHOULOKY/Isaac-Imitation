@@ -300,6 +300,7 @@ MonoBehaviour:
     maxVelocity: 2
     attackDamage: 1
     attackSpeed: 0
+    tearSpeed: 0
   inputVec: {x: 0, y: 0}
   spawnEffect: {fileID: 2884023872223006942, guid: 0000d416f6fb66142afde9ed07ae1136, type: 3}
   liquidEffect: {fileID: 5978601803282426345, guid: 22eb9526ea7536a4da5fbf0f4329d8e3, type: 3}
@@ -368,7 +369,7 @@ SpriteRenderer:
   m_SortingOrder: -2
   m_Sprite: {fileID: -70685737, guid: ec7dbc3d781eacb4fae50eaff4fbcbad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.5625, y: 0.40625}

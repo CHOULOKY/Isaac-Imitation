@@ -9,9 +9,16 @@ public class Pooter : Monster<Pooter>
       [HideInInspector] public RaycastHit2D playerHit;
       private float curAttackCooltime = 0;
       private bool isAttackFinished = false;
-      public void SetIsAttackFinished(int value) => isAttackFinished = value == 0 ? false : true; // for animation event
+      [HideInInspector] public bool[] isAttackTiming = { false, false };
 
+      // For animation events
+      public void SetIsAttackFinished(int value) => isAttackFinished = value == 0 ? false : true;
+      public void TriggerAttackTiming(int value) {
+            value = value != 0 ? 1 : value;
+            isAttackTiming[value] = true;
+      }
 
+      
       private void Start()
       {
             curState = States.Idle;
@@ -43,7 +50,7 @@ public class Pooter : Monster<Pooter>
                   case States.Move:
                         curAttackCooltime = curAttackCooltime >= stat.attackSpeed ?
                             stat.attackSpeed : curAttackCooltime + Time.deltaTime;
-
+                        
                         if (OnDead()) {
                               ChangeState(States.Dead);
                         }
@@ -91,7 +98,7 @@ public class Pooter : Monster<Pooter>
             }
       }
 
-      public RaycastHit2D CanSeePlayer()
+      private RaycastHit2D CanSeePlayer()
       {
             Vector2[] directions = { Vector2.right, Vector2.left, Vector2.down, Vector2.up };
             RaycastHit2D playerHit = default;

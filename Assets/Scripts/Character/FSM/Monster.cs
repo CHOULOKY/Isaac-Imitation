@@ -60,12 +60,12 @@ public class Monster<T> : MonoBehaviour where T : class
             rigid.velocity = Vector2.zero;
       }
 
-      protected IEnumerator ParticleSystemCoroutine(ParticleSystem effect)
+      protected virtual IEnumerator ParticleSystemCoroutine(ParticleSystem _effect)
       {
-            yield return Instantiate(effect,
-                rigid.position + Vector2.down * 0.25f, effect.transform.rotation, this.transform);
+            ParticleSystem effect = Instantiate(_effect,
+                rigid.position + Vector2.down * 0.25f, Quaternion.identity, this.transform);
+            effect.transform.localScale = _effect.transform.localScale * 1.5f;
             yield return new WaitUntil(() => !effect.isPlaying);
-            yield return new WaitForSeconds(1f);
 
             isSpawned = true;
       }

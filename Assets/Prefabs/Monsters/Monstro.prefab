@@ -70,7 +70,10 @@ MonoBehaviour:
   - {fileID: 4455151714398487210, guid: 052d55fee69f1364689a9b84202d332f, type: 3}
   player: {fileID: 0}
   playerSearchBox: {x: 40, y: 40}
-  collisionCircle: 0
+  collisionRectangle: {x: 2, y: 1.25}
+  isSmallJump: 0
+  isBigJump: 0
+  isTearSpray: 0
   isJumpUp: 0
 --- !u!114 &4941223158624830787
 MonoBehaviour:

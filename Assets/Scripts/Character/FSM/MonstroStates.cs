@@ -33,6 +33,18 @@ namespace MonstroStates
                         spriteRenderer = monster.GetComponent<SpriteRenderer>();
                   }
             }
+
+            protected virtual void OnCollisionEnter2D()
+            {
+                  if (monster.player.IsHurt) return;
+
+                  if (monster.collisionRectangle == default) monster.collisionRectangle = new Vector2(1.75f, 1.25f);
+                  if (Physics2D.BoxCast(rigid.position, monster.collisionRectangle, 0, Vector2.zero,
+                        LayerMask.GetMask("Player"))) {
+                        monster.player.health -= monster.stat.attackDamage;
+                        monster.player.IsHurt = true;
+                  }
+            }
       }
 
       public class IdleState : MonstroState
@@ -124,28 +136,14 @@ namespace MonstroStates
 
                         curJumpDownDelayTime += Time.deltaTime;
 
-                        #region Shadow Move
-                        Vector2 nextPosition = monster.player.transform.position;
-                        if (curJumpDownDelayTime > jumpDownDelay / 2 && playerLatePosition == default) {
-                              playerLatePosition = nextPosition; // 플레이어 위치 저장
-                        }
-                        // 그림자 이동
-                        float t = Mathf.Clamp01(curJumpDownDelayTime / jumpDownDelay);
-                        shadow.position = 
-                              Vector2.Lerp(shadow.position, playerLatePosition == default ? nextPosition : playerLatePosition, t);
-                        #endregion
+                        MoveShadow();
 
                         // 착지 트리거
-                        if (curJumpDownDelayTime > jumpDownDelay) {
-                              rigid.position = new Vector2(shadow.position.x, rigid.position.y);
-                              monster.isJumpUp = false;
-                              animator.SetTrigger("BigJumpDown");
-                        }
+                        LandTrigger();
                   }
                   else {
-                        // 몬스터 그림자 위로 착지
-                        rigid.position = Vector2.MoveTowards(rigid.position, (Vector2)shadow.position + shadowOffset, 
-                              jumpDownSpeed * Time.deltaTime);
+                        LandOnShadow();
+                        if (monster.isOnLand) OnCollisionEnter2D();
                   }
             }
 
@@ -153,6 +151,38 @@ namespace MonstroStates
             {
                   shadow.parent = monster.transform;
                   shadow.localPosition = shadowOffset;
+                  monster.isOnLand = false;
+            }
+
+            private void MoveShadow()
+            {
+                  Vector2 nextPosition = monster.player.transform.position;
+
+                  // 플레이어의 과거 위치 저장
+                  if (curJumpDownDelayTime > jumpDownDelay / 2 && playerLatePosition == default) {
+                        playerLatePosition = nextPosition;
+                  }
+
+                  // 그림자 보간 이동
+                  float t = Mathf.Clamp01(curJumpDownDelayTime / jumpDownDelay);
+                  shadow.position =
+                        Vector2.Lerp(shadow.position, playerLatePosition == default ? nextPosition : playerLatePosition, t);
+            }
+
+            private void LandTrigger()
+            {
+                  if (curJumpDownDelayTime > jumpDownDelay) {
+                        rigid.position = new Vector2(shadow.position.x, rigid.position.y); // 그림자와 X값만 일치
+                        monster.isJumpUp = false;
+                        animator.SetTrigger("BigJumpDown");
+                  }
+            }
+
+            private void LandOnShadow()
+            {
+                  // 몬스터 그림자 위로 착지
+                  rigid.position = Vector2.MoveTowards(rigid.position, (Vector2)shadow.position + shadowOffset,
+                        jumpDownSpeed * Time.deltaTime);
             }
       }
 

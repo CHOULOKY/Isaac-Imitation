@@ -11,13 +11,14 @@ public class Monstro : Monster<Monstro>
 
       [HideInInspector] public IsaacBody player;
       public Vector2 playerSearchBox;
-      public float collisionCircle;
+      public Vector2 collisionRectangle;
 
       [HideInInspector] public bool isSmallJump = false, isBigJump = false, isTearSpray = false;
 
       // For animation events
-      [HideInInspector] public bool isJumpUp = false;
+      [HideInInspector] public bool isJumpUp = false, isOnLand = false;
       public void TriggerJumpUp(int value) => isJumpUp = value != 0;
+      public void TriggerOnLand(int value) => isOnLand = value != 0;
       
 
       private void Start()
@@ -147,6 +148,7 @@ public class Monstro : Monster<Monstro>
 
       private void OnDrawGizmos()
       {
-            // 
+            Gizmos.color = Color.green;
+            // Gizmos.DrawWireCube(transform.position, collisionRectangle);
       }
 }

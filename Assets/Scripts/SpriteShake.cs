@@ -23,8 +23,8 @@ public class SpriteShake : MonoBehaviour
                   elapsed += Time.deltaTime;
 
                   // 랜덤한 위치 생성
-                  offsetX = Random.Range(-1f, 1f) * magnitude;
-                  offsetY = Random.Range(-1f, 1f) * magnitude;
+                  offsetX = UnityEngine.Random.Range(-1f, 1f) * magnitude;
+                  offsetY = UnityEngine.Random.Range(-1f, 1f) * magnitude;
 
                   transform.localPosition = originalPosition + new Vector3(offsetX, offsetY, 0);
 

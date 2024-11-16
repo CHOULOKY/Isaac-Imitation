@@ -1282,7 +1282,7 @@ PrefabInstance:
       objectReference: {fileID: 659250747}
     - target: {fileID: 3744885994554352381, guid: 2d6a45843b6646e40b73076c26d39cb3, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6895104918375966081, guid: 2d6a45843b6646e40b73076c26d39cb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1454,13 +1454,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2140862038472734706, guid: 4b36243069b20bd4fb88521e1cdc122b, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3792232712946670737, guid: 4b36243069b20bd4fb88521e1cdc122b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4649748576582547291, guid: 4b36243069b20bd4fb88521e1cdc122b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6286898125326460908, guid: 4b36243069b20bd4fb88521e1cdc122b, type: 3}
       propertyPath: bloodParent
@@ -1487,6 +1491,14 @@ PrefabInstance:
       propertyPath: bloodParent
       value: 
       objectReference: {fileID: 659250747}
+    - target: {fileID: 5930873239459784391, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
+      propertyPath: collisionRectangle.x
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930873239459784391, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
+      propertyPath: collisionRectangle.y
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8582097297196927730, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.56

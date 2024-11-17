@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerBody : MonoBehaviour
+public class IsaacBody : MonoBehaviour
 {
     private IsaacHead head;
 
@@ -151,4 +151,3 @@ public class PlayerBody : MonoBehaviour
         animator.SetInteger("YAxisRaw", 0);
     }
 }
-

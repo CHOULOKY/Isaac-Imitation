@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4397337773854893374}
   - component: {fileID: 5283854110631898493}
   - component: {fileID: 243293922090524943}
-  - component: {fileID: 3710169290006692262}
+  - component: {fileID: 5896429160264364586}
   m_Layer: 0
-  m_Name: Enemy_Tears
+  m_Name: Isaac_Tears
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 622559681, guid: 17e27b5bd135b5d4ab8676ff78c6ae70, type: 3}
+  m_Sprite: {fileID: 1200875275, guid: eb65a26802302974cb0be51914fd3c74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,9 +147,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.3, y: 0.3}
   m_Direction: 0
---- !u!114 &3710169290006692262
+--- !u!114 &5896429160264364586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4551995582072663363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92009480a76fdae4bb2bff7acd945a11, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b4e7e1acf5e4ad46875dfaf7eaf2164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tearDamage: 1

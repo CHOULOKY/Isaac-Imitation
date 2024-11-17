@@ -879,7 +879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1715110528
 Transform:
   m_ObjectHideFlags: 0
@@ -1491,14 +1491,6 @@ PrefabInstance:
       propertyPath: bloodParent
       value: 
       objectReference: {fileID: 659250747}
-    - target: {fileID: 5930873239459784391, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
-      propertyPath: collisionRectangle.x
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5930873239459784391, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
-      propertyPath: collisionRectangle.y
-      value: 1.25
-      objectReference: {fileID: 0}
     - target: {fileID: 8582097297196927730, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.56

@@ -1,6 +1,9 @@
 using Photon.Realtime;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -9,6 +12,7 @@ namespace MonstroStates
       public abstract class MonstroState : BaseState<Monstro>
       {
             protected Rigidbody2D rigid;
+            protected Collider2D collider;
             protected Animator animator;
             protected SpriteRenderer spriteRenderer;
 
@@ -19,12 +23,13 @@ namespace MonstroStates
             public override void OnStateEnter()
             {
                   rigid = monster.GetComponent<Rigidbody2D>();
+                  collider = monster.GetComponent<Collider2D>();
                   animator = monster.GetComponent<Animator>();
                   spriteRenderer = monster.GetComponent<SpriteRenderer>();
 
                   shadow = monster.transform.GetChild(0);
             }
-
+            
             public override void OnStateUpdate()
             {
                   if (!rigid || !animator || !spriteRenderer) {
@@ -39,11 +44,33 @@ namespace MonstroStates
                   if (monster.player.IsHurt) return;
 
                   if (monster.collisionRectangle == default) monster.collisionRectangle = new Vector2(1.75f, 1.25f);
-                  if (Physics2D.BoxCast(rigid.position, monster.collisionRectangle, 0, Vector2.zero,
+                  if (Physics2D.BoxCast(rigid.position, monster.collisionRectangle, 0, Vector2.zero, 0, 
                         LayerMask.GetMask("Player"))) {
+                        // Debug.Log("Player is on Monster collision!");
                         monster.player.health -= monster.stat.attackDamage;
                         monster.player.IsHurt = true;
                   }
+            }
+
+            // Exclude Layers에 레이어가 존재하는지 확인하는 함수
+            protected virtual bool IsLayerExcluded(int layer)
+            {
+                  // 비트 연산으로 레이어가 포함되어 있는지 확인
+                  return (collider.excludeLayers & (1 << layer)) != 0;
+            }
+
+            // Exclude Layers에 레이어를 추가하는 함수
+            protected virtual void AddExcludeLayerToCollider(LayerMask layerToAdd)
+            {
+                  // 현재 excludeLayers에 layerToAdd를 추가
+                  collider.excludeLayers |= layerToAdd;
+            }
+
+            // Exclude Layers에 레이어를 제거하는 함수
+            protected virtual void RemoveExcludeLayerFromCollider(LayerMask layerToRemove)
+            {
+                  // 현재 excludeLayers에서 layerToRemove를 제거
+                  collider.excludeLayers &= ~layerToRemove;
             }
       }
 
@@ -51,11 +78,14 @@ namespace MonstroStates
       {
             public IdleState(Monstro _monster) : base(_monster) { }
 
+            private SpriteRenderer playerRenderer;
+
             public override void OnStateEnter()
             {
                   base.OnStateEnter();
 
                   monster.player = GetPlayerObject();
+                  playerRenderer = monster.player.GetComponent<SpriteRenderer>();
             }
 
             public override void OnStateUpdate()
@@ -63,6 +93,10 @@ namespace MonstroStates
                   base.OnStateUpdate();
 
                   if (monster.player == null) monster.player = GetPlayerObject();
+                  else if (playerRenderer == null) playerRenderer = monster.player.GetComponent<SpriteRenderer>();
+                  else monster.sortRendererBy.SortBy(spriteRenderer, playerRenderer, false);
+
+                  OnCollisionEnter2D();
             }
 
             public override void OnStateExit()
@@ -87,20 +121,114 @@ namespace MonstroStates
       {
             public SmallJumpState(Monstro _monster) : base(_monster) { }
 
+            private int curjumpCount;
+            private int maxJumpCount;
+
+            private Vector2 shadowOffset;
+            private Vector2 nextPosition;
+
+            private float animationLength;
+            private float elapsedAnimationTime;
+
+            private SpriteRenderer playerRenderer;
+
             public override void OnStateEnter()
             {
                   base.OnStateEnter();
-                  animator.SetTrigger("SmallJump");
+
+                  // 점프 횟수 초기 설정
+                  switch (UnityEngine.Random.Range(0, 5)) {
+                        case 0: maxJumpCount = 1; break;
+                        case 1: case 2: maxJumpCount = 3; break;
+                        case 3: case 4: maxJumpCount = 5; break;
+                  }
+                  curjumpCount = maxJumpCount;
+
+                  shadowOffset = rigid.position - (Vector2)shadow.position;
+                  shadow.parent = null;
+
+                  // 애니메이션의 길이 가져오기
+                  animationLength = animator.runtimeAnimatorController.animationClips
+                      .FirstOrDefault(clip => clip.name == "AM_MonstroSmallJump")?.length ?? 0f;
+                  // animator.SetTrigger("SmallJump");
+
+                  playerRenderer = monster.player.GetComponent<SpriteRenderer>();
             }
 
             public override void OnStateUpdate()
             {
-                  // 
+                  SetBeforeNextJump();
+                  MoveShadow();
+                  JumpToShadow();
+
+                  if (monster.isOnLand) {
+                        OnCollisionEnter2D();
+                        if (IsLayerExcluded(LayerMask.NameToLayer("Player"))) {
+                              RemoveExcludeLayerFromCollider(LayerMask.NameToLayer("Player"));
+                              RemoveExcludeLayerFromCollider(LayerMask.NameToLayer("Tear"));
+                        }
+                  }
+
+                  monster.sortRendererBy.SortBy(spriteRenderer, playerRenderer, false);
             }
 
             public override void OnStateExit()
             {
-                  // 
+                  shadow.parent = monster.transform;
+                  shadow.localPosition = shadowOffset;
+                  monster.isOnLand = false;
+                  RemoveExcludeLayerFromCollider(LayerMask.NameToLayer("Player"));
+                  RemoveExcludeLayerFromCollider(LayerMask.NameToLayer("Tear"));
+
+                  monster.isSmallJump = false;
+            }
+
+            private void SetBeforeNextJump()
+            {
+                  elapsedAnimationTime += Time.deltaTime;
+                  if (curjumpCount > 0) {
+                        // 애니메이션이 끝나면 다시 재생
+                        if (elapsedAnimationTime >= animationLength || curjumpCount == maxJumpCount) {
+                              if (curjumpCount == maxJumpCount) animator.SetTrigger("SmallJump");
+                              else animator.Play("AM_MonstroSmallJump", 0, 0f); // 0프레임부터 재생
+                              elapsedAnimationTime = 0f;
+
+                              // 다음 위치로 이동하기 위한 설정
+                              nextPosition = GetNextPosition(2f);
+
+                              curjumpCount--;
+
+                              monster.isOnLand = false;
+                              AddExcludeLayerToCollider(LayerMask.NameToLayer("Player"));
+                              AddExcludeLayerToCollider(LayerMask.NameToLayer("Tear"));
+                        }
+                  }
+            }
+
+            private Vector2 GetNextPosition(float distance)
+            {
+                  Vector3 nextDirection = monster.player.transform.position - shadow.position;
+                  Vector3 nextPosition = nextDirection.normalized * distance;
+                  return shadow.position + nextPosition;
+            }
+
+            private void MoveShadow()
+            {
+                  // 그림자 등속 이동
+                  shadow.position = Vector2.Lerp(shadow.position, nextPosition, elapsedAnimationTime / animationLength);
+            }
+
+            private void JumpToShadow()
+            {
+                  // 몬스터 등속 이동
+                  if (elapsedAnimationTime < animationLength / 2) {
+                        rigid.position = Vector2.Lerp(rigid.position, nextPosition + Vector2.up * 3f, 
+                              elapsedAnimationTime / (animationLength / 2));
+                  }
+                  else {
+                        rigid.position = Vector2.Lerp(rigid.position, nextPosition + Vector2.up * 0.44f, 
+                              elapsedAnimationTime / animationLength);
+                  }
             }
       }
 
@@ -117,6 +245,8 @@ namespace MonstroStates
             private float jumpDownDelay = 3f;
             private float curJumpDownDelayTime;
 
+            private SpriteRenderer playerRenderer;
+
             public override void OnStateEnter()
             {
                   base.OnStateEnter();
@@ -126,6 +256,8 @@ namespace MonstroStates
                   shadow.parent = null;
 
                   animator.SetTrigger("BigJumpUp");
+
+                  playerRenderer = monster.player.GetComponent<SpriteRenderer>();
             }
 
             public override void OnStateUpdate()
@@ -143,8 +275,16 @@ namespace MonstroStates
                   }
                   else {
                         LandOnShadow();
-                        if (monster.isOnLand) OnCollisionEnter2D();
+                        if (monster.isOnLand) {
+                              OnCollisionEnter2D();
+                              if (IsLayerExcluded(LayerMask.NameToLayer("Player"))) {
+                                    RemoveExcludeLayerFromCollider(LayerMask.NameToLayer("Player"));
+                                    RemoveExcludeLayerFromCollider(LayerMask.NameToLayer("Tear"));
+                              }
+                        }
                   }
+
+                  monster.sortRendererBy.SortBy(spriteRenderer, playerRenderer, false);
             }
 
             public override void OnStateExit()
@@ -152,6 +292,10 @@ namespace MonstroStates
                   shadow.parent = monster.transform;
                   shadow.localPosition = shadowOffset;
                   monster.isOnLand = false;
+                  AddExcludeLayerToCollider(LayerMask.NameToLayer("Player"));
+                  AddExcludeLayerToCollider(LayerMask.NameToLayer("Tear"));
+
+                  monster.isBigJump = false;
             }
 
             private void MoveShadow()
@@ -184,26 +328,34 @@ namespace MonstroStates
                   rigid.position = Vector2.MoveTowards(rigid.position, (Vector2)shadow.position + shadowOffset,
                         jumpDownSpeed * Time.deltaTime);
             }
+
+            // 눈물 분사 추가
       }
 
       public class TearSprayState : MonstroState
       {
             public TearSprayState(Monstro _monster) : base(_monster) { }
 
+            private SpriteRenderer playerRenderer;
+
             public override void OnStateEnter()
             {
                   base.OnStateEnter();
                   animator.SetTrigger("TearSpray");
+
+                  playerRenderer = monster.player.GetComponent<SpriteRenderer>();
             }
 
             public override void OnStateUpdate()
             {
-                  // 
+                  monster.sortRendererBy.SortBy(spriteRenderer, playerRenderer, false);
+
+                  OnCollisionEnter2D();
             }
 
             public override void OnStateExit()
             {
-                  // 
+                  monster.isTearSpray = false;
             }
       }
 

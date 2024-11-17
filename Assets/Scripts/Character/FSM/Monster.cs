@@ -22,6 +22,9 @@ public class Monster<T> : MonoBehaviour where T : class
       public Transform bloodParent;
       public GameObject[] deathBloods;
 
+      // ETC
+      [HideInInspector] public SortRendererBy sortRendererBy;
+
       protected virtual void Awake()
       {
             rigid = GetComponent<Rigidbody2D>();
@@ -43,6 +46,8 @@ public class Monster<T> : MonoBehaviour where T : class
                         deathBloods[i] = Resources.Load<GameObject>($"Blood{i} Variant");
                   }
             }
+
+            sortRendererBy = new SortRendererBy();
       }
 
       protected virtual void OnEnable()

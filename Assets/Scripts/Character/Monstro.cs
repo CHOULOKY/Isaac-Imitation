@@ -16,10 +16,14 @@ public class Monstro : Monster<Monstro>
       [HideInInspector] public bool isSmallJump = false, isBigJump = false, isTearSpray = false;
 
       // For animation events
-      [HideInInspector] public bool isJumpUp = false, isOnLand = false;
+      [HideInInspector] public bool isJumpUp = false; // for BigJump state
+      [HideInInspector] public bool isOnLand = false; // for all Jump state
       public void TriggerJumpUp(int value) => isJumpUp = value != 0;
       public void TriggerOnLand(int value) => isOnLand = value != 0;
-      
+
+      // ETC
+      [HideInInspector] public SortRendererBy sortRenderer;
+
 
       private void Start()
       {
@@ -78,7 +82,8 @@ public class Monstro : Monster<Monstro>
                         // 
                         break;
             }
-            
+
+            // Debug.Log(curState.ToString());
             fsm.UpdateState();
       }
 

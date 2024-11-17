@@ -1,0 +1,704 @@
+fileFormatVersion: 2
+guid: bfdb877da4b184d4a93df1a25f613ae8
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 556
+        width: 63
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6961c492d8e3c04459737fdd65f897ff
+      internalID: -1573275860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 557
+        width: 69
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5943d6ae7b09851499727350ac3aa1b1
+      internalID: -392709695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 558
+        width: 69
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe7502d3311b6c42a5f38b75191e324
+      internalID: 1510829461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_3
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 565
+        width: 67
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe897100280160740bb5f36cd907941c
+      internalID: -950130204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_4
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 557
+        width: 69
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a78e379ec361fd748aa99b2d2510ec6d
+      internalID: -770716204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_5
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 561
+        width: 69
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52412663f3ff4c748a98c2715ebb5367
+      internalID: 2006228851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_6
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 464
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1013a03ce1761334296d660e6f4bcd79
+      internalID: 1500132951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_7
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 469
+        width: 69
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0232ae8a9cc1c7b4b86e900b955d630e
+      internalID: 148665503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_8
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 462
+        width: 69
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fffbca8c5f61df40b6e97df1d7846cd
+      internalID: 750798245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_9
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 469
+        width: 69
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d6b58aa0c0b47468cae999950b0631
+      internalID: -1696436766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_10
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 470
+        width: 69
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7acca79448e962e4bb83441b4b60043a
+      internalID: -1102906084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_11
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 465
+        width: 69
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ab65660ddb09dc40acf0e80330cd8ab
+      internalID: 1863643867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_12
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 371
+        width: 69
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b11afa4386d68f49bf3dba8322bd5c8
+      internalID: -1186922882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_13
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 371
+        width: 67
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d059619ce2dd8849a849a91d969276f
+      internalID: -2106299930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_14
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 366
+        width: 65
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b3396876b53dc945a96054e1eac26dc
+      internalID: 68173447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_15
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 358
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f11bd18536a53a49a0d7b6ac5295bb1
+      internalID: -1148182280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_16
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 369
+        width: 67
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 469ed082cb7661648af27e6ca2e37846
+      internalID: -1197535350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_17
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 274
+        width: 63
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24da41b4ed3c6204b9a0ed1807acf861
+      internalID: 1295083667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_18
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 273
+        width: 41
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1f83827f593085449a36afa1f4f8545
+      internalID: -224952148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_19
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 283
+        width: 52
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c109c8bf38fdd44b874730a12e8ed57
+      internalID: -931778475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_20
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 280
+        width: 55
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b042b42b5bced6439d9da2305c91ebb
+      internalID: -1475369929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_21
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 273
+        width: 41
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b85e137cb9f9644ba0a76230a73d463
+      internalID: -395196102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_22
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 280
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 966d9f6b36c261049871ffb602b8d524
+      internalID: 634184683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_23
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 182
+        width: 69
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca99ec18a2dd534989c39565d226a40
+      internalID: 1268639077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_24
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 182
+        width: 69
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73f0a67d71275a64796246aa1dfa65df
+      internalID: 1527387822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - The Adversary_25
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 182
+        width: 69
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9fb5da2aac08a443a1574214d2d6450
+      internalID: 771236295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_0: -1573275860
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_1: -392709695
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_10: -1102906084
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_11: 1863643867
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_12: -1186922882
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_13: -2106299930
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_14: 68173447
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_15: -1148182280
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_16: -1197535350
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_17: 1295083667
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_18: -224952148
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_19: -931778475
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_2: 1510829461
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_20: -1475369929
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_21: -395196102
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_22: 634184683
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_23: 1268639077
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_24: 1527387822
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_25: 771236295
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_26: -1289408
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_27: -1739255884
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_28: -410246947
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_29: -1475620633
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_3: -950130204
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_30: -84440905
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_4: -770716204
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_5: 2006228851
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_6: 1500132951
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_7: 148665503
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_8: 750798245
+      PC Computer - The Binding of Isaac Rebirth - The Adversary_9: -1696436766
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

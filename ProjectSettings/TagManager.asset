@@ -3,12 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SpawnPoint
+  - Rooms
+  - Room
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
@@ -36,8 +39,20 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Minimap
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 2547094517
+    locked: 0
+  - name: Object
+    uniqueID: 1501706103
+    locked: 0
+  - name: Character
+    uniqueID: 1049380809
+    locked: 0
+  - name: UI
+    uniqueID: 1370315923
     locked: 0

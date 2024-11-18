@@ -11,7 +11,7 @@ public class Monstro : Monster<Monstro>
 
       [HideInInspector] public IsaacBody player;
       public Vector2 playerSearchBox;
-      public Vector2 collisionRectangle;
+      [Tooltip("Shadow based")] public Vector2 collisionRectangle;
 
       [HideInInspector] public bool isSmallJump = false, isBigJump = false, isTearSpray = false;
 
@@ -20,9 +20,6 @@ public class Monstro : Monster<Monstro>
       [HideInInspector] public bool isOnLand = false; // for all Jump state
       public void TriggerJumpUp(int value) => isJumpUp = value != 0;
       public void TriggerOnLand(int value) => isOnLand = value != 0;
-
-      // ETC
-      [HideInInspector] public SortRendererBy sortRenderer;
 
 
       private void Start()
@@ -115,17 +112,17 @@ public class Monstro : Monster<Monstro>
             States nextState = curState;
             switch (curState) {
                   case States.SmallJump:
-                        isSmallJump = false;
+                        // isSmallJump = false;
                         isTearSpray = true;
                         nextState = States.TearSpray;
                         break;
                   case States.BigJump:
-                        isBigJump = false;
+                        // isBigJump = false;
                         isSmallJump = true;
                         nextState = States.SmallJump;
                         break;
                   case States.TearSpray:
-                        isTearSpray = false;
+                        // isTearSpray = false;
                         nextState = UnityEngine.Random.Range(0, 2) == 0 ? States.SmallJump : States.BigJump;
                         if (nextState == States.SmallJump) isSmallJump = true;
                         else isBigJump = true;
@@ -151,9 +148,10 @@ public class Monstro : Monster<Monstro>
             curState = null;
       }
 
+      // public Transform shadow;
       private void OnDrawGizmos()
       {
             Gizmos.color = Color.green;
-            // Gizmos.DrawWireCube(transform.position, collisionRectangle);
+            // Gizmos.DrawWireCube(shadow.position, collisionRectangle);
       }
 }

@@ -196,8 +196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tearList:
   - {fileID: 3484281429530794322, guid: 7a20493e4e5ce3745a0725cb5ce0111b, type: 3}
-  - {fileID: 3484281429530794322, guid: 7a20493e4e5ce3745a0725cb5ce0111b, type: 3}
-  poolSize: 0900000014000000
+  - {fileID: 3484281429530794322, guid: 623d170443674ec459d8603629a7a897, type: 3}
+  poolSize: 0c00000014000000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

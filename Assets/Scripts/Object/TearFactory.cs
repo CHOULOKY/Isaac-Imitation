@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TearFactory : MonoBehaviour
 {
-      public enum Tears { Basic }
+      public enum Tears { Basic, Boss }
 
       [SerializeField] protected List<GameObject> tearList;
 

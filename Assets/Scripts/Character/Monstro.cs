@@ -11,15 +11,19 @@ public class Monstro : Monster<Monstro>
 
       [HideInInspector] public IsaacBody player;
       public Vector2 playerSearchBox;
-      [Tooltip("Shadow based")] public Vector2 collisionRectangle;
 
       [HideInInspector] public bool isSmallJump = false, isBigJump = false, isTearSpray = false;
 
+      #region Control Animation Events
       // For animation events
       [HideInInspector] public bool isJumpUp = false; // for BigJump state
       [HideInInspector] public bool isOnLand = false; // for all Jump state
       public void TriggerJumpUp(int value) => isJumpUp = value != 0;
       public void TriggerOnLand(int value) => isOnLand = value != 0;
+
+      [HideInInspector] public bool isTearTiming; // for tear attack
+      public void TriggerTearTiming(int value) => isTearTiming = value != 0;
+      #endregion
 
 
       private void Start()
@@ -148,10 +152,12 @@ public class Monstro : Monster<Monstro>
             curState = null;
       }
 
-      // public Transform shadow;
+      //private Transform shadow;
       private void OnDrawGizmos()
       {
             Gizmos.color = Color.green;
-            // Gizmos.DrawWireCube(shadow.position, collisionRectangle);
+            //shadow = transform.GetChild(0);
+            //Bounds bounds = shadow.GetComponent<Collider2D>().bounds;
+            //Gizmos.DrawWireCube(bounds.center, bounds.size);
       }
 }

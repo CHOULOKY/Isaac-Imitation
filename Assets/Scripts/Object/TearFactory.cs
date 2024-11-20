@@ -20,7 +20,7 @@ public class TearFactory : MonoBehaviour
             poolIndex = new int[tearList.Count];
             for (int i = 0; i < tearList.Count; i++) {
                   pool[i] = new List<GameObject>();
-                  GameObject _parent = new GameObject("Tear" + i);
+                  GameObject _parent = new GameObject(tearList[i].name);
                   _parent.transform.position = new Vector3(1000, 1000, 0);
                   parent[i] = _parent.transform;
                   poolIndex[i] = default;

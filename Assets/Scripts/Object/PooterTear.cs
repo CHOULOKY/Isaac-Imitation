@@ -12,6 +12,7 @@ public class PooterTear : Tear
                   DisableTear();
 
                   if (collision.TryGetComponent<IsaacBody>(out var player)) {
+                        if (player.IsHurt) return;
                         player.health -= tearDamage;
                         player.IsHurt = true;
                   }

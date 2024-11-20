@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tearList:
   - {fileID: 8923474546267978425, guid: 539471a3006112b4099e4d694223b3ba, type: 3}
-  poolSize: 05000000
+  poolSize: 06000000
 --- !u!114 &286522173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   tearList:
   - {fileID: 3484281429530794322, guid: 7a20493e4e5ce3745a0725cb5ce0111b, type: 3}
   - {fileID: 3484281429530794322, guid: 623d170443674ec459d8603629a7a897, type: 3}
-  poolSize: 0c00000014000000
+  poolSize: 0c00000010000000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1715110528
 Transform:
   m_ObjectHideFlags: 0
@@ -1282,7 +1282,7 @@ PrefabInstance:
       objectReference: {fileID: 659250747}
     - target: {fileID: 3744885994554352381, guid: 2d6a45843b6646e40b73076c26d39cb3, type: 3}
       propertyPath: m_FlipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6895104918375966081, guid: 2d6a45843b6646e40b73076c26d39cb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1487,10 +1487,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monstro
       objectReference: {fileID: 0}
+    - target: {fileID: 3530711546605071628, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5930873239459784391, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: bloodParent
       value: 
       objectReference: {fileID: 659250747}
+    - target: {fileID: 5930873239459784391, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
+      propertyPath: stat.tearSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8582097297196927730, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.56

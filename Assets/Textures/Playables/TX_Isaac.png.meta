@@ -1,0 +1,7231 @@
+fileFormatVersion: 2
+guid: cc943a691a141524a95c198b05399b53
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: isaac_head
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd5ce51ab46197043884fc4e60e333d3
+      internalID: -980467746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_13
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 935f23968cb9f3d4b9db68cd5df32a1d
+      internalID: 1585015679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_14
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7265912271cbe8142bc51dfc0bcb2c66
+      internalID: 2027702470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_15
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea35d1e76893cb34588d24a7afe89499
+      internalID: 2005966571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_16
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b66859ac6e9f7fc4f8578571dbf21bca
+      internalID: 1674100879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_17
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f147525890226e344a128912392591bb
+      internalID: 2119781101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_18
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62ec34d3cb2761140ab28734da01777a
+      internalID: 128299183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_19
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a5b60511cf38ab4795b6980bb830ed5
+      internalID: 411151828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_20
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfd79b251af43164eb7f7b733360a8ab
+      internalID: -1916536725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_21
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0898660a4a2c68d4c86a51b4fea3ec97
+      internalID: 246153367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_22
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c4bfd00689aae444b31fc443169b9f8
+      internalID: -1421973292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_23
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e21e52e2601fd494386095d7400c6dad
+      internalID: -1007295757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_24
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b6697184a17357498afe84c8fe8d70c
+      internalID: -273393749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_25
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d45c30a83607dd498783e5a01f045c5
+      internalID: -1791932352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_26
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d823c16da38384cb8e43135e4f5484
+      internalID: -1401028185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_27
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1cbb91c8a0edf244b3d4ea3a32a6e6c
+      internalID: 1613609594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_28
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ee7ddcf511d8ca43b84646cf4091b5c
+      internalID: 1703182797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_29
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2983288f4c54b67499c22f6b5ae4299a
+      internalID: -95061978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_30
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e58728afbd0b784e9309c95512a26f8
+      internalID: 1387057457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_31
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 697bc84d4618ab240aed96ddfe348fa8
+      internalID: 1161761029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_32
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e92b65ef606cb6b4791b1412d49aacb2
+      internalID: -1656813722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_33
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27da413d2787b60488fbcde8c58fde61
+      internalID: 29469644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_34
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 900
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f629e69a555c4b846a8da22b452938a6
+      internalID: 1395075884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_35
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 899
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a52bafd6c83ef741836414beed55959
+      internalID: -925060260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isaac_body
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94abe9930df5d954e81384ffadcc1c0d
+      internalID: -712402503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_40
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09dd051f093779a469f50be5da17f4da
+      internalID: -1464774157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_41
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94525810b8c04d74aa9cef92a392293d
+      internalID: -1131488602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_42
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 855
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde240214cf5fb746829679f48e7c376
+      internalID: -365821070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_43
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 856
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e5b5bbd55b4c8e479df823069caa35d
+      internalID: 2065378418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_44
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 844cad15648183841824b51c6bb8b5ca
+      internalID: 1721581469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_45
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18237536c9ef4bb46ab43ece564b3460
+      internalID: -25518630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_46
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f208528cb82308a4d843169587c30967
+      internalID: 1991692537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_47
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 855
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2695da4b5a866a94594e28c22f4baf94
+      internalID: 1678319356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_48
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 856
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 223a0adbfe09fb5439a26b38be11fd39
+      internalID: -789000271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_49
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1693ebcbc90b124cb0fa3379f0402e8
+      internalID: -1883979044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_50
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cc488fa7af3ba845ab446cdaef7dc97
+      internalID: 648626028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_51
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ee7c195d8ea2741940225bb8e1e201
+      internalID: 251383131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_52
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 855
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b9710fe7a673184eb947b136b256a9b
+      internalID: 786474633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_53
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 856
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa7703ed6ce50e54d87ec93beb74a1ff
+      internalID: -751240453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_54
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8506ee5bbf269d439235fc83dc26a03
+      internalID: -382684068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_55
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfe766e768a272b43b9f538b46918b5c
+      internalID: -729723559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_56
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d4b4a41c695ed44ab30f90c265fe163
+      internalID: -108210030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_57
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 855
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84ce1f3e21bf5534bbec61a7f9008b8f
+      internalID: 9428266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_58
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 856
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29d56667df6201e43a3b4c66086aded0
+      internalID: -780868504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_59
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e314ff91d83dc4f42bcaaa7c72da5c4a
+      internalID: 863598430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_60
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac441e505c8dabb4594a9a34055f7a41
+      internalID: 279189542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_61
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c49eb45f72f1e29418f87571b5cc71ca
+      internalID: 1780934653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_62
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 855
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bd98596ba325c342a2f2dd751585182
+      internalID: 1253626212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_63
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 856
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702b04979191a5748a8fc884cc9b2ca8
+      internalID: -588955642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_64
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a88416012ac8f24fbd5a651450b0317
+      internalID: -1349975074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_65
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2343ac8915fa345b20c99af23b4a30
+      internalID: 950010267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_66
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 857
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abdb231f19603d740ae472105d29ea3e
+      internalID: -1043027666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_67
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 855
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7734b7c9e3ebc54bae425c03b1650ae
+      internalID: -477133418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_68
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 856
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a802732c499a74cb22e707845ef819
+      internalID: -166265217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_72
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 814
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc74d31c70bebc14086990c6d9894684
+      internalID: -971235058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_73
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2ff67b1f28678143822355e0e8c42ed
+      internalID: -2026518206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_74
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 814
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7f0c4c12a1125141b95d29a3df30755
+      internalID: -1486917765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_75
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 814
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3e678f2c8165e4a89a1260c3676177
+      internalID: 306555142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_76
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 814
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c17f1ef92aa45e74a8b7461f8d543182
+      internalID: -762514668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_77
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 420e8b13dc6b12742ace407f725d787b
+      internalID: 619317148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_78
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52090d5a7dddba947893b0a4c21a8cce
+      internalID: -81495863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_79
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 814
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 703f60408d8c4794a93779b72b512747
+      internalID: -1715251925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_80
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 814
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b59de6b9bcb1fd948a495f14f383d6dd
+      internalID: -1247968189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_81
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 814
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0250edb3e310ac4e98c05612c7a7537
+      internalID: 1502908181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_82
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 814
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61db52b3ca9015b4ca5ef1842e6fdb68
+      internalID: 1401960076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_83
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 755f95bbc63fe2e4692d2442618616ae
+      internalID: -1154268929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_84
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 814
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22977232a2004324ea2fd50a231d4623
+      internalID: 1825371860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_85
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 814
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00265e7c13a16214e9a785992d1abf4f
+      internalID: -1118693547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_86
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 814
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f63ffac8458b64eafef4c8c0dce856
+      internalID: 1397032605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_87
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a96cecebe1eab14db0be2c46b28b057
+      internalID: 1220682820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_88
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37fe7d9915918e3448cd12ab1b82a749
+      internalID: 1983493875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_89
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 814
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3587bbef0ed88240870cf4bcfc3d610
+      internalID: 559350906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_90
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 814
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c2b977c84545de41bbd59542b58d656
+      internalID: 2079923383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_91
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 814
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9128b399d49ad114ebcea5d3200ae583
+      internalID: -191597476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_92
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 814
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b1b133e1f787844ca2f261b2a9d4b73
+      internalID: 2118023518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_93
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3175328d8b45649a0de18f8f4f7904
+      internalID: 731108447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_94
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 814
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22c7e7951686a8445a70f37da5543e55
+      internalID: 2006876328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_95
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 814
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46a8157830ea09d43b574d518268f4ae
+      internalID: 1834692112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_96
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 814
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2daf4e40c78eac64fbfff21c0fb8cb18
+      internalID: -1008547683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_97
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83a6b883de42f70439ab382eddf7566d
+      internalID: 978571495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_98
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 814
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7ed6a61f8513434395b84a89fdfadb6
+      internalID: 433173008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_99
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 814
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b69912fd4011dd40bff3483abcc2548
+      internalID: -60609663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_100
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 814
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbfbf33874da5e240b6b24db3e2d4083
+      internalID: 863637415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_101
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 814
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ca62ab87483ac4c89a325dc05724ec
+      internalID: -2083084338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_108
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 751
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3866c660128ab4a41b460df2fc74b390
+      internalID: -1840569668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_109
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 754
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b99b2ec49a0c3fa449d8063751913408
+      internalID: 1277397239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_110
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 752
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1a3aa942ed75143819e86acbea038b
+      internalID: -1826754185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_111
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 753
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600d377fe282e7d48982bcf69147dd89
+      internalID: -213423359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_112
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 751
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 706dcc2a88c601f44b2ba8c3575ec245
+      internalID: 278214610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_113
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 754
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b69ac09c3c32bce45ab4505cfbf87532
+      internalID: 2057259258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_114
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 752
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 489fff9adec31834f8ddc1306976fe10
+      internalID: -1663317100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_115
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 753
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc9590b6ad7d0a24f9d79d4806c49dd0
+      internalID: 1932167048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_116
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 751
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 064d1714ca9ff374eb7bd84437015463
+      internalID: 1733605513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_117
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 754
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c0657b954f7aa64caca1f9c4b14e7b9
+      internalID: 526601651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_118
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 752
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0b1d7b2f402244aabf771da13cbc2a
+      internalID: -1240085854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_119
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 753
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dc6c8f4aaeedf64c8c3152c77e9e899
+      internalID: 1235759723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_168
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 688
+        width: 30
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49a116ce7640974478c72fbb05419bcc
+      internalID: -1138245168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_169
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 688
+        width: 34
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8aa2ffb189ad3741b7af9088f6b6cff
+      internalID: -178797161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_170
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 686
+        width: 28
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d67bd761c23c4c45bcbf73ac75b8b6a
+      internalID: -834466542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isaac_pickup
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 688
+        width: 28
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6882bad446bcc94abab412ba5699ad9
+      internalID: 159882967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_172
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 688
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 559f4d849be040049aac2a13a3326a6e
+      internalID: 767491799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_173
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 688
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9cc6a756ab08ea4ab3f3b28f38a7d23
+      internalID: 2030919914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_174
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 686
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7d551f8c411a22478b861d7092ad8cf
+      internalID: 102788721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_175
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 688
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda675b5866954a48a879fcd725fa935
+      internalID: 1000695702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_176
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 688
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b72a40a48c56724ea03a6dbdfa86b95
+      internalID: 343874926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_177
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 688
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb5b656242086b4bb82cc8c3fc827ad
+      internalID: 615783812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_178
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 686
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a7e52954f34b374d8d36b64d84678b1
+      internalID: -1272505349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_179
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 688
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f05a00b1e32d6a14c905a7666a388125
+      internalID: -1908768345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_183
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 627
+        width: 28
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b5e47b0d403874e86646d0accd051f
+      internalID: 179689200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isaac_hit
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 629
+        width: 28
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7aaecdba98938c46953d2cdfdb45f8a
+      internalID: 793701858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_185
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 623
+        width: 36
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d0c3f168a36864b8ec17c0805c07d7
+      internalID: -1358549604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_186
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 627
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2bbdc22b3768144d99f45a4c38afdf6
+      internalID: -1073823657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_187
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 629
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1267ab2f57c76c040ab247546ad8cc6e
+      internalID: -2144998050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_188
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 623
+        width: 36
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fd7812c1d9cca04b86fe6ee45446301
+      internalID: 738924791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_189
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 627
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d4440f853a4ad4598c4624521fe72e
+      internalID: -1393540120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_190
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 629
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 663389fc56ab4ad4cbd0e58e80b9dd85
+      internalID: 1434218975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_191
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 623
+        width: 36
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208013cda80156e41a0d38291125e85f
+      internalID: 1952201132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_201
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 570
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f743f9e9438cc5a4f9ff8962f63a204d
+      internalID: -1094936997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_202
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 570
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44aa9bc4d47e76443b4886f7e46a514b
+      internalID: 594443664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_203
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 570
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7cedf940168d10448f9becc8945c3f1
+      internalID: 1242648227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_204
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 586
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47635c0ed54b580468961b78ea3a9cd4
+      internalID: 1050457129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_205
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 581
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6bd4ab368b01049a0fce2e2d1447a2
+      internalID: -28938025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_206
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 586
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8c8ab70ffb84234baf65444b1b6f002
+      internalID: 1683714205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_207
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 570
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f85a81044432ce84bb3636d06f848812
+      internalID: -1671972714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_208
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 567
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ccda672aaee5f14a82a88381be9ad8c
+      internalID: -1530568390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_209
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 585
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bbf346e08d6cad40b20b75a389b4566
+      internalID: -337996822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_210
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 570
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f21181beab2c9484299050b595442447
+      internalID: -1830124942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_211
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 570
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbc8d8c45259e72429ecdbf9f6b50208
+      internalID: -760822935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_212
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 570
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 464f7929c60857a4daf4735f9b73b812
+      internalID: 1104323848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_213
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 586
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed2058e1620aa3741b02e46c5c400416
+      internalID: -1761999016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_214
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 581
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9dad3000b38f5499b71fa7a2b4c8c9
+      internalID: -1337579377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_215
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 586
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b372a3099849b8041ad0e803e7fbb43d
+      internalID: 220910765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_216
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 570
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831ec8f0e5d66f84281b565b3500b05c
+      internalID: 946928015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_217
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 567
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0ab84e5310c75e45b71d2d85cce2878
+      internalID: -293623749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_218
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 585
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed872c1d4410b643aad8e3d7422acb2
+      internalID: 199998343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_219
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 570
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4af02b6141f5eab44a1b25c33b59dbba
+      internalID: -730051545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_220
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 570
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30091b1e4f05c124a8c4a22f0fad01b2
+      internalID: 15477865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_221
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 570
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d0719e8e3749d4eb4bff671c7829c5
+      internalID: 1599696416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_222
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 586
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b039187d9f6d44040b992156b7759c15
+      internalID: 2014152205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_223
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 581
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55d8163606c7476488bfd00f556fc4fd
+      internalID: -263522652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_224
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 586
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2bfce5f38cb11240a732b2c84bdd8bc
+      internalID: -1906679819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_225
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 570
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b18fa451cccf12d4093512c337d733ae
+      internalID: -529794488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_226
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 567
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0d1f7cda0bf823498a84ddc36a7c8bf
+      internalID: -1518438494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_227
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 585
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65db70cf68ac2b42b993c8f2ff0ab6d
+      internalID: -1158516124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_228
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 565
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d29a8d8eb9a606b40a3d5469383e756e
+      internalID: -1917255295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_229
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 565
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9a93f3a2812d6242a288907b1d3b6ee
+      internalID: -1079328316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_230
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 567
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f3235cfe0ffe849b46ce5dbd416f2c
+      internalID: 834851129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_231
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 565
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fc203963cc9304bba7ae4a53aa20c2
+      internalID: 475173513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_232
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 565
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03358e84a4344f24f8182b8e8b8a8ce9
+      internalID: -1476402335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_233
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 567
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8b2141994953f0409e669a4da9a0ffd
+      internalID: -395155842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_234
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 565
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5645f94b12f02e942b18d83933bf4904
+      internalID: -1616122183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_235
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 565
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0c5de17512802488afcee27d1985da
+      internalID: 228272964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_236
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 567
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb33c160e007d340b0b504874a1a8e7
+      internalID: 206837692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_249
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 513ed047654bd3049ad4396f86b67404
+      internalID: -1103687454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_250
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 160ceb1ec2eddb34a839413b3e5efe68
+      internalID: 879600888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_251
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e78ead14d56cd04d9791fb429986bbe
+      internalID: 1555835511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_252
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78393d0d6b807a949b75216a940adc75
+      internalID: -1403600327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_253
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a10ec3d1437fb7041924c0cee7bda91a
+      internalID: 2138801229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_254
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbad09fd96b665342b4080025ab3a9f9
+      internalID: 1794676562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_255
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8863373d90c392c4ea623c69db1bae5a
+      internalID: -1813300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_256
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6c43a4775c39154f8ed25808b8b64e2
+      internalID: -1650156002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_257
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7ec6191dbe31b4093137f221620c37
+      internalID: -1643046121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_258
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43acd3a10ccb56d48b121461b2e1ea58
+      internalID: -497777513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_259
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 138eb12021d41df4491a8de9cd836310
+      internalID: 1517593239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_260
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e11b2fa508adb914bad07d56074e213b
+      internalID: 1409046097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_261
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dc2045d3382b8247a0df8acc8876f54
+      internalID: 2122502581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_262
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cefcbf6bc5b88004c86dbfdc7e105c76
+      internalID: 312014427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_263
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df14c04922fbf704893ca6918ad9e407
+      internalID: -492740909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_264
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 644770e09727ccc46953b243fcd0de5c
+      internalID: 1899791030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_265
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790e32bae2a14b5488b8986d032dc3d9
+      internalID: -1158377723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_266
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: defe6d891255dd14dbc69e65db71a8f5
+      internalID: -673464692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_267
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8953588c9a2b14f8c5054b62dd9945
+      internalID: 124156251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_268
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 547678bdeb0b08b4fad56bc8ccb874c4
+      internalID: 1966136096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_269
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7fa16c70252214ca7928d41a252131
+      internalID: 879296854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_270
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33cc67a5382f7694ea33830f43a7fa60
+      internalID: 656456726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_271
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 495
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc5814a3994a214da32f4d5b278354a
+      internalID: 1716739025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_272
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 494
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b07d440379dfa74e89369e7bfa320d1
+      internalID: -1235752000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_276
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0f4f292605455c418b3a6632e64b76b
+      internalID: 1743503714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_277
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac59b89d644e3234bb8eeb7828cb6137
+      internalID: -605930175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_278
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf211a1093eb594ca26ef3b25e1ad0a
+      internalID: 200969967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_279
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 450
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c89cd54c0397b3e4786fe2ff8f150de7
+      internalID: 1200838407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_280
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 451
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c49577c70eaa54889e50bff8125654
+      internalID: 1555134960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_281
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7747d3eff9fe8164888b858c03aad96c
+      internalID: -1656560340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_282
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03d3613ea13035847a18f2828fb9f297
+      internalID: -709826183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_283
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce2d62cc62666c45a3e7f5dd98062ef
+      internalID: 1868839040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_284
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 450
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed4067904223a64c913c5bd7c852526
+      internalID: 1591504000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_285
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 451
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32bf894b574baed42914b983853cdef9
+      internalID: 1888552800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_286
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c175f0439b73ba74f8a8052ddb5cfda0
+      internalID: 1838773499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_287
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491270dce039bc647a22c16cc351ed6c
+      internalID: 59922909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_288
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0404ebbbce438d0419f4061725eaa037
+      internalID: -821044837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_289
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 450
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00ab1c5c7cd2370449ce08491c7fba8e
+      internalID: -1009520254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_290
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 451
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6011a731fc923a245b483c628a50c91e
+      internalID: -1553521168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_291
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7edcd298ee151f84892425139fd7edf5
+      internalID: 720362572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_292
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d221e4c9cff544439b6dee65c4a0a5f
+      internalID: -599791789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_293
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271dfc41e99c908448482313e01582a8
+      internalID: -655564082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_294
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 450
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 243056e1b48b14d43b73db11dcd58100
+      internalID: -779722533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_295
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 451
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e96987a5efb5c48b6cb9600a334271
+      internalID: -2021677410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_296
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df547d14ca37f2540b8a5040d240ef00
+      internalID: 1140367840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_297
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 990390e3650140549ba2a389374a3c7e
+      internalID: -1930731771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_298
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3f2ce5ca2af66e4da93b3b7c6291594
+      internalID: 1807936139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_299
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 450
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5281b30620b5c1c4eae03c7342e81f20
+      internalID: 492535473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_300
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 451
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f51e72df6c90549b3c4a5e7d86caba
+      internalID: -1687920121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_301
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b233b1d4720a9d94cb7973b7f2869570
+      internalID: 1901988459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_302
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 731fa2c6a4502984a89c9d07fa5795cb
+      internalID: -1515069836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_303
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 452
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92bdd05cf8d56d746ac2764fd06947c4
+      internalID: 1634309993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_304
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 450
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77c18d713312b24ab7b75f20b959453
+      internalID: -1938712247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_305
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 451
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2168b417942a3d74d846146e5545a225
+      internalID: -1217003113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_309
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 409
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63836c7a2ef62ae44ab64f98f32ca0c3
+      internalID: 1582637911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_310
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a40f4d261df35648919270f4b3b25e8
+      internalID: 351702031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_311
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 409
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 405d66cb07d02064ab91909b72d8adc5
+      internalID: 1465463889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_312
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 409
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5008ee65373ccdb409ffa913cf8eb19b
+      internalID: 217223470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_313
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 409
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cec82a1cec57494f909f46b18a49f97
+      internalID: 887585952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_314
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ef21baa6aeb6ed43a16b8de38636aed
+      internalID: -2083987941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_315
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d20b5fabd718b0e40b3d95d90aa9d82d
+      internalID: 1646343972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_316
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 409
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b613fe68f59919b42ad1aa326058a2fa
+      internalID: -268407764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_317
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 409
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e3bb2ffb6c2133459110f5a72221999
+      internalID: -476078928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_318
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 409
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3287a9b027d23714b90d54b61937d68d
+      internalID: -315715789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_319
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 409
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2044015a8358f6c4abdae21a38af34e4
+      internalID: 1774570883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_320
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6dfdbc465773844986ca33fd32564e5
+      internalID: -2072702456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_321
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 409
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0becb2c79b5695428c98b51752c3999
+      internalID: 699060222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_322
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 409
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f860c2a295a4b514ea8fdcf7a746a4bf
+      internalID: 125625142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_323
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 409
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60acc76d6d7585b47a852af22f45f3d5
+      internalID: -1039325215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_324
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 703816571c8845e4a8fe1af5876e2bc3
+      internalID: 216215168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_325
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e883530489663a941b7e4c5aa7dae0c6
+      internalID: 192348865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_326
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 409
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d2673498e314c43baade27b65c18a0
+      internalID: -1963664807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_327
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 409
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9620664e245c34c9e9723d421df87c
+      internalID: 2086031004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_328
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 409
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 474777e5269cc9a4a8dd2281a7a4df95
+      internalID: 617765646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_329
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 409
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cc769475287b3a4dbfbbf6f688d9f07
+      internalID: 1418839055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_330
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95a2e5a754d08f5489961d68d3480705
+      internalID: 1731753925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_331
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 409
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc2d57fd49f79fb488e599ce4e9ac7a5
+      internalID: -1003436765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_332
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 409
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9452503067b4e4b9272601d8b4afe6
+      internalID: -2111921649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_333
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 409
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078a0647d77dcc0499452356e26557d2
+      internalID: -652483938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_334
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d4809e5492ca274bb09008b9871feab
+      internalID: 26379430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_335
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 409
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6482598a6e65ce4c803ab8116b40f45
+      internalID: -851959285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_336
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 409
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5147a1ad5138a7546b7194308e18b1a4
+      internalID: 288289522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_337
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 409
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6fadafa4f644fe4ca858f34b9808bac
+      internalID: 1655074154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_338
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 409
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0022b6a02c6c074181d1233ac6b9684
+      internalID: 1784417845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_345
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 346
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14db3d5e336909041acd94721b2c03c9
+      internalID: 730366122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_346
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 349
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6086a04094e62c4185b7e2e311e462b
+      internalID: -1709709863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_347
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 347
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca081af44a53264bba7133f142771b4
+      internalID: 1784751375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_348
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 348
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a2daeee68c2c4e418e003f1ad85e024
+      internalID: 2056084113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_349
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 346
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ef53093d79bff48b018b446b3fce62
+      internalID: 810895861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_350
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 349
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7a34b5efd4f94e4bbac5bacdb4b2c8f
+      internalID: -1568030623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_351
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 347
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db1598ab81a6c7b4d983ecd78e6f6e5d
+      internalID: -1797168328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_352
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 348
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc589eb711fa4a4dac80588539af3cb
+      internalID: -1816884559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_353
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 346
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a870d4b4908af34478d69744d55fefa4
+      internalID: -1623186251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_354
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 349
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d29597be8e6725418ffa0c5aeb9383b
+      internalID: -1074991305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_355
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 347
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3710e1d6485cf04ca1d7d98fdc8b1f3
+      internalID: 2064757548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_356
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 348
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d89e842d7222fcf4cb73dadc7abec46d
+      internalID: 1385794469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_405
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 283
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2854ac882c80c1d45949fc664c36b9d3
+      internalID: -830173619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_406
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 283
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e9652fae9c19fa48bb72f74087db8b9
+      internalID: -1478329639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_407
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 281
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f229dad93a1bae49961b27e9e9249c5
+      internalID: 1082559381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_408
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 283
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b25e55811f32a7345a9d89e6b919b8bd
+      internalID: -204369892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_409
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 283
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beb8d82daca5f7142aebb2ac295367db
+      internalID: -476224395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_410
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 283
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ddc964392d23954aba2ef80bfa3dd1c
+      internalID: -643438667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_411
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 281
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d856e1db8e803c408250c5fbfd5ba24
+      internalID: -2059764122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_412
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 283
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5757b02baf876a547ba6b7602ba3199d
+      internalID: 518544234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_413
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 283
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adbe998a779b1034dbe81afc4d7a8b32
+      internalID: 2134031032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_414
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 283
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eadda35c83267c48aa0fb05c23c4b3d
+      internalID: 1006291627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_415
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 281
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea7165bc0080212408a60fc3993f38e3
+      internalID: -2106860193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_416
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 283
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94398ef0c064ad4ab58061b687c5f95
+      internalID: -304449464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_420
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 222
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a41a9d3e72d139447af6129660352b1c
+      internalID: 201059016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_421
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 224
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e059e4651e6585144b0f036d98073e9e
+      internalID: 619041242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_422
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 218
+        width: 36
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24c0115b1db3f24ab10ef65d3aac35d
+      internalID: 1269037703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_423
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 222
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd58a9ac26ac0a941bfeb3ea8b091e1c
+      internalID: -1675927826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_424
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 224
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a48f7a4344e8c44a734cd61780c76e
+      internalID: 201307687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_425
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 218
+        width: 36
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6953579c50dc445abd958c05c66764
+      internalID: -163452279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_426
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 222
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65589f9511fb40b4096c320f9562d9a2
+      internalID: 997819438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_427
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 224
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ff6aaeeec1932b4aa95a6d6a049c508
+      internalID: 1840773715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_428
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 218
+        width: 36
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c204e65948bfbf4e9b48663de4ce718
+      internalID: 2010107194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_438
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 165
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27dcc245885751e4d98b154a23181677
+      internalID: 1349699497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_439
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 165
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8416ba17243c6ee4ea53c5b3e8868a01
+      internalID: 166491474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_440
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 165
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a16a9a92c78304a85c08684c958063
+      internalID: -115219183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_441
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 181
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2558964c185daae47bac8e68d78a026c
+      internalID: -582855739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_442
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 176
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c0dfc3caa12d342b7df3442c5098a9
+      internalID: 536967220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_443
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 181
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3d2286e899d14f4499f2660dc127f0a
+      internalID: 364417351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_444
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 165
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebbc5c98303237747b01bd7fd569801c
+      internalID: 1993013251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_445
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 162
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e340b6093293dc4c961f31f43234a3b
+      internalID: 1584328012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_446
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 180
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33969fb77ca2fa940b0eba85c3388ddb
+      internalID: -1383077220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_447
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 165
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05178f1062c578418c61275c902494e
+      internalID: 233253621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_448
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 165
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28285b4de67f35548b0b1a746c031280
+      internalID: -2327574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_449
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 165
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1249cfd8f2e115048be5cb1a9326c7c2
+      internalID: -1224479997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_450
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 181
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1273ebf3bed656a40807a49c11ed9662
+      internalID: 713109543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_451
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 176
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78adbc06425a58146bc09570af7a14da
+      internalID: -250898693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_452
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 181
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 336f679c0aa599f4fba0b08ca0c9bdd6
+      internalID: -1512631314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_453
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 165
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e51d52e16a56af34c9cabc79b2b09185
+      internalID: -262420377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_454
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 162
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adab13009078319499ca2b7529c10cb2
+      internalID: 1638589468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_455
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 180
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2993c5e7288f85d4c95d959aa417bda9
+      internalID: 18969614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_456
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 165
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6690e7dd96998d24ea86d6e80b0a5102
+      internalID: -2008059903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_457
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 165
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34dd25aba29ded34fb829dd0cdf2924d
+      internalID: 1470064770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_458
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 165
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70989873063ae6b41bce8dfe4bc22efa
+      internalID: -636679870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_459
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 181
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2658acbbb391d304db92c354da0f420a
+      internalID: -1374625379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_460
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 176
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb5a0a22f1c872346be2e4abf4b525a1
+      internalID: 127411601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_461
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 181
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43b4634ed93d94b4ea469b6f66abd6a1
+      internalID: -1812664151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_462
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 165
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f2c4c8ff8f7e7944999853d85c2807b
+      internalID: 2029060045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_463
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 162
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2df616e76c998941a0ede9c56980c21
+      internalID: 720496884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_464
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 180
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27d59659ea960ff44a8fcf3e596fa580
+      internalID: -1301290651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_465
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 160
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf4a5eaf8e44b43478352255478f364c
+      internalID: 576095880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_466
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 160
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 673c89335b5fc114995a7f3d057871da
+      internalID: 1055463310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_467
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 162
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5529318df804f864689010094251787b
+      internalID: 2117177188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_468
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 160
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 995d9f14bd40d4048949e16af3ebcc6a
+      internalID: -17763783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_469
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 160
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c4e5d882bd4c4419527673868293d9
+      internalID: -1894880229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_470
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 162
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e6c4a8ae8a48e44883d2fcd22fa00ed
+      internalID: 1814874732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_471
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 160
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101ab656436e6f1418294d0e45d82a7d
+      internalID: -157396416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_472
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 160
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2c06d3889a7814d8b56d76d0dc781b
+      internalID: 1225881908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_473
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 162
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f7de1f17a4ec824aa98a226313d2f1c
+      internalID: 498809584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_499
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 22
+        width: 14
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 430d11a4338885748af433be39dd6435
+      internalID: 1094613428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_500
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 93
+        width: 98
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 798fac9347a39db4fbf21961d9e370e1
+      internalID: -737124511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_501
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 40
+        width: 91
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2840e06dead861440961aa1662e4188d
+      internalID: 1431642242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_502
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 46
+        width: 46
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 841cc0662cdba8b468abfa168ddfdffa
+      internalID: 1194397004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Player_Isaac_504
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 12
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771d023ea43d5034a8a7a00ce4aae0dd
+      internalID: -1555009067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Sprite_Player_Isaac_0: 798102144
+      Sprite_Player_Isaac_1: 193529116
+      Sprite_Player_Isaac_10: -213524759
+      Sprite_Player_Isaac_100: 863637415
+      Sprite_Player_Isaac_101: -2083084338
+      Sprite_Player_Isaac_102: -1881457997
+      Sprite_Player_Isaac_103: 1124273764
+      Sprite_Player_Isaac_104: 579950170
+      Sprite_Player_Isaac_105: 1027310726
+      Sprite_Player_Isaac_106: 710249823
+      Sprite_Player_Isaac_107: 2082487229
+      Sprite_Player_Isaac_108: -1840569668
+      Sprite_Player_Isaac_109: 1277397239
+      Sprite_Player_Isaac_11: 1922563566
+      Sprite_Player_Isaac_110: -1826754185
+      Sprite_Player_Isaac_111: -213423359
+      Sprite_Player_Isaac_112: 278214610
+      Sprite_Player_Isaac_113: 2057259258
+      Sprite_Player_Isaac_114: -1663317100
+      Sprite_Player_Isaac_115: 1932167048
+      Sprite_Player_Isaac_116: 1733605513
+      Sprite_Player_Isaac_117: 526601651
+      Sprite_Player_Isaac_118: -1240085854
+      Sprite_Player_Isaac_119: 1235759723
+      Sprite_Player_Isaac_120: -235570600
+      Sprite_Player_Isaac_121: 179351618
+      Sprite_Player_Isaac_122: 133049718
+      Sprite_Player_Isaac_123: -2032899269
+      Sprite_Player_Isaac_124: 539904013
+      Sprite_Player_Isaac_125: -88076229
+      Sprite_Player_Isaac_126: 1406816600
+      Sprite_Player_Isaac_127: -282543770
+      Sprite_Player_Isaac_128: 1958565276
+      Sprite_Player_Isaac_129: 543513455
+      Sprite_Player_Isaac_13: 1585015679
+      Sprite_Player_Isaac_130: -119287468
+      Sprite_Player_Isaac_131: 1660781478
+      Sprite_Player_Isaac_132: -1210674937
+      Sprite_Player_Isaac_133: -1537636678
+      Sprite_Player_Isaac_134: -200374714
+      Sprite_Player_Isaac_135: 1866861465
+      Sprite_Player_Isaac_136: -1696370548
+      Sprite_Player_Isaac_137: 350760250
+      Sprite_Player_Isaac_138: -680830241
+      Sprite_Player_Isaac_139: 416173135
+      Sprite_Player_Isaac_14: 2027702470
+      Sprite_Player_Isaac_140: -638324605
+      Sprite_Player_Isaac_141: -1995279019
+      Sprite_Player_Isaac_142: 1551930546
+      Sprite_Player_Isaac_143: 1148626497
+      Sprite_Player_Isaac_144: 1231758045
+      Sprite_Player_Isaac_145: -1550673885
+      Sprite_Player_Isaac_146: -951658765
+      Sprite_Player_Isaac_147: -1050757087
+      Sprite_Player_Isaac_148: 1991398325
+      Sprite_Player_Isaac_149: -1993910047
+      Sprite_Player_Isaac_15: 2005966571
+      Sprite_Player_Isaac_150: -241130295
+      Sprite_Player_Isaac_151: -558719583
+      Sprite_Player_Isaac_152: 1295682625
+      Sprite_Player_Isaac_153: 1098254249
+      Sprite_Player_Isaac_154: -483902134
+      Sprite_Player_Isaac_155: 39989566
+      Sprite_Player_Isaac_156: 1715742337
+      Sprite_Player_Isaac_157: 1079761955
+      Sprite_Player_Isaac_158: 1307156957
+      Sprite_Player_Isaac_159: -958377403
+      Sprite_Player_Isaac_16: 1674100879
+      Sprite_Player_Isaac_160: 1719782774
+      Sprite_Player_Isaac_161: 1157234311
+      Sprite_Player_Isaac_162: -654735944
+      Sprite_Player_Isaac_163: 1481373207
+      Sprite_Player_Isaac_164: -2118795956
+      Sprite_Player_Isaac_165: -1181231235
+      Sprite_Player_Isaac_166: -650865279
+      Sprite_Player_Isaac_167: 1250946448
+      Sprite_Player_Isaac_168: -1138245168
+      Sprite_Player_Isaac_169: -178797161
+      Sprite_Player_Isaac_17: 2119781101
+      Sprite_Player_Isaac_170: -834466542
+      Sprite_Player_Isaac_172: 767491799
+      Sprite_Player_Isaac_173: 2030919914
+      Sprite_Player_Isaac_174: 102788721
+      Sprite_Player_Isaac_175: 1000695702
+      Sprite_Player_Isaac_176: 343874926
+      Sprite_Player_Isaac_177: 615783812
+      Sprite_Player_Isaac_178: -1272505349
+      Sprite_Player_Isaac_179: -1908768345
+      Sprite_Player_Isaac_18: 128299183
+      Sprite_Player_Isaac_180: 316810176
+      Sprite_Player_Isaac_181: -1068090302
+      Sprite_Player_Isaac_182: 1036694392
+      Sprite_Player_Isaac_183: 179689200
+      Sprite_Player_Isaac_185: -1358549604
+      Sprite_Player_Isaac_186: -1073823657
+      Sprite_Player_Isaac_187: -2144998050
+      Sprite_Player_Isaac_188: 738924791
+      Sprite_Player_Isaac_189: -1393540120
+      Sprite_Player_Isaac_19: 411151828
+      Sprite_Player_Isaac_190: 1434218975
+      Sprite_Player_Isaac_191: 1952201132
+      Sprite_Player_Isaac_192: 430982676
+      Sprite_Player_Isaac_193: -1252505127
+      Sprite_Player_Isaac_194: 592353543
+      Sprite_Player_Isaac_195: 78637796
+      Sprite_Player_Isaac_196: -946885196
+      Sprite_Player_Isaac_197: -1570243545
+      Sprite_Player_Isaac_198: -827302928
+      Sprite_Player_Isaac_199: 1248669414
+      Sprite_Player_Isaac_2: 38877711
+      Sprite_Player_Isaac_20: -1916536725
+      Sprite_Player_Isaac_200: 1750833595
+      Sprite_Player_Isaac_201: -1094936997
+      Sprite_Player_Isaac_202: 594443664
+      Sprite_Player_Isaac_203: 1242648227
+      Sprite_Player_Isaac_204: 1050457129
+      Sprite_Player_Isaac_205: -28938025
+      Sprite_Player_Isaac_206: 1683714205
+      Sprite_Player_Isaac_207: -1671972714
+      Sprite_Player_Isaac_208: -1530568390
+      Sprite_Player_Isaac_209: -337996822
+      Sprite_Player_Isaac_21: 246153367
+      Sprite_Player_Isaac_210: -1830124942
+      Sprite_Player_Isaac_211: -760822935
+      Sprite_Player_Isaac_212: 1104323848
+      Sprite_Player_Isaac_213: -1761999016
+      Sprite_Player_Isaac_214: -1337579377
+      Sprite_Player_Isaac_215: 220910765
+      Sprite_Player_Isaac_216: 946928015
+      Sprite_Player_Isaac_217: -293623749
+      Sprite_Player_Isaac_218: 199998343
+      Sprite_Player_Isaac_219: -730051545
+      Sprite_Player_Isaac_22: -1421973292
+      Sprite_Player_Isaac_220: 15477865
+      Sprite_Player_Isaac_221: 1599696416
+      Sprite_Player_Isaac_222: 2014152205
+      Sprite_Player_Isaac_223: -263522652
+      Sprite_Player_Isaac_224: -1906679819
+      Sprite_Player_Isaac_225: -529794488
+      Sprite_Player_Isaac_226: -1518438494
+      Sprite_Player_Isaac_227: -1158516124
+      Sprite_Player_Isaac_228: -1917255295
+      Sprite_Player_Isaac_229: -1079328316
+      Sprite_Player_Isaac_23: -1007295757
+      Sprite_Player_Isaac_230: 834851129
+      Sprite_Player_Isaac_231: 475173513
+      Sprite_Player_Isaac_232: -1476402335
+      Sprite_Player_Isaac_233: -395155842
+      Sprite_Player_Isaac_234: -1616122183
+      Sprite_Player_Isaac_235: 228272964
+      Sprite_Player_Isaac_236: 206837692
+      Sprite_Player_Isaac_237: 1694427212
+      Sprite_Player_Isaac_238: -537411700
+      Sprite_Player_Isaac_239: -66174987
+      Sprite_Player_Isaac_24: -273393749
+      Sprite_Player_Isaac_240: 195409999
+      Sprite_Player_Isaac_241: 395789250
+      Sprite_Player_Isaac_242: 275788145
+      Sprite_Player_Isaac_243: -1639213786
+      Sprite_Player_Isaac_244: 97208912
+      Sprite_Player_Isaac_245: -1778800215
+      Sprite_Player_Isaac_246: 1012892576
+      Sprite_Player_Isaac_247: 816598989
+      Sprite_Player_Isaac_248: -1491471456
+      Sprite_Player_Isaac_249: -1103687454
+      Sprite_Player_Isaac_25: -1791932352
+      Sprite_Player_Isaac_250: 879600888
+      Sprite_Player_Isaac_251: 1555835511
+      Sprite_Player_Isaac_252: -1403600327
+      Sprite_Player_Isaac_253: 2138801229
+      Sprite_Player_Isaac_254: 1794676562
+      Sprite_Player_Isaac_255: -1813300134
+      Sprite_Player_Isaac_256: -1650156002
+      Sprite_Player_Isaac_257: -1643046121
+      Sprite_Player_Isaac_258: -497777513
+      Sprite_Player_Isaac_259: 1517593239
+      Sprite_Player_Isaac_26: -1401028185
+      Sprite_Player_Isaac_260: 1409046097
+      Sprite_Player_Isaac_261: 2122502581
+      Sprite_Player_Isaac_262: 312014427
+      Sprite_Player_Isaac_263: -492740909
+      Sprite_Player_Isaac_264: 1899791030
+      Sprite_Player_Isaac_265: -1158377723
+      Sprite_Player_Isaac_266: -673464692
+      Sprite_Player_Isaac_267: 124156251
+      Sprite_Player_Isaac_268: 1966136096
+      Sprite_Player_Isaac_269: 879296854
+      Sprite_Player_Isaac_27: 1613609594
+      Sprite_Player_Isaac_270: 656456726
+      Sprite_Player_Isaac_271: 1716739025
+      Sprite_Player_Isaac_272: -1235752000
+      Sprite_Player_Isaac_273: 894024617
+      Sprite_Player_Isaac_274: -1571685431
+      Sprite_Player_Isaac_275: 1742303347
+      Sprite_Player_Isaac_276: 1743503714
+      Sprite_Player_Isaac_277: -605930175
+      Sprite_Player_Isaac_278: 200969967
+      Sprite_Player_Isaac_279: 1200838407
+      Sprite_Player_Isaac_28: 1703182797
+      Sprite_Player_Isaac_280: 1555134960
+      Sprite_Player_Isaac_281: -1656560340
+      Sprite_Player_Isaac_282: -709826183
+      Sprite_Player_Isaac_283: 1868839040
+      Sprite_Player_Isaac_284: 1591504000
+      Sprite_Player_Isaac_285: 1888552800
+      Sprite_Player_Isaac_286: 1838773499
+      Sprite_Player_Isaac_287: 59922909
+      Sprite_Player_Isaac_288: -821044837
+      Sprite_Player_Isaac_289: -1009520254
+      Sprite_Player_Isaac_29: -95061978
+      Sprite_Player_Isaac_290: -1553521168
+      Sprite_Player_Isaac_291: 720362572
+      Sprite_Player_Isaac_292: -599791789
+      Sprite_Player_Isaac_293: -655564082
+      Sprite_Player_Isaac_294: -779722533
+      Sprite_Player_Isaac_295: -2021677410
+      Sprite_Player_Isaac_296: 1140367840
+      Sprite_Player_Isaac_297: -1930731771
+      Sprite_Player_Isaac_298: 1807936139
+      Sprite_Player_Isaac_299: 492535473
+      Sprite_Player_Isaac_3: 1528379260
+      Sprite_Player_Isaac_30: 1387057457
+      Sprite_Player_Isaac_300: -1687920121
+      Sprite_Player_Isaac_301: 1901988459
+      Sprite_Player_Isaac_302: -1515069836
+      Sprite_Player_Isaac_303: 1634309993
+      Sprite_Player_Isaac_304: -1938712247
+      Sprite_Player_Isaac_305: -1217003113
+      Sprite_Player_Isaac_306: -250067747
+      Sprite_Player_Isaac_307: -997741023
+      Sprite_Player_Isaac_308: -607627674
+      Sprite_Player_Isaac_309: 1582637911
+      Sprite_Player_Isaac_31: 1161761029
+      Sprite_Player_Isaac_310: 351702031
+      Sprite_Player_Isaac_311: 1465463889
+      Sprite_Player_Isaac_312: 217223470
+      Sprite_Player_Isaac_313: 887585952
+      Sprite_Player_Isaac_314: -2083987941
+      Sprite_Player_Isaac_315: 1646343972
+      Sprite_Player_Isaac_316: -268407764
+      Sprite_Player_Isaac_317: -476078928
+      Sprite_Player_Isaac_318: -315715789
+      Sprite_Player_Isaac_319: 1774570883
+      Sprite_Player_Isaac_32: -1656813722
+      Sprite_Player_Isaac_320: -2072702456
+      Sprite_Player_Isaac_321: 699060222
+      Sprite_Player_Isaac_322: 125625142
+      Sprite_Player_Isaac_323: -1039325215
+      Sprite_Player_Isaac_324: 216215168
+      Sprite_Player_Isaac_325: 192348865
+      Sprite_Player_Isaac_326: -1963664807
+      Sprite_Player_Isaac_327: 2086031004
+      Sprite_Player_Isaac_328: 617765646
+      Sprite_Player_Isaac_329: 1418839055
+      Sprite_Player_Isaac_33: 29469644
+      Sprite_Player_Isaac_330: 1731753925
+      Sprite_Player_Isaac_331: -1003436765
+      Sprite_Player_Isaac_332: -2111921649
+      Sprite_Player_Isaac_333: -652483938
+      Sprite_Player_Isaac_334: 26379430
+      Sprite_Player_Isaac_335: -851959285
+      Sprite_Player_Isaac_336: 288289522
+      Sprite_Player_Isaac_337: 1655074154
+      Sprite_Player_Isaac_338: 1784417845
+      Sprite_Player_Isaac_339: -266267276
+      Sprite_Player_Isaac_34: 1395075884
+      Sprite_Player_Isaac_340: 77087244
+      Sprite_Player_Isaac_341: 1903866256
+      Sprite_Player_Isaac_342: 295465411
+      Sprite_Player_Isaac_343: 72627397
+      Sprite_Player_Isaac_344: -398156513
+      Sprite_Player_Isaac_345: 730366122
+      Sprite_Player_Isaac_346: -1709709863
+      Sprite_Player_Isaac_347: 1784751375
+      Sprite_Player_Isaac_348: 2056084113
+      Sprite_Player_Isaac_349: 810895861
+      Sprite_Player_Isaac_35: -925060260
+      Sprite_Player_Isaac_350: -1568030623
+      Sprite_Player_Isaac_351: -1797168328
+      Sprite_Player_Isaac_352: -1816884559
+      Sprite_Player_Isaac_353: -1623186251
+      Sprite_Player_Isaac_354: -1074991305
+      Sprite_Player_Isaac_355: 2064757548
+      Sprite_Player_Isaac_356: 1385794469
+      Sprite_Player_Isaac_357: 1791200795
+      Sprite_Player_Isaac_358: -1521098383
+      Sprite_Player_Isaac_359: -19637907
+      Sprite_Player_Isaac_36: -1767815711
+      Sprite_Player_Isaac_360: 1808129284
+      Sprite_Player_Isaac_361: 1136897777
+      Sprite_Player_Isaac_362: -779055620
+      Sprite_Player_Isaac_363: -1834993231
+      Sprite_Player_Isaac_364: -691169806
+      Sprite_Player_Isaac_365: -1104451714
+      Sprite_Player_Isaac_366: -1541528048
+      Sprite_Player_Isaac_367: -960037812
+      Sprite_Player_Isaac_368: 595174283
+      Sprite_Player_Isaac_369: 1870907692
+      Sprite_Player_Isaac_37: 1473456810
+      Sprite_Player_Isaac_370: 510585902
+      Sprite_Player_Isaac_371: 1733447703
+      Sprite_Player_Isaac_372: -1177776223
+      Sprite_Player_Isaac_373: 1417423593
+      Sprite_Player_Isaac_374: 941928221
+      Sprite_Player_Isaac_375: 1232327396
+      Sprite_Player_Isaac_376: 2039713305
+      Sprite_Player_Isaac_377: 95482528
+      Sprite_Player_Isaac_378: -1367903411
+      Sprite_Player_Isaac_379: -1364542078
+      Sprite_Player_Isaac_38: 2021348942
+      Sprite_Player_Isaac_380: -1963741635
+      Sprite_Player_Isaac_381: -2009178389
+      Sprite_Player_Isaac_382: -195103835
+      Sprite_Player_Isaac_383: 2069955875
+      Sprite_Player_Isaac_384: -248724669
+      Sprite_Player_Isaac_385: -1475657358
+      Sprite_Player_Isaac_386: 955924375
+      Sprite_Player_Isaac_387: -1274123000
+      Sprite_Player_Isaac_388: -811646014
+      Sprite_Player_Isaac_389: -633766060
+      Sprite_Player_Isaac_390: 1822238004
+      Sprite_Player_Isaac_391: 1840765720
+      Sprite_Player_Isaac_392: -633563222
+      Sprite_Player_Isaac_393: 1718394944
+      Sprite_Player_Isaac_394: 2017186991
+      Sprite_Player_Isaac_395: -1973910802
+      Sprite_Player_Isaac_396: -2018491719
+      Sprite_Player_Isaac_397: -495006350
+      Sprite_Player_Isaac_398: -1024997877
+      Sprite_Player_Isaac_399: 377056953
+      Sprite_Player_Isaac_4: -2055441400
+      Sprite_Player_Isaac_40: -1464774157
+      Sprite_Player_Isaac_400: -295616480
+      Sprite_Player_Isaac_401: -894889592
+      Sprite_Player_Isaac_402: -1035147376
+      Sprite_Player_Isaac_403: 2000288900
+      Sprite_Player_Isaac_404: -913581694
+      Sprite_Player_Isaac_405: -830173619
+      Sprite_Player_Isaac_406: -1478329639
+      Sprite_Player_Isaac_407: 1082559381
+      Sprite_Player_Isaac_408: -204369892
+      Sprite_Player_Isaac_409: -476224395
+      Sprite_Player_Isaac_41: -1131488602
+      Sprite_Player_Isaac_410: -643438667
+      Sprite_Player_Isaac_411: -2059764122
+      Sprite_Player_Isaac_412: 518544234
+      Sprite_Player_Isaac_413: 2134031032
+      Sprite_Player_Isaac_414: 1006291627
+      Sprite_Player_Isaac_415: -2106860193
+      Sprite_Player_Isaac_416: -304449464
+      Sprite_Player_Isaac_417: 774314611
+      Sprite_Player_Isaac_418: 2018532554
+      Sprite_Player_Isaac_419: -282430552
+      Sprite_Player_Isaac_42: -365821070
+      Sprite_Player_Isaac_420: 201059016
+      Sprite_Player_Isaac_421: 619041242
+      Sprite_Player_Isaac_422: 1269037703
+      Sprite_Player_Isaac_423: -1675927826
+      Sprite_Player_Isaac_424: 201307687
+      Sprite_Player_Isaac_425: -163452279
+      Sprite_Player_Isaac_426: 997819438
+      Sprite_Player_Isaac_427: 1840773715
+      Sprite_Player_Isaac_428: 2010107194
+      Sprite_Player_Isaac_429: -630188948
+      Sprite_Player_Isaac_43: 2065378418
+      Sprite_Player_Isaac_430: 49139366
+      Sprite_Player_Isaac_431: 928157670
+      Sprite_Player_Isaac_432: 2110197542
+      Sprite_Player_Isaac_433: 2058996787
+      Sprite_Player_Isaac_434: -1037332430
+      Sprite_Player_Isaac_435: -1785010726
+      Sprite_Player_Isaac_436: -1520012513
+      Sprite_Player_Isaac_437: -144300098
+      Sprite_Player_Isaac_438: 1349699497
+      Sprite_Player_Isaac_439: 166491474
+      Sprite_Player_Isaac_44: 1721581469
+      Sprite_Player_Isaac_440: -115219183
+      Sprite_Player_Isaac_441: -582855739
+      Sprite_Player_Isaac_442: 536967220
+      Sprite_Player_Isaac_443: 364417351
+      Sprite_Player_Isaac_444: 1993013251
+      Sprite_Player_Isaac_445: 1584328012
+      Sprite_Player_Isaac_446: -1383077220
+      Sprite_Player_Isaac_447: 233253621
+      Sprite_Player_Isaac_448: -2327574
+      Sprite_Player_Isaac_449: -1224479997
+      Sprite_Player_Isaac_45: -25518630
+      Sprite_Player_Isaac_450: 713109543
+      Sprite_Player_Isaac_451: -250898693
+      Sprite_Player_Isaac_452: -1512631314
+      Sprite_Player_Isaac_453: -262420377
+      Sprite_Player_Isaac_454: 1638589468
+      Sprite_Player_Isaac_455: 18969614
+      Sprite_Player_Isaac_456: -2008059903
+      Sprite_Player_Isaac_457: 1470064770
+      Sprite_Player_Isaac_458: -636679870
+      Sprite_Player_Isaac_459: -1374625379
+      Sprite_Player_Isaac_46: 1991692537
+      Sprite_Player_Isaac_460: 127411601
+      Sprite_Player_Isaac_461: -1812664151
+      Sprite_Player_Isaac_462: 2029060045
+      Sprite_Player_Isaac_463: 720496884
+      Sprite_Player_Isaac_464: -1301290651
+      Sprite_Player_Isaac_465: 576095880
+      Sprite_Player_Isaac_466: 1055463310
+      Sprite_Player_Isaac_467: 2117177188
+      Sprite_Player_Isaac_468: -17763783
+      Sprite_Player_Isaac_469: -1894880229
+      Sprite_Player_Isaac_47: 1678319356
+      Sprite_Player_Isaac_470: 1814874732
+      Sprite_Player_Isaac_471: -157396416
+      Sprite_Player_Isaac_472: 1225881908
+      Sprite_Player_Isaac_473: 498809584
+      Sprite_Player_Isaac_474: 1173827641
+      Sprite_Player_Isaac_475: 1522396144
+      Sprite_Player_Isaac_476: -23994591
+      Sprite_Player_Isaac_477: 1992416889
+      Sprite_Player_Isaac_478: 984195335
+      Sprite_Player_Isaac_479: 1331526661
+      Sprite_Player_Isaac_48: -789000271
+      Sprite_Player_Isaac_480: 2006097955
+      Sprite_Player_Isaac_481: -1053166364
+      Sprite_Player_Isaac_482: -809348477
+      Sprite_Player_Isaac_483: -608505221
+      Sprite_Player_Isaac_484: -1950782724
+      Sprite_Player_Isaac_485: 1151676032
+      Sprite_Player_Isaac_486: 2108163942
+      Sprite_Player_Isaac_487: -1570807104
+      Sprite_Player_Isaac_488: 1563669695
+      Sprite_Player_Isaac_489: 1382396360
+      Sprite_Player_Isaac_49: -1883979044
+      Sprite_Player_Isaac_490: -1896237320
+      Sprite_Player_Isaac_491: -818037037
+      Sprite_Player_Isaac_492: 1473656171
+      Sprite_Player_Isaac_493: -649370218
+      Sprite_Player_Isaac_494: -2042630461
+      Sprite_Player_Isaac_495: -1112211279
+      Sprite_Player_Isaac_496: -1278557685
+      Sprite_Player_Isaac_497: -926169493
+      Sprite_Player_Isaac_498: -1517395416
+      Sprite_Player_Isaac_499: 1094613428
+      Sprite_Player_Isaac_5: -1744174243
+      Sprite_Player_Isaac_50: 648626028
+      Sprite_Player_Isaac_500: -737124511
+      Sprite_Player_Isaac_501: 1431642242
+      Sprite_Player_Isaac_502: 1194397004
+      Sprite_Player_Isaac_503: -1565057944
+      Sprite_Player_Isaac_504: -1555009067
+      Sprite_Player_Isaac_505: 548337169
+      Sprite_Player_Isaac_506: 1310859706
+      Sprite_Player_Isaac_507: 1218161443
+      Sprite_Player_Isaac_508: 422147225
+      Sprite_Player_Isaac_509: 789556105
+      Sprite_Player_Isaac_51: 251383131
+      Sprite_Player_Isaac_510: 1117397220
+      Sprite_Player_Isaac_511: -484350406
+      Sprite_Player_Isaac_512: 683566744
+      Sprite_Player_Isaac_513: -807744707
+      Sprite_Player_Isaac_514: -934869669
+      Sprite_Player_Isaac_515: 671196112
+      Sprite_Player_Isaac_516: -381045298
+      Sprite_Player_Isaac_517: -258508662
+      Sprite_Player_Isaac_518: 91106047
+      Sprite_Player_Isaac_519: -1518995915
+      Sprite_Player_Isaac_52: 786474633
+      Sprite_Player_Isaac_520: -1491587290
+      Sprite_Player_Isaac_53: -751240453
+      Sprite_Player_Isaac_54: -382684068
+      Sprite_Player_Isaac_55: -729723559
+      Sprite_Player_Isaac_56: -108210030
+      Sprite_Player_Isaac_57: 9428266
+      Sprite_Player_Isaac_58: -780868504
+      Sprite_Player_Isaac_59: 863598430
+      Sprite_Player_Isaac_6: 1044131681
+      Sprite_Player_Isaac_60: 279189542
+      Sprite_Player_Isaac_61: 1780934653
+      Sprite_Player_Isaac_62: 1253626212
+      Sprite_Player_Isaac_63: -588955642
+      Sprite_Player_Isaac_64: -1349975074
+      Sprite_Player_Isaac_65: 950010267
+      Sprite_Player_Isaac_66: -1043027666
+      Sprite_Player_Isaac_67: -477133418
+      Sprite_Player_Isaac_68: -166265217
+      Sprite_Player_Isaac_69: 455495535
+      Sprite_Player_Isaac_7: -1173406592
+      Sprite_Player_Isaac_70: -720762868
+      Sprite_Player_Isaac_71: 934418062
+      Sprite_Player_Isaac_72: -971235058
+      Sprite_Player_Isaac_73: -2026518206
+      Sprite_Player_Isaac_74: -1486917765
+      Sprite_Player_Isaac_75: 306555142
+      Sprite_Player_Isaac_76: -762514668
+      Sprite_Player_Isaac_77: 619317148
+      Sprite_Player_Isaac_78: -81495863
+      Sprite_Player_Isaac_79: -1715251925
+      Sprite_Player_Isaac_8: -1007184361
+      Sprite_Player_Isaac_80: -1247968189
+      Sprite_Player_Isaac_81: 1502908181
+      Sprite_Player_Isaac_82: 1401960076
+      Sprite_Player_Isaac_83: -1154268929
+      Sprite_Player_Isaac_84: 1825371860
+      Sprite_Player_Isaac_85: -1118693547
+      Sprite_Player_Isaac_86: 1397032605
+      Sprite_Player_Isaac_87: 1220682820
+      Sprite_Player_Isaac_88: 1983493875
+      Sprite_Player_Isaac_89: 559350906
+      Sprite_Player_Isaac_9: 355260728
+      Sprite_Player_Isaac_90: 2079923383
+      Sprite_Player_Isaac_91: -191597476
+      Sprite_Player_Isaac_92: 2118023518
+      Sprite_Player_Isaac_93: 731108447
+      Sprite_Player_Isaac_94: 2006876328
+      Sprite_Player_Isaac_95: 1834692112
+      Sprite_Player_Isaac_96: -1008547683
+      Sprite_Player_Isaac_97: 978571495
+      Sprite_Player_Isaac_98: 433173008
+      Sprite_Player_Isaac_99: -60609663
+      isaac_body: -712402503
+      isaac_head: -980467746
+      isaac_hit: 793701858
+      isaac_pickup: 159882967
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

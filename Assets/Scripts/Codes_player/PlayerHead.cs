@@ -1,28 +1,74 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerHead_0 : MonoBehaviour
+namespace MyNamespace
 {
-    public Vector2 inputvec;
-    public float speed; // speed 변수를 추가합니다.
-
-    Rigidbody2D rigid;
-
-    void Awake()
+    public class PlayerHead : MonoBehaviour
     {
-        rigid = GetComponent<Rigidbody2D>();
-    }
+        public Vector2 inputVec;
+        public float speed = 5f;
+        public InputActionAsset inputActions;
 
-    void Update()
-    {
-        inputvec.x = Input.GetAxis("Horizontal"); // 대문자로 수정
-        inputvec.y = Input.GetAxis("Vertical");   // 대문자로 수정
-    }
+        private Rigidbody2D rigid;
+        private SpriteRenderer spriter;
+        private Animator anim;
 
-    void FixedUpdate()
-    {
-        Vector2 nextVex = inputvec.normalized * speed * Time.fixedDeltaTime; // 오타 수정 및 일관성 유지
-        rigid.MovePosition(rigid.position + nextVex);
+        void Awake()
+        {
+            rigid = GetComponent<Rigidbody2D>();
+            spriter = GetComponent<SpriteRenderer>();
+            anim = GetComponent<Animator>();
+        }
+
+        void Update()
+        {
+            if (inputActions != null)
+            {
+                inputVec = inputActions.FindAction("Move").ReadValue<Vector2>();
+            }
+            else
+            {
+                inputVec.x = Input.GetAxis("Horizontal");
+                inputVec.y = Input.GetAxis("Vertical");
+            }
+        }
+
+        void FixedUpdate()
+        {
+            Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+            rigid.MovePosition(rigid.position + nextVec);
+        }
+
+        void LateUpdate()
+        {
+            anim.SetFloat("speed", inputVec.magnitude);
+
+            if (inputVec.y > 0) // 위로 이동
+            {
+                anim.SetBool("isBack", true);
+                anim.SetBool("isLeft", false);
+                anim.SetBool("isRight", false);
+            }
+            else if (inputVec.x < 0) // 왼쪽으로 이동
+            {
+                anim.SetBool("isBack", false);
+                anim.SetBool("isLeft", true);
+                anim.SetBool("isRight", false);
+            }
+            else if (inputVec.x > 0) // 오른쪽으로 이동
+            {
+                anim.SetBool("isBack", false);
+                anim.SetBool("isLeft", false);
+                anim.SetBool("isRight", true);
+            }
+            else // 정지 상태
+            {
+                anim.SetBool("isBack", false);
+                anim.SetBool("isLeft", false);
+                anim.SetBool("isRight", false);
+            }
+        }
     }
 }

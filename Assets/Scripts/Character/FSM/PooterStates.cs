@@ -123,7 +123,7 @@ namespace PooterStates
             private const TearFactory.Tears tearType = TearFactory.Tears.Basic;
             private GameObject firstTear, secondTear;
 
-            Vector2 directionVec = Vector2.zero;
+            private Vector2 directionVec = Vector2.zero;
 
             public override void OnStateEnter()
             {

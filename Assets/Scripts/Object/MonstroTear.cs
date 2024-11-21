@@ -11,6 +11,7 @@ public class MonstroTear : Tear
                   DisableTear();
 
                   if (collision.TryGetComponent<IsaacBody>(out var player)) {
+                        if (player.IsHurt) return;
                         player.health -= tearDamage;
                         player.IsHurt = true;
                   }
@@ -26,14 +27,24 @@ public class MonstroTear : Tear
       private void Start()
       {
             tearActiveTimeDefault = tearActiveTime;
+            RandomizeTearSet();
+      }
+
+      protected override void OnEnable()
+      {
+            RandomizeTearSet();
+            base.OnEnable();
       }
 
       private void RandomizeTearSet()
       {
-            this.transform.localScale = Vector2.one * UnityEngine.Random.Range(0.5f, 1f);
+            // 눈물 크기
+            this.transform.localScale = Vector2.one * UnityEngine.Random.Range(0.5f, 1.25f);
 
-            tearActiveTime = UnityEngine.Random.Range(0.25f, tearActiveTimeDefault + 0.5f);
-            gravityScale = tearActiveTime - 0.25f;
-            gravitySetTime = tearActiveTime - 0.5f;
+            // 눈물 활성 시간
+            tearActiveTime = UnityEngine.Random.Range(tearActiveTimeDefault, tearActiveTimeDefault + 3f);
+
+            // 중력 크기 및 활성 시간
+            gravityScale = 0.25f;
       }
 }

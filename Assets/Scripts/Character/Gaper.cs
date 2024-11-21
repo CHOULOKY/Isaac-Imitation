@@ -71,6 +71,12 @@ public class Gaper : Monster<Gaper>
             }
       }
 
+      protected override void OnDisable()
+      {
+            base.OnDisable();
+            curState = null;
+      }
+
       private void OnDrawGizmos()
       {
             Gizmos.color = Color.red;

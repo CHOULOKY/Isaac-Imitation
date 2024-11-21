@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tearList:
   - {fileID: 8923474546267978425, guid: 539471a3006112b4099e4d694223b3ba, type: 3}
-  poolSize: 05000000
+  poolSize: 06000000
 --- !u!114 &286522173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,8 +196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tearList:
   - {fileID: 3484281429530794322, guid: 7a20493e4e5ce3745a0725cb5ce0111b, type: 3}
-  - {fileID: 3484281429530794322, guid: 7a20493e4e5ce3745a0725cb5ce0111b, type: 3}
-  poolSize: 0900000014000000
+  - {fileID: 3484281429530794322, guid: 623d170443674ec459d8603629a7a897, type: 3}
+  poolSize: 0c00000010000000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,6 +1349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: isaac_body
       objectReference: {fileID: 0}
+    - target: {fileID: 3835276316754223441, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7761193500244283223, guid: 7c81c0e33cd00f84c8266b12999cae8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1450,6 +1454,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2140862038472734706, guid: 4b36243069b20bd4fb88521e1cdc122b, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792232712946670737, guid: 4b36243069b20bd4fb88521e1cdc122b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649748576582547291, guid: 4b36243069b20bd4fb88521e1cdc122b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6286898125326460908, guid: 4b36243069b20bd4fb88521e1cdc122b, type: 3}
       propertyPath: bloodParent
       value: 
@@ -1477,11 +1493,11 @@ PrefabInstance:
       objectReference: {fileID: 659250747}
     - target: {fileID: 8582097297196927730, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.44
+      value: 3.56
       objectReference: {fileID: 0}
     - target: {fileID: 8582097297196927730, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8582097297196927730, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: m_LocalPosition.z

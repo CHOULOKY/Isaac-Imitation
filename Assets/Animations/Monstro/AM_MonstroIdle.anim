@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AM_PooterIdle
+  m_Name: AM_MonstroIdle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -55,7 +55,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1930388362, guid: f2ec58aff54c4e149bb91b38fc98c7ae, type: 3}
+      value: {fileID: 1363672849, guid: 8f9dfa414688ecf4ca2f610a5fe31aa2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -87,7 +87,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1930388362, guid: f2ec58aff54c4e149bb91b38fc98c7ae, type: 3}
+    - {fileID: 1363672849, guid: 8f9dfa414688ecf4ca2f610a5fe31aa2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

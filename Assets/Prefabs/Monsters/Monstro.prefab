@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8582097297196927730}
   - component: {fileID: 5930873239459784391}
+  - component: {fileID: 4941223158624830787}
+  - component: {fileID: 8883832493036037723}
   - component: {fileID: 6317264916901020300}
   - component: {fileID: 2623817448507505417}
   - component: {fileID: 1894979411589955800}
@@ -52,12 +54,12 @@ MonoBehaviour:
   monsterType: 3
   stat:
     health: 0
-    maxHealth: 100
+    maxHealth: 50
     moveForce: 0
     maxVelocity: 0
     attackDamage: 1
     attackSpeed: 0
-    tearSpeed: 0
+    tearSpeed: 5
   inputVec: {x: 0, y: 0}
   spawnEffect: {fileID: 2884023872223006942, guid: 0000d416f6fb66142afde9ed07ae1136, type: 3}
   liquidEffect: {fileID: 5978601803282426345, guid: 22eb9526ea7536a4da5fbf0f4329d8e3, type: 3}
@@ -66,6 +68,42 @@ MonoBehaviour:
   - {fileID: 296768906232285486, guid: 1f817e3dafa1ca149bd6823309a18dc8, type: 3}
   - {fileID: 4453470197474246455, guid: 2a654064db71e004c988e542d47f0ace, type: 3}
   - {fileID: 4455151714398487210, guid: 052d55fee69f1364689a9b84202d332f, type: 3}
+  player: {fileID: 0}
+  playerSearchBox: {x: 40, y: 40}
+  isSmallJump: 0
+  isBigJump: 0
+  isTearSpray: 0
+  isJumpUp: 0
+  isOnLand: 0
+  isTearTiming: 0
+--- !u!114 &4941223158624830787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530711546605071628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6115c9835d8a8a428939e9c3d2530f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: e7e6409857a4eea46b0ab0d8ddc4d0ea, type: 2}
+  flashDuration: 0.05
+--- !u!114 &8883832493036037723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530711546605071628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9facbc933c35d3644b328066abf76326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.25
+  magnitude: 0.1
 --- !u!212 &6317264916901020300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -151,7 +189,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -181,7 +219,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147484671
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -211,6 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422602745773128148}
   - component: {fileID: 5343765385783029669}
+  - component: {fileID: 8863821304787506479}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
@@ -285,3 +324,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &8863821304787506479
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870112365403350234}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 2147485623
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.000000029802322}
+  m_Size: {x: 0.99999994, y: 0.99999994}
+  m_Direction: 1

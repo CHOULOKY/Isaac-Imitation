@@ -22,6 +22,9 @@ public class Monster<T> : MonoBehaviour where T : class
       public Transform bloodParent;
       public GameObject[] deathBloods;
 
+      // ETC
+      [HideInInspector] public SortRendererBy sortRendererBy;
+
       protected virtual void Awake()
       {
             rigid = GetComponent<Rigidbody2D>();
@@ -43,6 +46,8 @@ public class Monster<T> : MonoBehaviour where T : class
                         deathBloods[i] = Resources.Load<GameObject>($"Blood{i} Variant");
                   }
             }
+
+            sortRendererBy = new SortRendererBy();
       }
 
       protected virtual void OnEnable()
@@ -60,12 +65,12 @@ public class Monster<T> : MonoBehaviour where T : class
             rigid.velocity = Vector2.zero;
       }
 
-      protected IEnumerator ParticleSystemCoroutine(ParticleSystem effect)
+      protected virtual IEnumerator ParticleSystemCoroutine(ParticleSystem _effect)
       {
-            yield return Instantiate(effect,
-                rigid.position + Vector2.down * 0.25f, effect.transform.rotation, this.transform);
+            ParticleSystem effect = Instantiate(_effect,
+                rigid.position + Vector2.down * 0.25f, Quaternion.identity, this.transform);
+            effect.transform.localScale = _effect.transform.localScale * 1.5f;
             yield return new WaitUntil(() => !effect.isPlaying);
-            yield return new WaitForSeconds(1f);
 
             isSpawned = true;
       }

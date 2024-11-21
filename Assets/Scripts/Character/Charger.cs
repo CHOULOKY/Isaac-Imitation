@@ -109,6 +109,12 @@ public class Charger : Monster<Charger>
             return playerHit;
       }
 
+      protected override void OnDisable()
+      {
+            base.OnDisable();
+            curState = null;
+      }
+
       private void OnDrawGizmos()
       {
             Gizmos.color = Color.red;

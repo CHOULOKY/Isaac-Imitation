@@ -12,10 +12,10 @@ public class Tear : MonoBehaviour
       public float knockPower;
 
       [HideInInspector] public int tearDirection; // Up: 0, Down: 1, Right: 2, Left: 3
-      public float gravitySetTime = 0.15f;
-      public float gravityScale = 0.3f;
-
-      public float tearActiveTime = 2;
+      public float gravitySetTime = 0.75f;
+      public float gravityScale = 0.75f;
+      
+      public float tearActiveTime = 1;
 
       protected virtual void Awake()
       {
@@ -38,8 +38,8 @@ public class Tear : MonoBehaviour
       }
 
       [Header("Gravity Set Time (Up: 0, Down: 1, Right: 2, Left: 3)")]
-      [SerializeField] protected float Up;
-      [SerializeField] protected float Down, Right, Left;
+      [SerializeField] protected float Up = 0.5f;
+      [SerializeField] protected float Down = 1f, Right = 0.75f, Left = 0.75f;
       protected virtual void SetGravitySetTimeByDirection(out float curGravitySetTime)
       {
             curGravitySetTime = tearDirection switch

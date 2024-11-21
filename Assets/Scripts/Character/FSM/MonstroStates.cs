@@ -23,6 +23,8 @@ namespace MonstroStates
             protected Transform shadow;
             protected Collider2D shadowCollider;
 
+            protected const TearFactory.Tears tearType = TearFactory.Tears.Boss;
+
             public MonstroState(Monstro _monster) : base(_monster) { }
 
             public override void OnStateEnter()
@@ -125,7 +127,14 @@ namespace MonstroStates
 
             public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity)
             {
-                  float rotateAngle = UnityEngine.Random.Range(-25f, 25f);
+                  float rotateAngle = default;
+                  if (GetType() == typeof(TearSprayState)) {
+                        rotateAngle = UnityEngine.Random.Range(-25f, 25f);
+                  }
+                  else if (GetType() == typeof(BigJumpState)) {
+                        rotateAngle = UnityEngine.Random.Range(-180f, 180f);
+                  }
+
                   Vector2 inputVec = RotateVector(directionVec.normalized, rotateAngle);
                   float adjustedSpeed = UnityEngine.Random.Range(monster.stat.tearSpeed - 1, monster.stat.tearSpeed + 2);
                   tearRigid.AddForce(inputVec * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
@@ -215,8 +224,8 @@ namespace MonstroStates
                   // 점프 횟수 초기 설정
                   switch (UnityEngine.Random.Range(0, 5)) {
                         case 0: maxJumpCount = 1; break;
-                        case 1: case 2: maxJumpCount = 3; break;
-                        case 3: case 4: maxJumpCount = 5; break;
+                        case 1: case 2: case 3: maxJumpCount = 3; break;
+                        case 4: maxJumpCount = 5; break;
                   }
                   curjumpCount = maxJumpCount;
 
@@ -332,6 +341,8 @@ namespace MonstroStates
             private float jumpDownDelay = 2f;
             private float curJumpDownDelayTime = 0;
 
+            private bool isTearSparied = false;
+
             private float animationLength;
             private float elapsedAnimationTime;
 
@@ -374,6 +385,10 @@ namespace MonstroStates
                   else if (curJumpDownDelayTime > jumpDownDelay) {
                         LandOnShadow();
                         if (monster.isOnLand) {
+                              if (!isTearSparied) {
+                                    isTearSparied = true;
+                                    TearSpray();
+                              }
                               if (IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) ||
                                     IsLayerExcluded(shadowCollider, LayerMask.NameToLayer("Player"))) {
                                     RemoveExcludeLayerFromCollider(monsterCollider, LayerMask.NameToLayer("Tear"));
@@ -428,16 +443,18 @@ namespace MonstroStates
                         jumpDownSpeed * Time.deltaTime);
             }
 
-            
-
-            // 눈물 분사 추가
+            private void TearSpray()
+            {
+                  int tearCount = UnityEngine.Random.Range(15, 20);
+                  for (int i = 0; i < tearCount; i++) {
+                        AttackUsingTear(GameManager.Instance.monsterTearFactory.GetTear(tearType, true));
+                  }
+            }
       }
 
-      public class TearSprayState : MonstroState, ITearShooter
+      public class TearSprayState : MonstroState
       {
             public TearSprayState(Monstro _monster) : base(_monster) { }
-
-            private const TearFactory.Tears tearType = TearFactory.Tears.Boss;
 
             private float animationLength;
             private float elapsedAnimationTime = 0;
@@ -450,7 +467,7 @@ namespace MonstroStates
                   base.OnStateEnter();
 
                   if (monster.player) {
-                        sprayCount = UnityEngine.Random.Range(1, 3);
+                        sprayCount = UnityEngine.Random.Range(0, 5) == 0 ? 1 : 2;
                         curSprayCount = sprayCount;
                         animationLength = animator.runtimeAnimatorController.animationClips
                               .FirstOrDefault(clip => clip.name == "AM_MonstroTearSpray")?.length / 0.65f ?? 0f;

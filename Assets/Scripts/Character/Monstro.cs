@@ -127,7 +127,7 @@ public class Monstro : Monster<Monstro>
                         break;
                   case States.TearSpray:
                         // isTearSpray = false;
-                        nextState = UnityEngine.Random.Range(0, 2) == 0 ? States.SmallJump : States.BigJump;
+                        nextState = UnityEngine.Random.Range(0, 5) == 0 ? States.SmallJump : States.BigJump;
                         if (nextState == States.SmallJump) isSmallJump = true;
                         else isBigJump = true;
                         break;

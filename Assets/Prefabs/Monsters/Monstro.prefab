@@ -54,12 +54,12 @@ MonoBehaviour:
   monsterType: 3
   stat:
     health: 0
-    maxHealth: 100
+    maxHealth: 50
     moveForce: 0
     maxVelocity: 0
     attackDamage: 1
     attackSpeed: 0
-    tearSpeed: 0
+    tearSpeed: 5
   inputVec: {x: 0, y: 0}
   spawnEffect: {fileID: 2884023872223006942, guid: 0000d416f6fb66142afde9ed07ae1136, type: 3}
   liquidEffect: {fileID: 5978601803282426345, guid: 22eb9526ea7536a4da5fbf0f4329d8e3, type: 3}
@@ -70,12 +70,12 @@ MonoBehaviour:
   - {fileID: 4455151714398487210, guid: 052d55fee69f1364689a9b84202d332f, type: 3}
   player: {fileID: 0}
   playerSearchBox: {x: 40, y: 40}
-  collisionRectangle: {x: 2.2, y: 0.75}
   isSmallJump: 0
   isBigJump: 0
   isTearSpray: 0
   isJumpUp: 0
   isOnLand: 0
+  isTearTiming: 0
 --- !u!114 &4941223158624830787
 MonoBehaviour:
   m_ObjectHideFlags: 0

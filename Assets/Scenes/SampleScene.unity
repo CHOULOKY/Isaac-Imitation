@@ -1487,18 +1487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monstro
       objectReference: {fileID: 0}
-    - target: {fileID: 3530711546605071628, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5930873239459784391, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: bloodParent
       value: 
       objectReference: {fileID: 659250747}
-    - target: {fileID: 5930873239459784391, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
-      propertyPath: stat.tearSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8582097297196927730, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.56

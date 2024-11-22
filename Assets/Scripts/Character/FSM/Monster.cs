@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-internal enum MonsterType { Charger, Gaper, Pooter, Monstro }
+internal enum MonsterType { Charger, Gaper, Pooter, Monstro, AttackFly }
 public class Monster<T> : MonoBehaviour where T : class
 {
       [SerializeField] private MonsterType monsterType;

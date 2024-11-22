@@ -23,6 +23,9 @@ public class Monstro : Monster<Monstro>
 
       [HideInInspector] public bool isTearTiming; // for tear attack
       public void TriggerTearTiming(int value) => isTearTiming = value != 0;
+
+      [HideInInspector] public bool isDeadFinish = false; // for Dead state
+      public void TriggerDeadFinish(int value) => isDeadFinish = value != 0;
       #endregion
 
 
@@ -41,10 +44,6 @@ public class Monstro : Monster<Monstro>
 
       private void Update()
       {
-            if (curState == States.Dead) {
-                  return;
-            }
-
             switch (curState) {
                   case States.Idle:
                         if (OnDead()) {
@@ -151,6 +150,22 @@ public class Monstro : Monster<Monstro>
             base.OnDisable();
             curState = null;
       }
+
+      public override void SpawnBloodEffects()
+      {
+            // spawn blood puddle & blood splash
+            Vector2 bloodOffest = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(0f, -1f));
+            GameObject deathBlood = Instantiate(deathBloods[UnityEngine.Random.Range(0, 3)],
+                  (Vector2)this.transform.position + bloodOffest, Quaternion.identity, bloodParent);
+            deathBlood.transform.localScale = Vector3.one * 0.75f;
+      }
+
+      #region Not used
+      protected override void SetAfterDeath()
+      {
+            // Do nothing within this function
+      }
+      #endregion
 
       //private Transform shadow;
       private void OnDrawGizmos()

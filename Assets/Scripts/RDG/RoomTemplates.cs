@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,10 @@ public class RoomTemplates : MonoBehaviour
 
       [Header("Doors")]
       public GameObject bossDoor;
+      public GameObject goldDoor;
+
+      [Header("Boss")]
+      public GameObject Monstro;
 
       private void Update()
       {
@@ -52,6 +57,13 @@ public class RoomTemplates : MonoBehaviour
             foreach (Door door in rooms[^1].GetComponentsInChildren<Door>()) {
                   if (door.doorDirection == 0) continue;
                   else StartCoroutine(door.ChangeToSelectedDoorCoroutine(bossDoor));
+            }
+
+            int goldRoomDirection = UnityEngine.Random.Range(1, 5);
+            foreach (Door door in rooms[0].GetComponentsInChildren<Door>()) {
+                  if (door.doorDirection == goldRoomDirection) {
+                        StartCoroutine(door.ChangeToSelectedDoorCoroutine(goldDoor));
+                  }
             }
       }
 }

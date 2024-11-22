@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5914410762797287278}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.46, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,6 +46,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462e99641b131804e9633dd362471931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetNames:
+  - Pooter
+  rockType: 0
+  rockArray:
+  - rocks:
+    - {fileID: -884048398, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    - {fileID: 1349438759, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    - {fileID: 2100329425, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    - {fileID: 351076695, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+  - rocks:
+    - {fileID: 719511250, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+  - rocks:
+    - {fileID: -429418514, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+  - rocks:
+    - {fileID: 283928419, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    - {fileID: 1674030674, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    - {fileID: 1101849525, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    - {fileID: 879102490, guid: 4032b897284fdc148a7418f74c337573, type: 3}
 --- !u!212 &6711293399118368244
 SpriteRenderer:
   m_ObjectHideFlags: 0

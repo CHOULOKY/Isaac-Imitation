@@ -117,7 +117,7 @@ public class Monster<T> : MonoBehaviour where T : class
             return stat.health <= 0;
       }
 
-      protected void SetAfterDeath()
+      protected virtual void SetAfterDeath()
       {
             this.gameObject.layer = LayerMask.NameToLayer("Destroyed");
 
@@ -126,10 +126,10 @@ public class Monster<T> : MonoBehaviour where T : class
             this.gameObject.SetActive(false);
       }
 
-      public void SpawnBloodEffects()
+      public virtual void SpawnBloodEffects()
       {
             // spawn blood puddle & blood splash
-            Instantiate(deathBloods[UnityEngine.Random.Range(0, 2)],
+            Instantiate(deathBloods[UnityEngine.Random.Range(0, 3)],
                         this.transform.position, Quaternion.identity, bloodParent);
             Instantiate(liquidEffect, this.transform.position, Quaternion.identity);
       }

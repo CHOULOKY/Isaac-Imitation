@@ -89,10 +89,12 @@ MonoBehaviour:
   closedRoom: {fileID: 3937356944287193075, guid: d94619ca1108a834da7f01a1f1dcba49, type: 3}
   maxRoomCount: 10
   minRoomCount: 5
-  refreshedRooms: 0
   waitTime: 2
   createdRooms: 0
+  refreshedRooms: 0
   bossDoor: {fileID: 1912331490872487615, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
+  goldDoor: {fileID: 6604903175397194959, guid: bac0654e49537fb47829ba705587f56f, type: 3}
+  Monstro: {fileID: 3530711546605071628, guid: a1e9e63d1dbf30142bdf2dccebdc15d7, type: 3}
 --- !u!1001 &2622784006609304171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +103,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 133304032939799941}
     m_Modifications:
+    - target: {fileID: 3466538586524644696, guid: ccbc4f0e5361f1d40b72ed4020f7a686, type: 3}
+      propertyPath: isClear
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4042832803351786306, guid: ccbc4f0e5361f1d40b72ed4020f7a686, type: 3}
       propertyPath: m_Name
       value: Entry

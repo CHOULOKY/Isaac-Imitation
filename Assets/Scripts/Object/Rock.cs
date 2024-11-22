@@ -29,5 +29,7 @@ public class Rock : Obstacle
             base.Start();
             spriteRenderer.sprite = rockArray[(int)rockType].
                   rocks[UnityEngine.Random.Range(0, rockArray[(int)rockType].rocks.Length)];
+            //Debug.Log(rockArray[(int)rockType].
+            //      rocks[UnityEngine.Random.Range(0, rockArray[(int)rockType].rocks.Length)]);
       }
 }

@@ -12,7 +12,7 @@ public class Obstacle : MonoBehaviour
       protected virtual void Start()
       {
             // 현재 오브젝트가 있는 방 찾기
-            if (transform.parent.parent.GetComponent<AddRoom>() is AddRoom room) {
+            if (transform.parent.parent.TryGetComponent<AddRoom>(out var room)) {
                   // 현재 방에서 이름이 Monsters인 오브젝트 찾기
                   Transform monsters = null;
                   foreach (Transform child in room.transform) {

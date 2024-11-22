@@ -1,4 +1,5 @@
 using Photon.Realtime;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -156,6 +157,13 @@ namespace MonstroStates
                   );
             }
             #endregion
+
+            protected async void DelaySpawnBlood(float time = 0)
+            {
+                  await Task.Delay((int)(1000 * time));
+
+                  monster.SpawnBloodEffects();
+            }
       }
 
       public class IdleState : MonstroState
@@ -388,6 +396,7 @@ namespace MonstroStates
                               if (!isTearSparied) {
                                     isTearSparied = true;
                                     TearSpray();
+                                    DelaySpawnBlood();
                               }
                               if (IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) ||
                                     IsLayerExcluded(shadowCollider, LayerMask.NameToLayer("Player"))) {
@@ -485,6 +494,7 @@ namespace MonstroStates
                         monster.isTearTiming = false;
                         curSprayCount--;
                         TearSpray();
+                        DelaySpawnBlood();
                   }
 
                   elapsedAnimationTime += Time.deltaTime;
@@ -523,19 +533,74 @@ namespace MonstroStates
       {
             public DeadState(Monstro _monster) : base(_monster) { }
 
+            private Animator[] deadEffectAnimators;
+            private float explosionAnimationLength;
+
+            private float deadAnimationLength;
+
             public override void OnStateEnter()
             {
-                  // 
+                  base.OnStateEnter();
+                  deadEffectAnimators = monster.GetComponentsInChildren<Animator>(true)
+                        .Where(anim => anim.gameObject != monster.gameObject).ToArray();
+                  explosionAnimationLength = deadEffectAnimators[0].runtimeAnimatorController.animationClips
+                        .FirstOrDefault(clip => clip.name == "AM_BloodExplosion")?.length ?? 0f;
+
+                  deadAnimationLength = animator.runtimeAnimatorController.animationClips
+                              .FirstOrDefault(clip => clip.name == "AM_MonstroDead")?.length ?? 0f;
+
+                  for (int i = 0; i < deadEffectAnimators.Length; i++) {
+                        DelaySetTrigger(deadEffectAnimators[i], "Dead",
+                              deadAnimationLength * (i / (float)deadEffectAnimators.Length));
+                        // Debug.Log(i + " / " + deadAnimationLength * (i / deadEffectAnimators.Length));
+                  }
+                  for (int i = 0; i < 5; i++) {
+                        DelaySpawnBlood(deadAnimationLength * (i / 5f));
+                  }
+                  
+                  animator.SetTrigger("Dead");
             }
 
             public override void OnStateUpdate()
             {
-                  // 
+                  if (monster.isDeadFinish) {
+                        monster.isDeadFinish = false;
+                        ControlExplosionEffect();
+                        for (int i = 0; i < 3; i++) DelaySpawnBlood(0.1f);
+                        monster.gameObject.layer = LayerMask.NameToLayer("Destroyed");
+                        monster.gameObject.SetActive(false);
+                  }
             }
 
             public override void OnStateExit()
             {
                   // 
+            }
+            
+            private async void DelaySetTrigger(Animator anim, string name, float time = 1)
+            {
+                  await Task.Delay((int)(1000 * time));
+
+                  anim.SetTrigger(name);
+            }
+
+            private void ControlExplosionEffect()
+            {
+                  deadEffectAnimators[0].SetTrigger("Finish");
+                  for (int i = 1; i < deadEffectAnimators.Length; i++) {
+                        deadEffectAnimators[i].Play("New State", 0, 0);
+                  }
+
+                  DelaySetParent(deadEffectAnimators[0].transform, monster.transform, explosionAnimationLength);
+            }
+
+            private async void DelaySetParent(Transform target, Transform parent, float time = 1)
+            {
+                  target.parent = null;
+
+                  await Task.Delay((int)(1000 * time));
+
+                  target.parent = parent;
             }
       }
 }

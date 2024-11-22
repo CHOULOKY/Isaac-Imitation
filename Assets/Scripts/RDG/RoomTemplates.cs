@@ -1,50 +1,57 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RoomTemplates : MonoBehaviour
 {
-	public GameObject[] allRooms;
+      public GameObject[] allRooms;
 
-	public GameObject[] bottomRooms;
-	public GameObject[] topRooms;
-	public GameObject[] leftRooms;
-	public GameObject[] rightRooms;
+      public GameObject[] bottomRooms;
+      public GameObject[] topRooms;
+      public GameObject[] leftRooms;
+      public GameObject[] rightRooms;
 
-	public List<GameObject> rooms;
-    public GameObject closedRoom;
+      public List<GameObject> rooms;
+      public GameObject closedRoom;
 
-    public int maxRoomCount = 10;
-    public int minRoomCount = 5;
-	public bool refreshedRooms;
+      public int maxRoomCount = 10;
+      public int minRoomCount = 5;
 
-	public float waitTime;
-	public bool createdRooms;
+      public float waitTime = 2f;
+      public bool createdRooms;
+      public bool refreshedRooms;
 
-	private void Update()
-	{
-		// Test code
-		if (Input.GetKeyDown(KeyCode.Escape)) {
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
+      [Header("Doors")]
+      public GameObject bossDoor;
 
-		if (waitTime <= 0 && createdRooms == false) {
-            createdRooms = true;
-            StartCoroutine(RefreshRooms());
-        } else if (rooms.Count >= minRoomCount && waitTime > 0) {
-			waitTime -= Time.deltaTime;
-		}
-	}
+      private void Update()
+      {
+            // Test code
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                  SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
 
-	private IEnumerator RefreshRooms()
-	{
-        for (int i = 1; i < rooms.Count; i++) {
-			if (rooms[i].GetComponentInChildren<Modifyer>()) {
-				rooms[i].GetComponentInChildren<Modifyer>().RefreshRoom();
-			}
-            yield return new WaitForSeconds(0.1f);
-        }
-		refreshedRooms = true;
-    }
+            if (waitTime <= 0 && createdRooms == false) {
+                  createdRooms = true;
+                  RefreshRooms();
+            }
+            else if (rooms.Count >= minRoomCount && waitTime > 0) {
+                  waitTime -= Time.deltaTime;
+            }
+      }
+
+      private void RefreshRooms()
+      {
+            for (int i = 1; i < rooms.Count; i++) {
+                  if (rooms[i].GetComponentInChildren<Modifyer>()) {
+                        rooms[i].GetComponentInChildren<Modifyer>().RefreshRoom();
+                  }
+            }
+            refreshedRooms = true;
+
+            foreach (Door door in rooms[^1].GetComponentsInChildren<Door>()) {
+                  if (door.doorDirection == 0) continue;
+                  else StartCoroutine(door.ChangeToSelectedDoorCoroutine(bossDoor));
+            }
+      }
 }

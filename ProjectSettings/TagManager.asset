@@ -7,6 +7,11 @@ TagManager:
   - SpawnPoint
   - Rooms
   - Room
+  - Tear
+  - Wall
+  - Monster
+  - Door
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -14,11 +19,11 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Monster
+  - Obstacle
+  - Destroyed
+  - Tear
   - 
   - 
   - 
@@ -52,6 +57,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 1049380809
+    locked: 0
+  - name: Effect
+    uniqueID: 981670271
     locked: 0
   - name: UI
     uniqueID: 1370315923

@@ -1,94 +1,82 @@
+using System;
 using System.Collections;
 using System.Reflection;
 using UnityEngine;
 
 public class Tear : MonoBehaviour
 {
-    protected Rigidbody2D rigid;
+      protected Rigidbody2D rigid;
+      protected Animator animator;
 
-    public int tearDamage = 1;
-    public float knockPower;
+      public int tearDamage = 1;
+      public float knockPower;
 
-    [HideInInspector] public int tearDirection; // Up: 0, Down: 1, Right: 2, Left: 3
-    public float gravitySetTime = 0.15f;
-    public float gravityScale = 0.3f;
+      [HideInInspector] public int tearDirection; // Up: 0, Down: 1, Right: 2, Left: 3
+      public float gravitySetTime = 0.75f;
+      public float gravityScale = 0.75f;
+      
+      public float tearActiveTime = 1;
 
-    public float tearActiveTime = 2;
+      protected virtual void Awake()
+      {
+            rigid = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
+      }
 
-    [Header("Gravity Set Time (Up: 0, Down: 1, Right: 2, Left: 3)")]
-    [SerializeField] protected float Up;
-    [SerializeField] protected float Down, Right, Left;
+      protected virtual void OnEnable()
+      {
+            rigid.simulated = true;
 
-    protected virtual void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
+            SetGravitySetTimeByDirection(out float curGravitySetTime);
+            StartCoroutine(SetGravityAfter(curGravitySetTime));
+            StartCoroutine(AfterActiveTime(tearActiveTime));
+      }
 
+      protected virtual void OnDisable()
+      {
+            transform.position = transform.parent.position;
+      }
 
-        // Debug: Check if Rigidbody2D and Animator are assigned
+      [Header("Gravity Set Time (Up: 0, Down: 1, Right: 2, Left: 3)")]
+      [SerializeField] protected float Up = 0.5f;
+      [SerializeField] protected float Down = 1f, Right = 0.75f, Left = 0.75f;
+      protected virtual void SetGravitySetTimeByDirection(out float curGravitySetTime)
+      {
+            curGravitySetTime = tearDirection switch
+            {
+                  0 => Up,
+                  1 => gravitySetTime * Down,
+                  2 => gravitySetTime * Right,
+                  _ => gravitySetTime * Left,
+            };
+      }
 
-        // Debug: Check if SpriteRenderer is assigned and has a sprite
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null || spriteRenderer.sprite == null)
-        {
-            Debug.LogWarning("Tear has no SpriteRenderer or Sprite assigned!");
-        }
-    }
+      protected IEnumerator SetGravityAfter(float _setDuration = 0.15f)
+      {
+            yield return new WaitForSeconds(_setDuration);
 
-    protected virtual void OnEnable()
-    {
-        rigid.simulated = true;
+            rigid.gravityScale = gravityScale;
+      }
 
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
-        {
-            sr.enabled = true;
-            sr.color = Color.white; // 혹시 모를 투명도 문제 해결
-        }
+      protected IEnumerator AfterActiveTime(float _tearActiveTime)
+      {
+            yield return new WaitForSeconds(_tearActiveTime);
 
-        SetGravitySetTimeByDirection(out float curGravitySetTime);
-        StartCoroutine(SetGravityAfter(curGravitySetTime));
-        StartCoroutine(AfterActiveTime(tearActiveTime));
+            DisableTear();
+      }
 
-        Debug.Log($"Tear Enabled at Position: {transform.position}, Direction: {tearDirection}");
-    }
+      protected virtual void DisableTear()
+      {
+            rigid.velocity = Vector3.zero;
+            rigid.simulated = false;
+            rigid.gravityScale = 0;
 
-    protected virtual void OnDisable()
-    {
-        transform.position = transform.parent.position;
-        Debug.Log("Tear Disabled");
-    }
+            animator.SetTrigger("Pop");
+      }
 
-    protected virtual void SetGravitySetTimeByDirection(out float curGravitySetTime)
-    {
-        curGravitySetTime = tearDirection switch
-        {
-            0 => Up,
-            1 => gravitySetTime * Down,
-            2 => gravitySetTime * Right,
-            _ => gravitySetTime * Left,
-        };
-    }
-
-    protected IEnumerator SetGravityAfter(float _setDuration = 0.15f)
-    {
-        yield return new WaitForSeconds(_setDuration);
-        rigid.gravityScale = gravityScale;
-        Debug.Log($"Gravity set to {gravityScale} after {_setDuration} seconds");
-    }
-
-    protected IEnumerator AfterActiveTime(float _tearActiveTime)
-    {
-        yield return new WaitForSeconds(_tearActiveTime);
-        DisableTear();
-    }
-
-    protected virtual void DisableTear()
-    {
-        rigid.velocity = Vector3.zero;
-        rigid.simulated = false;
-        rigid.gravityScale = 0;
-
-        Debug.Log("Tear Disabled and Animator Pop Triggered");
-    }
+      // For animation event
+      public void SetActiveFalse()
+      {
+            gameObject.SetActive(false);
+      }
 }
-

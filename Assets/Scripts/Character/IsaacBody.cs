@@ -48,8 +48,7 @@ public class IsaacBody : MonoBehaviour
         SetBodyDirection();
 
         // test code
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
             IsHurt = true;
         }
     }
@@ -67,12 +66,10 @@ public class IsaacBody : MonoBehaviour
 
     private void SetBodyDirection()
     {
-        if (inputVec.x > 0)
-        {
+        if (inputVec.x > 0) {
             spriteRenderer.flipX = false;
         }
-        else if (inputVec.x < 0)
-        {
+        else if (inputVec.x < 0) {
             spriteRenderer.flipX = true;
         }
         animator.SetInteger("XAxisRaw", (int)inputVec.x);
@@ -82,8 +79,7 @@ public class IsaacBody : MonoBehaviour
     private void MoveBody()
     {
         rigid.AddForce(inputVec.normalized * curMoveForce, ForceMode2D.Force);
-        if (rigid.velocity.magnitude > curMaxVelocity)
-        {
+        if (rigid.velocity.magnitude > curMaxVelocity) {
             rigid.velocity = rigid.velocity.normalized * curMaxVelocity;
         }
     }
@@ -92,13 +88,10 @@ public class IsaacBody : MonoBehaviour
     public bool IsHurt
     {
         get { return isHurt; }
-        set
-        {
-            if (isHurt == false)
-            {
+        set {
+            if (isHurt == false) {
                 isHurt = true;
-                if (health <= 0)
-                {
+                if (health <= 0) {
                     IsDeath = true;
                     return;
                 }
@@ -132,10 +125,8 @@ public class IsaacBody : MonoBehaviour
     public bool IsDeath
     {
         get { return isDeath; }
-        set
-        {
-            if (isDeath == false)
-            {
+        set {
+            if (isDeath == false) {
                 isDeath = true;
                 GameManager.Instance.GameOver();
             }

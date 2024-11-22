@@ -6,11 +6,14 @@ using UnityEngine;
 public class Minimap : MonoBehaviour
 {
     public GameObject[] miniRooms;
-    private List<GameObject> miniRoomsList;
+    public List<GameObject> miniRoomsList;
     public GameObject boss;
 
     public RoomTemplates templates;
     private bool isSetMinimap;
+
+    public MainCamera mainCamera;
+    private Vector3 offsetFromMain;
 
     private void Awake()
     {
@@ -19,6 +22,9 @@ public class Minimap : MonoBehaviour
         if (!templates) {
             templates = FindAnyObjectByType<RoomTemplates>();
         }
+
+        mainCamera = mainCamera != null ? mainCamera : Camera.main.GetComponent<MainCamera>();
+        offsetFromMain = transform.parent.position - Camera.main.transform.position;
     }
 
     private void Start()
@@ -28,6 +34,8 @@ public class Minimap : MonoBehaviour
 
     private void Update()
     {
+        transform.parent.position = mainCamera.transform.position + offsetFromMain;
+
         if (templates.refreshedRooms && !isSetMinimap) {
             isSetMinimap = true;
 
@@ -42,7 +50,7 @@ public class Minimap : MonoBehaviour
                     }
                 }
             }
-            Instantiate(boss, miniRoomsList[^1].transform.position, Quaternion.identity);
+            Instantiate(boss, miniRoomsList[^1].transform.position, Quaternion.identity, miniRoomsList[^1].transform);
         }
     }
 

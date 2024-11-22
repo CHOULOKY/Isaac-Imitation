@@ -6,6 +6,7 @@
 [![Server](https://img.shields.io/badge/Server-Photon-004480?logo=Photon&logoColor=white)](https://doc.photonengine.com/ko-kr/server/current/operations/licenses)
 [![Collabo](https://img.shields.io/badge/Collabo-Git-F05032?logo=Git&logoColor=white)](https://git-scm.com/)
 [![Collabo](https://img.shields.io/badge/Collabo-GithubDesktop-purple)](https://docs.github.com/ko/desktop)
+[![Collabo](https://img.shields.io/badge/Collabo-GitKraken-179287?logo=gitkraken&logoColor=white)](https://www.gitkraken.com/)
 
 <br><br><br>
 

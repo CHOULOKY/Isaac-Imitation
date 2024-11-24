@@ -39,37 +39,6 @@ Transform:
   - {fileID: 4143734341892563197}
   m_Father: {fileID: 7893687726486460498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &340923265929207044
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1085246007445699712}
-  m_Layer: 0
-  m_Name: Special Room
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1085246007445699712
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340923265929207044}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7893687726486460498}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &364523806954708953
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +689,6 @@ Transform:
   - {fileID: 1055572631098884800}
   - {fileID: 325929604055004386}
   - {fileID: 5871705737331015413}
-  - {fileID: 1085246007445699712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &654769279650668809
@@ -738,6 +706,7 @@ MonoBehaviour:
   isClear: 0
   currentRoom: 0
   isBossRoom: 0
+  goldRoomDirection: 0
 --- !u!61 &-4753290117907297040
 BoxCollider2D:
   m_ObjectHideFlags: 0

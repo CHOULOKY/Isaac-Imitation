@@ -27,8 +27,9 @@ public class RoomTemplates : MonoBehaviour
       public GameObject bossDoor;
       public GameObject goldDoor;
 
-      [Header("Boss")]
-      public GameObject Monstro;
+      [Header("Rooms")]
+      public GameObject GoldRoomSet;
+      public GameObject BossRoomSet;
 
       private void Update()
       {
@@ -58,7 +59,8 @@ public class RoomTemplates : MonoBehaviour
                   if (door.doorDirection == 0) continue;
                   else {
                         StartCoroutine(door.ChangeToSelectedDoorCoroutine(bossDoor));
-                        door.transform.parent.parent.GetComponentInChildren<Modifyer>().SetSpecialRoom(RoomType.Boss);
+                        door.transform.parent.parent.GetComponentInChildren<Modifyer>()
+                              .SetSpecialRoom(RoomType.Boss);
                         break;
                   }
             }
@@ -68,7 +70,8 @@ public class RoomTemplates : MonoBehaviour
                         foreach (Door door in rooms[i].GetComponentsInChildren<Door>()) {
                               if (door.doorDirection != 0) {
                                     StartCoroutine(door.ChangeToSelectedDoorCoroutine(goldDoor));
-                                    door.transform.parent.parent.GetComponentInChildren<Modifyer>().SetSpecialRoom(RoomType.Gold);
+                                    door.transform.parent.parent.GetComponentInChildren<Modifyer>()
+                                          .SetSpecialRoom(RoomType.Gold);
                               }
                         }
                         break;

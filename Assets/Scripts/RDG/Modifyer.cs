@@ -68,10 +68,13 @@ public class Modifyer : MonoBehaviour
       public void SetSpecialRoom(RoomType roomType)
       {
             AddRoom thisRoom = GetComponentInParent<AddRoom>();
-
             switch (roomType) {
                   case RoomType.Gold:
                         thisRoom.IsClear = true;
+                        Instantiate(templates.GoldRoomSet, thisRoom.transform.position, Quaternion.identity, thisRoom.transform);
+                        break;
+                  case RoomType.Boss:
+                        Instantiate(templates.BossRoomSet, thisRoom.transform.position, Quaternion.identity, thisRoom.transform);
                         break;
             }
 

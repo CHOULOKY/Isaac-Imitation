@@ -5,6 +5,9 @@ public class GameManager : MonoBehaviour
 {
       private static GameManager instance;
 
+      public int CurrentChaper = 1;
+
+      [Header("Singletone")]
       public UIManager uiManager;
       public IsaacTearFactory isaacTearFactory;
       public MonsterTearFactory monsterTearFactory;

@@ -36,8 +36,13 @@ namespace MonstroStates
                   spriteRenderer = monster.GetComponent<SpriteRenderer>();
                   playerRenderer = monster.player.GetComponent<SpriteRenderer>();
 
-                  shadow = monster.transform.GetChild(0);
-                  shadowCollider = shadow.GetComponent<Collider2D>();
+                  foreach (Transform child in monster.GetComponentsInChildren<Transform>()) {
+                        if (child.name == "Shadow") {
+                              shadow = child;
+                              shadowCollider = shadow.GetComponent<Collider2D>();
+                              break;
+                        }
+                  }
             }
 
             protected virtual void SpriteXToTarget(Transform target)

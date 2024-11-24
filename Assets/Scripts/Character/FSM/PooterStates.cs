@@ -82,8 +82,8 @@ namespace PooterStates
                   }
 
                   for (int i = 0; i < _time; ++i) {
-                        if (isStateExit) return;
                         await Task.Delay(1000); // 1 second
+                        if (isStateExit) return;
                   }
 
                   SetInputVec();
@@ -99,6 +99,8 @@ namespace PooterStates
 
             private void SetSpriteDirection()
             {
+                  if (!spriteRenderer) return;
+
                   if (monster.inputVec.x > 0) {
                         spriteRenderer.flipX = false;
                   }

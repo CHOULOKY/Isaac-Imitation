@@ -89,8 +89,8 @@ namespace ChargerStates
                   }
 
                   for (int i = 0; i < _time; ++i) {
-                        if (isStateExit) return;
                         await Task.Delay(1000); // 1 second
+                        if (isStateExit) return;
                   }
 
                   SetInputVec();
@@ -120,22 +120,26 @@ namespace ChargerStates
 
             private void SetSpriteDirection()
             {
-                  if (monster.inputVec.x > 0) {
-                        spriteRenderer.flipX = false;
-                        shadow[0].gameObject.SetActive(true);
-                        shadow[1].gameObject.SetActive(false);
+                  if (spriteRenderer) {
+                        if (monster.inputVec.x > 0) {
+                              spriteRenderer.flipX = false;
+                              shadow[0].gameObject.SetActive(true);
+                              shadow[1].gameObject.SetActive(false);
+                        }
+                        else if (monster.inputVec.x < 0) {
+                              spriteRenderer.flipX = true;
+                              shadow[0].gameObject.SetActive(true);
+                              shadow[1].gameObject.SetActive(false);
+                        }
+                        else if (monster.inputVec.y != 0) {
+                              shadow[0].gameObject.SetActive(false);
+                              shadow[1].gameObject.SetActive(true);
+                        }
                   }
-                  else if (monster.inputVec.x < 0) {
-                        spriteRenderer.flipX = true;
-                        shadow[0].gameObject.SetActive(true);
-                        shadow[1].gameObject.SetActive(false);
+                  if (animator) {
+                        animator.SetInteger("XAxisRaw", (int)monster.inputVec.x);
+                        animator.SetInteger("YAxisRaw", (int)monster.inputVec.y);
                   }
-                  else if (monster.inputVec.y != 0) {
-                        shadow[0].gameObject.SetActive(false);
-                        shadow[1].gameObject.SetActive(true);
-                  }
-                  animator.SetInteger("XAxisRaw", (int)monster.inputVec.x);
-                  animator.SetInteger("YAxisRaw", (int)monster.inputVec.y);
             }
 
             private void MoveMonster()

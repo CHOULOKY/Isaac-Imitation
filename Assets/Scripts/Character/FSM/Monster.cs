@@ -107,6 +107,7 @@ public class Monster<T> : MonoBehaviour where T : class
                         isDeath = value;
                         if (isDeath == true) {
                               SetAfterDeath();
+                              GetComponentInParent<AddRoom>().MonsterCount -= 1;
                         }
                   }
             }

@@ -70,7 +70,7 @@ public class Monster<T> : MonoBehaviour where T : class
             ParticleSystem effect = Instantiate(_effect,
                 rigid.position + Vector2.down * 0.25f, Quaternion.identity, this.transform);
             effect.transform.localScale = _effect.transform.localScale * 1.5f;
-            yield return new WaitUntil(() => !effect.isPlaying);
+            yield return new WaitUntil(() => effect == null || !effect.isPlaying);
 
             isSpawned = true;
       }

@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum RoomType { Gold, Boss }
 public class RoomTemplates : MonoBehaviour
 {
       public GameObject[] allRooms;
@@ -20,7 +21,7 @@ public class RoomTemplates : MonoBehaviour
 
       public float waitTime = 2f;
       public bool createdRooms;
-      public bool refreshedRooms;
+      public bool refreshedRooms = false;
 
       [Header("Doors")]
       public GameObject bossDoor;
@@ -52,18 +53,28 @@ public class RoomTemplates : MonoBehaviour
                         rooms[i].GetComponentInChildren<Modifyer>().RefreshRoom();
                   }
             }
-            refreshedRooms = true;
 
             foreach (Door door in rooms[^1].GetComponentsInChildren<Door>()) {
                   if (door.doorDirection == 0) continue;
-                  else StartCoroutine(door.ChangeToSelectedDoorCoroutine(bossDoor));
-            }
-
-            int goldRoomDirection = UnityEngine.Random.Range(1, 5);
-            foreach (Door door in rooms[0].GetComponentsInChildren<Door>()) {
-                  if (door.doorDirection == goldRoomDirection) {
-                        StartCoroutine(door.ChangeToSelectedDoorCoroutine(goldDoor));
+                  else {
+                        StartCoroutine(door.ChangeToSelectedDoorCoroutine(bossDoor));
+                        door.transform.parent.parent.GetComponentInChildren<Modifyer>().SetSpecialRoom(RoomType.Boss);
+                        break;
                   }
             }
+
+            for (int i = 1; i < (rooms.Count < 5 ? rooms.Count : 5); i++) {
+                  if (rooms[i].GetComponentsInChildren<Door>().Length == 2) {
+                        foreach (Door door in rooms[i].GetComponentsInChildren<Door>()) {
+                              if (door.doorDirection != 0) {
+                                    StartCoroutine(door.ChangeToSelectedDoorCoroutine(goldDoor));
+                                    door.transform.parent.parent.GetComponentInChildren<Modifyer>().SetSpecialRoom(RoomType.Gold);
+                              }
+                        }
+                        break;
+                  }
+            }
+
+            refreshedRooms = true;
       }
 }

@@ -62,11 +62,20 @@ public class AddRoom : MonoBehaviour
             }
       }
 
-      private void Start()
+      [HideInInspector] public int goldRoomDirection;
+
+      private void Awake()
       {
             templates = this.transform.parent.GetComponent<RoomTemplates>();
+      }
+
+      private void Start()
+      {
             if (templates && !templates.createdRooms) templates.rooms.Add(this.gameObject);
-            if (this.gameObject == templates.rooms[0]) StartCoroutine(SetInitialRoomCoroutine());
+            if (this.gameObject == templates.rooms[0]) {
+                  goldRoomDirection = UnityEngine.Random.Range(1, 5);
+                  StartCoroutine(SetInitialRoomCoroutine());
+            }
       }
 
       private IEnumerator SetInitialRoomCoroutine()

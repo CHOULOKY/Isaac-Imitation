@@ -727,37 +727,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!1 &2312226480290937957
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4000971089967481658}
-  m_Layer: 0
-  m_Name: Special Room
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4000971089967481658
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2312226480290937957}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5597512785959893117}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2379352602918710998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,7 +1232,6 @@ Transform:
   - {fileID: 5596587215586573893}
   - {fileID: 2864663124488063415}
   - {fileID: 2610817956130931320}
-  - {fileID: 4000971089967481658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3466538586524644696
@@ -1281,6 +1249,7 @@ MonoBehaviour:
   isClear: 1
   currentRoom: 0
   isBossRoom: 0
+  goldRoomDirection: 0
 --- !u!61 &8893644543520913000
 BoxCollider2D:
   m_ObjectHideFlags: 0

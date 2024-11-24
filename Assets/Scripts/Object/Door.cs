@@ -71,7 +71,8 @@ public class Door : MonoBehaviour
                   int needThisDoor = GetNeedDoorDirection(collision);
                   foreach (Door door in GetComponentsInChildren<Door>()) {
                         if (door.doorDirection == needThisDoor) {
-                              if (!thisRoom.IsClear && !door.isChangedDoor && collision.GetComponent<Door>().isChangedDoor) {
+                              if ((!thisRoom.IsClear || templates.rooms.IndexOf(thisRoom.gameObject) == 0) 
+                                    && !door.isChangedDoor && collision.GetComponent<Door>().isChangedDoor) {
                                     StartCoroutine(door.ChangeToSelectedDoor(collision.GetComponent<Door>().doorObject));
                               }
                               else {
@@ -83,7 +84,7 @@ public class Door : MonoBehaviour
             }
       }
 
-      private Vector2 GetNextRoomPosition(Vector2 _nextRoomPosition)
+      public Vector2 GetNextRoomPosition(Vector2 _nextRoomPosition)
       {
             Vector2 nextRoomPos = Vector2.zero;
             if (_nextRoomPosition == Vector2.zero) {
@@ -210,7 +211,7 @@ public class Door : MonoBehaviour
             }
       }
 
-      // doorDirection != 0
+      // Special Room, doorDirection == 0
       public IEnumerator ChangeToSelectedDoor(GameObject _doorObject)
       {
             ChangeDoor(_doorObject);
@@ -219,6 +220,7 @@ public class Door : MonoBehaviour
 
             RefreshDoorAnimators();
       }
+      // Change Door, doorDirection != 0
       public IEnumerator ChangeToSelectedDoorCoroutine(GameObject _doorObject)
       {
             ChangeDoor(_doorObject);
@@ -247,10 +249,12 @@ public class Door : MonoBehaviour
                   doorAnimators.Add(animator);
             }
 
-            List<Animator> parentDoorAnimators = transform.parent.GetComponent<Door>().doorAnimators;
-            parentDoorAnimators.Clear();
-            foreach (Animator animator in transform.parent.GetComponentsInChildren<Animator>()) {
-                  parentDoorAnimators.Add(animator);
+            if (transform.parent is Transform parent && transform.parent.GetComponent<Door>()) {
+                  List<Animator> parentDoorAnimators = parent.GetComponent<Door>().doorAnimators;
+                  parentDoorAnimators.Clear();
+                  foreach (Animator animator in parent.GetComponentsInChildren<Animator>()) {
+                        parentDoorAnimators.Add(animator);
+                  }
             }
 
             if (thisRoom.IsClear && !isDoorOpen) {
@@ -264,15 +268,5 @@ public class Door : MonoBehaviour
       private void RemoveMissingAnimators(List<Animator> animators)
       {
             animators.RemoveAll(animator => animator == null);
-      }
-
-      private void RemoveAllForSpecial()
-      {
-
-      }
-
-      private void PlaceSpecialThings()
-      {
-
       }
 }

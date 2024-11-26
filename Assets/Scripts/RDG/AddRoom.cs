@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using static ItemSpace.Heart;
 
 public class AddRoom : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class AddRoom : MonoBehaviour
                         isClear = value;
                         if (isClear) {
                               OnBoolChanged(1, 1, 1, 0.5f);
+                              SpawnItemInRoom();
                         }
                         else {
                               OnBoolChanged(1, 1, 1, 0.2f);
@@ -62,6 +65,20 @@ public class AddRoom : MonoBehaviour
             }
       }
 
+      [SerializeField] private int monsterCount = 0;
+      public int MonsterCount
+      {
+            get => monsterCount;
+            set {
+                  monsterCount = value;
+
+                  // monsterCount가 0이 되었을 때 동작 수행
+                  if (monsterCount == 0) {
+                        IsClear = true;
+                  }
+            }
+      }
+
       [HideInInspector] public int goldRoomDirection;
 
       private void Awake()
@@ -71,25 +88,39 @@ public class AddRoom : MonoBehaviour
 
       private void Start()
       {
+            // RDG
             if (templates && !templates.createdRooms) templates.rooms.Add(this.gameObject);
+
+            // Room & Door
             if (this.gameObject == templates.rooms[0]) {
                   goldRoomDirection = UnityEngine.Random.Range(1, 5);
-                  StartCoroutine(SetInitialRoomCoroutine());
             }
+
+            // Minimap & MonsterCount
+            StartCoroutine(SetInitializationRoom());
       }
 
-      private IEnumerator SetInitialRoomCoroutine()
+      private IEnumerator SetInitializationRoom()
       {
             yield return new WaitUntil(() => templates.refreshedRooms);
             yield return null;
 
-            IsClear = true;
-            CurrentRoom = true;
+            if (this.gameObject == templates.rooms[0]) {
+                  IsClear = true;
+                  CurrentRoom = true;
+            }
 
             yield return null;
 
+            foreach (Transform child in GetComponentsInChildren<Transform>(true)) {
+                  if (child.CompareTag("Monster")) {
+                        if (child.name.StartsWith("Gaper_Head")) continue;
+                        else MonsterCount += 1;
+                  }
+            }
             AddRoom bossRoom = templates.rooms[^1].GetComponent<AddRoom>();
             bossRoom.IsBossRoom = true;
+            bossRoom.MonsterCount = 1;
       }
 
       private void OnBoolChanged(float r, float g, float b, float a)
@@ -104,13 +135,65 @@ public class AddRoom : MonoBehaviour
 
       private void SpawnMonsters()
       {
-            foreach (Transform child in GetComponentsInChildren<Transform>(true)) {
-                  if (child.CompareTag("Monster")) {
-                        if (!child.parent.gameObject.activeSelf) {
-                              child.parent.gameObject.SetActive(true);
+            if (isBossRoom) {
+                  // 보스 몬스터 활성화
+                  foreach (Transform child in GetComponentsInChildren<Transform>(true)) {
+                        if (child.name.StartsWith("BossRoomSet")) {
+                              string bossType = default;
+                              switch (GameManager.Instance.CurrentChaper) {
+                                    case 1:
+                                          bossType = MonsterType.Monstro.ToString();
+                                          break;
+                              }
+                              foreach (Transform child2 in GetComponentsInChildren<Transform>(true)) {
+                                    if (child2.name == bossType) {
+                                          child2.gameObject.SetActive(true);
+                                          break;
+                                    }
+                              }
                               break;
                         }
                   }
+            }
+            else {
+                  // 일반 몬스터 활성화
+                  foreach (Transform child in GetComponentsInChildren<Transform>(true)) {
+                        if (child.CompareTag("Monster")) {
+                              if (!child.parent.gameObject.activeSelf) {
+                                    child.parent.gameObject.SetActive(true);
+                                    break;
+                              }
+                        }
+                  }
+            }
+      }
+
+      private void SpawnItemInRoom()
+      {
+            GameObject item = null;
+            int itemIndex = (int)ItemSpace.ItemFactory.Items.Bomb;
+
+            // 보스 룸 클리어 보상
+            if (isBossRoom) {
+                  int itemCount = UnityEngine.Random.Range(2, 5);
+                  while (itemCount-- != 0) {
+                        itemIndex = (int)ItemSpace.ItemFactory.Items.Bomb;
+                        while (itemIndex == (int)ItemSpace.ItemFactory.Items.Bomb) {
+                              itemIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ItemSpace.ItemFactory.Items)).Length);
+                        }
+                        item = GameManager.Instance.itemFactory.GetItem((ItemSpace.ItemFactory.Items)itemIndex, false);
+                        item.transform.position = transform.position;
+                        item.SetActive(true);
+                  }
+            }
+            // 2분의 1 확률로 룸 클리어 보상
+            else if (UnityEngine.Random.Range(0, 2) == 0) {
+                  while (itemIndex == (int)ItemSpace.ItemFactory.Items.Bomb) {
+                        itemIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ItemSpace.ItemFactory.Items)).Length);
+                  }
+                  item = GameManager.Instance.itemFactory.GetItem((ItemSpace.ItemFactory.Items)itemIndex, false);
+                  item.transform.position = transform.position;
+                  item.SetActive(true);
             }
       }
 }

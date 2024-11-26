@@ -137,8 +137,8 @@ namespace GaperStates
                   }
 
                   for (int i = 0; i < _time; ++i) {
-                        if (isStateExit) return;
                         await Task.Delay(1000); // 1 second
+                        if (isStateExit) return;
                   }
 
                   SetInputVec();
@@ -161,20 +161,24 @@ namespace GaperStates
 
             private void SetSpriteDirection(bool xGreaterThanY)
             {
-                  if (monster.inputVec.x > 0) {
-                        spriteRenderer.flipX = false;
-                  }
-                  else if (monster.inputVec.x < 0) {
-                        spriteRenderer.flipX = true;
+                  if (spriteRenderer) {
+                        if (monster.inputVec.x > 0) {
+                              spriteRenderer.flipX = false;
+                        }
+                        else if (monster.inputVec.x < 0) {
+                              spriteRenderer.flipX = true;
+                        }
                   }
 
-                  if (xGreaterThanY) {
-                        animator.SetInteger("XAxisRaw", (int)monster.inputVec.x);
-                        animator.SetInteger("YAxisRaw", 0);
-                  }
-                  else {
-                        animator.SetInteger("XAxisRaw", 0);
-                        animator.SetInteger("YAxisRaw", (int)monster.inputVec.y);
+                  if (animator) {
+                        if (xGreaterThanY) {
+                              animator.SetInteger("XAxisRaw", (int)monster.inputVec.x);
+                              animator.SetInteger("YAxisRaw", 0);
+                        }
+                        else {
+                              animator.SetInteger("XAxisRaw", 0);
+                              animator.SetInteger("YAxisRaw", (int)monster.inputVec.y);
+                        }
                   }
             }
 
@@ -193,7 +197,7 @@ namespace GaperStates
                   if (monster.collisionCircle == default) monster.collisionCircle = 0.35f;
                   if (Physics2D.CircleCast(rigid.position, monster.collisionCircle, Vector2.zero, 0,
                       LayerMask.GetMask("Player"))) {
-                        player.health -= monster.stat.attackDamage;
+                        player.Health -= monster.stat.attackDamage;
                         player.IsHurt = true;
                   }
             }

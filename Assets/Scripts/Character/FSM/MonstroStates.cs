@@ -36,8 +36,13 @@ namespace MonstroStates
                   spriteRenderer = monster.GetComponent<SpriteRenderer>();
                   playerRenderer = monster.player.GetComponent<SpriteRenderer>();
 
-                  shadow = monster.transform.GetChild(0);
-                  shadowCollider = shadow.GetComponent<Collider2D>();
+                  foreach (Transform child in monster.GetComponentsInChildren<Transform>()) {
+                        if (child.name == "Shadow") {
+                              shadow = child;
+                              shadowCollider = shadow.GetComponent<Collider2D>();
+                              break;
+                        }
+                  }
             }
 
             protected virtual void SpriteXToTarget(Transform target)
@@ -54,7 +59,7 @@ namespace MonstroStates
                   if (Physics2D.BoxCast(monsterCollider.bounds.center, monsterCollider.bounds.size, 0, Vector2.zero, 0, 
                         LayerMask.GetMask("Player"))) {
                         // Debug.Log("Player is on Monster collision!");
-                        monster.player.health -= monster.stat.attackDamage;
+                        monster.player.Health -= monster.stat.attackDamage;
                         monster.player.IsHurt = true;
                   }
             }

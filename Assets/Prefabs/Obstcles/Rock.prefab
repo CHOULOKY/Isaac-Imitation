@@ -55,15 +55,19 @@ MonoBehaviour:
     - {fileID: 1349438759, guid: 4032b897284fdc148a7418f74c337573, type: 3}
     - {fileID: 2100329425, guid: 4032b897284fdc148a7418f74c337573, type: 3}
     - {fileID: 351076695, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    destroyed: {fileID: 1522295550, guid: 4032b897284fdc148a7418f74c337573, type: 3}
   - rocks:
     - {fileID: 719511250, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    destroyed: {fileID: 0}
   - rocks:
     - {fileID: -429418514, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    destroyed: {fileID: 1522295550, guid: 4032b897284fdc148a7418f74c337573, type: 3}
   - rocks:
     - {fileID: 283928419, guid: 4032b897284fdc148a7418f74c337573, type: 3}
     - {fileID: 1674030674, guid: 4032b897284fdc148a7418f74c337573, type: 3}
     - {fileID: 1101849525, guid: 4032b897284fdc148a7418f74c337573, type: 3}
     - {fileID: 879102490, guid: 4032b897284fdc148a7418f74c337573, type: 3}
+    destroyed: {fileID: 2020630126, guid: 4032b897284fdc148a7418f74c337573, type: 3}
 --- !u!212 &6711293399118368244
 SpriteRenderer:
   m_ObjectHideFlags: 0

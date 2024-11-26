@@ -67,6 +67,9 @@ public class Tear : MonoBehaviour
 
       protected virtual void DisableTear()
       {
+            StopCoroutine(nameof(SetGravityAfter));
+            StopCoroutine(nameof(AfterActiveTime));
+
             rigid.velocity = Vector3.zero;
             rigid.simulated = false;
             rigid.gravityScale = 0;

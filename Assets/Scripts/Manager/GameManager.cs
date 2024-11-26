@@ -1,3 +1,4 @@
+using ItemSpace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,11 +6,17 @@ public class GameManager : MonoBehaviour
 {
       private static GameManager instance;
 
+      public int CurrentChaper = 1;
+
+      [Header("Singletone")]
       public UIManager uiManager;
       public IsaacTearFactory isaacTearFactory;
       public MonsterTearFactory monsterTearFactory;
 
+      public ItemFactory itemFactory;
+
       public Minimap minimap;
+
 
       private void Awake()
       {
@@ -18,6 +25,8 @@ public class GameManager : MonoBehaviour
             uiManager = GetComponentInChildren<UIManager>();
             isaacTearFactory = GetComponentInChildren<IsaacTearFactory>();
             monsterTearFactory = GetComponentInChildren<MonsterTearFactory>();
+
+            itemFactory = GetComponentInChildren<ItemFactory>();
 
             minimap = minimap != null ? minimap : FindAnyObjectByType<Minimap>();
       }

@@ -12,7 +12,7 @@ public class MonstroTear : Tear
 
                   if (collision.TryGetComponent<IsaacBody>(out var player)) {
                         if (player.IsHurt) return;
-                        player.health -= tearDamage;
+                        player.Health -= tearDamage;
                         player.IsHurt = true;
                   }
                   else {

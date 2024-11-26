@@ -197,7 +197,7 @@ namespace GaperStates
                   if (monster.collisionCircle == default) monster.collisionCircle = 0.35f;
                   if (Physics2D.CircleCast(rigid.position, monster.collisionCircle, Vector2.zero, 0,
                       LayerMask.GetMask("Player"))) {
-                        player.health -= monster.stat.attackDamage;
+                        player.Health -= monster.stat.attackDamage;
                         player.IsHurt = true;
                   }
             }

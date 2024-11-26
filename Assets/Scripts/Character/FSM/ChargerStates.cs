@@ -241,7 +241,7 @@ namespace ChargerStates
 
                         if (playerHit.transform.TryGetComponent<IsaacBody>(out var player)) {
                               if (!player.IsHurt) {
-                                    player.health -= monster.stat.attackDamage;
+                                    player.Health -= monster.stat.attackDamage;
                                     player.IsHurt = true;
                               }
                         }

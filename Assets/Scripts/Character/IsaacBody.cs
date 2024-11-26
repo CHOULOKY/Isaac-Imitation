@@ -1,3 +1,4 @@
+using ItemSpace;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -17,12 +18,47 @@ public class IsaacBody : MonoBehaviour
       [HideInInspector] public float curMoveForce;
       [HideInInspector] public float curMaxVelocity;
 
-      public int health;
+      #region Health
+      [SerializeField] private int health;
+      public int Health
+      {
+            get => health;
+            set {
+                  if (health > 0) {
+                        if (value > health) {
+                              if (value > maxHealth) health = maxHealth;
+                              else health = value;
+                        }
+                        else {
+                              int damage = health - value;
+                              if (soulHealth > 0) soulHealth -= damage;
+                              else health = value;
+
+                              if (soulHealth < 0) {
+                                    health += soulHealth;
+                                    soulHealth = 0;
+                              }
+                        }
+                  }
+                  else health = value;
+            }
+      }
       public int maxHealth;
+
+      private int soulHealth = 0;
+      public int SoulHealth
+      {
+            get => soulHealth;
+            set {
+                  if (soulHealth > 12) soulHealth = 12;
+                  else soulHealth = value;
+            }
+      }
+      #endregion
 
       #region Item
       [Header("Item")]
-      public int bombCount = 1;
+      public int bombCount = 3;
       public float maxBombCool = 1;
       private float curBombCool = 0;
       #endregion
@@ -41,7 +77,7 @@ public class IsaacBody : MonoBehaviour
 
       private void OnEnable()
       {
-            health = maxHealth;
+            Health = maxHealth;
             curMoveForce = moveForce;
             curMaxVelocity = maxVelocity;
       }
@@ -114,7 +150,7 @@ public class IsaacBody : MonoBehaviour
             set {
                   if (isHurt == false) {
                         isHurt = true;
-                        if (health <= 0) {
+                        if (Health <= 0) {
                               IsDeath = true;
                               return;
                         }

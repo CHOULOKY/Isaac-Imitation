@@ -59,7 +59,7 @@ namespace MonstroStates
                   if (Physics2D.BoxCast(monsterCollider.bounds.center, monsterCollider.bounds.size, 0, Vector2.zero, 0, 
                         LayerMask.GetMask("Player"))) {
                         // Debug.Log("Player is on Monster collision!");
-                        monster.player.health -= monster.stat.attackDamage;
+                        monster.player.Health -= monster.stat.attackDamage;
                         monster.player.IsHurt = true;
                   }
             }

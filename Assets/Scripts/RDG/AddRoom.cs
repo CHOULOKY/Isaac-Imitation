@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using static ItemSpace.Heart;
 
 public class AddRoom : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class AddRoom : MonoBehaviour
                         isClear = value;
                         if (isClear) {
                               OnBoolChanged(1, 1, 1, 0.5f);
+                              SpawnItemInRoom();
                         }
                         else {
                               OnBoolChanged(1, 1, 1, 0.2f);
@@ -162,6 +165,35 @@ public class AddRoom : MonoBehaviour
                               }
                         }
                   }
+            }
+      }
+
+      private void SpawnItemInRoom()
+      {
+            GameObject item = null;
+            int itemIndex = (int)ItemSpace.ItemFactory.Items.Bomb;
+
+            // 보스 룸 클리어 보상
+            if (isBossRoom) {
+                  int itemCount = UnityEngine.Random.Range(2, 5);
+                  while (itemCount-- != 0) {
+                        itemIndex = (int)ItemSpace.ItemFactory.Items.Bomb;
+                        while (itemIndex == (int)ItemSpace.ItemFactory.Items.Bomb) {
+                              itemIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ItemSpace.ItemFactory.Items)).Length);
+                        }
+                        item = GameManager.Instance.itemFactory.GetItem((ItemSpace.ItemFactory.Items)itemIndex, false);
+                        item.transform.position = transform.position;
+                        item.SetActive(true);
+                  }
+            }
+            // 2분의 1 확률로 룸 클리어 보상
+            else if (UnityEngine.Random.Range(0, 2) == 0) {
+                  while (itemIndex == (int)ItemSpace.ItemFactory.Items.Bomb) {
+                        itemIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ItemSpace.ItemFactory.Items)).Length);
+                  }
+                  item = GameManager.Instance.itemFactory.GetItem((ItemSpace.ItemFactory.Items)itemIndex, false);
+                  item.transform.position = transform.position;
+                  item.SetActive(true);
             }
       }
 }

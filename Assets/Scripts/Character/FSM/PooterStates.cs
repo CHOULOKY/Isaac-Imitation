@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -166,6 +167,8 @@ namespace PooterStates
 
             public void AttackUsingTear(GameObject curTear = default)
             {
+                  TearIgnoreObstacle(curTear);
+
                   SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
                   if (tearRigid == default) {
                         Debug.LogWarning($"{monster.name}'s tears don't have Rigidbody2D!");
@@ -174,6 +177,31 @@ namespace PooterStates
 
                   SetTearVelocity(out Vector2 tearVelocity, tearRigid);
                   ShootSettedTear(curTear, tearRigid, tearVelocity);
+            }
+
+            private void TearIgnoreObstacle(GameObject curTear)
+            {
+                  // 현재 몬스터가 있는 방 찾기
+                  if (monster.GetComponentInParent<AddRoom>() is AddRoom room) {
+                        // 현재 방에서 이름이 Obstacles인 오브젝트 찾기
+                        Transform obstacles = default;
+                        foreach (Transform child in room.transform) {
+                              if (child.name == "Obstacles") {
+                                    obstacles = child;
+                                    break;
+                              }
+                        }
+
+                        if (obstacles == null) {
+                              Debug.LogWarning("No object named 'Obstacles' found in the room.");
+                              return;
+                        }
+
+                        Collider2D thisCollider = curTear.GetComponent<Collider2D>();
+                        foreach (Obstacle obstacle in obstacles.GetComponentsInChildren<Obstacle>(true)) {
+                              Physics2D.IgnoreCollision(thisCollider, obstacle.GetComponent<Collider2D>(), true);
+                        }
+                  }
             }
 
             public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid)

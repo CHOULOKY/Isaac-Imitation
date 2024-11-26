@@ -20,6 +20,14 @@ public class IsaacBody : MonoBehaviour
       public int health;
       public int maxHealth;
 
+      #region Item
+      [Header("Item")]
+      public int bombCount = 1;
+      public float maxBombCool = 1;
+      private float curBombCool = 0;
+      #endregion
+
+
       private void Awake()
       {
             head = GetComponentInChildren<IsaacHead>();
@@ -44,10 +52,12 @@ public class IsaacBody : MonoBehaviour
 
             SetBodyDirection();
 
+            ControlItems();
+
             // test code
-            if (Input.GetKeyDown(KeyCode.Alpha1)) {
-                  IsHurt = true;
-            }
+            //if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            //      IsHurt = true;
+            //}
       }
 
       private void FixedUpdate()
@@ -80,6 +90,22 @@ public class IsaacBody : MonoBehaviour
                   rigid.velocity = rigid.velocity.normalized * curMaxVelocity;
             }
       }
+
+      private GameObject itemObject = default;
+      private void ControlItems()
+      {
+            curBombCool += Time.deltaTime;
+
+            if (Input.GetKey(KeyCode.E) && bombCount > 0 && curBombCool > maxBombCool) {
+                  curBombCool = 0;
+                  bombCount--;
+
+                  itemObject = GameManager.Instance.itemFactory.GetItem(ItemFactory.Items.Bomb, false);
+                  itemObject.transform.position = rigid.position;
+                  itemObject.SetActive(true);
+            }
+      }
+      
 
       private bool isHurt = false;
       public bool IsHurt

@@ -7,13 +7,14 @@ namespace RockSpace
       public class RockArray
       {
             public Sprite[] rocks;
+            public Sprite destroyed;
       }
 }
 
 public class Rock : Obstacle
 {
-      private enum RockType { Normal, Hard, InBomb, Pot}
-      [SerializeField] private RockType rockType;
+      public enum RockType { Normal, Hard, InBomb, Pot}
+      public RockType rockType;
 
       public RockArray[] rockArray;
 

@@ -5,6 +5,7 @@ public class Web : Obstacle
       public float slowAmount = 10;
 
       public Sprite[] webs;
+      public Sprite destroyed;
       private int curWebIndex = 0;
 
       private SpriteRenderer spriteRenderer;

@@ -274,8 +274,12 @@ MonoBehaviour:
   inputVec: {x: 0, y: 0}
   moveForce: 20
   maxVelocity: 5
+  curMoveForce: 0
+  curMaxVelocity: 0
   health: 0
   maxHealth: 6
+  bombCount: 3
+  maxBombCool: 0.5
 --- !u!114 &68028189956549890
 MonoBehaviour:
   m_ObjectHideFlags: 0

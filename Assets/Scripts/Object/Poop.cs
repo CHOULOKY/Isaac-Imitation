@@ -7,13 +7,14 @@ namespace PoopSpace
       public class PoopArray
       {
             public Sprite[] poops;
+            public Sprite destroyed;
       }
 }
 
 public class Poop : Obstacle
 {
-      private enum PoopType { Normal, Red, Fresh, Gold, Rainbow }
-      [SerializeField] private PoopType poopType;
+      public enum PoopType { Normal, Red, Fresh, Gold, Rainbow }
+      public PoopType poopType;
 
       public PoopArray[] poopArray;
       private int curPoopIndex = 0;

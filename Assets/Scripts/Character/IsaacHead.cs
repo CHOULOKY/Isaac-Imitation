@@ -17,6 +17,11 @@ public class IsaacHead : MonoBehaviour, ITearShooter
       public float attackSpeed = 0.25f;
       private float curAttackTime = 0.25f;
 
+      #region Item
+      private int temp;
+      #endregion
+
+
       private void Awake()
       {
             animator = GetComponent<Animator>();

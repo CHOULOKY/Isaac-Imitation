@@ -56,30 +56,35 @@ MonoBehaviour:
     - {fileID: -944929670, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 933985461, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 250563144, guid: 93016525bfb72824f9119628c8067bff, type: 3}
+    destroyed: {fileID: 250563144, guid: 93016525bfb72824f9119628c8067bff, type: 3}
   - poops:
     - {fileID: -364063106, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 1454912136, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 923737328, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: -867221302, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: -1996014956, guid: 93016525bfb72824f9119628c8067bff, type: 3}
+    destroyed: {fileID: -1996014956, guid: 93016525bfb72824f9119628c8067bff, type: 3}
   - poops:
     - {fileID: -1404274721, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 1339998667, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 893247063, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 765843908, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 720687558, guid: 93016525bfb72824f9119628c8067bff, type: 3}
+    destroyed: {fileID: 720687558, guid: 93016525bfb72824f9119628c8067bff, type: 3}
   - poops:
     - {fileID: 353596957, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: -1230595382, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: -1331351069, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: -1993080313, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 1420575028, guid: 93016525bfb72824f9119628c8067bff, type: 3}
+    destroyed: {fileID: 1420575028, guid: 93016525bfb72824f9119628c8067bff, type: 3}
   - poops:
     - {fileID: -542781859, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 819433863, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: -153775835, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: 3566220, guid: 93016525bfb72824f9119628c8067bff, type: 3}
     - {fileID: -273239199, guid: 93016525bfb72824f9119628c8067bff, type: 3}
+    destroyed: {fileID: -273239199, guid: 93016525bfb72824f9119628c8067bff, type: 3}
 --- !u!212 &1158506569205900924
 SpriteRenderer:
   m_ObjectHideFlags: 0

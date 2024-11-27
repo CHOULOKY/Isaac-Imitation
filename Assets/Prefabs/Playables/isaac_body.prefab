@@ -278,9 +278,9 @@ MonoBehaviour:
   curMaxVelocity: 0
   health: 0
   maxHealth: 6
+  soulHealth: 0
   bombCount: 3
   maxBombCool: 0.5
-  coinCount: 0
 --- !u!114 &68028189956549890
 MonoBehaviour:
   m_ObjectHideFlags: 0

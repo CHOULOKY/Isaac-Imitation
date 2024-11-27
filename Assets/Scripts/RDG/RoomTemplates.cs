@@ -26,10 +26,14 @@ public class RoomTemplates : MonoBehaviour
       [Header("Doors")]
       public GameObject bossDoor;
       public GameObject goldDoor;
+      public GameObject exitDoor;
 
       [Header("Rooms")]
       public GameObject GoldRoomSet;
       public GameObject BossRoomSet;
+
+      [Header("Props")]
+      public GameObject prop;
 
       private void Update()
       {

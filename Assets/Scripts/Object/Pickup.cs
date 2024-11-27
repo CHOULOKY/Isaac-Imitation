@@ -40,7 +40,7 @@ namespace ItemSpace
                                     // Override in the heart script
                                     break;
                               case ItemFactory.Items.Bomb:
-                                    player.bombCount++;
+                                    player.BombCount++;
                                     break;
                         }
                   }

@@ -43,22 +43,42 @@ public class IsaacBody : MonoBehaviour
                   else health = value;
             }
       }
-      public int maxHealth;
 
-      private int soulHealth = 0;
+      [SerializeField] private int maxHealth = 6;
+      public int MaxHealth
+      {
+            get => maxHealth;
+            set {
+                  if (value > 24) maxHealth = 24;
+                  else maxHealth = value;
+                  GameManager.Instance.uiManager.RefreshUI();
+            }
+      }
+
+      [SerializeField] private int soulHealth = 0;
       public int SoulHealth
       {
             get => soulHealth;
             set {
-                  if (soulHealth > 12) soulHealth = 12;
+                  if (soulHealth > 24) soulHealth = 24;
                   else soulHealth = value;
+                  GameManager.Instance.uiManager.RefreshUI();
             }
       }
       #endregion
 
       #region Item
       [Header("Item")]
-      public int bombCount = 3;
+      [SerializeField] private int bombCount = 3;
+      public int BombCount
+      {
+            get => bombCount;
+            set {
+                  bombCount = value;
+                  GameManager.Instance.uiManager.RefreshUI();
+            }
+      }
+
       public float maxBombCool = 1;
       private float curBombCool = 0;
       #endregion
@@ -77,7 +97,7 @@ public class IsaacBody : MonoBehaviour
 
       private void OnEnable()
       {
-            Health = maxHealth;
+            Health = MaxHealth;
             curMoveForce = moveForce;
             curMaxVelocity = maxVelocity;
       }
@@ -132,9 +152,9 @@ public class IsaacBody : MonoBehaviour
       {
             curBombCool += Time.deltaTime;
 
-            if (Input.GetKey(KeyCode.E) && bombCount > 0 && curBombCool > maxBombCool) {
+            if (Input.GetKey(KeyCode.E) && BombCount > 0 && curBombCool > maxBombCool) {
                   curBombCool = 0;
-                  bombCount--;
+                  BombCount--;
 
                   itemObject = GameManager.Instance.itemFactory.GetItem(ItemFactory.Items.Bomb, false);
                   itemObject.transform.position = rigid.position;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Reflection;
 using UnityEngine;
 using static ItemSpace.Heart;
 
@@ -140,7 +141,7 @@ public class AddRoom : MonoBehaviour
                   foreach (Transform child in GetComponentsInChildren<Transform>(true)) {
                         if (child.name.StartsWith("BossRoomSet")) {
                               string bossType = default;
-                              switch (GameManager.Instance.CurrentChaper) {
+                              switch (GameManager.Instance.CurrentStage) {
                                     case 1:
                                           bossType = MonsterType.Monstro.ToString();
                                           break;
@@ -175,16 +176,22 @@ public class AddRoom : MonoBehaviour
 
             // 보스 룸 클리어 보상
             if (isBossRoom) {
-                  int itemCount = UnityEngine.Random.Range(2, 5);
+                  int itemCount = UnityEngine.Random.Range(2, 4);
                   while (itemCount-- != 0) {
                         itemIndex = (int)ItemSpace.ItemFactory.Items.Bomb;
                         while (itemIndex == (int)ItemSpace.ItemFactory.Items.Bomb) {
                               itemIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ItemSpace.ItemFactory.Items)).Length);
                         }
                         item = GameManager.Instance.itemFactory.GetItem((ItemSpace.ItemFactory.Items)itemIndex, false);
-                        item.transform.position = transform.position;
+                        if (TryGetBossScript(out MonoBehaviour script))
+                              item.transform.position = script.transform.position; // 보스 몬스터 위치에서 생성
                         item.SetActive(true);
                   }
+
+                  // exitDoor 생성
+                  Instantiate(templates.exitDoor, transform.position + Vector3.up * 1.5f, Quaternion.identity, transform);
+                  // prop 생성
+                  Instantiate(templates.prop, transform.position + Vector3.down * 1.5f, Quaternion.identity, transform);
             }
             // 2분의 1 확률로 룸 클리어 보상
             else if (UnityEngine.Random.Range(0, 2) == 0) {
@@ -195,5 +202,21 @@ public class AddRoom : MonoBehaviour
                   item.transform.position = transform.position;
                   item.SetActive(true);
             }
+      }
+
+      private bool TryGetBossScript(out MonoBehaviour script)
+      {
+            // 초기화
+            script = null;
+            
+            MonoBehaviour[] scripts = GetComponentsInChildren<MonoBehaviour>();
+            foreach (MonoBehaviour s in scripts) {
+                  Type baseType = s.GetType()?.BaseType; // 부모: Monster
+                  if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(Monster<>)) {
+                        script = s;
+                        return true;
+                  }
+            }
+            return false;
       }
 }

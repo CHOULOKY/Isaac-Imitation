@@ -52,7 +52,7 @@ namespace ItemSpace
                   if (collision.collider.GetComponent<IsaacBody>() is IsaacBody player) {
                         switch (heartType) {
                               case HeartType.Normal:
-                                    if (player.Health < player.maxHealth) {
+                                    if (player.Health < player.MaxHealth) {
                                           HandlePickup();
                                           player.Health += (isHalf ? 1 : 2);
                                     }

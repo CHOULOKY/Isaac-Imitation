@@ -14,6 +14,7 @@ public class MonstroTear : Tear
                         if (player.IsHurt) return;
                         player.Health -= tearDamage;
                         player.IsHurt = true;
+                        GameManager.Instance.uiManager.setKilledPlayer = "Monstro";
                   }
                   else {
                         Debug.LogWarning("Player(IsaacBody)를 찾을 수 없습니다.");

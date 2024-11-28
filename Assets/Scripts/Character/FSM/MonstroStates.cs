@@ -61,6 +61,7 @@ namespace MonstroStates
                         // Debug.Log("Player is on Monster collision!");
                         monster.player.Health -= monster.stat.attackDamage;
                         monster.player.IsHurt = true;
+                        GameManager.Instance.uiManager.setKilledPlayer = "Monstro";
                   }
             }
 

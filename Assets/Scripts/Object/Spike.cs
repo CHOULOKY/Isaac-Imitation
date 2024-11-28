@@ -19,6 +19,7 @@ namespace ObstacleSpace
                         else {
                               player.Health -= damage;
                               player.IsHurt = true;
+                              GameManager.Instance.uiManager.setKilledPlayer = "Spike";
                         }
                   }
             }

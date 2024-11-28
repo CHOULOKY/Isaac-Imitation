@@ -15,6 +15,7 @@ public class PooterTear : Tear
                         if (player.IsHurt) return;
                         player.Health -= tearDamage;
                         player.IsHurt = true;
+                        GameManager.Instance.uiManager.setKilledPlayer = "Pooter";
                   }
                   else {
                         Debug.LogWarning("Player(IsaacBody)를 찾을 수 없습니다.");

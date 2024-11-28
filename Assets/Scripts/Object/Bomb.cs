@@ -86,6 +86,7 @@ namespace ItemSpace
                                                 player.Health -= damage;
                                                 player.IsHurt = true;
                                                 ApplyKnockTo(player.GetComponent<Rigidbody2D>());
+                                                GameManager.Instance.uiManager.setKilledPlayer = "Bomb";
                                           }
                                     }
                                     break;

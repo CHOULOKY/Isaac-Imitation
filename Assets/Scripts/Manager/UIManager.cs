@@ -4,6 +4,9 @@ using UISpace;
 using TMPro;
 using System.Xml;
 using Photon.Realtime;
+using System;
+using UnityEngine.Playables;
+using UnityEditor.Rendering;
 
 namespace UISpace
 {
@@ -22,9 +25,12 @@ public class UIManager : MonoBehaviour
       public float fadeDuration = 2;
       #endregion
 
+      private IsaacBody player;
+
       [Header("UI")]
       public Canvas uiCanvas; // unused
-      public Canvas clearCanvas; // unused
+      public Canvas clearCanvas;
+      public Canvas deadCanvas;
 
       [Header("UI - Heart")]
       [SerializeField] private UIStruct heartStruct;
@@ -42,7 +48,34 @@ public class UIManager : MonoBehaviour
       [SerializeField] private int bombMultiple = 3;
       [SerializeField] private int keyMultiple = 0;
 
-      private IsaacBody player;
+      [Header("UI - Dead Canvas")]
+      public int killedPlayer = 0; // { Charger, Gaper, Pooter, Monstro, Spike, Bomb }
+      public string setKilledPlayer
+      {
+            get => null;
+            set {
+                  switch (value) {
+                        case "Charger":
+                              killedPlayer = (int)MonsterType.Charger;
+                              break;
+                        case "Gaper":
+                              killedPlayer = (int)MonsterType.Gaper;
+                              break;
+                        case "Pooter":
+                              killedPlayer = (int)MonsterType.Pooter;
+                              break;
+                        case "Monstro":
+                              killedPlayer = (int)MonsterType.Monstro;
+                              break;
+                        case "Spike":
+                              killedPlayer = Enum.GetValues(typeof(MonsterType)).Length;
+                              break;
+                        case "Bomb":
+                              killedPlayer = Enum.GetValues(typeof(MonsterType)).Length + 1;
+                              break;
+                  }
+            }
+      }
 
 
       private void Awake()
@@ -52,6 +85,9 @@ public class UIManager : MonoBehaviour
 
             player = FindAnyObjectByType<IsaacBody>();
       }
+
+
+
 
       public void GameStart(float _fadeDuration = -1)
       {
@@ -66,7 +102,7 @@ public class UIManager : MonoBehaviour
       private void Update()
       {
             // test code
-            if (Input.GetKeyDown(KeyCode.Space)) RefreshUI();
+            // if (Input.GetKeyDown(KeyCode.Space)) RefreshUI();
       }
 
       public void RefreshUI()
@@ -129,6 +165,29 @@ public class UIManager : MonoBehaviour
             // Empty hearts
             for (int i = fullCount + halfCount; i < 4; i++) {
                   images[i].sprite = sprites[0]; // Zero heart
+            }
+      }
+
+
+
+      public void GameOver()
+      {
+            deadCanvas.GetComponent<PlayableDirector>().Play();
+            SetActiveMinimap(false);
+      }
+
+      public void StageClear()
+      {
+            clearCanvas.GetComponent<PlayableDirector>().Play();
+            SetActiveMinimap(false);
+      }
+
+      private void SetActiveMinimap(bool active)
+      {
+            foreach (Camera camera in FindObjectsOfType<Camera>()) {
+                  if (camera.name == "Minimap Camera") {
+                        camera.enabled = active;
+                  }
             }
       }
 }

@@ -41,6 +41,8 @@ public class IsaacBody : MonoBehaviour
                         }
                   }
                   else health = value;
+
+                  if (value != maxHealth) GameManager.Instance.uiManager.RefreshUI();
             }
       }
 

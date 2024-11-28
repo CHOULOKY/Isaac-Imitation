@@ -243,6 +243,7 @@ namespace ChargerStates
                               if (!player.IsHurt) {
                                     player.Health -= monster.stat.attackDamage;
                                     player.IsHurt = true;
+                                    GameManager.Instance.uiManager.setKilledPlayer = "Charger";
                               }
                         }
                   }

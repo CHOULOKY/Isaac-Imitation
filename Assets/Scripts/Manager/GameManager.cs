@@ -66,12 +66,34 @@ public class GameManager : MonoBehaviour
 
       public void GameOver()
       {
-            SceneManager.LoadScene(0);
+            Time.timeScale = 0;
+            uiManager.GameOver();
+            // SceneManager.LoadScene(0);
       }
 
       public void StageClear()
       {
-            Debug.Log("Stage Clear!");
-            // uiManager.clearCanvas.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            // Debug.Log("Stage Clear!");
+            uiManager.StageClear();
       }
+
+
+      #region For UI Button
+      public void RetryGame()
+      {
+            SceneManager.LoadScene(0);
+      }
+
+      public void ExitGame()
+      {
+#if UNITY_EDITOR
+            // 에디터 환경에서 플레이 모드 종료
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // 빌드된 실행 파일에서 애플리케이션 종료
+        Application.Quit();
+#endif
+      }
+      #endregion
 }

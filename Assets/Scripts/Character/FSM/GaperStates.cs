@@ -199,6 +199,7 @@ namespace GaperStates
                       LayerMask.GetMask("Player"))) {
                         player.Health -= monster.stat.attackDamage;
                         player.IsHurt = true;
+                        GameManager.Instance.uiManager.setKilledPlayer = "Gaper";
                   }
             }
 

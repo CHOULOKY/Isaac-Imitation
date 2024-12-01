@@ -1,9 +1,15 @@
 using ItemSpace;
+using Photon.Pun;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
-public class IsaacBody : MonoBehaviour
+// Photon applied complete
+public class IsaacBody : MonoBehaviour, IPunObservable
 {
+      private PhotonView photonView;
+
+
       private IsaacHead head;
 
       private Rigidbody2D rigid;
@@ -17,6 +23,9 @@ public class IsaacBody : MonoBehaviour
       public float maxVelocity = 5; // moveForce/5 + 1
       [HideInInspector] public float curMoveForce;
       [HideInInspector] public float curMaxVelocity;
+
+      // for head (photonview)
+      [HideInInspector] public Vector2 bodyVelocity;
 
       #region Health
       [SerializeField] private int health;
@@ -42,8 +51,15 @@ public class IsaacBody : MonoBehaviour
                   }
                   else health = value;
 
-                  if (value != maxHealth) GameManager.Instance.uiManager.RefreshUI();
+                  //if (value != maxHealth) GameManager.Instance.uiManager.RefreshUI();
+                  photonView.RPC(nameof(RPC_SetHealth), RpcTarget.AllBuffered, health, value);
             }
+      }
+      [PunRPC]
+      private void RPC_SetHealth(int _health, int _value)
+      {
+            health = _health;
+            if (_value != maxHealth) GameManager.Instance.uiManager.RefreshUI();
       }
 
       [SerializeField] private int maxHealth = 6;
@@ -53,8 +69,16 @@ public class IsaacBody : MonoBehaviour
             set {
                   if (value > 24) maxHealth = 24;
                   else maxHealth = value;
-                  GameManager.Instance.uiManager.RefreshUI();
+
+                  //GameManager.Instance.uiManager.RefreshUI();
+                  photonView.RPC(nameof(RPC_SetMaxHealth), RpcTarget.AllBuffered, maxHealth);
             }
+      }
+      [PunRPC]
+      private void RPC_SetMaxHealth(int _maxHealth)
+      {
+            maxHealth = _maxHealth;
+            GameManager.Instance.uiManager.RefreshUI();
       }
 
       [SerializeField] private int soulHealth = 0;
@@ -64,8 +88,16 @@ public class IsaacBody : MonoBehaviour
             set {
                   if (soulHealth > 24) soulHealth = 24;
                   else soulHealth = value;
-                  GameManager.Instance.uiManager.RefreshUI();
+
+                  //GameManager.Instance.uiManager.RefreshUI();
+                  photonView.RPC(nameof(RPC_SetSoulHealth), RpcTarget.AllBuffered, soulHealth);
             }
+      }
+      [PunRPC]
+      private void RPC_SetSoulHealth(int _soulHealth)
+      {
+            soulHealth = _soulHealth;
+            GameManager.Instance.uiManager.RefreshUI();
       }
       #endregion
 
@@ -77,8 +109,16 @@ public class IsaacBody : MonoBehaviour
             get => bombCount;
             set {
                   bombCount = value;
-                  GameManager.Instance.uiManager.RefreshUI();
+
+                  //GameManager.Instance.uiManager.RefreshUI();
+                  photonView.RPC(nameof(RPC_SetBombCount), RpcTarget.AllBuffered, bombCount);
             }
+      }
+      [PunRPC]
+      private void RPC_SetBombCount(int _bombCount)
+      {
+            bombCount = _bombCount;
+            GameManager.Instance.uiManager.RefreshUI();
       }
 
       public float maxBombCool = 1;
@@ -88,6 +128,8 @@ public class IsaacBody : MonoBehaviour
 
       private void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
             head = GetComponentInChildren<IsaacHead>();
 
             rigid = GetComponent<Rigidbody2D>();
@@ -99,6 +141,11 @@ public class IsaacBody : MonoBehaviour
 
       private void OnEnable()
       {
+            // 마스터 클라이언트고 현재 오브젝트를 소유하고 있지 않으면
+            if (PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer) {
+                  photonView.RequestOwnership();
+            }
+
             Health = MaxHealth;
             curMoveForce = moveForce;
             curMaxVelocity = maxVelocity;
@@ -106,6 +153,9 @@ public class IsaacBody : MonoBehaviour
 
       private void Update()
       {
+            // 현재 오브젝트에 소유권이 없으면 return
+            if (!PhotonNetwork.IsMasterClient) return;
+
             GetInputVec();
 
             SetBodyDirection();
@@ -120,6 +170,9 @@ public class IsaacBody : MonoBehaviour
 
       private void FixedUpdate()
       {
+            // 현재 오브젝트에 소유권이 없으면 return
+            if (!photonView.IsMine) return;
+
             MoveBody();
       }
 
@@ -127,18 +180,31 @@ public class IsaacBody : MonoBehaviour
       {
             inputVec.x = Input.GetAxisRaw("Horizontal WASD");
             inputVec.y = Input.GetAxisRaw("Vertical WASD");
+            photonView.RPC(nameof(RPC_SetInputVec), RpcTarget.Others, inputVec);
+      }
+      [PunRPC]
+      private void RPC_SetInputVec(Vector2 _inputVec)
+      {
+            inputVec = _inputVec;
       }
 
       private void SetBodyDirection()
       {
             if (inputVec.x > 0) {
-                  spriteRenderer.flipX = false;
+                  photonView.RPC(nameof(RPC_SetFlipX), RpcTarget.All, false);
+                  // spriteRenderer.flipX = false;
             }
             else if (inputVec.x < 0) {
-                  spriteRenderer.flipX = true;
+                  photonView.RPC(nameof(RPC_SetFlipX), RpcTarget.All, true);
+                  // spriteRenderer.flipX = true;
             }
             animator.SetInteger("XAxisRaw", (int)inputVec.x);
             animator.SetInteger("YAxisRaw", (int)inputVec.y);
+      }
+      [PunRPC]
+      private void RPC_SetFlipX(bool flipX)
+      {
+            spriteRenderer.flipX = flipX;
       }
 
       private void MoveBody()
@@ -158,10 +224,18 @@ public class IsaacBody : MonoBehaviour
                   curBombCool = 0;
                   BombCount--;
 
-                  itemObject = GameManager.Instance.itemFactory.GetItem(ItemFactory.Items.Bomb, false);
-                  itemObject.transform.position = rigid.position;
-                  itemObject.SetActive(true);
+                  //itemObject = GameManager.Instance.itemFactory.GetItem(ItemFactory.Items.Bomb, false);
+                  //itemObject.transform.position = rigid.position;
+                  //itemObject.SetActive(true);
+                  photonView.RPC(nameof(RPC_BombControl), RpcTarget.AllBuffered);
             }
+      }
+      [PunRPC]
+      private void RPC_BombControl()
+      {
+            itemObject = GameManager.Instance.itemFactory.GetItem(ItemFactory.Items.Bomb, false);
+            itemObject.transform.position = rigid.position;
+            itemObject.SetActive(true);
       }
       
 
@@ -171,33 +245,62 @@ public class IsaacBody : MonoBehaviour
             get { return isHurt; }
             set {
                   if (isHurt == false) {
-                        isHurt = true;
+                        //isHurt = true;
+                        photonView.RPC(nameof(RPC_SetisHurt), RpcTarget.AllBuffered, true);
                         if (Health <= 0) {
                               IsDeath = true;
                               return;
                         }
 
-                        curMoveForce = moveForce + 10;
-                        curMaxVelocity = maxVelocity + 2;
+                        // Body만
+                        if (photonView.IsMine) {
+                              curMoveForce = moveForce + 10;
+                              curMaxVelocity = maxVelocity + 2;
+                        }
 
-                        this.animator.SetTrigger("Hit");
-                        flashEffect.Flash(new Color(1, 1, 0, 1));
+                        //this.animator.SetTrigger("Hit");
+                        photonView.RPC(nameof(RPC_SetAnimTrigger), RpcTarget.All, "Hit");
+                        //flashEffect.Flash(new Color(1, 1, 0, 1));
+                        photonView.RPC(nameof(flashEffect.Flash), RpcTarget.AllBuffered, 1f, 1f, 0f, 1f);
                   }
+                  else photonView.RPC(nameof(RPC_SetisHurt), RpcTarget.AllBuffered, value);
             }
+      }
+      [PunRPC]
+      private void RPC_SetisHurt(bool value)
+      {
+            isHurt = value;
+      }
+      [PunRPC]
+      private void RPC_SetAnimTrigger(string name)
+      {
+            this.animator.SetTrigger(name);
       }
 
       // For animation event
       public async void ResetIsHurtAfterAnimation()
       {
+            // 마스터 클라이언트(Body)가 아니면 return
+            if (!PhotonNetwork.IsMasterClient) return;
+
             await Task.Delay(500); // 0.5 second
 
-            isHurt = false;
+            IsHurt = false;
             curMoveForce = moveForce;
             curMaxVelocity = maxVelocity;
       }
 
       // For animation event
       public void SetHeadSpriteAlpha(float _alpha)
+      {
+            // 마스터 클라이언트(Body)가 아니면 return
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            //head.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, _alpha);
+            photonView.RPC(nameof(RPC_SetHeadAlpha), RpcTarget.All, _alpha);
+      }
+      [PunRPC]
+      private void RPC_SetHeadAlpha(float _alpha)
       {
             head.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, _alpha);
       }
@@ -208,10 +311,17 @@ public class IsaacBody : MonoBehaviour
             get { return isDeath; }
             set {
                   if (isDeath == false) {
-                        isDeath = true;
-                        GameManager.Instance.GameOver();
+                        //isDeath = true;
+                        photonView.RPC(nameof(RPC_SetisDeath), RpcTarget.AllBuffered, true);
+                        //GameManager.Instance.GameOver();
+                        photonView.RPC(nameof(GameManager.Instance.GameOver), RpcTarget.AllBuffered);
                   }
             }
+      }
+      [PunRPC]
+      private void RPC_SetisDeath(bool value)
+      {
+            isDeath = value;
       }
 
       private void OnDisable()
@@ -221,5 +331,19 @@ public class IsaacBody : MonoBehaviour
 
             animator.SetInteger("XAxisRaw", 0);
             animator.SetInteger("YAxisRaw", 0);
+      }
+
+
+
+      public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+      {
+            if (stream.IsWriting) {
+                  // 로컬 플레이어의 flipX 값을 전송
+                  stream.SendNext(rigid.velocity);
+            }
+            else {
+                  // 원격 플레이어의 flipX 값을 수신
+                  bodyVelocity = (Vector2)stream.ReceiveNext();
+            }
       }
 }

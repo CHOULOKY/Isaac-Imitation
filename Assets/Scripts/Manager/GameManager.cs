@@ -1,10 +1,13 @@
 using ItemSpace;
+using Photon.Pun;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-      private static GameManager instance;
+      private PhotonView photonView;
+
 
       public int CurrentStage = 1;
       private bool isClear = false;
@@ -13,16 +16,29 @@ public class GameManager : MonoBehaviour
             get { return isClear; }
             set {
                   if (isClear != value) {
-                        isClear = value;
-                        if (isClear) {
-                              StageClear();
-                              CurrentStage++;
-                              isClear = false;
-                        }
+                        //isClear = value;
+                        //if (isClear) {
+                        //      StageClear();
+                        //      CurrentStage++;
+                        //      isClear = false;
+                        //}
+                        photonView.RPC(nameof(RPC_SetisClear), RpcTarget.AllBuffered, value);
                   }
             }
       }
+      [PunRPC]
+      private void RPC_SetisClear(bool value)
+      {
+            isClear = value;
+            if (isClear) {
+                  StageClear();
+                  CurrentStage++;
+                  isClear = false;
+            }
+      }
 
+
+      private static GameManager instance;
       [Header("Singletone")]
       public UIManager uiManager;
       public IsaacTearFactory isaacTearFactory;
@@ -30,20 +46,27 @@ public class GameManager : MonoBehaviour
 
       public ItemFactory itemFactory;
 
+      public RoomTemplates roomTemplates;
       public Minimap minimap;
 
 
+      // All
       private void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
+            // Singletone
             instance = this;
 
+            // Initialization
             uiManager = GetComponentInChildren<UIManager>();
             isaacTearFactory = GetComponentInChildren<IsaacTearFactory>();
             monsterTearFactory = GetComponentInChildren<MonsterTearFactory>();
 
             itemFactory = GetComponentInChildren<ItemFactory>();
 
-            minimap = minimap != null ? minimap : FindAnyObjectByType<Minimap>();
+            if(!roomTemplates) roomTemplates = FindAnyObjectByType<RoomTemplates>();
+            if (!minimap) minimap = FindAnyObjectByType<Minimap>();
       }
 
       public static GameManager Instance
@@ -54,16 +77,29 @@ public class GameManager : MonoBehaviour
             }
       }
 
+      private void OnEnable()
+      {
+            if (PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer) {
+                  photonView.RequestOwnership();
+            }
+      }
+
       private void Start()
       {
-            GameStart();
+            StartCoroutine(GameStart());
       }
 
-      public void GameStart()
+      public IEnumerator GameStart()
       {
-            uiManager.GameStart();
+            yield return StartCoroutine(uiManager.GameStartBefore());
+
+            IsaacBody player = FindObjectOfType<IsaacBody>(true);
+            player.gameObject.SetActive(true);
+
+            yield return StartCoroutine(uiManager.GameStartAfter());
       }
 
+      [PunRPC]
       public void GameOver()
       {
             Time.timeScale = 0;
@@ -79,13 +115,23 @@ public class GameManager : MonoBehaviour
       }
 
 
+      public IEnumerator OnPlayerLeftRoom()
+      {
+            Time.timeScale = 0;
+
+            yield return StartCoroutine(uiManager.OnPlayerLeftRoom());
+
+            SceneManager.LoadScene(0); // Loading Scene
+      }
+
+
       #region For UI Button
       public void RetryGame()
       {
             SceneManager.LoadScene(0);
       }
 
-      public void ExitGame()
+      public static void ExitGame()
       {
 #if UNITY_EDITOR
             // 에디터 환경에서 플레이 모드 종료

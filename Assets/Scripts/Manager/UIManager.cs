@@ -7,6 +7,10 @@ using Photon.Realtime;
 using System;
 using UnityEngine.Playables;
 using UnityEditor.Rendering;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Linq;
+using Photon.Pun;
 
 namespace UISpace
 {
@@ -17,7 +21,7 @@ namespace UISpace
             public TMP_Text tmpText;
       }
 }
-public class UIManager : MonoBehaviour
+public class UIManager : ScriptAnimation
 {
       #region Fade
       private FadeController fadeController;
@@ -31,6 +35,8 @@ public class UIManager : MonoBehaviour
       public Canvas uiCanvas; // unused
       public Canvas clearCanvas;
       public Canvas deadCanvas;
+      public Canvas leftCanvas;
+      public Canvas startCanvas;
 
       [Header("UI - Heart")]
       [SerializeField] private UIStruct heartStruct;
@@ -74,29 +80,69 @@ public class UIManager : MonoBehaviour
                               killedPlayer = Enum.GetValues(typeof(MonsterType)).Length + 1;
                               break;
                   }
+
+                  photonView.RPC(nameof(RPC_SetKilledPlayer), RpcTarget.AllBuffered, killedPlayer);
             }
       }
+      [PunRPC]
+      private void RPC_SetKilledPlayer(int _killedPlayer)
+      {
+            killedPlayer = _killedPlayer;
+      }
+      
 
-
+      private PhotonView photonView;
       private void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
             // Fade
             fadeController = GetComponentInChildren<FadeController>();
 
             player = FindAnyObjectByType<IsaacBody>();
       }
 
+      private void OnEnable()
+      {
+            if (PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer) {
+                  photonView.RequestOwnership();
+            }
+      }
 
 
 
-      public void GameStart(float _fadeDuration = -1)
+
+      public IEnumerator GameStartBefore(float _fadeDuration = -1)
       {
             // Fade
             _fadeDuration = _fadeDuration <= 0 ? fadeDuration : _fadeDuration;
-            StartCoroutine(fadeController.FadeOutCoroutine(null, fadeDuration));
+            yield return StartCoroutine(fadeController.FadeOutCoroutine(null, fadeDuration));
 
-            // UI
+            // Canvas Animation
+            RectTransform[] children = startCanvas.GetComponentsInChildren<RectTransform>(true);
+            // 마지막 3개 자식 RectTransform에 RotateAnimation 적용
+            StartCoroutine(RotateAnimation(children[^3], 0.75f, -10));
+            StartCoroutine(RotateAnimation(children[^2], 0.75f, 5));
+            StartCoroutine(RotateAnimation(children[^1], 0.75f, -5));
+
+            yield return new WaitForSecondsRealtime(3f); // 3초 대기
+
+            Debug.Log("랜덤 맵 생성 알고리즘 실행 중...");
+            yield return new WaitUntil(() => GameManager.Instance.roomTemplates.refreshedRooms);
+            Debug.Log("랜덤 맵 생성 알고리즘 실행 완료.");
+      }
+      public IEnumerator GameStartAfter()
+      {
+            // InGame UI
             RefreshUI();
+
+            // 애니메이션이 끝날 때까지 대기
+            Animator canvasAnimator = startCanvas.transform.GetChild(0).GetComponent<Animator>();
+            canvasAnimator.SetTrigger("Start");
+            yield return new WaitForSecondsRealtime(canvasAnimator.runtimeAnimatorController.animationClips
+                        .FirstOrDefault(clip => clip.name == "AM_Start")?.length ?? 0f);
+
+            canvasAnimator.gameObject.SetActive(false);
       }
 
       private void Update()
@@ -108,7 +154,7 @@ public class UIManager : MonoBehaviour
       public void RefreshUI()
       {
             if (player == null)
-                  player = FindAnyObjectByType<IsaacBody>();
+                  player = FindObjectOfType<IsaacBody>(true);
 
             // Heart
             UpdateHeartUI(
@@ -130,9 +176,9 @@ public class UIManager : MonoBehaviour
 
             // Consumables
             bombMultiple = player.BombCount;
-            coinStruct.tmpText.text = coinMultiple.ToString("D2");
+            coinStruct.tmpText.text = coinMultiple.ToString("D2"); // not used
             bombStruct.tmpText.text = bombMultiple.ToString("D2");
-            keyStruct.tmpText.text = keyMultiple.ToString("D2");
+            keyStruct.tmpText.text = keyMultiple.ToString("D2"); // not used
       }
 
       /// <summary>
@@ -189,5 +235,41 @@ public class UIManager : MonoBehaviour
                         camera.enabled = active;
                   }
             }
+      }
+
+
+      // 다른 플레이어가 나갔을 때
+      public IEnumerator OnPlayerLeftRoom()
+      {
+            SetActiveMinimap(false);
+
+            Animator animator = leftCanvas.GetComponentInChildren<Animator>(true);
+            animator.gameObject.SetActive(true); // LeftBoard 오브젝트 활성화
+
+            // 애니메이션이 끝날 때까지 대기
+            yield return new WaitForSecondsRealtime(animator.runtimeAnimatorController.animationClips
+                        .FirstOrDefault(clip => clip.name == "AM_LeftAppear")?.length ?? 0f);
+
+            TMP_Text exitText = animator.GetComponentInChildren<TMP_Text>();
+            StartCoroutine(RotateAnimation(exitText.GetComponent<RectTransform>(), 0.75f, 2)); // 텍스트 애니메이션
+
+            yield return TypingCycle(animator.GetComponentInChildren<TMP_Text>(), 
+                  "다른 플레이어가 게임에서 나갔습니다!<br><br><u><color=#fc0000>대기 화면</color></u>으로 돌아갑니다.");
+
+            animator.SetTrigger("Disappear");
+            yield return StartCoroutine(fadeController.FadeInCoroutine(null, 3));
+      }
+
+      private IEnumerator TypingCycle(TMP_Text watingText, string text)
+      {
+            yield return StartCoroutine(TypingAnimation(watingText, null, 0.1f, true)); // untyping
+            yield return new WaitForSecondsRealtime(0.25f);
+            yield return StartCoroutine(TypingAnimation(watingText, text, 0.1f, false)); // typing
+      }
+
+
+      private void OnDisable()
+      {
+            StopAllCoroutines();
       }
 }

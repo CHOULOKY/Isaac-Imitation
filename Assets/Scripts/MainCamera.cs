@@ -12,7 +12,7 @@ public class MainCamera : SetResolution
 
       private void Awake()
       {
-            Isaac = Isaac != null ? Isaac : FindAnyObjectByType<IsaacBody>();
+            if(!Isaac) Isaac = FindAnyObjectByType<IsaacBody>();
       }
 
       protected override void Start()

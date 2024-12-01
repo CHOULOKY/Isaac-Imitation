@@ -1,6 +1,8 @@
 using ObstacleSpace.PoopSpace;
+using Photon.Pun;
 using UnityEngine;
 
+// Photon applied complete
 namespace ObstacleSpace
 {
       namespace PoopSpace
@@ -15,6 +17,8 @@ namespace ObstacleSpace
 
       public class Poop : Obstacle
       {
+            private PhotonView photonView;
+
             public enum PoopType { Normal, Red, Fresh, Gold, Rainbow }
             public PoopType poopType;
 
@@ -25,6 +29,8 @@ namespace ObstacleSpace
 
             private void Awake()
             {
+                  photonView = GetComponent<PhotonView>();
+
                   spriteRenderer = GetComponent<SpriteRenderer>();
             }
 
@@ -37,13 +43,28 @@ namespace ObstacleSpace
             private void OnTriggerEnter2D(Collider2D collision)
             {
                   if (collision.GetComponent<IsaacTear>()) {
+                        // 마스터 클라이언트가 아니고 현재 오브젝트를 소유하고 있지 않으면
+                        if (PhotonNetwork.IsConnected) return;
+                        else if (photonView.Owner != PhotonNetwork.LocalPlayer) {
+                              photonView.RequestOwnership();
+                        }
+
                         if (curPoopIndex >= poopArray[(int)poopType].poops.Length - 1) { }
                         else {
-                              spriteRenderer.sprite = poopArray[(int)poopType].poops[++curPoopIndex];
-                              if (curPoopIndex == poopArray[(int)poopType].poops.Length - 1) {
-                                    GetComponent<Collider2D>().enabled = false;
-                              }
+                              //spriteRenderer.sprite = poopArray[(int)poopType].poops[++curPoopIndex];
+                              //if (curPoopIndex == poopArray[(int)poopType].poops.Length - 1) {
+                              //      GetComponent<Collider2D>().enabled = false;
+                              //}
+                              photonView.RPC(nameof(RPC_SetPoop), RpcTarget.AllBuffered, poopType, ++curPoopIndex);
                         }
+                  }
+            }
+            [PunRPC]
+            private void RPC_SetPoop(PoopType poopType, int index)
+            {
+                  spriteRenderer.sprite = poopArray[(int)poopType].poops[index];
+                  if (curPoopIndex == poopArray[(int)poopType].poops.Length - 1) {
+                        GetComponent<Collider2D>().enabled = false;
                   }
             }
       }

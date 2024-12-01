@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,9 +26,9 @@ public class Minimap : MonoBehaviour
             offsetFromMain = transform.parent.position - Camera.main.transform.position;
       }
 
-      private void Start()
+      private void OnEnable()
       {
-            SetResolution();
+            SetResolutionaMinimap();
       }
 
       private void Update()
@@ -52,8 +53,12 @@ public class Minimap : MonoBehaviour
             }
       }
 
-      private void SetResolution()
+      private float deviceWidth, deviceHeight;
+      private void SetResolutionaMinimap()
       {
+            deviceWidth = SetResolution.deviceWidth;
+            deviceHeight = SetResolution.deviceHeight;
+
             // 미니맵 카메라의 기본 비율 설정
             float miniMapX = 0.74f;
             float miniMapY = 0.74f;
@@ -68,5 +73,21 @@ public class Minimap : MonoBehaviour
                 miniMapW * mainRect.width,
                 miniMapH * mainRect.height
             );
+
+            StartCoroutine(CheckResolution());
+      }
+
+      protected virtual IEnumerator CheckResolution()
+      {
+            WaitForSeconds waitSeconds = new WaitForSeconds(0.5f);
+            while (deviceWidth == SetResolution.deviceWidth || deviceHeight == SetResolution.deviceHeight) {
+                  yield return waitSeconds;
+            }
+            SetResolutionaMinimap();
+      }
+
+      private void OnDisable()
+      {
+            StopCoroutine(nameof(CheckResolution));
       }
 }

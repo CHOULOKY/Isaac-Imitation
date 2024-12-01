@@ -1,10 +1,23 @@
+using Photon.Pun;
 using System.Reflection;
 using UnityEngine;
 
 public class PooterTear : Tear
 {
+      protected override void OnEnable()
+      {
+            // Body만 실행
+            if (PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer)
+                  photonView.RequestOwnership();
+
+            base.OnEnable();
+      }
+
       private void OnTriggerEnter2D(Collider2D collision)
       {
+            // Head면 return
+            if (!PhotonNetwork.IsMasterClient) return;
+
             if (collision.CompareTag("Wall") || collision.CompareTag("Obstacle")) {
                   DisableTear();
             }

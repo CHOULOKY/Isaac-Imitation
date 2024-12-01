@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Photon applied complete
 namespace ObstacleSpace
 {
       public class Obstacle : MonoBehaviour

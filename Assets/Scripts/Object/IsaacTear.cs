@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Reflection;
@@ -5,8 +6,20 @@ using UnityEngine;
 
 public class IsaacTear : Tear
 {
+      protected override void OnEnable()
+      {
+            // Head만 실행
+            if (!PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer)
+                  photonView.RequestOwnership();
+
+            base.OnEnable();
+      }
+
       private void OnTriggerEnter2D(Collider2D collision)
       {
+            // Body면 return
+            if (PhotonNetwork.IsMasterClient) return;
+
             if (collision.CompareTag("Wall") || collision.CompareTag("Obstacle")) {
                   DisableTear();
             }
@@ -72,6 +85,9 @@ public class IsaacTear : Tear
                         return;
             }
 
+            if (monsterRigid.GetComponent<PhotonView>() is PhotonView view) {
+                  if (!view.IsMine) view.RequestOwnership();
+            }
             monsterRigid.velocity = Vector2.zero;
             monsterRigid.AddForce((monsterRigid.position - rigid.position).normalized * adjustedKnockPower, ForceMode2D.Impulse);
       }

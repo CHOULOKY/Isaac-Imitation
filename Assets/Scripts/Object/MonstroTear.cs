@@ -1,9 +1,13 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class MonstroTear : Tear
 {
       private void OnTriggerEnter2D(Collider2D collision)
       {
+            // Head면 return
+            if (!PhotonNetwork.IsMasterClient) return;
+
             if (collision.CompareTag("Wall") || collision.CompareTag("Obstacle")) {
                   DisableTear();
             }
@@ -25,15 +29,17 @@ public class MonstroTear : Tear
 
       private float tearActiveTimeDefault;
 
-      private void Start()
-      {
-            tearActiveTimeDefault = tearActiveTime;
-            RandomizeTearSet();
-      }
-
       protected override void OnEnable()
       {
+            tearActiveTimeDefault = tearActiveTime;
+
+            // Body만 실행
+            if (!PhotonNetwork.IsMasterClient) return;
+            else if (photonView.Owner != PhotonNetwork.LocalPlayer)
+                  photonView.RequestOwnership();
+
             RandomizeTearSet();
+
             base.OnEnable();
       }
 

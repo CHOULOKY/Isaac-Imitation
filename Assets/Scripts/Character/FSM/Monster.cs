@@ -89,9 +89,9 @@ public class Monster<T> : MonoBehaviour where T : class
                         }
 
                         // hurt effect
-                        flashEffect.Flash(new Color(1, 0, 0, 1));
+                        flashEffect.Flash(1f, 0f, 0f, 1f);
                         foreach (FlashEffect effect in GetComponentsInChildren<FlashEffect>()) {
-                              effect.Flash(new Color(1, 0, 0, 1));
+                              effect.Flash(1f, 0f, 0f, 1f);
                         }
                         isHurt = false;
                   }

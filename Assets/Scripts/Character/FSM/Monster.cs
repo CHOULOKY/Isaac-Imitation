@@ -1,10 +1,14 @@
+using Photon.Pun;
 using System.Collections;
 using UnityEngine;
 
 public enum MonsterType { Charger, Gaper, Pooter, Monstro }
-public class Monster<T> : MonoBehaviour where T : class
+public class Monster<T> : MonoBehaviour, IPunObservable where T : class
 {
-      [SerializeField] private MonsterType monsterType;
+      protected PhotonView photonView;
+
+
+      [SerializeField] protected MonsterType monsterType;
 
       protected Rigidbody2D rigid;
 
@@ -27,6 +31,8 @@ public class Monster<T> : MonoBehaviour where T : class
 
       protected virtual void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
             rigid = GetComponent<Rigidbody2D>();
 
             if (spawnEffect == null) {
@@ -52,6 +58,11 @@ public class Monster<T> : MonoBehaviour where T : class
 
       protected virtual void OnEnable()
       {
+            // 처음에는 마스터 클라이언트가 소유하도록
+            if (PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer) {
+                  photonView.RequestOwnership();
+            }
+
             this.gameObject.layer = LayerMask.NameToLayer("Monster");
 
             IsDeath = false;
@@ -62,7 +73,9 @@ public class Monster<T> : MonoBehaviour where T : class
 
       protected virtual void OnDisable()
       {
-            rigid.velocity = Vector2.zero;
+            if (photonView.IsMine) {
+                  rigid.velocity = Vector2.zero;
+            }
       }
 
       protected virtual IEnumerator ParticleSystemCoroutine(ParticleSystem _effect)
@@ -72,7 +85,13 @@ public class Monster<T> : MonoBehaviour where T : class
             effect.transform.localScale = _effect.transform.localScale * 1.5f;
             yield return new WaitUntil(() => effect == null || !effect.isPlaying);
 
-            isSpawned = true;
+            //isSpawned = true;
+            if (photonView.IsMine) photonView.RPC(nameof(RPC_SetisSpawned), RpcTarget.AllBuffered, true);
+      }
+      [PunRPC]
+      protected void RPC_SetisSpawned(bool value)
+      {
+            isSpawned = value;
       }
 
 
@@ -83,19 +102,28 @@ public class Monster<T> : MonoBehaviour where T : class
             set {
                   if (isHurt == false) {
                         isHurt = true;
+                        photonView.RPC(nameof(RPC_SetisSpawned), RpcTarget.Others, true);
                         if (stat.health <= 0) {
                               IsDeath = true;
                               return;
                         }
 
                         // hurt effect
-                        flashEffect.Flash(1f, 0f, 0f, 1f);
+                        //flashEffect.Flash(1f, 0f, 0f, 1f);
                         foreach (FlashEffect effect in GetComponentsInChildren<FlashEffect>()) {
-                              effect.Flash(1f, 0f, 0f, 1f);
+                              //effect.Flash(1f, 0f, 0f, 1f);
+                              photonView.RPC(nameof(effect.Flash), RpcTarget.AllBuffered, 1f, 0f, 0f, 1f);
                         }
+
                         isHurt = false;
+                        photonView.RPC(nameof(RPC_SetisSpawned), RpcTarget.Others, false);
                   }
             }
+      }
+      [PunRPC]
+      protected void RPC_SetisHurt(bool value)
+      {
+            isHurt = value;
       }
 
       protected bool isDeath = false;
@@ -105,12 +133,19 @@ public class Monster<T> : MonoBehaviour where T : class
             set {
                   if (isDeath != value) {
                         isDeath = value;
+                        photonView.RPC(nameof(RPC_SetisDeath), RpcTarget.Others, value);
                         if (isDeath == true) {
-                              SetAfterDeath();
+                              //SetAfterDeath();
+                              photonView.RPC(nameof(SetAfterDeath), RpcTarget.AllBuffered);
                               GetComponentInParent<AddRoom>().MonsterCount -= 1;
                         }
                   }
             }
+      }
+      [PunRPC]
+      protected void RPC_SetisDeath(bool value)
+      {
+            isDeath = value;
       }
 
       protected bool OnDead()
@@ -118,6 +153,7 @@ public class Monster<T> : MonoBehaviour where T : class
             return stat.health <= 0;
       }
 
+      [PunRPC]
       protected virtual void SetAfterDeath()
       {
             this.gameObject.layer = LayerMask.NameToLayer("Destroyed");
@@ -133,6 +169,18 @@ public class Monster<T> : MonoBehaviour where T : class
             Instantiate(deathBloods[UnityEngine.Random.Range(0, 3)],
                         this.transform.position, Quaternion.identity, bloodParent);
             Instantiate(liquidEffect, this.transform.position, Quaternion.identity);
+      }
+
+      public virtual void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+      {
+            if (stream.IsWriting) {
+                  stream.SendNext(stat.health);
+                  stream.SendNext(inputVec);
+            }
+            else {
+                  stat.health = (float)stream.ReceiveNext();
+                  inputVec = (Vector2)stream.ReceiveNext();
+            }
       }
 }
 

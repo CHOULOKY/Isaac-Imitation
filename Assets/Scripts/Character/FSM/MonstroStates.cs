@@ -1,20 +1,14 @@
-using Photon.Realtime;
-using System;
-using System.Collections.Generic;
+using Photon.Pun;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace MonstroStates
 {
       public abstract class MonstroState : BaseState<Monstro>, ITearShooter
       {
+            protected PhotonView photonView;
+
             protected Rigidbody2D rigid;
             protected Collider2D monsterCollider;
             protected Animator animator;
@@ -30,6 +24,8 @@ namespace MonstroStates
 
             public override void OnStateEnter()
             {
+                  photonView = monster.GetComponent<PhotonView>();
+
                   rigid = monster.GetComponent<Rigidbody2D>();
                   monsterCollider = monster.GetComponent<Collider2D>();
                   animator = monster.GetComponent<Animator>();
@@ -56,7 +52,7 @@ namespace MonstroStates
             {
                   if (monster.player.IsHurt) return;
 
-                  if (Physics2D.BoxCast(monsterCollider.bounds.center, monsterCollider.bounds.size, 0, Vector2.zero, 0, 
+                  if (Physics2D.BoxCast(monsterCollider.bounds.center, monsterCollider.bounds.size, 0, Vector2.zero, 0,
                         LayerMask.GetMask("Player"))) {
                         // Debug.Log("Player is on Monster collision!");
                         monster.player.Health -= monster.stat.attackDamage;
@@ -302,7 +298,7 @@ namespace MonstroStates
                               nextPosition = GetNextPosition(2.5f);
 
                               monster.isOnLand = false;
-                              if (!IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) || 
+                              if (!IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) ||
                                     !IsLayerExcluded(shadowCollider, LayerMask.NameToLayer("Player"))) {
                                     AddExcludeLayerToCollider(monsterCollider, LayerMask.NameToLayer("Tear"));
                                     AddExcludeLayerToCollider(shadowCollider, LayerMask.NameToLayer("Player"));
@@ -332,11 +328,11 @@ namespace MonstroStates
             {
                   // 몬스터 등속 이동
                   if (elapsedAnimationTime < animationLength / 2) {
-                        rigid.position = Vector2.Lerp(rigid.position, nextPosition + Vector2.up * 3f, 
+                        rigid.position = Vector2.Lerp(rigid.position, nextPosition + Vector2.up * 3f,
                               elapsedAnimationTime / (animationLength / 2));
                   }
                   else {
-                        rigid.position = Vector2.Lerp(rigid.position, nextPosition + Vector2.up * -shadowOffset, 
+                        rigid.position = Vector2.Lerp(rigid.position, nextPosition + Vector2.up * -shadowOffset,
                               elapsedAnimationTime / animationLength);
                   }
             }
@@ -563,7 +559,7 @@ namespace MonstroStates
                   for (int i = 0; i < 5; i++) {
                         DelaySpawnBlood(deadAnimationLength * (i / 5f));
                   }
-                  
+
                   animator.SetTrigger("Dead");
             }
 
@@ -582,7 +578,7 @@ namespace MonstroStates
             {
                   // 
             }
-            
+
             private async void DelaySetTrigger(Animator anim, string name, float time = 1)
             {
                   await Task.Delay((int)(1000 * time));

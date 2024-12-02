@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -6,6 +7,9 @@ namespace GaperStates
 {
       public abstract class GaperState : BaseState<Gaper>
       {
+            protected PhotonView photonView;
+            protected GaperFSMRPC gaperFSMRPC;
+
             protected Rigidbody2D rigid;
             protected Animator animator;
             protected SpriteRenderer spriteRenderer;
@@ -16,6 +20,9 @@ namespace GaperStates
 
             public override void OnStateEnter()
             {
+                  photonView = monster.GetComponent<PhotonView>();
+                  gaperFSMRPC = monster.GetComponent<GaperFSMRPC>();
+
                   rigid = monster.GetComponent<Rigidbody2D>();
                   animator = monster.GetComponent<Animator>();
                   spriteRenderer = monster.GetComponent<SpriteRenderer>();
@@ -63,7 +70,7 @@ namespace GaperStates
       {
             public MoveState(Gaper _monster) : base(_monster) { }
 
-            float moveForce, maxVelocity;
+            private float moveForce, maxVelocity;
 
             private IsaacBody player;
             private Rigidbody2D playerRigid;
@@ -90,8 +97,11 @@ namespace GaperStates
 
                   if (OnHalfHealth() && !isJustBody) {
                         isJustBody = true;
-                        monsterHead.SetActive(false);
-                        monster.SpawnBloodEffects();
+                        //monsterHead.SetActive(false);
+                        //monster.SpawnBloodEffects();
+                        if (!gaperFSMRPC.alreadyJustBody) {
+                              gaperFSMRPC.FSMRPC_OnceIsJustBody();
+                        }
 
                         moveForce = monster.stat.moveForce - 1;
                         maxVelocity = monster.stat.maxVelocity - 0.5f;
@@ -100,10 +110,12 @@ namespace GaperStates
 
                   if (!isJustBody) {
                         followQueue.Enqueue(playerRigid.position);
-                        if (followQueue.Count > monster.followDelay) {
+                        if (!photonView.IsMine) {
+                              followQueue = gaperFSMRPC.followQueue;
+                        }
+                        else if (followQueue.Count > monster.followDelay) {
                               SetInputVec();
                               MoveMonster();
-                              followQueue.Dequeue();
                         }
                   }
                   else {
@@ -147,18 +159,23 @@ namespace GaperStates
 
             private void SetInputVec()
             {
+                  if (!photonView.IsMine) return;
+
                   if (isJustBody) {
                         monster.inputVec = new Vector2(UnityEngine.Random.Range(-1, 2), UnityEngine.Random.Range(-1, 2));
-                        SetSpriteDirection(monster.inputVec.x > monster.inputVec.y);
+                        //SetSpriteDirection(monster.inputVec.x > monster.inputVec.y);
+                        gaperFSMRPC.FSMRPC_SetSpriteDirection(monster.inputVec, monster.inputVec.x > monster.inputVec.y);
                   }
                   else {
-                        Vector2 chaseDirection = playerRigid.position - this.rigid.position;
+                        Vector2 chaseDirection = followQueue.Dequeue() - this.rigid.position;
                         monster.inputVec.x = Mathf.Sign(chaseDirection.x);
                         monster.inputVec.y = Mathf.Sign(chaseDirection.y);
-                        SetSpriteDirection(Mathf.Abs(chaseDirection.x) > Mathf.Abs(chaseDirection.y));
+                        //SetSpriteDirection(Mathf.Abs(chaseDirection.x) > Mathf.Abs(chaseDirection.y));
+                        gaperFSMRPC.FSMRPC_SetSpriteDirection(monster.inputVec, Mathf.Abs(chaseDirection.x) > Mathf.Abs(chaseDirection.y));
                   }
             }
 
+            #region Disuse due to PunRPC
             private void SetSpriteDirection(bool xGreaterThanY)
             {
                   if (spriteRenderer) {
@@ -181,6 +198,7 @@ namespace GaperStates
                         }
                   }
             }
+            #endregion
 
             private void MoveMonster()
             {

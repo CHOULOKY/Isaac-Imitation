@@ -70,6 +70,13 @@ MonoBehaviour:
   - RPC_SetisClear
   - RPC_SetTrigger
   - RPC_DisableTear
+  - RPC_SetisSpawned
+  - SetAfterDeath
+  - RPC_SetisAttack
+  - RPC_ChangeState
+  - RPC_SetSpriteDirection
+  - RPC_MoveStateVariables
+  - RPC_OnceIsJustBody
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

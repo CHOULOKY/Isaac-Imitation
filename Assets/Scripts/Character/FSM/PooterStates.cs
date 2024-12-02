@@ -2,11 +2,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using ObstacleSpace;
+using Photon.Pun;
 
 namespace PooterStates
 {
       public abstract class PooterState : BaseState<Pooter>
       {
+            protected PhotonView photonView;
+
             protected Rigidbody2D rigid;
             protected Animator animator;
             protected SpriteRenderer spriteRenderer;
@@ -15,6 +18,8 @@ namespace PooterStates
 
             public override void OnStateEnter()
             {
+                  photonView = monster.GetComponent<PhotonView>();
+
                   rigid = monster.GetComponent<Rigidbody2D>();
                   animator = monster.GetComponent<Animator>();
                   spriteRenderer = monster.GetComponent<SpriteRenderer>();

@@ -224,10 +224,14 @@ GameObject:
   - component: {fileID: 5930873239459784391}
   - component: {fileID: 4941223158624830787}
   - component: {fileID: 8883832493036037723}
+  - component: {fileID: 5648190206029674293}
   - component: {fileID: 6317264916901020300}
   - component: {fileID: 2623817448507505417}
   - component: {fileID: 1894979411589955800}
   - component: {fileID: 8439655963707771259}
+  - component: {fileID: 3894324457625008547}
+  - component: {fileID: -1820298037560255191}
+  - component: {fileID: -4087853162881615472}
   m_Layer: 7
   m_Name: Monstro
   m_TagString: Monster
@@ -320,6 +324,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.25
   magnitude: 0.1
+--- !u!114 &5648190206029674293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530711546605071628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab8ddc0abdb2dc49b2e4d6e4b2c9d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &6317264916901020300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -455,6 +471,103 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.09375, y: 1.4375}
   m_Direction: 1
+--- !u!114 &3894324457625008547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530711546605071628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 2
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 5930873239459784391}
+  - {fileID: -1820298037560255191}
+  - {fileID: -4087853162881615472}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-1820298037560255191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530711546605071628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
+--- !u!114 &-4087853162881615472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530711546605071628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: Awake
+  - Type: 9
+    SynchronizeType: 0
+    Name: Dead
+  - Type: 9
+    SynchronizeType: 0
+    Name: Finish
+  - Type: 4
+    SynchronizeType: 0
+    Name: SmallJump
+  - Type: 4
+    SynchronizeType: 0
+    Name: TearSpray
+  - Type: 9
+    SynchronizeType: 0
+    Name: BigJumpUp
+  - Type: 9
+    SynchronizeType: 0
+    Name: BigJumpDown
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!1 &4027906790253182494
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using GaperStates;
+using Photon.Pun;
 using UnityEngine;
 
 public class Gaper : Monster<Gaper>
@@ -7,10 +8,10 @@ public class Gaper : Monster<Gaper>
       private States? curState;
 
       public Vector2 playerSearchBox;
-      public float collisionCircle;
+      public float collisionCircle = 0.35f;
 
       [Tooltip("For following a player (Using \"Queue\")")]
-      public int followDelay;
+      public int followDelay = 12;
 
 
       private void Start()
@@ -28,7 +29,8 @@ public class Gaper : Monster<Gaper>
 
       private void Update()
       {
-            if (curState == States.Dead) {
+            // 소유권이 바뀌어도 fsm update만 실행하면 될 수 있도록 -> OnStateEnter, OnStateExit만 실행
+            if (curState == States.Dead || !photonView.IsMine) {
                   return;
             }
 
@@ -55,6 +57,25 @@ public class Gaper : Monster<Gaper>
       }
 
       private void ChangeState(States nextState)
+      {
+            //curState = nextState;
+
+            //switch (curState) {
+            //      case States.Idle:
+            //            fsm.ChangeState(new IdleState(this));
+            //            break;
+            //      case States.Move:
+            //            fsm.ChangeState(new MoveState(this));
+            //            break;
+            //      case States.Dead:
+            //            fsm.ChangeState(new DeadState(this));
+            //            break;
+            //}
+
+            photonView.RPC(nameof(RPC_ChangeState), RpcTarget.AllBuffered, nextState);
+      }
+      [PunRPC]
+      private void RPC_ChangeState(States nextState)
       {
             curState = nextState;
 

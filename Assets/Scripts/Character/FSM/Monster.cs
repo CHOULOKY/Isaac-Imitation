@@ -112,7 +112,7 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
                         //flashEffect.Flash(1f, 0f, 0f, 1f);
                         foreach (FlashEffect effect in GetComponentsInChildren<FlashEffect>()) {
                               //effect.Flash(1f, 0f, 0f, 1f);
-                              photonView.RPC(nameof(effect.Flash), RpcTarget.AllBuffered, 1f, 0f, 0f, 1f);
+                              photonView.RPC(nameof(effect.Flash), RpcTarget.All, 1f, 0f, 0f, 1f);
                         }
 
                         isHurt = false;
@@ -133,7 +133,7 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
             set {
                   if (isDeath != value) {
                         isDeath = value;
-                        photonView.RPC(nameof(RPC_SetisDeath), RpcTarget.Others, value);
+                        photonView.RPC(nameof(RPC_SetisDeath), RpcTarget.OthersBuffered, value);
                         if (isDeath == true) {
                               //SetAfterDeath();
                               photonView.RPC(nameof(SetAfterDeath), RpcTarget.AllBuffered);

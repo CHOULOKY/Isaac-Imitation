@@ -7,7 +7,7 @@ namespace ChargerStates
       public abstract class ChargerState : BaseState<Charger>
       {
             protected PhotonView photonView;
-            protected FSMRPCController fSMRPCController;
+            protected ChargerFSMRPC chargerFSMRPC;
 
             protected Rigidbody2D rigid;
             protected Animator animator;
@@ -20,7 +20,7 @@ namespace ChargerStates
             public override void OnStateEnter()
             {
                   photonView = monster.GetComponent<PhotonView>();
-                  fSMRPCController = monster.GetComponent<FSMRPCController>();
+                  chargerFSMRPC = monster.GetComponent<ChargerFSMRPC>();
 
                   rigid = monster.GetComponent<Rigidbody2D>();
                   animator = monster.GetComponent<Animator>();
@@ -124,7 +124,7 @@ namespace ChargerStates
                   }
 
                   //SetSpriteDirection();
-                  fSMRPCController.FSMRPC_SetSpriteDirection(monster.inputVec);
+                  chargerFSMRPC.FSMRPC_SetSpriteDirection(monster.inputVec);
             }
 
             #region Disuse due to PunRPC
@@ -187,10 +187,10 @@ namespace ChargerStates
                         monster.inputVec = inputVec;
 
                         //SetSpriteDirection();
-                        fSMRPCController.FSMRPC_SetSpriteDirection(inputVec);
-                        animator.SetBool("isAttack", true);
+                        chargerFSMRPC.FSMRPC_SetSpriteDirection(inputVec);
+                        if (photonView.IsMine) animator.SetBool("isAttack", true);
                   }
-                  else if (!photonView.IsMine) {
+                  else if (photonView.IsMine) {
                         Debug.LogWarning($"{monster.name}: AttackState에서 monster.playerHit를 찾지 못했습니다.");
                         monster.IsAttack = true;
                         isNullPlayerHit = true;

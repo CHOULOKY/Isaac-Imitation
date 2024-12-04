@@ -77,6 +77,33 @@ MonoBehaviour:
   - RPC_SetSpriteDirection
   - RPC_MoveStateVariables
   - RPC_OnceIsJustBody
+  - RPC_SetisAttackFinished
+  - RPC_SetisAttackTiming
+  - RPC_SetDirectionVec
+  - RPC_GetTearAndAttack
+  - RPC_AddExcludeLayerToCollider
+  - RPC_AfterIsDeadFinish
+  - RPC_AnimatorPlay
+  - RPC_ControlExplosionEffect
+  - RPC_RemoveExcludeLayerFromCollider
+  - RPC_SetCurJumpCount
+  - RPC_SetCurSprayCount
+  - RPC_SetDeadAnimators
+  - RPC_SetElapsedTime
+  - RPC_SetisBigJump
+  - RPC_SetisDeadFinish
+  - RPC_SetisJumpUp
+  - RPC_SetisOnLand
+  - RPC_SetisSmallJump
+  - RPC_SetisTearSparied
+  - RPC_SetisTearSpray
+  - RPC_SetisTearTiming
+  - RPC_SetMaxJumpCount
+  - RPC_SetNextPosition
+  - RPC_SetPlayerLatePosition
+  - RPC_SetSprayCount
+  - RPC_SoryBy
+  - RPC_SpawnBloodEffects
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

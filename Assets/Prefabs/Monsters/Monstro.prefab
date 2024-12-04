@@ -289,13 +289,6 @@ MonoBehaviour:
   - {fileID: 4455151714398487210, guid: 052d55fee69f1364689a9b84202d332f, type: 3}
   player: {fileID: 0}
   playerSearchBox: {x: 40, y: 40}
-  isSmallJump: 0
-  isBigJump: 0
-  isTearSpray: 0
-  isJumpUp: 0
-  isOnLand: 0
-  isTearTiming: 0
-  isDeadFinish: 0
 --- !u!114 &4941223158624830787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +329,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab8ddc0abdb2dc49b2e4d6e4b2c9d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elapsedAnimationTime: 0
+  directionVec: {x: 0, y: 0}
+  maxJumpCount: 0
+  curJumpCount: 0
+  nextPosition: {x: 0, y: 0}
+  curJumpDownDelayTime: 0
+  playerLatePosition: {x: 0, y: 0}
+  isTearSparied: 0
+  sprayCount: 0
+  curSprayCount: 0
+  deadEffectAnimators: []
 --- !u!212 &6317264916901020300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -493,6 +497,7 @@ MonoBehaviour:
   - {fileID: 5930873239459784391}
   - {fileID: -1820298037560255191}
   - {fileID: -4087853162881615472}
+  - {fileID: 4497637588877404377}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -554,10 +559,10 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: Finish
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: SmallJump
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: TearSpray
   - Type: 9
     SynchronizeType: 0
@@ -685,6 +690,7 @@ GameObject:
   - component: {fileID: 1422602745773128148}
   - component: {fileID: 5343765385783029669}
   - component: {fileID: 8863821304787506479}
+  - component: {fileID: 4497637588877404377}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
@@ -794,3 +800,36 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.000000029802322}
   m_Size: {x: 0.99999994, y: 0.99999994}
   m_Direction: 1
+--- !u!114 &4497637588877404377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870112365403350234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0

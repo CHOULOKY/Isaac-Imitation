@@ -236,7 +236,7 @@ MonoBehaviour:
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
+    InterpolateLerpSpeed: 5
     ExtrapolateOption: 0
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1

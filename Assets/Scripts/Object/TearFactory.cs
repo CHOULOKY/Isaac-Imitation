@@ -66,7 +66,6 @@ public class TearFactory : MonoBehaviour
       }
 
 
-      [PunRPC]
       public virtual GameObject GetTear(Tears _type, bool _setActive = true)
       {
             int index = (int)_type;

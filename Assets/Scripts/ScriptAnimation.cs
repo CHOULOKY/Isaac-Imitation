@@ -6,7 +6,7 @@ public class ScriptAnimation : MonoBehaviour
 {
       protected virtual IEnumerator TypingAnimation(TMP_Text tmpText, string text, float speed, bool unTyping)
       {
-            WaitForSeconds waitTime = new WaitForSeconds(speed);
+            WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(speed);
 
             if (!unTyping) {
                   tmpText.text = "";

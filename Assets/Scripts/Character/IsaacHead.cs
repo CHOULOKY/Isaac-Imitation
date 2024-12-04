@@ -138,14 +138,16 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             animator.SetTrigger("Fire1");
 
             GameObject curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, true);
-            SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
-            if (tearRigid == default) {
-                  Debug.LogWarning($"{this.name}'s tears don't have Rigidbody2D!");
-                  return;
-            }
+            if (!PhotonNetwork.IsMasterClient) {
+                  SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
+                  if (tearRigid == default) {
+                        Debug.LogWarning($"{this.name}'s tears don't have Rigidbody2D!");
+                        return;
+                  }
 
-            SetTearVelocity(out Vector2 tearVelocity, tearRigid);
-            ShootSettedTear(curTear, tearRigid, tearVelocity);
+                  SetTearVelocity(out Vector2 tearVelocity, tearRigid);
+                  ShootSettedTear(curTear, tearRigid, tearVelocity);
+            }
       }
 
       public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid)

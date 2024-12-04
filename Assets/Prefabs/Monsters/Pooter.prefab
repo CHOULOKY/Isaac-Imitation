@@ -138,7 +138,6 @@ GameObject:
   - component: {fileID: 4837774088807951506}
   - component: {fileID: 48068548704320535}
   - component: {fileID: -6491389187303088308}
-  - component: {fileID: 4455354914442510290}
   m_Layer: 7
   m_Name: Pooter
   m_TagString: Monster
@@ -374,7 +373,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 614682706287158382}
   - {fileID: -6491389187303088308}
-  - {fileID: 4455354914442510290}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -411,27 +410,3 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &4455354914442510290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7420616324612673283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 9
-    SynchronizeType: 0
-    Name: Awake
-  - Type: 9
-    SynchronizeType: 0
-    Name: Attack
-  m_SynchronizeLayers:
-  - SynchronizeType: 0
-    LayerIndex: 0

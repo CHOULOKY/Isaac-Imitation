@@ -97,8 +97,6 @@ GameObject:
   - component: {fileID: 2682940983757920005}
   - component: {fileID: 6467397579896066006}
   - component: {fileID: 3632893413358590584}
-  - component: {fileID: 2159928512222897247}
-  - component: {fileID: 6363315934685577419}
   m_Layer: 7
   m_Name: AttackFly
   m_TagString: Monster
@@ -257,49 +255,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.875, y: 1.46875}
   m_Direction: 0
---- !u!114 &2159928512222897247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7400083636436201928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6115c9835d8a8a428939e9c3d2530f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashMaterial: {fileID: 2100000, guid: e7e6409857a4eea46b0ab0d8ddc4d0ea, type: 2}
-  flashDuration: 0.05
---- !u!114 &6363315934685577419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7400083636436201928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e36435024df7f54daea670a0ac0096c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterType: 4
-  stat:
-    health: 1
-    maxHealth: 1
-    moveForce: 3
-    maxVelocity: 3
-    attackDamage: 1
-    attackSpeed: 0
-    tearSpeed: 0
-  inputVec: {x: 0, y: 0}
-  spawnEffect: {fileID: 2884023872223006942, guid: 0000d416f6fb66142afde9ed07ae1136, type: 3}
-  liquidEffect: {fileID: 5978601803282426345, guid: 22eb9526ea7536a4da5fbf0f4329d8e3, type: 3}
-  bloodParent: {fileID: 0}
-  deathBloods:
-  - {fileID: 85568774224688937, guid: 0cb422df04dfadc4a87a84fc3586b7cb, type: 3}
-  - {fileID: 5711774673240134256, guid: 41df23f776c49e246b01e3e123b9b01f, type: 3}
-  - {fileID: 3758476903617809035, guid: b68debe55527d94439c29edf1dd6edc0, type: 3}
-  playerSearchBox: {x: 40, y: 40}
-  collisionCircle: 0.35
-  followSpeed: 1

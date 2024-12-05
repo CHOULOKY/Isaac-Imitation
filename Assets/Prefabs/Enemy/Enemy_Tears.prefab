@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5283854110631898493}
   - component: {fileID: 243293922090524943}
   - component: {fileID: 3710169290006692262}
+  - component: {fileID: 7268601396534750755}
   m_Layer: 0
   m_Name: Enemy_Tears
   m_TagString: Untagged
@@ -171,3 +172,24 @@ MonoBehaviour:
   Down: 1
   Right: 2
   Left: 3
+--- !u!95 &7268601396534750755
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551995582072663363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

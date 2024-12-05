@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Photon.Pun;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public enum RoomType { Gold, Boss }
 public class RoomTemplates : MonoBehaviour
@@ -21,8 +24,40 @@ public class RoomTemplates : MonoBehaviour
       public int minRoomCount = 5;
 
       public float waitTime = 2f;
-      public bool createdRooms;
-      public bool refreshedRooms = false;
+
+      private bool createdRooms = false;
+      public bool CreatedRooms
+      {
+            get => createdRooms;
+            set {
+                  if (createdRooms != value) {
+                        createdRooms = value;
+                        photonView.RPC(nameof(RPC_SetCreatedRooms), RpcTarget.OthersBuffered, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetCreatedRooms(bool value)
+      {
+            createdRooms = value;
+      }
+
+      private bool refreshedRooms = false;
+      public bool RefreshedRooms
+      {
+            get => refreshedRooms;
+            set {
+                  if (refreshedRooms != value) {
+                        refreshedRooms = value;
+                        photonView.RPC(nameof(RPC_SetRefreshedRooms), RpcTarget.OthersBuffered, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetRefreshedRooms(bool value)
+      {
+            refreshedRooms = value;
+      }
 
       [Header("Doors")]
       public GameObject bossDoor;
@@ -36,8 +71,19 @@ public class RoomTemplates : MonoBehaviour
       [Header("Props")]
       public GameObject prop;
 
+
+      private PhotonView photonView;
+      private void Awake()
+      {
+            photonView = GetComponent<PhotonView>();
+      }
+
+
       private void Update()
       {
+            // 마스터 클라이언트만 실행 (RDG 진행)
+            if (!PhotonNetwork.IsMasterClient) return;
+
             // Test code
             if (Input.GetKeyDown(KeyCode.Escape)) {
                   SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -45,18 +91,27 @@ public class RoomTemplates : MonoBehaviour
 
             if (waitTime <= 0 && createdRooms == false) {
                   createdRooms = true;
-                  RefreshRooms();
+                  //RefreshRooms();
+                  photonView.RPC(nameof(RefreshRooms), RpcTarget.AllBuffered);
             }
             else if (rooms.Count >= minRoomCount && waitTime > 0) {
                   waitTime -= Time.deltaTime;
             }
       }
 
+      [PunRPC]
       private void RefreshRooms()
       {
-            for (int i = 1; i < rooms.Count; i++) {
-                  if (rooms[i].GetComponentInChildren<Modifyer>()) {
-                        rooms[i].GetComponentInChildren<Modifyer>().RefreshRoom();
+            StartCoroutine(RefreshRoomsRoutine());
+      }
+      private IEnumerator RefreshRoomsRoutine()
+      {
+            if (PhotonNetwork.IsMasterClient) {
+                  for (int i = 1; i < rooms.Count; i++) {
+                        if (rooms[i].GetComponentInChildren<Modifyer>()) {
+                              rooms[i].GetComponentInChildren<Modifyer>().RefreshRoom(i);
+                              yield return null;
+                        }
                   }
             }
 
@@ -64,8 +119,10 @@ public class RoomTemplates : MonoBehaviour
                   if (door.doorDirection == 0) continue;
                   else {
                         StartCoroutine(door.ChangeToSelectedDoorCoroutine(bossDoor));
-                        door.transform.parent.parent.GetComponentInChildren<Modifyer>()
-                              .SetSpecialRoom(RoomType.Boss);
+                        if (PhotonNetwork.IsMasterClient) {
+                              door.transform.parent.parent.GetComponentInChildren<Modifyer>()
+                                    .SetSpecialRoom(RoomType.Boss);
+                        }
                         break;
                   }
             }
@@ -75,20 +132,33 @@ public class RoomTemplates : MonoBehaviour
                         foreach (Door door in rooms[i].GetComponentsInChildren<Door>()) {
                               if (door.doorDirection != 0) {
                                     StartCoroutine(door.ChangeToSelectedDoorCoroutine(goldDoor));
-                                    door.transform.parent.parent.GetComponentInChildren<Modifyer>()
-                                          .SetSpecialRoom(RoomType.Gold);
+                                    if (PhotonNetwork.IsMasterClient) {
+                                          door.transform.parent.parent.GetComponentInChildren<Modifyer>()
+                                                .SetSpecialRoom(RoomType.Gold);
+                                    }
                               }
                         }
                         break;
                   }
             }
 
-            refreshedRooms = true;
+            Hashtable props = new Hashtable { { "RefreshedRooms", true } };
+            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+            foreach (var player in PhotonNetwork.PlayerList) {
+                  yield return new WaitUntil(()
+                        => (player.CustomProperties.ContainsKey("RefreshedRooms") && (bool)player.CustomProperties["RefreshedRooms"]));
+            }
+
+            if (PhotonNetwork.IsMasterClient) {
+                  refreshedRooms = true;
+            }
       }
 
 
       private void OnDisable()
       {
+            if (!PhotonNetwork.IsMasterClient) return;
+
             refreshedRooms = false;
       }
 }

@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,19 +28,21 @@ public class Door : MonoBehaviour
       public Vector2 maxBoundaryFromCenter;
       public Vector2 minBoundaryFromCenter;
 
+
       private void Awake()
       {
-            templates = transform.parent.parent.GetComponent<RoomTemplates>();
-            templates = templates != null ? templates : transform.parent.parent.parent.GetComponent<RoomTemplates>();
+            templates = FindAnyObjectByType<RoomTemplates>();
+            //templates = transform.parent.parent.GetComponent<RoomTemplates>();
+            //templates = templates ?? transform.parent.parent.parent.GetComponent<RoomTemplates>();
 
             thisRoom = transform.parent.GetComponent<AddRoom>();
-            thisRoom = thisRoom != null ? thisRoom : transform.parent.parent.GetComponent<AddRoom>();
+            thisRoom = thisRoom ?? transform.parent.parent.GetComponent<AddRoom>();
 
             doorAnimators = new List<Animator>(GetComponentsInChildren<Animator>());
             if (doorDirection == 0) {
                   isaac = isaac != null ? isaac : FindAnyObjectByType<IsaacBody>();
                   foreach (Door door in GetComponentsInChildren<Door>()) {
-                        door.isaac = door.isaac != null ? door.isaac : isaac;
+                        door.isaac = door.isaac ?? isaac;
                   }
             }
       }
@@ -61,7 +64,7 @@ public class Door : MonoBehaviour
 
       private void OnTriggerEnter2D(Collider2D collision)
       {
-            if (!templates.refreshedRooms) return;
+            if (!templates.RefreshedRooms) return;
 
             if (collision.CompareTag("Player") && thisRoom.IsClear && doorDirection != 0) {
                   nextRoomPosition = GetNextRoomPosition(nextRoomPosition);
@@ -149,25 +152,28 @@ public class Door : MonoBehaviour
       {
             foreach (Door door in GetComponentsInChildren<Door>()) {
                   if (door.doorDirection == thisDoor) {
-                        Vector2 nextIsaacPos = door.transform.position;
-                        switch (door.doorDirection) {
-                              case 1:
-                                    nextIsaacPos.y += -1.2f;
-                                    break;
-                              case 2:
-                                    nextIsaacPos.y += 1.2f;
-                                    break;
-                              case 3:
-                                    nextIsaacPos.x += -1.2f;
-                                    break;
-                              case 4:
-                                    nextIsaacPos.x += 1.2f;
-                                    break;
-                        }
-                        isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
+                        // Body¸¸
+                        if (PhotonNetwork.IsMasterClient) {
+                              Vector2 nextIsaacPos = door.transform.position;
+                              switch (door.doorDirection) {
+                                    case 1:
+                                          nextIsaacPos.y += -1.2f;
+                                          break;
+                                    case 2:
+                                          nextIsaacPos.y += 1.2f;
+                                          break;
+                                    case 3:
+                                          nextIsaacPos.x += -1.2f;
+                                          break;
+                                    case 4:
+                                          nextIsaacPos.x += 1.2f;
+                                          break;
+                              }
+                              isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
 
-                        collision.GetComponent<Door>().thisRoom.CurrentRoom = false;
-                        thisRoom.CurrentRoom = true;
+                              collision.GetComponent<Door>().thisRoom.CurrentRoom = false;
+                              thisRoom.CurrentRoom = true;
+                        }
 
                         SetForCameras(thisDoor);
                         break;
@@ -178,7 +184,7 @@ public class Door : MonoBehaviour
       // doorDirection == 0
       private void SetForCameras(int thisDoor)
       {
-            mainCamera = mainCamera != null ? mainCamera : Camera.main.GetComponent<MainCamera>();
+            mainCamera = mainCamera ?? Camera.main.GetComponent<MainCamera>();
 
             mainCamera.maxBoundary = (Vector2)transform.position + maxBoundaryFromCenter;
             mainCamera.minBoundary = (Vector2)transform.position + minBoundaryFromCenter;

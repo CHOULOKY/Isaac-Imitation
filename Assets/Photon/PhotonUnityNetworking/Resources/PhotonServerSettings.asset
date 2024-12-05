@@ -104,6 +104,23 @@ MonoBehaviour:
   - RPC_SetSprayCount
   - RPC_SoryBy
   - RPC_SpawnBloodEffects
+  - RPC_SetRefreshedRooms
+  - RPC_OnBoolChanged
+  - RPC_SetCurrentRoom
+  - RPC_SetIsBossRoom
+  - RPC_SetIsClear
+  - RPC_SetMonsterCount
+  - RPC_SetRooms
+  - RPC_SpawnMonsters
+  - SetRoomParent
+  - RPC_RemoveRoom
+  - RPC_SpawnBossClear
+  - RPC_SpawnClearExit
+  - RPC_SpawnRoomClear
+  - RefreshRooms
+  - RPC_RemoveRoomInList
+  - RPC_Debug
+  - RPC_SetCreatedRooms
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

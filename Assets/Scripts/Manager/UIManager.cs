@@ -128,7 +128,7 @@ public class UIManager : ScriptAnimation
             yield return new WaitForSecondsRealtime(3f); // 3초 대기
 
             Debug.Log("랜덤 맵 생성 알고리즘 실행 중...");
-            yield return new WaitUntil(() => GameManager.Instance.roomTemplates.refreshedRooms);
+            yield return new WaitUntil(() => GameManager.Instance.roomTemplates.RefreshedRooms);
             Debug.Log("랜덤 맵 생성 알고리즘 실행 완료.");
       }
       public IEnumerator GameStartAfter()

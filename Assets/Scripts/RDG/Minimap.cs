@@ -35,11 +35,11 @@ public class Minimap : MonoBehaviour
       {
             transform.parent.position = mainCamera.transform.position + offsetFromMain;
 
-            if (templates.refreshedRooms && !isSetMinimap) {
+            if (templates.RefreshedRooms && !isSetMinimap) {
                   isSetMinimap = true;
 
                   for (int i = 0; i < templates.rooms.Count; i++) {
-                        string roomName = templates.rooms[i].name.Replace("(Clone)", "");
+                        string roomName = templates.rooms[i].name.Replace("(Clone)", "").Replace(" Variant", "");
                         for (int j = 0; j < miniRooms.Length; j++) {
                               if (roomName == miniRooms[j].name) {
                                     float roomX = this.transform.position.x + templates.rooms[i].transform.position.x / 40 * 0.5f;

@@ -115,6 +115,8 @@ public class RoomTemplates : MonoBehaviour
                   }
             }
 
+            yield return new WaitForSecondsRealtime(1f);
+
             foreach (Door door in rooms[^1].GetComponentsInChildren<Door>()) {
                   if (door.doorDirection == 0) continue;
                   else {

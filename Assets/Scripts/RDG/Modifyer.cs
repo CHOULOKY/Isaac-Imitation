@@ -72,9 +72,8 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
                               transform.position, templates.allRooms[i].transform.rotation);
                         //created.transform.parent = templates.transform;
                         //templates.rooms[templates.rooms.IndexOf(this.transform.parent.gameObject)] = created;
-                        SendFunctionExecution(nameof(SetRoomParentNetworked),
-                              new object[] {created.GetComponent<PhotonView>().ViewID,
-                                    templates.GetComponent<PhotonView>().ViewID, roomIndex, false });
+                        SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] {
+                              created.GetComponent<PhotonView>().ViewID, templates.GetComponent<PhotonView>().ViewID, roomIndex, false });
 
                         //Destroy(this.transform.parent.gameObject); // Room
                         // 먼저 자식 포톤뷰 오브젝트를 제거한 다음, 부모(본인) 제거
@@ -125,7 +124,7 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
             }
             //created.transform.parent = thisRoom.transform;
             SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] {
-                              created.GetComponent<PhotonView>().ViewID, thisRoom.GetComponent<PhotonView>().ViewID, true });
+                              created.GetComponent<PhotonView>().ViewID, thisRoom.GetComponent<PhotonView>().ViewID, -1, true });
 
             // transform.parent.transform = Current Room's Transform
             foreach (Transform target in transform.parent.GetComponentsInChildren<Transform>(true)) {
@@ -179,10 +178,12 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
                   // 2. 해당 함수 실행
                   //Invoke(functionName, parameters);
                   if (functionName == nameof(SetRoomParentNetworked)) {
-                        SetRoomParentNetworked((int)parameters[0], (int)parameters[1], (int)parameters[2]);
+                        if (parameters.Length == 4) {
+                              SetRoomParentNetworked((int)parameters[0], (int)parameters[1], (int)parameters[2], (bool)parameters[3]);
+                        }
                   }
-                  else {
-                        Invoke(functionName, 0);
+                  else if (functionName == nameof(DestroyForSpecial)) {
+                        DestroyForSpecial();
                   }
             }
       }

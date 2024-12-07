@@ -36,13 +36,13 @@ public class Door : MonoBehaviour
             //templates = templates ?? transform.parent.parent.parent.GetComponent<RoomTemplates>();
 
             thisRoom = transform.parent.GetComponent<AddRoom>();
-            thisRoom = thisRoom ?? transform.parent.parent.GetComponent<AddRoom>();
+            thisRoom = thisRoom != null ? thisRoom : transform.parent.parent.GetComponent<AddRoom>();
 
             doorAnimators = new List<Animator>(GetComponentsInChildren<Animator>());
             if (doorDirection == 0) {
                   isaac = isaac != null ? isaac : FindAnyObjectByType<IsaacBody>();
                   foreach (Door door in GetComponentsInChildren<Door>()) {
-                        door.isaac = door.isaac ?? isaac;
+                        door.isaac = door.isaac != null ? door.isaac : isaac;
                   }
             }
       }
@@ -51,6 +51,7 @@ public class Door : MonoBehaviour
       private void Update()
       {
             if (doorDirection == 0) {
+                  //Debug.Log($"{gameObject.name} + {thisRoom} + {thisRoom.name} + {thisRoom.GetComponent<PhotonView>()}");
                   if (thisRoom.IsClear && !isDoorOpen) {
                         isDoorOpen = true;
                         DoorAnimatorsPlay("Open");
@@ -74,7 +75,7 @@ public class Door : MonoBehaviour
                   int needThisDoor = GetNeedDoorDirection(collision);
                   foreach (Door door in GetComponentsInChildren<Door>()) {
                         if (door.doorDirection == needThisDoor) {
-                              if ((!thisRoom.IsClear || templates.rooms.IndexOf(thisRoom.gameObject) == 0) 
+                              if ((!thisRoom.IsClear || thisRoom.name.StartsWith("Entry")) 
                                     && !door.isChangedDoor && collision.GetComponent<Door>().isChangedDoor) {
                                     StartCoroutine(door.ChangeToSelectedDoor(collision.GetComponent<Door>().doorObject));
                               }

@@ -7,6 +7,7 @@ using System.Linq;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Photon.Pun;
 using Photon.Realtime;
+using Unity.VisualScripting;
 
 public class LoadingController : ScriptAnimation
 {
@@ -26,6 +27,9 @@ public class LoadingController : ScriptAnimation
 
       [Header("Fade")]
       [SerializeField] private FadeController fadeController;
+
+      [Header("Test")]
+      public bool isTest = false;
 
 
       private static string nextScene = "GameScene";
@@ -64,6 +68,18 @@ public class LoadingController : ScriptAnimation
 
       private IEnumerator LoadSceneProcess()
       {
+            if (isTest) {
+                  yield return new WaitUntil(() => NetworkManager.Instance.isOtherAccess);
+                  Hashtable testProps = new Hashtable { { "CanStartGame", true } };
+                  PhotonNetwork.LocalPlayer.SetCustomProperties(testProps);
+                  foreach (var player in PhotonNetwork.PlayerList) {
+                        yield return new WaitUntil(()
+                              => (player.CustomProperties.ContainsKey("CanStartGame") && (bool)player.CustomProperties["CanStartGame"]));
+                  }
+                  PhotonNetwork.LoadLevel(1);
+                  yield break;
+            }
+
             AsyncOperation asyncOp = SceneManager.LoadSceneAsync(nextScene);
             asyncOp.allowSceneActivation = false;
 

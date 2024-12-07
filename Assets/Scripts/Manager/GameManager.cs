@@ -93,10 +93,17 @@ public class GameManager : MonoBehaviour
       {
             yield return StartCoroutine(uiManager.GameStartBefore());
 
-            IsaacBody player = FindObjectOfType<IsaacBody>(true);
-            player.gameObject.SetActive(true);
+            //IsaacBody player = FindObjectOfType<IsaacBody>(true);
+            //player.gameObject.SetActive(true);
+            photonView.RPC(nameof(ActivePlayer), RpcTarget.AllBuffered);
 
             yield return StartCoroutine(uiManager.GameStartAfter());
+      }
+      [PunRPC]
+      private void ActivePlayer()
+      {
+            IsaacBody player = FindObjectOfType<IsaacBody>(true);
+            player.gameObject.SetActive(true);
       }
 
       [PunRPC]

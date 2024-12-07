@@ -130,16 +130,16 @@ public class AddRoom : MonoBehaviour
 
       private void Start()
       {
+            // 마스터 클라이언트만 실행
+            if (!PhotonNetwork.IsMasterClient) return;
+
             // RDG
-            if (templates && !templates.CreatedRooms) templates.rooms.Add(this.gameObject);
+            if (templates && !templates.createdRooms) templates.rooms.Add(this.gameObject);
 
             // Room & Door
             if (this.gameObject == templates.rooms[0]) {
                   goldRoomDirection = UnityEngine.Random.Range(1, 5);
             }
-
-            // 마스터 클라이언트만 실행
-            if (!PhotonNetwork.IsMasterClient) return;
 
             // Minimap & MonsterCount
             StartCoroutine(SetInitializationRoom());
@@ -291,5 +291,11 @@ public class AddRoom : MonoBehaviour
                   }
             }
             return false;
+      }
+
+
+      private void OnDestroy()
+      {
+            //Debug.LogError(gameObject.name + " + " + photonView.ViewID);
       }
 }

@@ -3,7 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-public class RoomSpawner : MonoBehaviour, IOnEventCallback
+public class RoomSpawner : MonoBehaviour//, IOnEventCallback
 {
       public int openingDirection;
       // 1 --> need bottom door
@@ -38,7 +38,7 @@ public class RoomSpawner : MonoBehaviour, IOnEventCallback
 
       private void Spawn()
       {
-            if (templates.CreatedRooms) return;
+            if (templates.createdRooms) return;
 
             GameObject created = null;
             if (!spawned) {
@@ -54,8 +54,8 @@ public class RoomSpawner : MonoBehaviour, IOnEventCallback
                   }
 
                   if (created != null) {
-                        SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] { 
-                              created.GetComponent<PhotonView>().ViewID, templates.GetComponent<PhotonView>().ViewID });
+                        //SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] { 
+                        //      created.GetComponent<PhotonView>().ViewID, templates.GetComponent<PhotonView>().ViewID });
                         spawned = true;
                   }
             }
@@ -63,19 +63,33 @@ public class RoomSpawner : MonoBehaviour, IOnEventCallback
 
       private GameObject CreateRoomWithDoor(int direction, int index)
       {
+            //switch (direction) {
+            //      case 1:
+            //            return PhotonNetwork.Instantiate(templates.bottomRooms[index].name + " Variant",
+            //                transform.position, templates.bottomRooms[index].transform.rotation);
+            //      case 2:
+            //            return PhotonNetwork.Instantiate(templates.topRooms[index].name + " Variant",
+            //                transform.position, templates.topRooms[index].transform.rotation);
+            //      case 3:
+            //            return PhotonNetwork.Instantiate(templates.leftRooms[index].name + " Variant",
+            //                transform.position, templates.leftRooms[index].transform.rotation);
+            //      case 4:
+            //            return PhotonNetwork.Instantiate(templates.rightRooms[index].name + " Variant",
+            //                transform.position, templates.rightRooms[index].transform.rotation);
+            //}
             switch (direction) {
                   case 1:
-                        return PhotonNetwork.Instantiate(templates.bottomRooms[index].name + " Variant",
-                            transform.position, templates.bottomRooms[index].transform.rotation);
+                        return Instantiate(templates.bottomRooms[index], 
+                              transform.position, templates.bottomRooms[index].transform.rotation, templates.transform);
                   case 2:
-                        return PhotonNetwork.Instantiate(templates.topRooms[index].name + " Variant",
-                            transform.position, templates.topRooms[index].transform.rotation);
+                        return Instantiate(templates.topRooms[index],
+                            transform.position, templates.topRooms[index].transform.rotation, templates.transform);
                   case 3:
-                        return PhotonNetwork.Instantiate(templates.leftRooms[index].name + " Variant",
-                            transform.position, templates.leftRooms[index].transform.rotation);
+                        return Instantiate(templates.leftRooms[index],
+                            transform.position, templates.leftRooms[index].transform.rotation, templates.transform);
                   case 4:
-                        return PhotonNetwork.Instantiate(templates.rightRooms[index].name + " Variant",
-                            transform.position, templates.rightRooms[index].transform.rotation);
+                        return Instantiate(templates.rightRooms[index],
+                            transform.position, templates.rightRooms[index].transform.rotation, templates.transform);
             }
             return null;
       }
@@ -98,15 +112,16 @@ public class RoomSpawner : MonoBehaviour, IOnEventCallback
             // 마스터 클라이언트만 실행
             if (!PhotonNetwork.IsMasterClient) return;
 
-            if (templates.CreatedRooms) return;
+            if (templates.createdRooms) return;
 
             if (other.CompareTag("SpawnPoint")) {
                   if (!other.GetComponent<RoomSpawner>().spawned && !spawned) {
-                        GameObject created = PhotonNetwork.Instantiate(templates.closedRoom.name + " Variant",
-                            transform.position, templates.closedRoom.transform.rotation);
-                        SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] {
-                              created.GetComponent<PhotonView>().ViewID, templates.GetComponent<PhotonView>().ViewID });
-
+                        //GameObject created = PhotonNetwork.Instantiate(templates.closedRoom.name + " Variant",
+                        //    transform.position, templates.closedRoom.transform.rotation);
+                        //SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] {
+                        //      created.GetComponent<PhotonView>().ViewID, templates.GetComponent<PhotonView>().ViewID });
+                        Instantiate(templates.closedRoom,
+                              transform.position, templates.closedRoom.transform.rotation, templates.transform);
                         Destroy(this.gameObject);
                   }
 
@@ -116,62 +131,62 @@ public class RoomSpawner : MonoBehaviour, IOnEventCallback
 
 
 
-      private void SetRoomParentNetworked(int roomViewID, int parentViewID)
-      {
-            PhotonView roomView = PhotonView.Find(roomViewID);
-            PhotonView parentView = PhotonView.Find(parentViewID);
+      //private void SetRoomParentNetworked(int roomViewID, int parentViewID)
+      //{
+      //      PhotonView roomView = PhotonView.Find(roomViewID);
+      //      PhotonView parentView = PhotonView.Find(parentViewID);
 
-            if (roomView != null && parentView != null) {
-                  roomView.transform.parent = parentView.transform;
-            }
-      }
-
-
-      // 이벤트 코드 정의
-      const byte ExecuteFunctionEvent = 1;
-      public void SendFunctionExecution(string functionName, object[] parameters = null)
-      {
-            // 1. 이벤트 데이터 생성
-            object[] eventData = { functionName, parameters };
-
-            // 2. 이벤트 전송
-            PhotonNetwork.RaiseEvent(
-                ExecuteFunctionEvent,          // 이벤트 코드
-                eventData,                     // 이벤트 데이터
-                new RaiseEventOptions { Receivers = ReceiverGroup.All }, // 수신 대상
-                SendOptions.SendReliable       // 전송 옵션
-            );
-
-            //Debug.Log($"Sent event to execute function: {functionName}");
-      }
-      public void OnEvent(EventData photonEvent)
-      {
-            if (photonEvent.Code == ExecuteFunctionEvent) {
-                  // 1. 이벤트 데이터 수신
-                  object[] data = (object[])photonEvent.CustomData;
-                  string functionName = (string)data[0];
-                  object[] parameters = (object[])data[1];
-
-                  // 2. 해당 함수 실행
-                  if (functionName == nameof(SetRoomParentNetworked)) {
-                        SetRoomParentNetworked((int)parameters[0], (int)parameters[1]);
-                  }
-            }
-      }
+      //      if (roomView != null && parentView != null) {
+      //            roomView.transform.parent = parentView.transform;
+      //      }
+      //}
 
 
-      private void OnEnable()
-      {
-            PhotonNetwork.AddCallbackTarget(this);
-      }
-      private void Update()
-      {
-            if (templates.RefreshedRooms) {
-                  PhotonNetwork.RemoveCallbackTarget(this);
-            }
-      }
-      private void OnDestroy()
-      {
-            PhotonNetwork.RemoveCallbackTarget(this);
-      }
+      //// 이벤트 코드 정의
+      //const byte ExecuteFunctionEvent = 1;
+      //public void SendFunctionExecution(string functionName, object[] parameters = null)
+      //{
+      //      // 1. 이벤트 데이터 생성
+      //      object[] eventData = { functionName, parameters };
+
+      //      // 2. 이벤트 전송
+      //      PhotonNetwork.RaiseEvent(
+      //          ExecuteFunctionEvent,          // 이벤트 코드
+      //          eventData,                     // 이벤트 데이터
+      //          new RaiseEventOptions { Receivers = ReceiverGroup.All }, // 수신 대상
+      //          SendOptions.SendReliable       // 전송 옵션
+      //      );
+
+      //      //Debug.Log($"Sent event to execute function: {functionName}");
+      //}
+      //public void OnEvent(EventData photonEvent)
+      //{
+      //      if (photonEvent.Code == ExecuteFunctionEvent) {
+      //            // 1. 이벤트 데이터 수신
+      //            object[] data = (object[])photonEvent.CustomData;
+      //            string functionName = (string)data[0];
+      //            object[] parameters = (object[])data[1];
+
+      //            // 2. 해당 함수 실행
+      //            if (functionName == nameof(SetRoomParentNetworked)) {
+      //                  SetRoomParentNetworked((int)parameters[0], (int)parameters[1]);
+      //            }
+      //      }
+      //}
+
+
+      //private void OnEnable()
+      //{
+      //      PhotonNetwork.AddCallbackTarget(this);
+      //}
+      //private void Update()
+      //{
+      //      if (templates.RefreshedRooms) {
+      //            PhotonNetwork.RemoveCallbackTarget(this);
+      //      }
+      //}
+      //private void OnDestroy()
+      //{
+      //      PhotonNetwork.RemoveCallbackTarget(this);
+      //}
 }

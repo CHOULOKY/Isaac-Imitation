@@ -12,31 +12,31 @@ public class Destroyer : MonoBehaviour
             if (!PhotonNetwork.IsMasterClient) return;
 
 		if (other.CompareTag("Room") && other.transform != this.transform.parent) {
-                  //other.transform.parent.GetComponent<RoomTemplates>().rooms.Remove(other.gameObject);
-                  //PhotonNetwork.Destroy(other.gameObject);
-                  GetComponent<PhotonView>().RPC(
-                        nameof(RPC_RemoveRoomInList), RpcTarget.AllBuffered, other.GetComponent<PhotonView>().ViewID);
+                  other.transform.parent.GetComponent<RoomTemplates>().rooms.Remove(other.gameObject);
+                  Destroy(other.gameObject);
+                  //GetComponent<PhotonView>().RPC(
+                  //      nameof(RPC_RemoveRoomInList), RpcTarget.AllBuffered, other.GetComponent<PhotonView>().ViewID);
             }
 	}
 
 
-      [PunRPC]
-      private void RPC_RemoveRoomInList(int roomViewID)
-      {
-            PhotonView roomView = PhotonView.Find(roomViewID);
+      //[PunRPC]
+      //private void RPC_RemoveRoomInList(int roomViewID)
+      //{
+      //      PhotonView roomView = PhotonView.Find(roomViewID);
 
-            if(roomView == null) return;
+      //      if(roomView == null) return;
 
-            //transform.parent.GetComponent<RoomTemplates>().rooms.Remove(roomView.gameObject);
-            FindAnyObjectByType<RoomTemplates>().rooms.Remove(roomView.gameObject);
+      //      //transform.parent.GetComponent<RoomTemplates>().rooms.Remove(roomView.gameObject);
+      //      FindAnyObjectByType<RoomTemplates>().rooms.Remove(roomView.gameObject);
 
-            if (PhotonNetwork.IsMasterClient) {
-                  // 먼저 자식 포톤뷰 오브젝트를 제거한 다음, 부모(본인) 제거
-                  foreach (PhotonView PV in roomView.GetComponentsInChildren<PhotonView>()
-                        .Where(obj => obj != roomView.gameObject)) {
-                        PhotonNetwork.Destroy(PV.gameObject);
-                  }
-                  PhotonNetwork.Destroy(roomView.gameObject);
-            }
-      }
+      //      if (PhotonNetwork.IsMasterClient) {
+      //            // 먼저 자식 포톤뷰 오브젝트를 제거한 다음, 부모(본인) 제거
+      //            foreach (PhotonView PV in roomView.GetComponentsInChildren<PhotonView>()
+      //                  .Where(obj => obj != roomView.gameObject)) {
+      //                  PhotonNetwork.Destroy(PV.gameObject);
+      //            }
+      //            PhotonNetwork.Destroy(roomView.gameObject);
+      //      }
+      //}
 }

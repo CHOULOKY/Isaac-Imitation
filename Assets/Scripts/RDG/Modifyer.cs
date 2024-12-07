@@ -1,6 +1,8 @@
 using ExitGames.Client.Photon;
+using ObstacleSpace;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -13,8 +15,12 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
       private List<int> directionList;
 
 
+      private PhotonView photonView;
+
       private void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
             templates = FindAnyObjectByType<RoomTemplates>();
             //templates = this.transform.parent.parent.GetComponent<RoomTemplates>();
 
@@ -23,17 +29,14 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
 
       private void OnTriggerEnter2D(Collider2D other)
       {
-            // 마스터 클라이언트만 실행 (RDG 진행)
-            if (!PhotonNetwork.IsMasterClient) return;
-
-            if (templates.CreatedRooms) return;
+            if (templates.createdRooms) return;
 
             if (other.CompareTag("SpawnPoint")) {
                   directionList.Add(other.GetComponent<RoomSpawner>().openingDirection);
             }
       }
 
-      public void RefreshRoom(int roomIndex)
+      public void RefreshRoom()
       {
             string thisName = this.transform.parent.name;
             if (!thisName.Contains("Closed")) {
@@ -70,35 +73,55 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
                         //    Instantiate(templates.allRooms[i], transform.position, templates.allRooms[i].transform.rotation, templates.transform);
                         GameObject created = PhotonNetwork.Instantiate(templates.allRooms[i].name + " Variant",
                               transform.position, templates.allRooms[i].transform.rotation);
-                        //created.transform.parent = templates.transform;
-                        //templates.rooms[templates.rooms.IndexOf(this.transform.parent.gameObject)] = created;
-                        SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] {
+                        created.transform.parent = templates.transform;
+                        int roomIndex = templates.rooms.IndexOf(this.transform.parent.gameObject);
+                        templates.rooms[roomIndex] = created;
+                        created.GetComponentInChildren<Modifyer>()
+                              .SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] {
                               created.GetComponent<PhotonView>().ViewID, templates.GetComponent<PhotonView>().ViewID, roomIndex, false });
 
-                        //Destroy(this.transform.parent.gameObject); // Room
-                        // 먼저 자식 포톤뷰 오브젝트를 제거한 다음, 부모(본인) 제거
-                        foreach (PhotonView PV in this.transform.parent.gameObject.GetComponentsInChildren<PhotonView>()) {
-                              if (PV.gameObject == this.transform.parent.gameObject) continue;
-                              PhotonNetwork.Destroy(PV.gameObject);
-                        }
-                        PhotonNetwork.Destroy(this.transform.parent.gameObject);
+                        Destroy(this.transform.parent.gameObject); // Room
+                        //// 먼저 자식 포톤뷰 오브젝트를 제거한 다음, 부모(본인) 제거
+                        //PhotonView roomPV = this.transform.parent.gameObject.GetComponent<PhotonView>();
+                        //foreach (PhotonView PV in roomPV.GetComponentsInChildren<PhotonView>()) {
+                        //      if (PV.gameObject == roomPV.gameObject) continue;
+                        //      if (!PV.IsMine && PhotonNetwork.IsMasterClient) {
+                        //            //PV.TransferOwnership(PhotonNetwork.LocalPlayer);
+                        //            PV.RequestOwnership();
+                        //      }
+                        //      PhotonNetwork.Destroy(PV.gameObject);
+                        //}
+                        ////Debug.Log($"{transform.parent.gameObject.name} + " +
+                        ////      $"{transform.parent.gameObject.GetComponent<PhotonView>().ViewID} +" +
+                        ////      $"{transform.parent.gameObject.GetComponent<PhotonView>().Owner}");
+                        //if (!roomPV.IsMine && PhotonNetwork.IsMasterClient) {
+                        //      //roomPV.TransferOwnership(PhotonNetwork.LocalPlayer);
+                        //      roomPV.RequestOwnership();
+                        //}
+                        //PhotonNetwork.Destroy(this.transform.parent.gameObject);
                         break;
                   }
             }
       }
 
-
-      private void SetRoomParentNetworked(int roomViewID, int parentViewID, int roomIndex = 0, bool isSpecialRoom = false)
+      
+      private void SetRoomParentNetworked(int childViewID, int parentViewID, int roomIndex = 0, bool isSpecialRoom = false)
       {
-            PhotonView roomView = PhotonView.Find(roomViewID);
+            PhotonView childView = PhotonView.Find(childViewID);
             PhotonView parentView = PhotonView.Find(parentViewID);
 
-            if (roomView != null && parentView != null) {
-                  roomView.transform.parent = parentView.transform;
+            //Debug.Log(childView.name + " + " + roomIndex);
+            if (childView != null && parentView != null) {
+                  childView.transform.parent = parentView.transform;
                   if (!isSpecialRoom) {
+                        //Debug.Log(childView.name + " + " + roomIndex);
                         //templates.rooms[templates.rooms.IndexOf(this.transform.parent.gameObject)] = roomView.gameObject;
-                        templates.rooms[roomIndex] = roomView.gameObject;
+                        templates.rooms[roomIndex] = childView.gameObject;
                   }
+            }
+            else {
+                  Debug.LogWarning($"PhotonView with ID {childViewID} or {parentViewID} has already been destroyed.");
+                  return;
             }
       }
 
@@ -122,27 +145,40 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
                               thisRoom.transform.position, Quaternion.identity);
                         break;
             }
-            //created.transform.parent = thisRoom.transform;
+            created.transform.parent = thisRoom.transform;
             SendFunctionExecution(nameof(SetRoomParentNetworked), new object[] {
-                              created.GetComponent<PhotonView>().ViewID, thisRoom.GetComponent<PhotonView>().ViewID, -1, true });
+                              created.GetComponent<PhotonView>().ViewID, thisRoom.GetComponent<PhotonView>().ViewID, -1, true }); // -1 is null
 
-            // transform.parent.transform = Current Room's Transform
-            foreach (Transform target in transform.parent.GetComponentsInChildren<Transform>(true)) {
-                  if (target.name == "Monsters" || target.name == "Obstacles") {
-                        foreach (PhotonView pv in target.GetComponentsInChildren<PhotonView>()) {
-                              PhotonNetwork.Destroy(pv.gameObject); // Special Room을 위해 몬스터들 삭제
-                        }
-                        //Destroy(target.gameObject);
-                  }
-            }
+            //transform.parent.transform = Current Room's Transform
+            //foreach (Transform target in transform.parent.GetComponentsInChildren<Transform>(true)) {
+            //      if (target.name == "Monsters" || target.name == "Obstacles") {
+            //            //Debug.LogError(target.name);
+            //            if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
+            //            foreach (PhotonView pv in target.GetComponentsInChildren<PhotonView>(true)) {
+            //                  //Debug.LogError(pv.gameObject.name);
+            //                  PhotonNetwork.Destroy(pv.gameObject); // Special Room을 위해 몬스터들 삭제
+            //            }
+            //            //Debug.LogError(target.gameObject.name);
+            //            Destroy(target.gameObject);
+            //      }
+            //}
             SendFunctionExecution(nameof(DestroyForSpecial));
       }
 
       // 이벤트 수신 시 실행하는 함수
-      private void DestroyForSpecial()
+      private IEnumerator DestroyForSpecial()
       {
             foreach (Transform target in transform.parent.GetComponentsInChildren<Transform>(true)) {
                   if (target.name == "Monsters" || target.name == "Obstacles") {
+                        if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
+                        if (PhotonNetwork.IsMasterClient) {
+                              foreach (PhotonView pv in target.GetComponentsInChildren<PhotonView>(true)) {
+                                    PhotonNetwork.Destroy(pv.gameObject); // Special Room을 위해 몬스터들 삭제
+                              }
+                        }
+                        while (target.GetComponentInChildren<PhotonView>(true)) {
+                              yield return null;
+                        }
                         Destroy(target.gameObject);
                   }
             }
@@ -157,11 +193,19 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
             // 1. 이벤트 데이터 생성
             object[] eventData = { functionName, parameters };
 
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions();
+            if (functionName == nameof(SetRoomParentNetworked)) {
+                  raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+            }
+            else if (functionName == nameof(DestroyForSpecial)) {
+                  raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+            }
+
             // 2. 이벤트 전송
             PhotonNetwork.RaiseEvent(
                 ExecuteFunctionEvent,          // 이벤트 코드
                 eventData,                     // 이벤트 데이터
-                new RaiseEventOptions { Receivers = ReceiverGroup.All }, // 수신 대상
+                raiseEventOptions, // 수신 대상
                 SendOptions.SendReliable       // 전송 옵션
             );
 
@@ -183,7 +227,8 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
                         }
                   }
                   else if (functionName == nameof(DestroyForSpecial)) {
-                        DestroyForSpecial();
+                        //DestroyForSpecial();
+                        StartCoroutine(DestroyForSpecial());
                   }
             }
       }
@@ -193,9 +238,11 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
       {
             PhotonNetwork.AddCallbackTarget(this);
       }
+      private bool isRemoveCallback = false;
       private void Update()
       {
-            if (templates.RefreshedRooms) {
+            if (templates.RefreshedRooms && !isRemoveCallback) {
+                  isRemoveCallback = true;
                   PhotonNetwork.RemoveCallbackTarget(this);
             }
       }

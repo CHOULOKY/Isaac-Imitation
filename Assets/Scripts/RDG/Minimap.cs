@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class Minimap : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Minimap : MonoBehaviour
       public GameObject boss;
 
       public RoomTemplates templates;
-      private bool isSetMinimap;
+      private bool isSetMinimap = false;
 
       public MainCamera mainCamera;
       private Vector3 offsetFromMain;
@@ -51,6 +52,9 @@ public class Minimap : MonoBehaviour
                         }
                   }
                   Instantiate(boss, miniRoomsList[^1].transform.position, Quaternion.identity, miniRoomsList[^1].transform);
+
+                  Hashtable miniProps = new Hashtable { { "SetMinimap", true } };
+                  PhotonNetwork.LocalPlayer.SetCustomProperties(miniProps);
             }
       }
 

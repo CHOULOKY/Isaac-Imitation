@@ -10,7 +10,9 @@ public class Monstro : Monster<Monstro>
       private enum States { Idle, SmallJump, BigJump, TearSpray, Dead }
       private States? curState;
 
-      [HideInInspector] public IsaacBody player;
+      private SpriteRenderer spriteRenderer;
+
+      //[HideInInspector] public IsaacBody player;
       public Vector2 playerSearchBox;
 
       #region Attack Pattern State Property
@@ -150,6 +152,8 @@ public class Monstro : Monster<Monstro>
       {
             curState = States.Idle;
             fsm = new FSM<Monstro>(new IdleState(this));
+
+            spriteRenderer = GetComponent<SpriteRenderer>();
       }
 
       protected override void OnEnable()
@@ -321,5 +325,19 @@ public class Monstro : Monster<Monstro>
             //shadow = transform.GetChild(0);
             //Bounds bounds = shadow.GetComponent<Collider2D>().bounds;
             //Gizmos.DrawWireCube(bounds.center, bounds.size);
+      }
+
+
+
+      public override void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+      {
+            base.OnPhotonSerializeView(stream, info);
+
+            if (stream.IsWriting) {
+                  stream.SendNext(spriteRenderer.sortingOrder);
+            }
+            else {
+                  spriteRenderer.sortingOrder = (int)stream.ReceiveNext();
+            }
       }
 }

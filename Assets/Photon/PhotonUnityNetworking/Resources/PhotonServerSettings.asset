@@ -125,6 +125,10 @@ MonoBehaviour:
   - SetRoomParentNetworked
   - ActivePlayer
   - RPC_SetParent
+  - RPC_SetIsSpecialRoom
+  - RPC_GameOver
+  - RPC_RetryGame
+  - RPC_SetCountAfter
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

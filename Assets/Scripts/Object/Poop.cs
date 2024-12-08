@@ -44,7 +44,7 @@ namespace ObstacleSpace
             {
                   if (collision.GetComponent<IsaacTear>()) {
                         // 마스터 클라이언트가 아니고 현재 오브젝트를 소유하고 있지 않으면
-                        if (PhotonNetwork.IsConnected) return;
+                        if (PhotonNetwork.IsMasterClient) return;
                         else if (photonView.Owner != PhotonNetwork.LocalPlayer) {
                               photonView.RequestOwnership();
                         }
@@ -62,6 +62,7 @@ namespace ObstacleSpace
             [PunRPC]
             private void RPC_SetPoop(PoopType poopType, int index)
             {
+                  curPoopIndex = index;
                   spriteRenderer.sprite = poopArray[(int)poopType].poops[index];
                   if (curPoopIndex == poopArray[(int)poopType].poops.Length - 1) {
                         GetComponent<Collider2D>().enabled = false;

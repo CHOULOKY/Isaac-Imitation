@@ -254,7 +254,7 @@ public class UIManager : ScriptAnimation
             StartCoroutine(RotateAnimation(exitText.GetComponent<RectTransform>(), 0.75f, 2)); // 텍스트 애니메이션
 
             yield return TypingCycle(animator.GetComponentInChildren<TMP_Text>(), 
-                  "다른 플레이어가 게임에서 나갔습니다!<br><br><u><color=#fc0000>대기 화면</color></u>으로 돌아갑니다.");
+                  "<br>다른 플레이어가 게임에서 나갔습니다!<br>대기 화면으로 돌아갑니다.");
 
             animator.SetTrigger("Disappear");
             yield return StartCoroutine(fadeController.FadeInCoroutine(null, 3));

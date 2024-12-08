@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class MainCamera : SetResolution
@@ -26,12 +27,19 @@ public class MainCamera : SetResolution
       private float _lerpSpeed, _distance;
       private void LateUpdate()
       {
-            _distance = (transform.position - targetPos).magnitude;
-            _lerpSpeed = _distance >= 10 ? 1 : lerpSpeed;
+            // 마스터 클라이언트만
+            if (PhotonNetwork.IsMasterClient) {
+                  if (!Isaac) Isaac = FindAnyObjectByType<IsaacBody>();
+                  //Debug.Log(Isaac.transform.position);
 
-            targetPos = Isaac.transform.position + offset;
-            targetPos.x = Mathf.Clamp(targetPos.x, minBoundary.x, maxBoundary.x);
-            targetPos.y = Mathf.Clamp(targetPos.y, minBoundary.y, maxBoundary.y);
-            transform.position = Vector3.Lerp(transform.position, targetPos, _lerpSpeed);
+                  _distance = (transform.position - targetPos).magnitude;
+                  _lerpSpeed = _distance >= 10 ? 1 : lerpSpeed;
+
+                  targetPos = Isaac.transform.position + offset;
+                  targetPos.x = Mathf.Clamp(targetPos.x, minBoundary.x, maxBoundary.x);
+                  targetPos.y = Mathf.Clamp(targetPos.y, minBoundary.y, maxBoundary.y);
+                  transform.position = Vector3.Lerp(transform.position, targetPos, _lerpSpeed);
+                  //Debug.Log(targetPos);
+            }
       }
 }

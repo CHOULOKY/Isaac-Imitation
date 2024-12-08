@@ -19,7 +19,7 @@ public class AddRoom : MonoBehaviour
                         if (isClear) {
                               //OnBoolChanged(1, 1, 1, 0.5f);
                               photonView.RPC(nameof(RPC_OnBoolChanged), RpcTarget.AllBuffered, 1f, 1f, 1f, 0.5f);
-                              SpawnItemInRoom();
+                              if(templates.RefreshedRooms) SpawnItemInRoom();
                         }
                         else {
                               //OnBoolChanged(1, 1, 1, 0.2f);
@@ -102,11 +102,13 @@ public class AddRoom : MonoBehaviour
             get => monsterCount;
             set {
                   monsterCount = value;
+                  //Debug.LogError(monsterCount);
                   photonView.RPC(nameof(RPC_SetMonsterCount), RpcTarget.OthersBuffered, value);
 
                   // monsterCount가 0이 되었을 때 동작 수행
                   if (monsterCount == 0) {
                         IsClear = true;
+                        //Debug.LogError(IsClear);
                   }
             }
       }
@@ -114,7 +116,27 @@ public class AddRoom : MonoBehaviour
       private void RPC_SetMonsterCount(int value)
       {
             monsterCount = value;
+            //Debug.LogError(monsterCount);
       }
+
+      private bool isSpecialRoom = false;
+      public bool IsSpecialRoom
+      {
+            get => isSpecialRoom;
+            set {
+                  if (isSpecialRoom != value) {
+                        isSpecialRoom = value;
+                        photonView.RPC(nameof(RPC_SetIsSpecialRoom), RpcTarget.OthersBuffered, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetIsSpecialRoom(bool value)
+      {
+            isSpecialRoom = value;
+      }
+
+
 
       [HideInInspector] public int goldRoomDirection;
 
@@ -148,7 +170,10 @@ public class AddRoom : MonoBehaviour
       private IEnumerator SetInitializationRoom()
       {
             yield return new WaitUntil(() => templates.RefreshedRooms);
-            yield return null;
+            foreach (var player in PhotonNetwork.PlayerList) {
+                  yield return new WaitUntil(()
+                        => (player.CustomProperties.ContainsKey("SetMinimap") && (bool)player.CustomProperties["SetMinimap"]));
+            }
 
             if (this.gameObject == templates.rooms[0]) {
                   IsClear = true;
@@ -163,9 +188,14 @@ public class AddRoom : MonoBehaviour
                         else MonsterCount += 1;
                   }
             }
-            AddRoom bossRoom = templates.rooms[^1].GetComponent<AddRoom>();
-            bossRoom.IsBossRoom = true;
-            bossRoom.MonsterCount = 1;
+
+            if (this.gameObject == templates.rooms[^1]) {
+                  IsBossRoom = true;
+                  MonsterCount = 1;
+                  //AddRoom bossRoom = templates.rooms[^1].GetComponent<AddRoom>();
+                  //bossRoom.IsBossRoom = true;
+                  //bossRoom.MonsterCount = 1;
+            }
       }
 
       [PunRPC]
@@ -173,6 +203,7 @@ public class AddRoom : MonoBehaviour
       {
             if (!templates.RefreshedRooms) return;
 
+            //Debug.LogError(GameManager.Instance.minimap.miniRoomsList.Count + " + " +templates.rooms.IndexOf(this.gameObject));
             GameObject miniRoom = GameManager.Instance.minimap.miniRoomsList[templates.rooms.IndexOf(this.gameObject)];
             foreach (SpriteRenderer renderer in miniRoom.GetComponentsInChildren<SpriteRenderer>()) {
                   renderer.color = new(r, g, b, a);
@@ -201,6 +232,9 @@ public class AddRoom : MonoBehaviour
                               break;
                         }
                   }
+            }
+            else if (isSpecialRoom) {
+                  return;
             }
             else {
                   // 일반 몬스터 활성화

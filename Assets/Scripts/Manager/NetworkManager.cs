@@ -95,11 +95,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
       {
             base.OnPlayerLeftRoom(otherPlayer);
 
+            PhotonNetwork.Disconnect();
             StartCoroutine(GameManager.Instance.OnPlayerLeftRoom());
       }
 
       public override void OnDisconnected(DisconnectCause cause)
       {
-            GameManager.ExitGame();
+            //GameManager.ExitGame();
       }
 }

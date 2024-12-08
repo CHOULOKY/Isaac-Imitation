@@ -106,12 +106,19 @@ public class GameManager : MonoBehaviour
             player.gameObject.SetActive(true);
       }
 
-      [PunRPC]
+      //[PunRPC]
       public void GameOver()
+      {
+            //Time.timeScale = 0;
+            //uiManager.GameOver();
+            // SceneManager.LoadScene(0);
+            photonView.RPC(nameof(RPC_GameOver), RpcTarget.AllBuffered);
+      }
+      [PunRPC]
+      private void RPC_GameOver()
       {
             Time.timeScale = 0;
             uiManager.GameOver();
-            // SceneManager.LoadScene(0);
       }
 
       public void StageClear()
@@ -135,7 +142,13 @@ public class GameManager : MonoBehaviour
       #region For UI Button
       public void RetryGame()
       {
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(1);
+            photonView.RPC(nameof(RPC_RetryGame), RpcTarget.MasterClient);
+      }
+      [PunRPC]
+      private void RPC_RetryGame()
+      {
+            PhotonNetwork.LoadLevel(1);
       }
 
       public static void ExitGame()

@@ -313,8 +313,8 @@ public class IsaacBody : MonoBehaviour, IPunObservable
                   if (isDeath == false) {
                         //isDeath = true;
                         photonView.RPC(nameof(RPC_SetisDeath), RpcTarget.AllBuffered, true);
-                        //GameManager.Instance.GameOver();
-                        photonView.RPC(nameof(GameManager.Instance.GameOver), RpcTarget.AllBuffered);
+                        GameManager.Instance.GameOver();
+                        //photonView.RPC(nameof(GameManager.Instance.GameOver), RpcTarget.AllBuffered);
                   }
             }
       }

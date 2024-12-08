@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class Modifyer : MonoBehaviour, IOnEventCallback
 {
@@ -107,6 +108,8 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
       
       private void SetRoomParentNetworked(int childViewID, int parentViewID, int roomIndex = 0, bool isSpecialRoom = false)
       {
+            //if (!transform.parent.GetComponent<AddRoom>().isSpecialRoom) return;
+
             PhotonView childView = PhotonView.Find(childViewID);
             PhotonView parentView = PhotonView.Find(parentViewID);
 
@@ -150,36 +153,45 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
                               created.GetComponent<PhotonView>().ViewID, thisRoom.GetComponent<PhotonView>().ViewID, -1, true }); // -1 is null
 
             //transform.parent.transform = Current Room's Transform
-            //foreach (Transform target in transform.parent.GetComponentsInChildren<Transform>(true)) {
-            //      if (target.name == "Monsters" || target.name == "Obstacles") {
-            //            //Debug.LogError(target.name);
-            //            if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
-            //            foreach (PhotonView pv in target.GetComponentsInChildren<PhotonView>(true)) {
-            //                  //Debug.LogError(pv.gameObject.name);
-            //                  PhotonNetwork.Destroy(pv.gameObject); // Special Room을 위해 몬스터들 삭제
-            //            }
-            //            //Debug.LogError(target.gameObject.name);
-            //            Destroy(target.gameObject);
-            //      }
-            //}
+            foreach (Transform target in transform.parent.GetComponentsInChildren<Transform>(true)) {
+                  if (target.name == "Monsters" || target.name == "Obstacles") {
+                        ////Debug.LogError(target.name);
+                        //if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
+                        //foreach (PhotonView pv in target.GetComponentsInChildren<PhotonView>(true)) {
+                        //      //Debug.LogError(pv.gameObject.name);
+                        //      PhotonNetwork.Destroy(pv.gameObject); // Special Room을 위해 몬스터들 삭제
+                        //}
+                        ////Debug.LogError(target.gameObject.name);
+                        //Destroy(target.gameObject);
+                        target.gameObject.SetActive(false);
+                  }
+            }
             SendFunctionExecution(nameof(DestroyForSpecial));
       }
 
       // 이벤트 수신 시 실행하는 함수
-      private IEnumerator DestroyForSpecial()
+      private void DestroyForSpecial()
       {
+            if (!transform.parent.GetComponent<AddRoom>().IsSpecialRoom) return;
+
             foreach (Transform target in transform.parent.GetComponentsInChildren<Transform>(true)) {
-                  if (target.name == "Monsters" || target.name == "Obstacles") {
-                        if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
-                        if (PhotonNetwork.IsMasterClient) {
-                              foreach (PhotonView pv in target.GetComponentsInChildren<PhotonView>(true)) {
-                                    PhotonNetwork.Destroy(pv.gameObject); // Special Room을 위해 몬스터들 삭제
-                              }
-                        }
-                        while (target.GetComponentInChildren<PhotonView>(true)) {
-                              yield return null;
-                        }
-                        Destroy(target.gameObject);
+                  if (target.gameObject.name == "Monsters" || target.gameObject.name == "Obstacles") {
+                        //if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
+                        ////Debug.LogError(target.name + " + " +  target.gameObject.activeSelf);
+                        //if (PhotonNetwork.IsMasterClient) {
+                        //      while (target.GetComponentInChildren<PhotonView>(true)) {
+                        //            foreach (PhotonView pv in target.GetComponentsInChildren<PhotonView>(true)) {
+                        //                  if (!pv.IsMine) pv.RequestOwnership(); // 소유권 요청
+                        //                  PhotonNetwork.Destroy(pv.gameObject); // Special Room을 위해 몬스터들 삭제
+                        //            }
+                        //            yield return null;
+                        //      }
+                        //}
+                        //while (target.GetComponentInChildren<PhotonView>(true)) {
+                        //      yield return null;
+                        //}
+                        //Destroy(target.gameObject);
+                        target.gameObject.SetActive(false);
                   }
             }
       }
@@ -193,19 +205,19 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
             // 1. 이벤트 데이터 생성
             object[] eventData = { functionName, parameters };
 
-            RaiseEventOptions raiseEventOptions = new RaiseEventOptions();
-            if (functionName == nameof(SetRoomParentNetworked)) {
-                  raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
-            }
-            else if (functionName == nameof(DestroyForSpecial)) {
-                  raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
-            }
+            //RaiseEventOptions raiseEventOptions = new RaiseEventOptions();
+            //if (functionName == nameof(SetRoomParentNetworked)) {
+            //      raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+            //}
+            //else if (functionName == nameof(DestroyForSpecial)) {
+            //      raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+            //}
 
             // 2. 이벤트 전송
             PhotonNetwork.RaiseEvent(
                 ExecuteFunctionEvent,          // 이벤트 코드
                 eventData,                     // 이벤트 데이터
-                raiseEventOptions, // 수신 대상
+                new RaiseEventOptions { Receivers = ReceiverGroup.Others }, // 수신 대상
                 SendOptions.SendReliable       // 전송 옵션
             );
 
@@ -227,8 +239,8 @@ public class Modifyer : MonoBehaviour, IOnEventCallback
                         }
                   }
                   else if (functionName == nameof(DestroyForSpecial)) {
-                        //DestroyForSpecial();
-                        StartCoroutine(DestroyForSpecial());
+                        DestroyForSpecial();
+                        //StartCoroutine(DestroyForSpecial());
                   }
             }
       }

@@ -102,7 +102,7 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
             set {
                   if (isHurt == false) {
                         isHurt = true;
-                        photonView.RPC(nameof(RPC_SetisSpawned), RpcTarget.Others, true);
+                        photonView.RPC(nameof(RPC_SetisHurt), RpcTarget.Others, true);
                         if (stat.health <= 0) {
                               IsDeath = true;
                               return;
@@ -116,7 +116,7 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
                         }
 
                         isHurt = false;
-                        photonView.RPC(nameof(RPC_SetisSpawned), RpcTarget.Others, false);
+                        photonView.RPC(nameof(RPC_SetisHurt), RpcTarget.Others, false);
                   }
             }
       }
@@ -137,7 +137,8 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
                         if (isDeath == true) {
                               //SetAfterDeath();
                               photonView.RPC(nameof(SetAfterDeath), RpcTarget.AllBuffered);
-                              GetComponentInParent<AddRoom>().MonsterCount -= 1;
+                              //GetComponentInParent<AddRoom>().MonsterCount -= 1;
+                              photonView.RPC(nameof(RPC_SetCountAfter), RpcTarget.MasterClient);
                         }
                   }
             }
@@ -146,6 +147,11 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
       protected void RPC_SetisDeath(bool value)
       {
             isDeath = value;
+      }
+      [PunRPC]
+      protected void RPC_SetCountAfter()
+      {
+            GetComponentInParent<AddRoom>().MonsterCount -= 1;
       }
 
       protected bool OnDead()
@@ -180,6 +186,18 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
             else {
                   stat.health = (float)stream.ReceiveNext();
                   inputVec = (Vector2)stream.ReceiveNext();
+            }
+      }
+
+
+      protected virtual void OnDestroy()
+      {
+            if (PhotonNetwork.IsMasterClient) {
+                  if (GetComponent<PhotonView>() is PhotonView pv) {
+                        if (pv.ViewID <= 0) return;
+                        if (!pv.IsMine) pv.RequestOwnership();
+                        PhotonNetwork.Destroy(gameObject);
+                  }
             }
       }
 }

@@ -47,7 +47,7 @@ public class Pooter : Monster<Pooter>
                   IsAttackTiming = new bool[] { true, isAttackTiming[1] };
             }
             else {
-                  IsAttackTiming = new bool[] { isAttackTiming[0], false };
+                  IsAttackTiming = new bool[] { isAttackTiming[0], true };
             }
       }
 

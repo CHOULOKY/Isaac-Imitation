@@ -11,6 +11,10 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
 {
       private Monstro monster;
       private Rigidbody2D rigid;
+      private Collider2D monsterCollider;
+      private Collider2D shadowCollider;
+
+      public IsaacBody player;
 
       protected override void Awake()
       {
@@ -18,6 +22,10 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
 
             monster = GetComponent<Monstro>();
             rigid = GetComponent<Rigidbody2D>();
+            monsterCollider = GetComponent<Collider2D>();
+            shadowCollider = GetComponentInChildren<Collider2D>();
+
+            player = FindObjectsOfType<IsaacBody>(true).FirstOrDefault();
       }
 
 
@@ -34,18 +42,24 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
             }
       }
 
-      private SpriteRenderer curRenderer, byRenderer;
-      public void FSMRPC_SoryBy(SpriteRenderer _curRenderer, SpriteRenderer _byRenderer, bool wantBackOriginal = false)
+      //private SpriteRenderer curRenderer, byRenderer;
+      //public void FSMRPC_SoryBy(SpriteRenderer _curRenderer, SpriteRenderer _byRenderer, bool wantBackOriginal = false)
+      //{
+      //      curRenderer = _curRenderer;
+      //      byRenderer = _byRenderer;
+      //      photonView.RPC(nameof(RPC_SoryBy), RpcTarget.All, wantBackOriginal);
+      //}
+      public void FSMRPC_SoryBy()
       {
-            curRenderer = _curRenderer;
-            byRenderer = _byRenderer;
-            photonView.RPC(nameof(RPC_SoryBy), RpcTarget.All, wantBackOriginal);
+            //photonView.RPC(nameof(RPC_SoryBy), RpcTarget.All);
+            if (monster.transform.position.y > player.transform.position.y) spriteRenderer.sortingOrder = -1;
+            else spriteRenderer.sortingOrder = 2;
       }
-      [PunRPC]
-      private void RPC_SoryBy(bool wantBackOriginal = false)
-      {
-            monster.sortRendererBy.SortBy(curRenderer, byRenderer, wantBackOriginal);
-      }
+      //[PunRPC]
+      //private void RPC_SoryBy()
+      //{
+      //      monster.sortRendererBy.SortBy(curRenderer, byRenderer, wantBackOriginal);
+      //}
 
       public void FSMRPC_AnimatorPlay(string name, float betweenTime = 0f)
       {
@@ -64,27 +78,33 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
       private Collider2D targetCollider;
 
       // Exclude Layers에 레이어를 추가하는 함수
-      public void FSMRPC_AddExcludeLayerToCollider(Collider2D collder, int layer)
+      public void FSMRPC_AddExcludeLayerToCollider(bool isMonsterColl, int layer)
       {
-            targetCollider = collder;
-            photonView.RPC(nameof(RPC_AddExcludeLayerToCollider), RpcTarget.AllBuffered, layer);
+            //targetCollider = collder;
+            photonView.RPC(nameof(RPC_AddExcludeLayerToCollider), RpcTarget.AllBuffered, isMonsterColl, layer);
       }
       [PunRPC]
-      private void RPC_AddExcludeLayerToCollider(int layer)
+      private void RPC_AddExcludeLayerToCollider(bool isMonsterColl, int layer)
       {
+            if (isMonsterColl) targetCollider = monsterCollider;
+            else targetCollider = shadowCollider;
+
             // 현재 excludeLayers에 layerToAdd를 추가
             targetCollider.excludeLayers |= (1 << layer);
       }
 
       // Exclude Layers에 레이어를 제거하는 함수
-      public void FSMRPC_RemoveExcludeLayerFromCollider(Collider2D collder, int layer)
+      public void FSMRPC_RemoveExcludeLayerFromCollider(bool isMonsterColl, int layer)
       {
-            targetCollider = collder;
-            photonView.RPC(nameof(RPC_RemoveExcludeLayerFromCollider), RpcTarget.AllBuffered, layer);
+            //targetCollider = collder;
+            photonView.RPC(nameof(RPC_RemoveExcludeLayerFromCollider), RpcTarget.AllBuffered, isMonsterColl, layer);
       }
       [PunRPC]
-      private void RPC_RemoveExcludeLayerFromCollider(int layer)
+      private void RPC_RemoveExcludeLayerFromCollider(bool isMonsterColl, int layer)
       {
+            if (isMonsterColl) targetCollider = monsterCollider;
+            else targetCollider = shadowCollider;
+
             // 현재 excludeLayers에서 layerToRemove를 제거
             targetCollider.excludeLayers &= ~(1 << layer);
       }
@@ -95,6 +115,8 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
 
       private void Update()
       {
+            if (!player) player = FindAnyObjectByType<IsaacBody>();
+
             elapsedAnimationTime += Time.deltaTime;
             curJumpDownDelayTime += Time.deltaTime;
       }
@@ -162,12 +184,12 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
       public Vector2 nextPosition = Vector2.zero;
       public void FSMRPC_SetNextPosition(Transform baseTransform, float distance)
       {
-            Vector3 nextDirection = monster.player.transform.position - baseTransform.position;
+            Vector3 nextDirection = player.transform.position - baseTransform.position;
             Vector3 nextPosition = nextDirection.normalized * distance;
             photonView.RPC(nameof(RPC_SetNextPosition), RpcTarget.AllBuffered, baseTransform.position + nextPosition);
       }
       [PunRPC]
-      private void RPC_SetNextPosition(Vector2 _nextPosition)
+      private void RPC_SetNextPosition(Vector3 _nextPosition)
       {
             nextPosition = _nextPosition;
       }

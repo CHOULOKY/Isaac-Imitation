@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -40,6 +41,17 @@ namespace ObstacleSpace
                                           Physics2D.IgnoreCollision(thisCollider, targetScript.GetComponent<Collider2D>(), true);
                                     }
                               }
+                        }
+                  }
+            }
+
+            protected virtual void OnDestroy()
+            {
+                  if (PhotonNetwork.IsMasterClient) {
+                        if (GetComponent<PhotonView>() is PhotonView pv) {
+                              if (pv.ViewID <= 0) return;
+                              if (!pv.IsMine) pv.RequestOwnership();
+                              PhotonNetwork.Destroy(gameObject);
                         }
                   }
             }

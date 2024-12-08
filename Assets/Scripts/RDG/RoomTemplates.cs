@@ -149,6 +149,7 @@ public class RoomTemplates : MonoBehaviour
                   if (door.doorDirection == 0) continue;
                   else {
                         StartCoroutine(door.ChangeToSelectedDoorCoroutine(bossDoor));
+                        door.GetComponentInParent<AddRoom>().IsSpecialRoom = true;
                         if (PhotonNetwork.IsMasterClient) {
                               door.GetComponentInParent<AddRoom>()
                                     .GetComponentInChildren<Modifyer>().SetSpecialRoom(RoomType.Boss);
@@ -163,6 +164,7 @@ public class RoomTemplates : MonoBehaviour
                         foreach (Door door in rooms[i].GetComponentsInChildren<Door>()) {
                               if (door.doorDirection != 0) {
                                     StartCoroutine(door.ChangeToSelectedDoorCoroutine(goldDoor));
+                                    door.GetComponentInParent<AddRoom>().IsSpecialRoom = true;
                                     if (PhotonNetwork.IsMasterClient) {
                                           door.GetComponentInParent<AddRoom>()
                                                 .GetComponentInChildren<Modifyer>().SetSpecialRoom(RoomType.Gold);

@@ -42,6 +42,13 @@ namespace GaperStates
                         spriteRenderer = monster.GetComponent<SpriteRenderer>();
                   }
             }
+
+            public override void OnStateExit()
+            {
+                  if (!animator) {
+                        animator = monster.GetComponent<Animator>();
+                  }
+            }
       }
 
       public class IdleState : GaperState
@@ -62,6 +69,8 @@ namespace GaperStates
 
             public override void OnStateExit()
             {
+                  base.OnStateExit();
+                  //Debug.LogError(animator);
                   animator.SetTrigger("Awake");
             }
       }

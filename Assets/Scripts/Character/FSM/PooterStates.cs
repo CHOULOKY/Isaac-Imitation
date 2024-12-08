@@ -35,6 +35,13 @@ namespace PooterStates
                         spriteRenderer = monster.GetComponent<SpriteRenderer>();
                   }
             }
+
+            public override void OnStateExit()
+            {
+                  if (!animator) {
+                        animator = monster.GetComponent<Animator>();
+                  }
+            }
       }
 
       public class IdleState : PooterState
@@ -53,6 +60,8 @@ namespace PooterStates
 
             public override void OnStateExit()
             {
+                  base.OnStateExit();
+                  //Debug.LogError(animator);
                   animator.SetTrigger("Awake");
             }
       }
@@ -179,10 +188,12 @@ namespace PooterStates
                   //      AttackUsingTear(secondTear);
                   //}
                   if (monster.IsAttackTiming[0]) {
+                        //Debug.LogError(1);
                         monster.IsAttackTiming = new bool[] { false, monster.IsAttackTiming[1] };
                         pooterFSMRPC.FSMRPC_GetTearAndAttack(tearType);
                   }
                   else if (monster.IsAttackTiming[1]) {
+                        //Debug.LogError(2);
                         monster.IsAttackTiming = new bool[] { monster.IsAttackTiming[0], false };
                         pooterFSMRPC.FSMRPC_GetTearAndAttack(tearType);
                   }

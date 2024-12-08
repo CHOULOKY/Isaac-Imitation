@@ -38,6 +38,13 @@ namespace ChargerStates
                         spriteRenderer = monster.GetComponent<SpriteRenderer>();
                   }
             }
+
+            public override void OnStateExit()
+            {
+                  if (!animator) {
+                        animator = monster.GetComponent<Animator>();
+                  }
+            }
       }
 
       public class IdleState : ChargerState
@@ -56,7 +63,8 @@ namespace ChargerStates
 
             public override void OnStateExit()
             {
-                  if (!animator) animator = monster.GetComponent<Animator>();
+                  base.OnStateExit();
+                  //Debug.LogError(animator);
                   animator.SetTrigger("Awake");
             }
       }

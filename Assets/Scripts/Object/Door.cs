@@ -170,6 +170,8 @@ public class Door : MonoBehaviour
                                           nextIsaacPos.x += 1.2f;
                                           break;
                               }
+                              //Debug.LogError(isaac);
+                              isaac = isaac != null ? isaac : FindAnyObjectByType<IsaacBody>();
                               isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
 
                               collision.GetComponent<Door>().thisRoom.CurrentRoom = false;
@@ -185,7 +187,7 @@ public class Door : MonoBehaviour
       // doorDirection == 0
       private void SetForCameras(int thisDoor)
       {
-            mainCamera = mainCamera ?? Camera.main.GetComponent<MainCamera>();
+            mainCamera = mainCamera != null ? mainCamera : Camera.main.GetComponent<MainCamera>();
 
             mainCamera.maxBoundary = (Vector2)transform.position + maxBoundaryFromCenter;
             mainCamera.minBoundary = (Vector2)transform.position + minBoundaryFromCenter;

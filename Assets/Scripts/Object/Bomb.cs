@@ -111,6 +111,9 @@ namespace ItemSpace
                                           out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)) {
                                           if (statField.GetValue(script) is MonsterStat monsterStat &&
                                                 monsterTypeField.GetValue(script) is MonsterType monsterType) {
+                                                if (hit.collider.GetComponent<PhotonView>() is PhotonView pv) {
+                                                      if (!pv.IsMine) pv.RequestOwnership();
+                                                }
                                                 monsterStat.health -= damage;
                                                 isHurtProperty.SetValue(script, true);
                                                 ApplyKnockTo(script.GetComponent<Rigidbody2D>(), monsterType);
@@ -122,21 +125,21 @@ namespace ItemSpace
                                     break;
                               case "Obstacle":
                                     SpriteRenderer hitSR = hit.collider.GetComponent<SpriteRenderer>();
-                                    switch (hit.collider.GetComponent<Obstacle>().GetType().ToString()) {
-                                          case "Poop":
-                                                Poop poopScript = hit.collider.GetComponent<Poop>();
-                                                hitSR.sprite = poopScript.poopArray[(int)poopScript.poopType].destroyed;
-                                                break;
-                                          case "Rock":
-                                                Rock rockScript = hit.collider.GetComponent<Rock>();
-                                                Sprite destroyedSprite = rockScript.rockArray[(int)rockScript.rockType].destroyed;
-                                                if (destroyedSprite) hitSR.sprite = destroyedSprite;
-                                                break;
-                                          case "Web":
-                                                Web webScript = hit.collider.GetComponent<Web>();
-                                                hitSR.sprite = webScript.destroyed;
-                                                break;
+                                    string hitName = hit.collider.GetComponent<Obstacle>().GetType().ToString();
+                                    if (hitName.Contains("Poop")) {
+                                          Poop poopScript = hit.collider.GetComponent<Poop>();
+                                          hitSR.sprite = poopScript.poopArray[(int)poopScript.poopType].destroyed;
                                     }
+                                    else if (hitName.Contains("Rock")) {
+                                          Rock rockScript = hit.collider.GetComponent<Rock>();
+                                          Sprite destroyedSprite = rockScript.rockArray[(int)rockScript.rockType].destroyed;
+                                          if (destroyedSprite) hitSR.sprite = destroyedSprite;
+                                    }
+                                    else if (hitName.Contains("Web")) {
+                                          Web webScript = hit.collider.GetComponent<Web>();
+                                          hitSR.sprite = webScript.destroyed;
+                                    }
+                                    hitSR.GetComponent<Collider2D>().enabled = false;
                                     break;
                         }
                   }

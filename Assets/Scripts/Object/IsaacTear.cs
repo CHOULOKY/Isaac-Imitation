@@ -25,12 +25,16 @@ public class IsaacTear : Tear
             }
             else if (collision.CompareTag("Monster")) {
                   DisableTear();
+                  if (collision.GetComponent<PhotonView>() is PhotonView pv) {
+                        if (!pv.IsMine) pv.RequestOwnership();
+                  }
 
                   if (TryGetMonsterFields(collision, out MonoBehaviour script, out FieldInfo statField,
                       out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)) {
                         if (statField.GetValue(script) is MonsterStat monsterStat &&
                             monsterTypeField.GetValue(script) is MonsterType monsterType) {
                               monsterStat.health -= tearDamage;
+                              //Debug.LogError(monsterStat.health + " + " + tearDamage);
                               isHurtProperty.SetValue(script, true);
                               ApplyKnockToMonster(monsterType, script.GetComponent<Rigidbody2D>());
                         }

@@ -43,7 +43,7 @@ public class RoomSpawner : MonoBehaviour//, IOnEventCallback
             GameObject created = null;
             if (!spawned) {
                   if (templates.rooms.IndexOf(transform.parent.parent.gameObject) == 0 &&
-                      openingDirection == transform.parent.parent.GetComponent<AddRoom>().goldRoomDirection) {
+                      openingDirection == transform.parent.parent.GetComponent<AddRoom>().GoldRoomDirection) {
                         created = CreateRoomWithDoor(openingDirection, 0);
                   }
                   else {

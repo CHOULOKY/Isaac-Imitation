@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 
-public class MonstroFSMRPC : FSMRPCController, ITearShooter
+public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
 {
       private Monstro monster;
       private Rigidbody2D rigid;
@@ -117,20 +117,20 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
       {
             if (!player) player = FindAnyObjectByType<IsaacBody>();
 
-            elapsedAnimationTime += Time.deltaTime;
-            curJumpDownDelayTime += Time.deltaTime;
+            //elapsedAnimationTime += Time.deltaTime;
+            //curJumpDownDelayTime += Time.deltaTime;
       }
 
       public float elapsedAnimationTime = 0;
-      public void FSMRPC_SetElapsedTime(float time)
-      {
-            photonView.RPC(nameof(RPC_SetElapsedTime), RpcTarget.AllBuffered, time);
-      }
-      [PunRPC]
-      private void RPC_SetElapsedTime(float time)
-      {
-            elapsedAnimationTime = time;
-      }
+      //public void FSMRPC_SetElapsedTime(float time)
+      //{
+      //      photonView.RPC(nameof(RPC_SetElapsedTime), RpcTarget.AllBuffered, time);
+      //}
+      //[PunRPC]
+      //private void RPC_SetElapsedTime(float time)
+      //{
+      //      elapsedAnimationTime = time;
+      //}
 
       public Vector2 directionVec = default;
       public void FSMRPC_SetDirectionVec(Vector2 valueVec)
@@ -171,7 +171,7 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
       public int curJumpCount = 0;
       public void FSMRPC_SetCurJumpCount(int value)
       {
-            photonView.RPC(nameof(RPC_SetCurJumpCount), RpcTarget.AllBuffered, value);
+            photonView.RPC(nameof(RPC_SetCurJumpCount), RpcTarget.OthersBuffered, value);
       }
       [PunRPC]
       private void RPC_SetCurJumpCount(int value)
@@ -237,7 +237,7 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
       public int curSprayCount = 0;
       public void FSMRPC_SetCurSprayCount(int value)
       {
-            photonView.RPC(nameof(RPC_SetCurSprayCount), RpcTarget.AllBuffered, value);
+            photonView.RPC(nameof(RPC_SetCurSprayCount), RpcTarget.OthersBuffered, value);
       }
       [PunRPC]
       private void RPC_SetCurSprayCount(int value)
@@ -250,12 +250,12 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
       private bool isSprayState = false;
       public void FSMRPC_GetTearAndAttack(TearFactory.Tears tearType, int tearCount, bool _isSprayState = false)
       {
-            isSprayState = _isSprayState;
             photonView.RPC(nameof(RPC_GetTearAndAttack), RpcTarget.AllBuffered, tearType, tearCount, _isSprayState);
       }
       [PunRPC]
-      private void RPC_GetTearAndAttack(TearFactory.Tears tearType, int tearCount)
+      private void RPC_GetTearAndAttack(TearFactory.Tears tearType, int tearCount, bool _isSprayState)
       {
+            isSprayState = _isSprayState;
             for (int i = 0; i < tearCount; i++) {
                   GameObject tear = GameManager.Instance.monsterTearFactory.GetTear(tearType, true);
                   if (PhotonNetwork.IsMasterClient) AttackUsingTear(tear);
@@ -383,6 +383,21 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter
             await Task.Delay((int)(1000 * time));
 
             target.parent = parent;
+      }
+
+
+
+
+      public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+      {
+            if (stream.IsWriting) {
+                  stream.SendNext(elapsedAnimationTime);
+                  stream.SendNext(curJumpDownDelayTime);
+            }
+            else {
+                  elapsedAnimationTime = (float)stream.ReceiveNext();
+                  curJumpDownDelayTime = (float)stream.ReceiveNext();
+            }
       }
       #endregion
 }

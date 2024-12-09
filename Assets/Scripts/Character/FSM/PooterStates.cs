@@ -146,7 +146,7 @@ namespace PooterStates
             public AttackState(Pooter _monster) : base(_monster) { }
 
             private const TearFactory.Tears tearType = TearFactory.Tears.Basic;
-            private GameObject firstTear, secondTear;
+            //private GameObject firstTear, secondTear;
 
             public override void OnStateEnter()
             {

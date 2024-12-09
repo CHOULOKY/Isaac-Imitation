@@ -138,7 +138,22 @@ public class AddRoom : MonoBehaviour
 
 
 
-      [HideInInspector] public int goldRoomDirection;
+      private int goldRoomDirection;
+      public int GoldRoomDirection
+      {
+            get => goldRoomDirection;
+            set {
+                  if (goldRoomDirection != value) {
+                        goldRoomDirection = value;
+                        photonView.RPC(nameof(RPC_SetGoldRoomDirection), RpcTarget.OthersBuffered, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetGoldRoomDirection(int value)
+      {
+            goldRoomDirection = value;
+      }
 
       private PhotonView photonView;
 
@@ -160,7 +175,7 @@ public class AddRoom : MonoBehaviour
 
             // Room & Door
             if (this.gameObject == templates.rooms[0]) {
-                  goldRoomDirection = UnityEngine.Random.Range(1, 5);
+                  GoldRoomDirection = UnityEngine.Random.Range(1, 5);
             }
 
             // Minimap & MonsterCount

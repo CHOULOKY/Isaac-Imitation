@@ -91,7 +91,7 @@ namespace MonstroStates
             // Exclude Layers에 레이어를 추가하는 함수
             protected virtual void AddExcludeLayerToCollider(Collider2D collider, int layer)
             {
-                  bool isMonsterColl = false;
+                  bool isMonsterColl;
                   if (collider.transform.name.Contains("Shadow")) isMonsterColl = true;
                   else isMonsterColl = false;
 
@@ -273,7 +273,9 @@ namespace MonstroStates
                         monstroFSMRPC.FSMRPC_SetMaxJumpCount(monstroFSMRPC.maxJumpCount);
                   }
 
-                  shadowOffset = shadow.localPosition;
+                  if (photonView.IsMine) {
+                        shadowOffset = shadow.localPosition;
+                  }
                   shadow.parent = null;
 
                   // 애니메이션의 길이 가져오기
@@ -283,7 +285,6 @@ namespace MonstroStates
 
                   if (photonView.IsMine) {
                         animator.SetBool("SmallJump", true);
-                        monstroFSMRPC.FSMRPC_SetElapsedTime(0);
                   }
             }
 
@@ -311,7 +312,9 @@ namespace MonstroStates
                   monster.IsOnLand = false;
 
                   shadow.parent = monster.transform;
-                  shadow.localPosition = shadowOffset;
+                  if (photonView.IsMine) {
+                        shadow.localPosition = shadowOffset;
+                  }
                   if (IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) ||
                         IsLayerExcluded(shadowCollider, LayerMask.NameToLayer("Player"))) {
                         RemoveExcludeLayerFromCollider(monsterCollider, LayerMask.NameToLayer("Tear"));
@@ -330,14 +333,17 @@ namespace MonstroStates
 
             private void SetBeforeNextJump()
             {
-                  //elapsedAnimationTime += Time.deltaTime;
+                  monstroFSMRPC.elapsedAnimationTime += Time.deltaTime;
                   // 애니메이션이 끝나면 다시 재생
                   if (monstroFSMRPC.elapsedAnimationTime >= animationLength || monstroFSMRPC.curJumpCount == monstroFSMRPC.maxJumpCount) {
                         if (monstroFSMRPC.curJumpCount > 0) {
                               //elapsedAnimationTime = 0f;
-                              monstroFSMRPC.FSMRPC_SetElapsedTime(0);
+                              //monstroFSMRPC.FSMRPC_SetElapsedTime(0);
+                              monstroFSMRPC.elapsedAnimationTime = 0;
                               //curjumpCount--;
-                              monstroFSMRPC.FSMRPC_SetCurJumpCount(monstroFSMRPC.curJumpCount--);
+                              monstroFSMRPC.curJumpCount--;
+                              monstroFSMRPC.FSMRPC_SetCurJumpCount(monstroFSMRPC.curJumpCount);
+                              //Debug.LogError(monstroFSMRPC.curJumpCount);
 
                               //animator.Play("AM_MonstroSmallJump", 0, 0f); // 0프레임부터 재생
                               //Debug.LogError(1);
@@ -409,7 +415,9 @@ namespace MonstroStates
                   base.OnStateEnter();
 
                   jumpUpPosition = rigid.position + Vector2.up * 15;
-                  shadowOffset = shadow.localPosition;
+                  if (photonView.IsMine) {
+                        shadowOffset = shadow.localPosition;
+                  }
                   shadow.parent = null;
 
                   // 애니메이션의 길이 가져오기
@@ -452,7 +460,8 @@ namespace MonstroStates
                                     monstroFSMRPC.FSMRPC_SetisTearSparied(true);
                                     TearSpray();
                                     DelaySpawnBlood();
-                                    monstroFSMRPC.FSMRPC_SetElapsedTime(0);
+                                    //monstroFSMRPC.FSMRPC_SetElapsedTime(0);
+                                    monstroFSMRPC.elapsedAnimationTime = 0;
                               }
                               if (IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) ||
                                     IsLayerExcluded(shadowCollider, LayerMask.NameToLayer("Player"))) {
@@ -478,7 +487,9 @@ namespace MonstroStates
                   monster.IsOnLand = false;
 
                   shadow.parent = monster.transform;
-                  shadow.localPosition = shadowOffset;
+                  if (photonView.IsMine) {
+                        shadow.localPosition = shadowOffset;
+                  }
                   if (IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) ||
                         IsLayerExcluded(shadowCollider, LayerMask.NameToLayer("Player"))) {
                         RemoveExcludeLayerFromCollider(monsterCollider, LayerMask.NameToLayer("Tear"));
@@ -555,13 +566,15 @@ namespace MonstroStates
                   if (monster.IsTearTiming && monstroFSMRPC.curSprayCount > 0) {
                         monster.IsTearTiming = false;
                         //curSprayCount--;
-                        monstroFSMRPC.FSMRPC_SetCurSprayCount(monstroFSMRPC.curSprayCount--);
+                        monstroFSMRPC.curJumpCount--;
+                        monstroFSMRPC.FSMRPC_SetCurSprayCount(monstroFSMRPC.curSprayCount);
                         TearSpray();
                         DelaySpawnBlood();
                   }
 
-                  //elapsedAnimationTime += Time.deltaTime;
                   // 애니메이션이 끝나면 다시 재생
+                  //elapsedAnimationTime += Time.deltaTime;
+                  monstroFSMRPC.elapsedAnimationTime += Time.deltaTime;
                   if (monstroFSMRPC.elapsedAnimationTime >= animationLength 
                         || monstroFSMRPC.curSprayCount == monstroFSMRPC.sprayCount) {
                         // 눈물 분사 횟수 모두 소진되면 상태 변경
@@ -570,7 +583,8 @@ namespace MonstroStates
                         }
                         else {
                               //elapsedAnimationTime = 0f;
-                              monstroFSMRPC.FSMRPC_SetElapsedTime(0);
+                              //monstroFSMRPC.FSMRPC_SetElapsedTime(0);
+                              monstroFSMRPC.elapsedAnimationTime = 0;
                               if (monstroFSMRPC.curSprayCount == monstroFSMRPC.sprayCount) {
                                     animator.SetBool("TearSpray", true);
                               }

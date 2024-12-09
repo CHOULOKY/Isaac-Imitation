@@ -160,6 +160,7 @@ public class RoomTemplates : MonoBehaviour
             }
 
             for (int i = 1; i < (rooms.Count < 5 ? rooms.Count : 5); i++) {
+                  // 문이 한 개인 방이면
                   if (rooms[i].GetComponentsInChildren<Door>().Length == 2) {
                         foreach (Door door in rooms[i].GetComponentsInChildren<Door>()) {
                               if (door.doorDirection != 0) {

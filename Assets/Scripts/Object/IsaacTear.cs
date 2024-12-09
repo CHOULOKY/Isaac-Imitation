@@ -25,17 +25,21 @@ public class IsaacTear : Tear
             }
             else if (collision.CompareTag("Monster")) {
                   DisableTear();
-                  if (collision.GetComponent<PhotonView>() is PhotonView pv) {
-                        if (!pv.IsMine) pv.RequestOwnership();
-                  }
+                  //if (collision.GetComponent<PhotonView>() is PhotonView pv) {
+                  //      if (!pv.IsMine) pv.RequestOwnership();
+                  //}
 
-                  if (TryGetMonsterFields(collision, out MonoBehaviour script, out FieldInfo statField,
+                  if (TryGetMonsterFields(collision, out MonoBehaviour script, out PropertyInfo healthProperty,
                       out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)) {
-                        if (statField.GetValue(script) is MonsterStat monsterStat &&
-                            monsterTypeField.GetValue(script) is MonsterType monsterType) {
-                              monsterStat.health -= tearDamage;
+                        if (monsterTypeField.GetValue(script) is MonsterType monsterType) {
+                              //monsterStat.health -= tearDamage;
+                              if (healthProperty.GetValue(script) is float currentHealth) { // float 타입으로 가정
+                                    float newHealth = currentHealth - tearDamage;
+                                    healthProperty.SetValue(script, newHealth);
+                              }
                               //Debug.LogError(monsterStat.health + " + " + tearDamage);
                               isHurtProperty.SetValue(script, true);
+
                               ApplyKnockToMonster(monsterType, script.GetComponent<Rigidbody2D>());
                         }
                   }
@@ -45,12 +49,12 @@ public class IsaacTear : Tear
             }
       }
 
-      private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out FieldInfo statField,
+      private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out PropertyInfo healthProperty,
           out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)
       {
             // 초기화
             script = null;
-            statField = null;
+            healthProperty = null;
             isHurtProperty = null;
             monsterTypeField = null;
 
@@ -60,12 +64,12 @@ public class IsaacTear : Tear
                   Type baseType = s.GetType()?.BaseType; // 부모: Monster
                   if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(Monster<>)) {
                         // stat 필드와 IsHurt 프로퍼티 찾기
-                        statField = baseType.GetField("stat", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                        healthProperty = baseType.GetProperty("Health", BindingFlags.Instance | BindingFlags.Public);
                         isHurtProperty = baseType.GetProperty("IsHurt", BindingFlags.Instance | BindingFlags.Public);
                         // MonsterType 열거형 필드 찾기
                         monsterTypeField = baseType.GetField("monsterType", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
 
-                        if (statField != null && isHurtProperty != null && monsterTypeField != null) {
+                        if (healthProperty != null && isHurtProperty != null && monsterTypeField != null) {
                               script = s;
                               return true;
                         }

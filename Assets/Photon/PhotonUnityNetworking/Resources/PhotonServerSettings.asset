@@ -129,6 +129,8 @@ MonoBehaviour:
   - RPC_GameOver
   - RPC_RetryGame
   - RPC_SetCountAfter
+  - RPC_SetStatHealth
+  - RPC_SetGoldRoomDirection
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

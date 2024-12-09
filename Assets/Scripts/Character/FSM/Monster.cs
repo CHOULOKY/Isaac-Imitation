@@ -15,6 +15,22 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
       protected FSM<T> fsm;
 
       public MonsterStat stat;
+      public float Health
+      {
+            get => stat.health;
+            set {
+                  if (stat.health != value) {
+                        stat.health = value;
+                        photonView.RPC(nameof(RPC_SetStatHealth), RpcTarget.OthersBuffered, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetStatHealth(float value)
+      {
+            stat.health = value;
+      }
+
       [HideInInspector] public Vector2 inputVec;
 
       public GameObject spawnEffect;
@@ -180,11 +196,11 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
       public virtual void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
       {
             if (stream.IsWriting) {
-                  stream.SendNext(stat.health);
+                  //stream.SendNext(stat.health);
                   stream.SendNext(inputVec);
             }
             else {
-                  stat.health = (float)stream.ReceiveNext();
+                  //stat.health = (float)stream.ReceiveNext();
                   inputVec = (Vector2)stream.ReceiveNext();
             }
       }

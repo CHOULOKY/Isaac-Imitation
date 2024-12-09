@@ -107,15 +107,19 @@ namespace ItemSpace
                                     // 마스터 클라이언트(Body)가 아니라면 return
                                     if (!PhotonNetwork.IsMasterClient) return;
 
-                                    if (TryGetMonsterFields(hit.collider, out MonoBehaviour script, out FieldInfo statField,
+                                    if (TryGetMonsterFields(hit.collider, out MonoBehaviour script, out PropertyInfo healthProperty,
                                           out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)) {
-                                          if (statField.GetValue(script) is MonsterStat monsterStat &&
-                                                monsterTypeField.GetValue(script) is MonsterType monsterType) {
-                                                if (hit.collider.GetComponent<PhotonView>() is PhotonView pv) {
-                                                      if (!pv.IsMine) pv.RequestOwnership();
+                                          if (monsterTypeField.GetValue(script) is MonsterType monsterType) {
+                                                //if (hit.collider.GetComponent<PhotonView>() is PhotonView pv) {
+                                                //      if (!pv.IsMine) pv.RequestOwnership();
+                                                //}
+                                                //monsterStat.health -= damage;
+                                                if (healthProperty.GetValue(script) is float currentHealth) { // float 타입으로 가정
+                                                      float newHealth = currentHealth - damage;
+                                                      healthProperty.SetValue(script, newHealth);
                                                 }
-                                                monsterStat.health -= damage;
                                                 isHurtProperty.SetValue(script, true);
+
                                                 ApplyKnockTo(script.GetComponent<Rigidbody2D>(), monsterType);
                                           }
                                     }
@@ -145,12 +149,12 @@ namespace ItemSpace
                   }
             }
 
-            private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out FieldInfo statField,
+            private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out PropertyInfo healthProperty,
                   out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)
             {
                   // 초기화
                   script = null;
-                  statField = null;
+                  healthProperty = null;
                   isHurtProperty = null;
                   monsterTypeField = null;
 
@@ -160,12 +164,13 @@ namespace ItemSpace
                         Type baseType = s.GetType()?.BaseType; // 부모: Monster
                         if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(Monster<>)) {
                               // stat 필드와 IsHurt 프로퍼티 찾기
-                              statField = baseType.GetField("stat", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                              //statField = baseType.GetField("stat", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                              healthProperty = baseType.GetProperty("Health", BindingFlags.Instance | BindingFlags.Public);
                               isHurtProperty = baseType.GetProperty("IsHurt", BindingFlags.Instance | BindingFlags.Public);
                               // MonsterType 열거형 필드 찾기
                               monsterTypeField = baseType.GetField("monsterType", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
 
-                              if (statField != null && isHurtProperty != null && monsterTypeField != null) {
+                              if (healthProperty != null && isHurtProperty != null && monsterTypeField != null) {
                                     script = s;
                                     return true;
                               }

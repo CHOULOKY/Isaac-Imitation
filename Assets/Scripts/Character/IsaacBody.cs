@@ -88,10 +88,14 @@ public class IsaacBody : MonoBehaviour
     public bool IsHurt
     {
         get { return isHurt; }
-        set {
-            if (isHurt == false) {
+        set
+        {
+            if (!isHurt && value) // 변경 시점에만 실행
+            {
                 isHurt = true;
-                if (health <= 0) {
+
+                if (health <= 0)
+                {
                     IsDeath = true;
                     return;
                 }
@@ -99,11 +103,22 @@ public class IsaacBody : MonoBehaviour
                 curMoveForce = moveForce + 10;
                 curMaxVelocity = maxVelocity + 2;
 
-                this.animator.SetTrigger("Hit");
+                animator.SetTrigger("Hit");
                 flashEffect.Flash(new Color(1, 1, 0, 1));
+
+                // 자동으로 무적 상태 해제
+                Invoke(nameof(ResetIsHurt), 0.5f); // 0.5초 후 무적 해제
             }
         }
     }
+
+    private void ResetIsHurt()
+    {
+        isHurt = false;
+        curMoveForce = moveForce;
+        curMaxVelocity = maxVelocity;
+    }
+
 
     // For animation event
     public async void ResetIsHurtAfterAnimation()

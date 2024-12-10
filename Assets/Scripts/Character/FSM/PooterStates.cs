@@ -47,76 +47,112 @@ namespace PooterStates
                   animator.SetTrigger("Awake");
             }
       }
+    //
+    public class MoveState : PooterState
+    {
+        public MoveState(Pooter _monster) : base(_monster) { }
 
-      public class MoveState : PooterState
-      {
-            public MoveState(Pooter _monster) : base(_monster) { }
+        private bool isStateExit = false;
+        private Vector2 spawnPosition; // 소환 위치 저장
+        private float maxDistanceFromSpawn = 2f; // 이동 범위 축소
 
-            private bool isStateExit = false;
+        public override void OnStateEnter()
+        {
+            base.OnStateEnter();
+            spawnPosition = monster.transform.position; // 소환 위치 저장
+            animator.Play("AM_PooterMove", -1, UnityEngine.Random.Range(0f, 1f)); // 이동 애니메이션 시작
 
-            public override void OnStateEnter()
+            SetInputVec(1);
+            SetInputVec();
+        }
+
+        public override void OnStateUpdate()
+        {
+            MoveMonster();
+        }
+
+        public override void OnStateExit()
+        {
+            isStateExit = true;
+        }
+
+        private async void SetInputVec(int _time = 2)
+        {
+            if (_time < 1)
             {
-                  base.OnStateEnter();
-                  // (애니메이션 이름, 현재 활성화 중인 레이어, 0~1까지로 0.5는 절반)
-                  animator.Play("AM_PooterMove", -1, UnityEngine.Random.Range(0f, 1f));
-
-                  SetInputVec(1);
-                  SetInputVec();
+                Debug.LogError($"{monster.name}: SetInputVec 호출 시간이 잘못되었습니다. (0 이하)");
+                return;
             }
 
-            public override void OnStateUpdate()
+            for (int i = 0; i < _time; ++i)
             {
-                  MoveMonster();
+                if (isStateExit) return;
+                await Task.Delay(1000); // 1초 대기
             }
 
-            public override void OnStateExit()
+            SetInputVec();
+            SetInputVec(_time);
+        }
+
+        private void SetInputVec()
+        {
+            monster.inputVec = new Vector2(UnityEngine.Random.Range(-1, 2), UnityEngine.Random.Range(-1, 2));
+
+            SetSpriteDirection();
+        }
+
+        private void SetSpriteDirection()
+        {
+            if (monster.inputVec.x > 0)
             {
-                  isStateExit = true;
+                spriteRenderer.flipX = false;
+            }
+            else if (monster.inputVec.x < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+
+        private void MoveMonster()
+        {
+            // 플레이어 탐지
+            var playerHit = Physics2D.Raycast(rigid.position, Vector2.zero, 0f, LayerMask.GetMask("Player"));
+
+            if (playerHit.collider != null)
+            {
+                // 플레이어가 탐지되면 이동을 멈춤
+                rigid.velocity = Vector2.zero;
+                monster.inputVec = Vector2.zero;
+
+                // 플레이어 정보를 저장
+                monster.playerHit = playerHit;
+                return;
             }
 
-            private async void SetInputVec(int _time = 2)
+            // 제한된 범위에서 비행
+            Vector2 currentPosition = rigid.position;
+            if (Vector2.Distance(spawnPosition, currentPosition) > maxDistanceFromSpawn)
             {
-                  if (_time < 1) {
-                        Debug.LogError($"{monster.name}: SetInputVec 호출 시간이 잘못되었습니다. (0 이하)");
-                        return;
-                  }
-
-                  for (int i = 0; i < _time; ++i) {
-                        if (isStateExit) return;
-                        await Task.Delay(1000); // 1 second
-                  }
-
-                  SetInputVec();
-                  SetInputVec(_time);
+                // 범위를 벗어나려 하면 소환 위치로 돌아오는 방향으로 이동
+                Vector2 directionToSpawn = (spawnPosition - currentPosition).normalized;
+                rigid.AddForce(directionToSpawn * monster.stat.moveForce, ForceMode2D.Force);
+            }
+            else
+            {
+                // 범위 내에서 랜덤 이동 유지
+                rigid.AddForce(monster.inputVec.normalized * monster.stat.moveForce, ForceMode2D.Force);
             }
 
-            private void SetInputVec()
+            // 최대 속도 제한
+            if (rigid.velocity.magnitude > monster.stat.maxVelocity)
             {
-                  monster.inputVec = new Vector2(UnityEngine.Random.Range(-1, 2), UnityEngine.Random.Range(-1, 2));
-
-                  SetSpriteDirection();
+                rigid.velocity = rigid.velocity.normalized * monster.stat.maxVelocity;
             }
+        }
+    }
 
-            private void SetSpriteDirection()
-            {
-                  if (monster.inputVec.x > 0) {
-                        spriteRenderer.flipX = false;
-                  }
-                  else if (monster.inputVec.x < 0) {
-                        spriteRenderer.flipX = true;
-                  }
-            }
 
-            private void MoveMonster()
-            {
-                  rigid.AddForce(monster.inputVec.normalized * monster.stat.moveForce, ForceMode2D.Force);
-                  if (rigid.velocity.magnitude > monster.stat.maxVelocity) {
-                        rigid.velocity = rigid.velocity.normalized * monster.stat.maxVelocity;
-                  }
-            }
-      }
-
-      public class AttackState : PooterState, ITearShooter
+    public class AttackState : PooterState, ITearShooter
       {
             public AttackState(Pooter _monster) : base(_monster) { }
 

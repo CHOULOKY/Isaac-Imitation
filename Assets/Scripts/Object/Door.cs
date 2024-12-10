@@ -65,7 +65,7 @@ public class Door : MonoBehaviour
 
       private void OnTriggerEnter2D(Collider2D collision)
       {
-            if (!templates.RefreshedRooms) return;
+            //if (!templates.RefreshedRooms) return;
 
             if (collision.CompareTag("Player") && thisRoom.IsClear && doorDirection != 0) {
                   nextRoomPosition = GetNextRoomPosition(nextRoomPosition);

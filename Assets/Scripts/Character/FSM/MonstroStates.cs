@@ -91,25 +91,25 @@ namespace MonstroStates
             // Exclude Layers에 레이어를 추가하는 함수
             protected virtual void AddExcludeLayerToCollider(Collider2D collider, int layer)
             {
-                  bool isMonsterColl;
-                  if (collider.transform.name.Contains("Shadow")) isMonsterColl = true;
-                  else isMonsterColl = false;
+                  bool isMonsterCollider;
+                  if (collider.transform.name.Contains("Shadow")) isMonsterCollider = false;
+                  else isMonsterCollider = true;
 
                   // 현재 excludeLayers에 layerToAdd를 추가
-                  //collider.excludeLayers |= (1 << layer);
-                  monstroFSMRPC.FSMRPC_AddExcludeLayerToCollider(isMonsterColl: isMonsterColl, layer);
+                  collider.excludeLayers |= (1 << layer);
+                  monstroFSMRPC.FSMRPC_AddExcludeLayerToCollider(isMonsterCollider, layer);
             }
 
             // Exclude Layers에 레이어를 제거하는 함수
             protected virtual void RemoveExcludeLayerFromCollider(Collider2D collider, int layer)
             {
-                  bool isMonsterColl = false;
-                  if (collider.transform.name.Contains("Shadow")) isMonsterColl = true;
-                  else isMonsterColl = false;
+                  bool isMonsterCollider;
+                  if (collider.transform.name.Contains("Shadow")) isMonsterCollider = false;
+                  else isMonsterCollider = true;
 
                   // 현재 excludeLayers에서 layerToRemove를 제거
-                  //collider.excludeLayers &= ~(1 << layer);
-                  monstroFSMRPC.FSMRPC_RemoveExcludeLayerFromCollider(isMonsterColl: isMonsterColl, layer);
+                  collider.excludeLayers &= ~(1 << layer);
+                  monstroFSMRPC.FSMRPC_RemoveExcludeLayerFromCollider(isMonsterCollider, layer);
             }
             #endregion
 
@@ -255,8 +255,6 @@ namespace MonstroStates
       {
             public SmallJumpState(Monstro _monster) : base(_monster) { }
 
-            private Vector2 shadowOffset;
-            
             private float animationLength;
 
             public override void OnStateEnter()
@@ -274,7 +272,7 @@ namespace MonstroStates
                   }
 
                   if (photonView.IsMine) {
-                        shadowOffset = shadow.localPosition;
+                        monstroFSMRPC.ShadowOffset = shadow.localPosition;
                   }
                   shadow.parent = null;
 
@@ -313,7 +311,7 @@ namespace MonstroStates
 
                   shadow.parent = monster.transform;
                   if (photonView.IsMine) {
-                        shadow.localPosition = shadowOffset;
+                        shadow.localPosition = monstroFSMRPC.ShadowOffset;
                   }
                   if (IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) ||
                         IsLayerExcluded(shadowCollider, LayerMask.NameToLayer("Player"))) {
@@ -392,7 +390,7 @@ namespace MonstroStates
                               monstroFSMRPC.elapsedAnimationTime / (animationLength / 2));
                   }
                   else {
-                        rigid.position = Vector2.Lerp(rigid.position, monstroFSMRPC.nextPosition + Vector2.up * -shadowOffset,
+                        rigid.position = Vector2.Lerp(rigid.position, monstroFSMRPC.nextPosition + Vector2.up * -monstroFSMRPC.ShadowOffset,
                               monstroFSMRPC.elapsedAnimationTime / animationLength);
                   }
             }
@@ -403,7 +401,6 @@ namespace MonstroStates
             public BigJumpState(Monstro _monster) : base(_monster) { }
 
             private Vector2 jumpUpPosition;
-            private Vector2 shadowOffset;
             private float jumpDownSpeed = 40f;
 
             private float jumpDownDelay = 2f;
@@ -415,8 +412,9 @@ namespace MonstroStates
                   base.OnStateEnter();
 
                   jumpUpPosition = rigid.position + Vector2.up * 15;
+                  
                   if (photonView.IsMine) {
-                        shadowOffset = shadow.localPosition;
+                        monstroFSMRPC.ShadowOffset = shadow.localPosition;
                   }
                   shadow.parent = null;
 
@@ -471,8 +469,9 @@ namespace MonstroStates
 
                               OnCollisionEnter2D();
 
-                              //elapsedAnimationTime += Time.deltaTime;
                               // AM_MonstroBigJumpDown 애니메이션이 끝나면 상태 변경
+                              //elapsedAnimationTime += Time.deltaTime;
+                              monstroFSMRPC.elapsedAnimationTime += Time.deltaTime;
                               if (monstroFSMRPC.elapsedAnimationTime >= animationLength && monstroFSMRPC.isTearSparied) {
                                     monster.IsBigJump = false;
                               }
@@ -488,7 +487,7 @@ namespace MonstroStates
 
                   shadow.parent = monster.transform;
                   if (photonView.IsMine) {
-                        shadow.localPosition = shadowOffset;
+                        shadow.localPosition = monstroFSMRPC.ShadowOffset;
                   }
                   if (IsLayerExcluded(monsterCollider, LayerMask.NameToLayer("Tear")) ||
                         IsLayerExcluded(shadowCollider, LayerMask.NameToLayer("Player"))) {
@@ -521,7 +520,7 @@ namespace MonstroStates
             private void LandOnShadow()
             {
                   // 몬스터 그림자 위로 착지
-                  rigid.position = Vector2.MoveTowards(rigid.position, (Vector2)shadow.position - shadowOffset,
+                  rigid.position = Vector2.MoveTowards(rigid.position, (Vector2)shadow.position - monstroFSMRPC.ShadowOffset,
                         jumpDownSpeed * Time.deltaTime);
             }
 
@@ -566,7 +565,7 @@ namespace MonstroStates
                   if (monster.IsTearTiming && monstroFSMRPC.curSprayCount > 0) {
                         monster.IsTearTiming = false;
                         //curSprayCount--;
-                        monstroFSMRPC.curJumpCount--;
+                        monstroFSMRPC.curSprayCount--;
                         monstroFSMRPC.FSMRPC_SetCurSprayCount(monstroFSMRPC.curSprayCount);
                         TearSpray();
                         DelaySpawnBlood();

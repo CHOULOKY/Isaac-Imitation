@@ -22,11 +22,7 @@ public class GaperFSMRPC : FSMRPCController, IPunObservable
       }
 
 
-      public Queue<Vector2> followQueue;
-      public void FSMRPC_SetFollowQueue(Queue<Vector2> _followQueue)
-      {
-            followQueue = _followQueue;
-      }
+      public Queue<Vector2> followQueue = new();
 
       public bool alreadyJustBody = false;
       public void FSMRPC_OnceIsJustBody()

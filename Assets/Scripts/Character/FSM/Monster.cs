@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum MonsterType { Charger, Gaper, Pooter, Monstro }
 public class Monster<T> : MonoBehaviour, IPunObservable where T : class
@@ -26,9 +27,17 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
             }
       }
       [PunRPC]
-      private void RPC_SetStatHealth(float value)
+      protected virtual void RPC_SetStatHealth(float value)
       {
             stat.health = value;
+
+            // 보스 몬스터면 UI 관리
+            switch (monsterType) {
+                  case MonsterType.Monstro:
+                        GameManager.Instance.uiManager.uiCanvas
+                              .GetComponentInChildren<BossSlider>().BossHealth = stat.health;
+                        break;
+            }
       }
 
       [HideInInspector] public Vector2 inputVec;

@@ -139,12 +139,12 @@ public class Monstro : Monster<Monstro>
       }
 
 
-      public void TriggerJumpUp(int value) => isJumpUp = value != 0;
-      public void TriggerOnLand(int value) => isOnLand = value != 0;
+      public void TriggerJumpUp(int value) => IsJumpUp = value != 0;
+      public void TriggerOnLand(int value) => IsOnLand = value != 0;
 
-      public void TriggerTearTiming(int value) => isTearTiming = value != 0;
+      public void TriggerTearTiming(int value) => IsTearTiming = value != 0;
 
-      public void TriggerDeadFinish(int value) => isDeadFinish = value != 0;
+      public void TriggerDeadFinish(int value) => IsDeadFinish = value != 0;
       #endregion
 
 
@@ -176,7 +176,7 @@ public class Monstro : Monster<Monstro>
                               ChangeState(States.Dead);
                         }
                         else if (isSpawned) {
-                              isSmallJump = true;
+                              IsSmallJump = true;
                               ChangeState(States.SmallJump);
                         }
                         break;
@@ -184,7 +184,7 @@ public class Monstro : Monster<Monstro>
                         if (OnDead()) {
                               ChangeState(States.Dead);
                         }
-                        else if (!isSmallJump) {
+                        else if (!IsSmallJump) {
                               ChangeState(GetNextState((States)curState));
                         }
                         break;
@@ -192,7 +192,7 @@ public class Monstro : Monster<Monstro>
                         if (OnDead()) {
                               ChangeState(States.Dead);
                         }
-                        else if (!isBigJump) {
+                        else if (!IsBigJump) {
                               ChangeState(GetNextState((States)curState));
                         }
                         break;
@@ -200,7 +200,7 @@ public class Monstro : Monster<Monstro>
                         if (OnDead()) {
                               ChangeState(States.Dead);
                         }
-                        else if (!isTearSpray) {
+                        else if (!IsTearSpray) {
                               ChangeState(GetNextState((States)curState));
                         }
                         break;
@@ -209,7 +209,7 @@ public class Monstro : Monster<Monstro>
                         break;
             }
 
-            // Debug.Log(curState.ToString());
+            //Debug.LogError(curState.ToString());
             fsm.UpdateState();
       }
 
@@ -267,19 +267,19 @@ public class Monstro : Monster<Monstro>
             switch (curState) {
                   case States.SmallJump:
                         // isSmallJump = false;
-                        isTearSpray = true;
+                        IsTearSpray = true;
                         nextState = States.TearSpray;
                         break;
                   case States.BigJump:
                         // isBigJump = false;
-                        isSmallJump = true;
+                        IsSmallJump = true;
                         nextState = States.SmallJump;
                         break;
                   case States.TearSpray:
                         // isTearSpray = false;
                         nextState = UnityEngine.Random.Range(0, 5) == 0 ? States.SmallJump : States.BigJump;
-                        if (nextState == States.SmallJump) isSmallJump = true;
-                        else isBigJump = true;
+                        if (nextState == States.SmallJump) IsSmallJump = true;
+                        else IsBigJump = true;
                         break;
             }
 
@@ -312,6 +312,7 @@ public class Monstro : Monster<Monstro>
       }
 
       #region Not used
+      [PunRPC]
       protected override void SetAfterDeath()
       {
             // Do nothing within this function

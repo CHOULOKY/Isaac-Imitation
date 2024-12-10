@@ -83,7 +83,7 @@ namespace GaperStates
 
             private IsaacBody player;
             private Rigidbody2D playerRigid;
-            private Queue<Vector2> followQueue = new();
+            //private Queue<Vector2> followQueue = new();
 
             private bool isJustBody = false;
             private bool isStateExit = false;
@@ -118,11 +118,8 @@ namespace GaperStates
                   }
 
                   if (!isJustBody) {
-                        followQueue.Enqueue(playerRigid.position);
-                        if (!photonView.IsMine) {
-                              followQueue = gaperFSMRPC.followQueue;
-                        }
-                        else if (followQueue.Count > monster.followDelay) {
+                        gaperFSMRPC.followQueue.Enqueue(playerRigid.position);
+                        if (gaperFSMRPC.followQueue.Count > monster.followDelay) {
                               SetInputVec();
                               MoveMonster();
                         }
@@ -143,10 +140,10 @@ namespace GaperStates
             {
                   if (monster.playerSearchBox == default) monster.playerSearchBox = Vector2.one * 40;
                   if (Physics2D.BoxCast(rigid.position, monster.playerSearchBox, 0, Vector2.zero, 0,
-                      LayerMask.GetMask("Player")) is RaycastHit2D _player) {
-                        player = _player.transform.GetComponent<IsaacBody>();
+                      LayerMask.GetMask("Player")).collider is Collider2D _player) {
+                        player = _player.GetComponent<IsaacBody>();
                         playerRigid = player.GetComponent<Rigidbody2D>();
-                        followQueue.Enqueue(playerRigid.position);
+                        gaperFSMRPC.followQueue.Enqueue(playerRigid.position);
                   }
             }
 
@@ -176,7 +173,7 @@ namespace GaperStates
                         gaperFSMRPC.FSMRPC_SetSpriteDirection(monster.inputVec, monster.inputVec.x > monster.inputVec.y);
                   }
                   else {
-                        Vector2 chaseDirection = followQueue.Dequeue() - this.rigid.position;
+                        Vector2 chaseDirection = gaperFSMRPC.followQueue.Dequeue() - this.rigid.position;
                         monster.inputVec.x = Mathf.Sign(chaseDirection.x);
                         monster.inputVec.y = Mathf.Sign(chaseDirection.y);
                         //SetSpriteDirection(Mathf.Abs(chaseDirection.x) > Mathf.Abs(chaseDirection.y));

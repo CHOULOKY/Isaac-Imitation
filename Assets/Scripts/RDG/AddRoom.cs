@@ -223,6 +223,13 @@ public class AddRoom : MonoBehaviour
             foreach (SpriteRenderer renderer in miniRoom.GetComponentsInChildren<SpriteRenderer>()) {
                   renderer.color = new(r, g, b, a);
             }
+
+            //foreach (Door door in GetComponentsInChildren<Door>()) {
+            //      if (door.doorDirection == 0) {
+            //            door.RefreshDoorAnimators();
+            //            break;
+            //      }
+            //}
       }
 
       [PunRPC]
@@ -239,7 +246,7 @@ public class AddRoom : MonoBehaviour
                                           break;
                               }
                               foreach (Transform child2 in GetComponentsInChildren<Transform>(true)) {
-                                    if (child2.name == bossType) {
+                                    if (child2.name.Contains(bossType)) {
                                           child2.gameObject.SetActive(true);
                                           break;
                                     }
@@ -247,6 +254,8 @@ public class AddRoom : MonoBehaviour
                               break;
                         }
                   }
+                  // 보스 체력바 스폰
+                  GameManager.Instance.uiManager.SetActiveBossSlider(true);
             }
             else if (isSpecialRoom) {
                   return;
@@ -271,6 +280,9 @@ public class AddRoom : MonoBehaviour
 
             // 보스 룸 클리어 보상
             if (isBossRoom) {
+                  // 보스 체력바 제거
+                  GameManager.Instance.uiManager.SetActiveBossSlider(false);
+
                   int itemCount = UnityEngine.Random.Range(2, 4);
                   while (itemCount-- != 0) {
                         itemIndex = (int)ItemSpace.ItemFactory.Items.Bomb;

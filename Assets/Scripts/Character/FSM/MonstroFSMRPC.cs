@@ -23,7 +23,12 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
             monster = GetComponent<Monstro>();
             rigid = GetComponent<Rigidbody2D>();
             monsterCollider = GetComponent<Collider2D>();
-            shadowCollider = GetComponentInChildren<Collider2D>();
+            foreach (Transform child in monster.GetComponentsInChildren<Transform>()) {
+                  if (child.name.Contains("Shadow")) {
+                        shadowCollider = child.GetComponent<Collider2D>();
+                        break;
+                  }
+            }
 
             player = FindObjectsOfType<IsaacBody>(true).FirstOrDefault();
       }
@@ -52,7 +57,7 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
       public void FSMRPC_SoryBy()
       {
             //photonView.RPC(nameof(RPC_SoryBy), RpcTarget.All);
-            if (monster.transform.position.y > player.transform.position.y) spriteRenderer.sortingOrder = -1;
+            if (monster.transform.position.y > player.transform.position.y) spriteRenderer.sortingOrder = -2;
             else spriteRenderer.sortingOrder = 2;
       }
       //[PunRPC]
@@ -63,7 +68,9 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
 
       public void FSMRPC_AnimatorPlay(string name, float betweenTime = 0f)
       {
-            photonView.RPC(nameof(RPC_AnimatorPlay), RpcTarget.AllBuffered, name, betweenTime);
+            //Debug.LogError(name);
+            animator.Play(name, 0, betweenTime);
+            photonView.RPC(nameof(RPC_AnimatorPlay), RpcTarget.OthersBuffered, name, betweenTime);
       }
       [PunRPC]
       private void RPC_AnimatorPlay(string name, float betweenTime)
@@ -81,7 +88,7 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
       public void FSMRPC_AddExcludeLayerToCollider(bool isMonsterColl, int layer)
       {
             //targetCollider = collder;
-            photonView.RPC(nameof(RPC_AddExcludeLayerToCollider), RpcTarget.AllBuffered, isMonsterColl, layer);
+            photonView.RPC(nameof(RPC_AddExcludeLayerToCollider), RpcTarget.OthersBuffered, isMonsterColl, layer);
       }
       [PunRPC]
       private void RPC_AddExcludeLayerToCollider(bool isMonsterColl, int layer)
@@ -97,7 +104,7 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
       public void FSMRPC_RemoveExcludeLayerFromCollider(bool isMonsterColl, int layer)
       {
             //targetCollider = collder;
-            photonView.RPC(nameof(RPC_RemoveExcludeLayerFromCollider), RpcTarget.AllBuffered, isMonsterColl, layer);
+            photonView.RPC(nameof(RPC_RemoveExcludeLayerFromCollider), RpcTarget.OthersBuffered, isMonsterColl, layer);
       }
       [PunRPC]
       private void RPC_RemoveExcludeLayerFromCollider(bool isMonsterColl, int layer)
@@ -156,6 +163,22 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
 
 
       #region For Small Jump State
+      private Vector2 shadowOffset = default;
+      public Vector2 ShadowOffset
+      {
+            get => shadowOffset;
+            set {
+                  shadowOffset = value;
+                  photonView.RPC(nameof(RPC_SetShadowOffset), RpcTarget.OthersBuffered, shadowOffset);
+            }
+      }
+      [PunRPC]
+      private void RPC_SetShadowOffset(Vector2 value)
+      {
+            shadowOffset = value;
+      }
+
+
       public int maxJumpCount = 0;
       public void FSMRPC_SetMaxJumpCount(int value)
       {
@@ -212,7 +235,8 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
       public bool isTearSparied = false;
       public void FSMRPC_SetisTearSparied(bool value)
       {
-            photonView.RPC(nameof(RPC_SetisTearSparied), RpcTarget.AllBuffered, value);
+            isTearSparied = value;
+            photonView.RPC(nameof(RPC_SetisTearSparied), RpcTarget.OthersBuffered, value);
       }
       [PunRPC]
       private void RPC_SetisTearSparied(bool value)
@@ -225,7 +249,9 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
       public int sprayCount = 0;
       public void FSMRPC_SetSprayCount(int value)
       {
-            photonView.RPC(nameof(RPC_SetSprayCount), RpcTarget.AllBuffered, value);
+            sprayCount = value;
+            curSprayCount = value;
+            photonView.RPC(nameof(RPC_SetSprayCount), RpcTarget.OthersBuffered, value);
       }
       [PunRPC]
       private void RPC_SetSprayCount(int value)
@@ -305,7 +331,7 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
 
       public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity)
       {
-            float rotateAngle = default;
+            float rotateAngle;
             if (isSprayState) {
                   // TearSprayState
                   rotateAngle = UnityEngine.Random.Range(-25f, 25f);
@@ -363,7 +389,7 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
 
       public void FSMRPC_ControlExplosionEffect(float explosionAnimationLength)
       {
-            photonView.RPC(nameof(RPC_ControlExplosionEffect), RpcTarget.AllBuffered);
+            photonView.RPC(nameof(RPC_ControlExplosionEffect), RpcTarget.AllBuffered, explosionAnimationLength);
       }
       [PunRPC]
       private void RPC_ControlExplosionEffect(float explosionAnimationLength)

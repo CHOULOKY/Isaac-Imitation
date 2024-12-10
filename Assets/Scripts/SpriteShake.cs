@@ -25,7 +25,7 @@ public class SpriteShake : MonoBehaviour
       public void StartShake()
       {
             // 현재 오브젝트에 소유권이 없으면 return => 한 번만 StartShake 실행
-            if (!photonView.IsMine) return;
+            //if (!photonView.IsMine) return;
 
             originalPosition = transform.localPosition;
             elapsed = 0.0f;
@@ -34,7 +34,7 @@ public class SpriteShake : MonoBehaviour
 
       private IEnumerator Shake()
       {
-            photonView.RPC(nameof(RPC_SetInterpolateDisabled), RpcTarget.Others, true);
+            //photonView.RPC(nameof(RPC_SetInterpolateDisabled), RpcTarget.Others, true);
 
             float offsetX, offsetY;
             while (elapsed < duration) {
@@ -52,18 +52,18 @@ public class SpriteShake : MonoBehaviour
             // 흔들림 종료 후 원래 위치로 복구
             transform.localPosition = originalPosition;
 
-            photonView.RPC(nameof(RPC_SetInterpolateDisabled), RpcTarget.Others, false);
+            //photonView.RPC(nameof(RPC_SetInterpolateDisabled), RpcTarget.Others, false);
       }
-      [PunRPC]
-      private void RPC_SetInterpolateDisabled(bool disabled)
-      {
-            if (disabled) {
-                  transformView.m_PositionModel.InterpolateOption =
-                        PhotonTransformViewPositionModel.InterpolateOptions.Disabled;
-            }
-            else {
-                  transformView.m_PositionModel.InterpolateOption =
-                        PhotonTransformViewPositionModel.InterpolateOptions.EstimatedSpeed;
-            }
-      }
+      //[PunRPC]
+      //private void RPC_SetInterpolateDisabled(bool disabled)
+      //{
+      //      if (disabled) {
+      //            transformView.m_PositionModel.InterpolateOption =
+      //                  PhotonTransformViewPositionModel.InterpolateOptions.Disabled;
+      //      }
+      //      else {
+      //            transformView.m_PositionModel.InterpolateOption =
+      //                  PhotonTransformViewPositionModel.InterpolateOptions.EstimatedSpeed;
+      //      }
+      //}
 }

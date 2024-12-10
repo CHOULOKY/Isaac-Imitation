@@ -223,6 +223,7 @@ public class Door : MonoBehaviour
       // Special Room, doorDirection == 0
       public IEnumerator ChangeToSelectedDoor(GameObject _doorObject)
       {
+            //Debug.LogError(2);
             ChangeDoor(_doorObject);
 
             yield return null;
@@ -232,6 +233,7 @@ public class Door : MonoBehaviour
       // Change Door, doorDirection != 0
       public IEnumerator ChangeToSelectedDoorCoroutine(GameObject _doorObject)
       {
+            //Debug.LogError(1);
             ChangeDoor(_doorObject);
 
             nextRoomPosition = GetNextRoomPosition(nextRoomPosition);

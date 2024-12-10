@@ -143,6 +143,9 @@ namespace ItemSpace
                                           Web webScript = hit.collider.GetComponent<Web>();
                                           hitSR.sprite = webScript.destroyed;
                                     }
+                                    else if (hitName.Contains("Spike")) {
+                                          break;
+                                    }
                                     hitSR.GetComponent<Collider2D>().enabled = false;
                                     break;
                         }

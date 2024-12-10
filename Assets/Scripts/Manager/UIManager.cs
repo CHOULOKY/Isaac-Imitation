@@ -32,7 +32,7 @@ public class UIManager : ScriptAnimation
       private IsaacBody player;
 
       [Header("UI")]
-      public Canvas uiCanvas; // unused
+      public Canvas uiCanvas;
       public Canvas clearCanvas;
       public Canvas deadCanvas;
       public Canvas leftCanvas;
@@ -265,6 +265,20 @@ public class UIManager : ScriptAnimation
             yield return StartCoroutine(TypingAnimation(watingText, null, 0.1f, true)); // untyping
             yield return new WaitForSecondsRealtime(0.25f);
             yield return StartCoroutine(TypingAnimation(watingText, text, 0.1f, false)); // typing
+      }
+
+
+
+
+
+      public void SetActiveBossSlider(bool active)
+      {
+            foreach (Slider slider in uiCanvas.GetComponentsInChildren<Slider>(true)) {
+                  if (slider && slider.name.Contains("Boss")) {
+                        slider.gameObject.SetActive(active);
+                        break;
+                  }
+            }
       }
 
 

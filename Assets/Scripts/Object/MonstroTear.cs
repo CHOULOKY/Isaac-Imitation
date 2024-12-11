@@ -1,10 +1,14 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class MonstroTear : Tear
 {
       private void OnTriggerEnter2D(Collider2D collision)
       {
-            if (collision.CompareTag("Wall")) {
+            // Head면 return
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            if (collision.CompareTag("Wall") || collision.CompareTag("Obstacle")) {
                   DisableTear();
             }
             else if (collision.CompareTag("Player")) {
@@ -12,8 +16,9 @@ public class MonstroTear : Tear
 
                   if (collision.TryGetComponent<IsaacBody>(out var player)) {
                         if (player.IsHurt) return;
-                        player.health -= tearDamage;
+                        player.Health -= tearDamage;
                         player.IsHurt = true;
+                        GameManager.Instance.uiManager.setKilledPlayer = "Monstro";
                   }
                   else {
                         Debug.LogWarning("Player(IsaacBody)를 찾을 수 없습니다.");
@@ -24,15 +29,17 @@ public class MonstroTear : Tear
 
       private float tearActiveTimeDefault;
 
-      private void Start()
-      {
-            tearActiveTimeDefault = tearActiveTime;
-            RandomizeTearSet();
-      }
-
       protected override void OnEnable()
       {
+            tearActiveTimeDefault = tearActiveTime;
+
+            // Body만 실행
+            if (!PhotonNetwork.IsMasterClient) return;
+            else if (photonView.Owner != PhotonNetwork.LocalPlayer)
+                  photonView.RequestOwnership();
+
             RandomizeTearSet();
+
             base.OnEnable();
       }
 

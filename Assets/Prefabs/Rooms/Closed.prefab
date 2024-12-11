@@ -792,6 +792,7 @@ GameObject:
   - component: {fileID: 560009415265180380}
   - component: {fileID: -6906666779935197680}
   - component: {fileID: -2990395623843483342}
+  - component: {fileID: -952354561884925459}
   m_Layer: 0
   m_Name: Closed
   m_TagString: Room
@@ -832,6 +833,8 @@ MonoBehaviour:
   isClear: 0
   currentRoom: 0
   isBossRoom: 0
+  monsterCount: 0
+  goldRoomDirection: 0
 --- !u!61 &-6906666779935197680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -904,6 +907,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-952354561884925459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937356944287193075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5192207181317488418
 GameObject:
   m_ObjectHideFlags: 0

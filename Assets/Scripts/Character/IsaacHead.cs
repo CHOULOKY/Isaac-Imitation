@@ -19,7 +19,24 @@ public class IsaacHead : MonoBehaviour, ITearShooter
       [Tooltip("= tearRange")] public float tearSpeed = 6;
       private int tearWhatEye = 1;
 
-      public float attackSpeed = 0.25f;
+
+      [SerializeField] private float attackSpeed = 0.5f;
+      public float AttackSpeed
+      {
+            get => attackSpeed;
+            set {
+                  if (attackSpeed != value) {
+                        attackSpeed = value;
+                        photonView.RPC(nameof(RPC_SetAttackSpeed), RpcTarget.OthersBuffered, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetAttackSpeed(float value)
+      {
+            attackSpeed = value;
+      }
+
       private float curAttackTime = 0.25f;
 
       #region Item
@@ -50,7 +67,7 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             // 현재 오브젝트에 소유권이 없으면 return
             if (!photonView.IsMine) return;
 
-            if (body.IsHurt) return;
+            if (body.IsHurt || body.ingPickup) return;
 
             GetInputVec();
 

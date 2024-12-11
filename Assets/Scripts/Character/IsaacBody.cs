@@ -123,6 +123,10 @@ public class IsaacBody : MonoBehaviour, IPunObservable
 
       public float maxBombCool = 1;
       private float curBombCool = 0;
+
+
+
+      [HideInInspector] public bool ingPickup = false;
       #endregion
 
 
@@ -304,6 +308,31 @@ public class IsaacBody : MonoBehaviour, IPunObservable
       {
             head.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, _alpha);
       }
+
+      // For animation event
+      private void SetIngPickup(int value)
+      {
+            photonView.RPC(nameof(RPC_SetIngPickup), RpcTarget.All, value);
+      }
+      [PunRPC]
+      private void RPC_SetIngPickup(int value)
+      {
+            ingPickup = value != 0;
+            //Debug.LogError(ingPickup);
+      }
+
+
+      private void OnCollisionEnter2D(Collision2D collision)
+      {
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            if (collision.collider.CompareTag("Passive")) {
+                  photonView.RPC(nameof(RPC_SetAnimTrigger), RpcTarget.AllBuffered, "Pickup");
+            }
+      }
+
+
+
 
       private bool isDeath = false;
       public bool IsDeath

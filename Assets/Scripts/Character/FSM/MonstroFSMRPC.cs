@@ -57,8 +57,8 @@ public class MonstroFSMRPC : FSMRPCController, ITearShooter, IPunObservable
       public void FSMRPC_SoryBy()
       {
             //photonView.RPC(nameof(RPC_SoryBy), RpcTarget.All);
-            if (monster.transform.position.y > player.transform.position.y) spriteRenderer.sortingOrder = -2;
-            else spriteRenderer.sortingOrder = 2;
+            if (monster.transform.position.y > player.transform.position.y) spriteRenderer.sortingOrder = -3;
+            else spriteRenderer.sortingOrder = 3;
       }
       //[PunRPC]
       //private void RPC_SoryBy()

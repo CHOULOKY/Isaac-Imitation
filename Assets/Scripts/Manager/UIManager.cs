@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Linq;
 using Photon.Pun;
+using ItemSpace;
 
 namespace UISpace
 {
@@ -45,6 +46,9 @@ public class UIManager : ScriptAnimation
       public Sprite[] soulHeartSprites; // 0: zero, 1: half, 2: full
       [SerializeField] private int heartMultiple = 1;
       [SerializeField] private int soulHeartMultiple = 1;
+
+      [Header("UI - Passive")]
+      public Sprite[] passiveSprites;
 
       [Header("UI - Consume")]
       [SerializeField] private UIStruct coinStruct;
@@ -278,6 +282,31 @@ public class UIManager : ScriptAnimation
                         slider.gameObject.SetActive(active);
                         break;
                   }
+            }
+      }
+
+      private int passiveIndex = -1;
+      private Image[] passiveImages;
+      public void SetActivePassiveItem(PassiveType type)
+      {
+            if (passiveImages.Length == 0) {
+                  foreach (RectTransform target in GetComponentsInChildren<RectTransform>(true)) {
+                        if (target.name.Contains("Passive")) {
+                              passiveImages = target.GetComponentsInChildren<Image>(true);
+                              break;
+                        }
+                  }
+            }
+
+            switch (type) {
+                  case PassiveType.Onion:
+                        if (passiveIndex + 1 >= passiveImages.Length) break;
+                        else {
+                              passiveIndex++;
+                              passiveImages[passiveIndex].gameObject.SetActive(true);
+                              passiveImages[passiveIndex].sprite = passiveSprites[(int)type];
+                        }
+                        break;
             }
       }
 

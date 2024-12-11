@@ -12,6 +12,7 @@ TagManager:
   - Monster
   - Door
   - Obstacle
+  - Passive
   layers:
   - Default
   - TransparentFX

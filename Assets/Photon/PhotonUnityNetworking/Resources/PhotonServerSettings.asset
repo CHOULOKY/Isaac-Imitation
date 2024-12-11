@@ -135,6 +135,8 @@ MonoBehaviour:
   - SpawnItemInRoom
   - RPC_SetAttackSpeed
   - RPC_SetIngPickup
+  - RPC_SetActivePassiveItem
+  - RPC_SetPassiveUI
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

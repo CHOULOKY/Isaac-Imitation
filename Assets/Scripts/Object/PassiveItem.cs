@@ -16,6 +16,7 @@ namespace ItemSpace
                   //if (!PhotonNetwork.IsMasterClient) return;
 
                   if (collision.collider.CompareTag("Player")) {
+                        GameManager.Instance.uiManager.SetActivePassiveItem(passiveType);
                         if (PhotonNetwork.IsMasterClient) {
                               ApplyAbility(collision.collider.gameObject);
                         }

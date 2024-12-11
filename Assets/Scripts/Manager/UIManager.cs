@@ -286,22 +286,22 @@ public class UIManager : ScriptAnimation
       }
 
       private int passiveIndex = -1;
-      private Image[] passiveImages;
+      private Image[] passiveImages = null;
       public void SetActivePassiveItem(PassiveType type)
       {
-            if (passiveImages.Length == 0) {
-                  foreach (RectTransform target in GetComponentsInChildren<RectTransform>(true)) {
+            if (passiveImages == null || passiveImages.Length == 0) {
+                  foreach (RectTransform target in uiCanvas.GetComponentsInChildren<RectTransform>(true)) {
                         if (target.name.Contains("Passive")) {
                               passiveImages = target.GetComponentsInChildren<Image>(true);
                               break;
                         }
                   }
+                  //Debug.LogError($"Initialized {passiveImages?.Length ?? 0} passive images");
             }
 
             switch (type) {
                   case PassiveType.Onion:
-                        if (passiveIndex + 1 >= passiveImages.Length) break;
-                        else {
+                        if (passiveIndex + 1 < passiveImages.Length) {
                               passiveIndex++;
                               passiveImages[passiveIndex].gameObject.SetActive(true);
                               passiveImages[passiveIndex].sprite = passiveSprites[(int)type];

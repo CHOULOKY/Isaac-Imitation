@@ -282,7 +282,8 @@ namespace MonstroStates
                   monstroFSMRPC.elapsedAnimationTime = 0;
 
                   if (photonView.IsMine) {
-                        animator.SetBool("SmallJump", true);
+                        //animator.SetBool("SmallJump", true);
+                        monstroFSMRPC.FSMRPC_SetBool("SmallJump", true);
                   }
             }
 
@@ -320,7 +321,8 @@ namespace MonstroStates
                   }
 
                   if (photonView.IsMine) {
-                        animator.SetBool("SmallJump", false);
+                        //animator.SetBool("SmallJump", false);
+                        monstroFSMRPC.FSMRPC_SetBool("SmallJump", false);
                   }
 
                   // monstroFSMRPC Variables
@@ -585,7 +587,8 @@ namespace MonstroStates
                               //monstroFSMRPC.FSMRPC_SetElapsedTime(0);
                               monstroFSMRPC.elapsedAnimationTime = 0;
                               if (monstroFSMRPC.curSprayCount == monstroFSMRPC.sprayCount) {
-                                    animator.SetBool("TearSpray", true);
+                                    //animator.SetBool("TearSpray", true);
+                                    monstroFSMRPC.FSMRPC_SetBool("TearSpray", true);
                               }
                               else {
                                     //animator.Play("AM_MonstroTearSpray", 0, 0f); // 0프레임부터 다시 재생
@@ -601,7 +604,8 @@ namespace MonstroStates
             public override void OnStateExit()
             {
                   if (photonView.IsMine) {
-                        animator.SetBool("TearSpray", false);
+                        //animator.SetBool("TearSpray", false);
+                        monstroFSMRPC.FSMRPC_SetBool("TearSpray", false);
                   }
 
                   monstroFSMRPC.sprayCount = 0;

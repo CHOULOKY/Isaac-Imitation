@@ -31,7 +31,7 @@ public class FSMRPCController : MonoBehaviour
 
       public virtual void FSMRPC_SetBool(string name, bool value)
       {
-            photonView.RPC(nameof(RPC_SetTrigger), RpcTarget.AllBuffered, name, value);
+            photonView.RPC(nameof(RPC_SetBool), RpcTarget.AllBuffered, name, value);
       }
       [PunRPC]
       protected virtual void RPC_SetBool(string name, bool value)

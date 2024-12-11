@@ -1,16 +1,10 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using ObstacleSpace;
-using Photon.Pun;
 
 namespace PooterStates
 {
       public abstract class PooterState : BaseState<Pooter>
       {
-            protected PhotonView photonView;
-            protected PooterFSMRPC pooterFSMRPC;
-
             protected Rigidbody2D rigid;
             protected Animator animator;
             protected SpriteRenderer spriteRenderer;
@@ -19,9 +13,6 @@ namespace PooterStates
 
             public override void OnStateEnter()
             {
-                  photonView = monster.GetComponent<PhotonView>();
-                  pooterFSMRPC = monster.GetComponent<PooterFSMRPC>();
-
                   rigid = monster.GetComponent<Rigidbody2D>();
                   animator = monster.GetComponent<Animator>();
                   spriteRenderer = monster.GetComponent<SpriteRenderer>();
@@ -33,13 +24,6 @@ namespace PooterStates
                         rigid = monster.GetComponent<Rigidbody2D>();
                         animator = monster.GetComponent<Animator>();
                         spriteRenderer = monster.GetComponent<SpriteRenderer>();
-                  }
-            }
-
-            public override void OnStateExit()
-            {
-                  if (!animator) {
-                        animator = monster.GetComponent<Animator>();
                   }
             }
       }
@@ -60,115 +44,136 @@ namespace PooterStates
 
             public override void OnStateExit()
             {
-                  base.OnStateExit();
-                  //Debug.LogError(animator);
                   animator.SetTrigger("Awake");
             }
       }
+    //
+    public class MoveState : PooterState
+    {
+        public MoveState(Pooter _monster) : base(_monster) { }
 
-      public class MoveState : PooterState
-      {
-            public MoveState(Pooter _monster) : base(_monster) { }
+        private bool isStateExit = false;
+        private Vector2 spawnPosition; // 소환 위치 저장
+        private float maxDistanceFromSpawn = 2f; // 이동 범위 축소
 
-            private bool isStateExit = false;
+        public override void OnStateEnter()
+        {
+            base.OnStateEnter();
+            spawnPosition = monster.transform.position; // 소환 위치 저장
+            animator.Play("AM_PooterMove", -1, UnityEngine.Random.Range(0f, 1f)); // 이동 애니메이션 시작
 
-            public override void OnStateEnter()
+            SetInputVec(1);
+            SetInputVec();
+        }
+
+        public override void OnStateUpdate()
+        {
+            MoveMonster();
+        }
+
+        public override void OnStateExit()
+        {
+            isStateExit = true;
+        }
+
+        private async void SetInputVec(int _time = 2)
+        {
+            if (_time < 1)
             {
-                  base.OnStateEnter();
-                  // (애니메이션 이름, 현재 활성화 중인 레이어, 0~1까지로 0.5는 절반)
-                  animator.Play("AM_PooterMove", -1, UnityEngine.Random.Range(0f, 1f));
-
-                  SetInputVec(1);
-                  SetInputVec();
+                Debug.LogError($"{monster.name}: SetInputVec 호출 시간이 잘못되었습니다. (0 이하)");
+                return;
             }
 
-            public override void OnStateUpdate()
+            for (int i = 0; i < _time; ++i)
             {
-                  MoveMonster();
+                if (isStateExit) return;
+                await Task.Delay(1000); // 1초 대기
             }
 
-            public override void OnStateExit()
+            SetInputVec();
+            SetInputVec(_time);
+        }
+
+        private void SetInputVec()
+        {
+            monster.inputVec = new Vector2(UnityEngine.Random.Range(-1, 2), UnityEngine.Random.Range(-1, 2));
+
+            SetSpriteDirection();
+        }
+
+        private void SetSpriteDirection()
+        {
+            if (monster.inputVec.x > 0)
             {
-                  isStateExit = true;
+                spriteRenderer.flipX = false;
+            }
+            else if (monster.inputVec.x < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+
+        private void MoveMonster()
+        {
+            // 플레이어 탐지
+            var playerHit = Physics2D.Raycast(rigid.position, Vector2.zero, 0f, LayerMask.GetMask("Player"));
+
+            if (playerHit.collider != null)
+            {
+                // 플레이어가 탐지되면 이동을 멈춤
+                rigid.velocity = Vector2.zero;
+                monster.inputVec = Vector2.zero;
+
+                // 플레이어 정보를 저장
+                monster.playerHit = playerHit;
+                return;
             }
 
-            private async void SetInputVec(int _time = 2)
+            // 제한된 범위에서 비행
+            Vector2 currentPosition = rigid.position;
+            if (Vector2.Distance(spawnPosition, currentPosition) > maxDistanceFromSpawn)
             {
-                  if (_time < 1) {
-                        Debug.LogError($"{monster.name}: SetInputVec 호출 시간이 잘못되었습니다. (0 이하)");
-                        return;
-                  }
-
-                  for (int i = 0; i < _time; ++i) {
-                        await Task.Delay(1000); // 1 second
-                        if (isStateExit) return;
-                  }
-
-                  SetInputVec();
-                  SetInputVec(_time);
+                // 범위를 벗어나려 하면 소환 위치로 돌아오는 방향으로 이동
+                Vector2 directionToSpawn = (spawnPosition - currentPosition).normalized;
+                rigid.AddForce(directionToSpawn * monster.stat.moveForce, ForceMode2D.Force);
+            }
+            else
+            {
+                // 범위 내에서 랜덤 이동 유지
+                rigid.AddForce(monster.inputVec.normalized * monster.stat.moveForce, ForceMode2D.Force);
             }
 
-            private void SetInputVec()
+            // 최대 속도 제한
+            if (rigid.velocity.magnitude > monster.stat.maxVelocity)
             {
-                  if (!photonView.IsMine) return;
-
-                  monster.inputVec = new Vector2(UnityEngine.Random.Range(-1, 2), UnityEngine.Random.Range(-1, 2));
-
-                  //SetSpriteDirection();
-                  pooterFSMRPC.FSMRPC_SetSpriteDirection(monster.inputVec);
+                rigid.velocity = rigid.velocity.normalized * monster.stat.maxVelocity;
             }
+        }
+    }
 
-            #region Disuse due to PunRPC
-            private void SetSpriteDirection()
-            {
-                  if (!spriteRenderer) return;
 
-                  if (monster.inputVec.x > 0) {
-                        spriteRenderer.flipX = false;
-                  }
-                  else if (monster.inputVec.x < 0) {
-                        spriteRenderer.flipX = true;
-                  }
-            }
-            #endregion
-
-            private void MoveMonster()
-            {
-                  rigid.AddForce(monster.inputVec.normalized * monster.stat.moveForce, ForceMode2D.Force);
-                  if (rigid.velocity.magnitude > monster.stat.maxVelocity) {
-                        rigid.velocity = rigid.velocity.normalized * monster.stat.maxVelocity;
-                  }
-            }
-      }
-
-      public class AttackState : PooterState, ITearShooter
+    public class AttackState : PooterState, ITearShooter
       {
             public AttackState(Pooter _monster) : base(_monster) { }
 
             private const TearFactory.Tears tearType = TearFactory.Tears.Basic;
-            //private GameObject firstTear, secondTear;
+            private GameObject firstTear, secondTear;
+
+            private Vector2 directionVec = Vector2.zero;
 
             public override void OnStateEnter()
             {
                   base.OnStateEnter();
 
-                  if (monster.playerHit is RaycastHit2D playerHit && photonView.IsMine) {
-                        //directionVec = playerHit.point - rigid.position;
-                        pooterFSMRPC.FSMRPC_SetDirectionVec(playerHit.point - rigid.position);
+                  if (monster.playerHit is RaycastHit2D playerHit) {
+                        directionVec = playerHit.point - rigid.position;
 
-                        if (Mathf.Sign(pooterFSMRPC.directionVec.x) > 0) {
-                              //spriteRenderer.flipX = false;
-                              pooterFSMRPC.FSMRPC_SetSpriteDirection(Vector2.right);
-                        }
-                        else {
-                              //spriteRenderer.flipX = true;
-                              pooterFSMRPC.FSMRPC_SetSpriteDirection(Vector2.left);
-                        }
+                        if (Mathf.Sign(directionVec.x) > 0) spriteRenderer.flipX = false;
+                        else spriteRenderer.flipX = true;
 
-                        //animator.SetTrigger("Attack");
-                        pooterFSMRPC.FSMRPC_SetTrigger("Attack");
+                        animator.SetTrigger("Attack");
                   }
-                  else if (photonView.IsMine) {
+                  else {
                         Debug.LogWarning($"{monster.name}: AttackState에서 monster.playerHit를 찾지 못했습니다.");
                         // (애니메이션 이름, 현재 활성화 중인 레이어, 0~1까지로 0.5는 절반)
                         animator.Play("AM_PooterAttack", -1, 0.9f); // AM_PooterAttack 마지막에는 상태를 바꾸는 이벤트 존재
@@ -177,40 +182,24 @@ namespace PooterStates
 
             public override void OnStateUpdate()
             {
-                  // 공격 도중 소유권이 바뀌었을 때 처리
-
-                  //if (monster.isAttackTiming[0] && !firstTear) {
-                  //      firstTear = GameManager.Instance.monsterTearFactory.GetTear(tearType, true);
-                  //      AttackUsingTear(firstTear);
-                  //}
-                  //else if (monster.isAttackTiming[1] && !secondTear) {
-                  //      secondTear = GameManager.Instance.monsterTearFactory.GetTear(tearType, true);
-                  //      AttackUsingTear(secondTear);
-                  //}
-                  if (monster.IsAttackTiming[0]) {
-                        //Debug.LogError(1);
-                        monster.IsAttackTiming = new bool[] { false, monster.IsAttackTiming[1] };
-                        pooterFSMRPC.FSMRPC_GetTearAndAttack(tearType);
+                  if (monster.isAttackTiming[0] && !firstTear) {
+                        firstTear = GameManager.Instance.monsterTearFactory.GetTear(tearType, true);
+                        AttackUsingTear(firstTear);
                   }
-                  else if (monster.IsAttackTiming[1]) {
-                        //Debug.LogError(2);
-                        monster.IsAttackTiming = new bool[] { monster.IsAttackTiming[0], false };
-                        pooterFSMRPC.FSMRPC_GetTearAndAttack(tearType);
+                  else if (monster.isAttackTiming[1] && !secondTear) {
+                        secondTear = GameManager.Instance.monsterTearFactory.GetTear(tearType, true);
+                        AttackUsingTear(secondTear);
                   }
             }
 
             public override void OnStateExit()
             {
-                  pooterFSMRPC.directionVec = Vector2.zero;
-
-                  monster.IsAttackTiming = new bool[] { false, false };
+                  monster.isAttackTiming[0] = false;
+                  monster.isAttackTiming[1] = false;
             }
 
-            #region Disuse due to PunRPC
             public void AttackUsingTear(GameObject curTear = default)
             {
-                  TearIgnoreObstacle(curTear);
-
                   SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
                   if (tearRigid == default) {
                         Debug.LogWarning($"{monster.name}'s tears don't have Rigidbody2D!");
@@ -221,44 +210,19 @@ namespace PooterStates
                   ShootSettedTear(curTear, tearRigid, tearVelocity);
             }
 
-            private void TearIgnoreObstacle(GameObject curTear)
-            {
-                  // 현재 몬스터가 있는 방 찾기
-                  if (monster.GetComponentInParent<AddRoom>() is AddRoom room) {
-                        // 현재 방에서 이름이 Obstacles인 오브젝트 찾기
-                        Transform obstacles = default;
-                        foreach (Transform child in room.transform) {
-                              if (child.name == "Obstacles") {
-                                    obstacles = child;
-                                    break;
-                              }
-                        }
-
-                        if (obstacles == null) {
-                              Debug.LogWarning("No object named 'Obstacles' found in the room.");
-                              return;
-                        }
-
-                        Collider2D thisCollider = curTear.GetComponent<Collider2D>();
-                        foreach (Obstacle obstacle in obstacles.GetComponentsInChildren<Obstacle>(true)) {
-                              Physics2D.IgnoreCollision(thisCollider, obstacle.GetComponent<Collider2D>(), true);
-                        }
-                  }
-            }
-
             public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid)
             {
                   if (curTear.GetComponent<Tear>() is Tear tear &&
                         curTear.GetComponent<Rigidbody2D>() is Rigidbody2D curRigid) {
                         Vector2 offset = new Vector2(0, -0.35f);
                         // Up: 0, Down: 1, Right: 2, Left: 3
-                        if (pooterFSMRPC.directionVec.x > 0) {
+                        if (directionVec.x > 0) {
                               tear.tearDirection = 2;
                         }
-                        else if (pooterFSMRPC.directionVec.x < 0) {
+                        else if (directionVec.x < 0) {
                               tear.tearDirection = 3;
                         }
-                        else if (pooterFSMRPC.directionVec.y > 0) {
+                        else if (directionVec.y > 0) {
                               tear.tearDirection = 0;
                         }
                         else {
@@ -275,20 +239,19 @@ namespace PooterStates
 
             public void SetTearVelocity(out Vector2 tearVelocity, Rigidbody2D tearRigid)
             {
-                  tearVelocity.x = Mathf.Clamp(pooterFSMRPC.directionVec.x, -1, 1);
-                  tearVelocity.y = Mathf.Clamp(pooterFSMRPC.directionVec.y, -1, 1);
+                  tearVelocity.x = Mathf.Clamp(directionVec.x, -1, 1);
+                  tearVelocity.y = Mathf.Clamp(directionVec.y, -1, 1);
 
                   tearRigid.velocity = Vector2.zero;
             }
 
             public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity)
             {
-                  Vector2 inputVec = Mathf.Abs(pooterFSMRPC.directionVec.x) > Mathf.Abs(pooterFSMRPC.directionVec.y) ?
-                        Vector2.right * Mathf.Sign(pooterFSMRPC.directionVec.x) : Vector2.up * Mathf.Sign(pooterFSMRPC.directionVec.y);
+                  Vector2 inputVec = Mathf.Abs(directionVec.x) > Mathf.Abs(directionVec.y) ?
+                        Vector2.right * Mathf.Sign(directionVec.x) : Vector2.up * Mathf.Sign(directionVec.y);
                   float adjustedSpeed = inputVec.y < 0 ? monster.stat.tearSpeed * 0.75f : monster.stat.tearSpeed;
                   tearRigid.AddForce(inputVec * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
             }
-            #endregion
       }
 
       public class DeadState : PooterState

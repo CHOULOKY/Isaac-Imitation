@@ -12,10 +12,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 361159369249300975, guid: 641348899c8451e448c27dd7363ba441, type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4774987601690546843, guid: 641348899c8451e448c27dd7363ba441, type: 3}
       propertyPath: m_Name
       value: Onion Variant

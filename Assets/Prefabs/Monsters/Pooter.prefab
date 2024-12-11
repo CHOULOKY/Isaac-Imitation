@@ -190,6 +190,7 @@ MonoBehaviour:
   - {fileID: 296768906232285486, guid: 1f817e3dafa1ca149bd6823309a18dc8, type: 3}
   - {fileID: 4453470197474246455, guid: 2a654064db71e004c988e542d47f0ace, type: 3}
   - {fileID: 4455151714398487210, guid: 052d55fee69f1364689a9b84202d332f, type: 3}
+  isAttackTiming: 0000
 --- !u!114 &8652557023442684267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96b4fc018ec26845be0bde6cf791831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionVec: {x: 0, y: 0}
 --- !u!212 &3744885994554352381
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -373,6 +373,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 614682706287158382}
   - {fileID: -6491389187303088308}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -392,9 +393,9 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 4
+    InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 5
+    InterpolateLerpSpeed: 1
     ExtrapolateOption: 0
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1

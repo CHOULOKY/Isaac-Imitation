@@ -337,7 +337,6 @@ MonoBehaviour:
   soulHealth: 0
   bombCount: 3
   maxBombCool: 0.5
-  ingPickup: 0
 --- !u!114 &68028189956549890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,9 +527,9 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 4
+    InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 5
+    InterpolateLerpSpeed: 1
     ExtrapolateOption: 0
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
@@ -569,9 +568,6 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: Hit
-  - Type: 9
-    SynchronizeType: 0
-    Name: Pickup
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

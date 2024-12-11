@@ -137,7 +137,6 @@ MonoBehaviour:
   - RPC_SetIngPickup
   - RPC_SetActivePassiveItem
   - RPC_SetPassiveUI
-  - RPC_SetBool
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

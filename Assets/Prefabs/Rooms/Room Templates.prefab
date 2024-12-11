@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133304032939799941}
   - component: {fileID: 4452405029554524833}
+  - component: {fileID: -5487613148653770908}
   m_Layer: 0
   m_Name: Room Templates
   m_TagString: Rooms
@@ -91,13 +92,34 @@ MonoBehaviour:
   minRoomCount: 5
   waitTime: 2
   createdRooms: 0
-  refreshedRooms: 0
   bossDoor: {fileID: 1912331490872487615, guid: 4a771e0773fa39f43b21045433c824eb, type: 3}
   goldDoor: {fileID: 6604903175397194959, guid: bac0654e49537fb47829ba705587f56f, type: 3}
   exitDoor: {fileID: 1011458563468309868, guid: 7b56b631c5c9c2d4a87c1d1ad83df40f, type: 3}
   GoldRoomSet: {fileID: 2749822435335588241, guid: b674ad8dae4d4bb4aaa9ace7044ca174, type: 3}
   BossRoomSet: {fileID: 1078241920875352780, guid: 8134b0e9c6343904f82ebf7098c0b1a9, type: 3}
-  Prop: {fileID: 1973948053260356838, guid: b718a752968532245afbb9c7c13e2294, type: 3}
+  prop: {fileID: 1973948053260356838, guid: b718a752968532245afbb9c7c13e2294, type: 3}
+--- !u!114 &-5487613148653770908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909270728265087016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &2622784006609304171
 PrefabInstance:
   m_ObjectHideFlags: 0

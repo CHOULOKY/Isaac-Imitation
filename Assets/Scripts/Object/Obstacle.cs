@@ -1,8 +1,10 @@
+using Photon.Pun;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Photon applied complete
 namespace ObstacleSpace
 {
       public class Obstacle : MonoBehaviour
@@ -14,7 +16,7 @@ namespace ObstacleSpace
             protected virtual void Start()
             {
                   // 현재 오브젝트가 있는 방 찾기
-                  if (transform.parent.parent.TryGetComponent<AddRoom>(out var room)) {
+                  if (transform.GetComponentInParent<AddRoom>() is AddRoom room) {
                         // 현재 방에서 이름이 Monsters인 오브젝트 찾기
                         Transform monsters = null;
                         foreach (Transform child in room.transform) {
@@ -39,6 +41,17 @@ namespace ObstacleSpace
                                           Physics2D.IgnoreCollision(thisCollider, targetScript.GetComponent<Collider2D>(), true);
                                     }
                               }
+                        }
+                  }
+            }
+
+            protected virtual void OnDestroy()
+            {
+                  if (PhotonNetwork.IsMasterClient) {
+                        if (GetComponent<PhotonView>() is PhotonView pv) {
+                              if (pv.ViewID <= 0) return;
+                              if (!pv.IsMine) pv.RequestOwnership();
+                              PhotonNetwork.Destroy(gameObject);
                         }
                   }
             }

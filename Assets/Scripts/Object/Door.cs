@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,10 +28,12 @@ public class Door : MonoBehaviour
       public Vector2 maxBoundaryFromCenter;
       public Vector2 minBoundaryFromCenter;
 
+
       private void Awake()
       {
-            templates = transform.parent.parent.GetComponent<RoomTemplates>();
-            templates = templates != null ? templates : transform.parent.parent.parent.GetComponent<RoomTemplates>();
+            templates = FindAnyObjectByType<RoomTemplates>();
+            //templates = transform.parent.parent.GetComponent<RoomTemplates>();
+            //templates = templates ?? transform.parent.parent.parent.GetComponent<RoomTemplates>();
 
             thisRoom = transform.parent.GetComponent<AddRoom>();
             thisRoom = thisRoom != null ? thisRoom : transform.parent.parent.GetComponent<AddRoom>();
@@ -48,6 +51,7 @@ public class Door : MonoBehaviour
       private void Update()
       {
             if (doorDirection == 0) {
+                  //Debug.Log($"{gameObject.name} + {thisRoom} + {thisRoom.name} + {thisRoom.GetComponent<PhotonView>()}");
                   if (thisRoom.IsClear && !isDoorOpen) {
                         isDoorOpen = true;
                         DoorAnimatorsPlay("Open");
@@ -61,7 +65,7 @@ public class Door : MonoBehaviour
 
       private void OnTriggerEnter2D(Collider2D collision)
       {
-            if (!templates.refreshedRooms) return;
+            //if (!templates.RefreshedRooms) return;
 
             if (collision.CompareTag("Player") && thisRoom.IsClear && doorDirection != 0) {
                   nextRoomPosition = GetNextRoomPosition(nextRoomPosition);
@@ -71,7 +75,7 @@ public class Door : MonoBehaviour
                   int needThisDoor = GetNeedDoorDirection(collision);
                   foreach (Door door in GetComponentsInChildren<Door>()) {
                         if (door.doorDirection == needThisDoor) {
-                              if ((!thisRoom.IsClear || templates.rooms.IndexOf(thisRoom.gameObject) == 0) 
+                              if ((!thisRoom.IsClear || thisRoom.name.StartsWith("Entry")) 
                                     && !door.isChangedDoor && collision.GetComponent<Door>().isChangedDoor) {
                                     StartCoroutine(door.ChangeToSelectedDoor(collision.GetComponent<Door>().doorObject));
                               }
@@ -149,25 +153,30 @@ public class Door : MonoBehaviour
       {
             foreach (Door door in GetComponentsInChildren<Door>()) {
                   if (door.doorDirection == thisDoor) {
-                        Vector2 nextIsaacPos = door.transform.position;
-                        switch (door.doorDirection) {
-                              case 1:
-                                    nextIsaacPos.y += -1.2f;
-                                    break;
-                              case 2:
-                                    nextIsaacPos.y += 1.2f;
-                                    break;
-                              case 3:
-                                    nextIsaacPos.x += -1.2f;
-                                    break;
-                              case 4:
-                                    nextIsaacPos.x += 1.2f;
-                                    break;
-                        }
-                        isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
+                        // Body¸¸
+                        if (PhotonNetwork.IsMasterClient) {
+                              Vector2 nextIsaacPos = door.transform.position;
+                              switch (door.doorDirection) {
+                                    case 1:
+                                          nextIsaacPos.y += -1.2f;
+                                          break;
+                                    case 2:
+                                          nextIsaacPos.y += 1.2f;
+                                          break;
+                                    case 3:
+                                          nextIsaacPos.x += -1.2f;
+                                          break;
+                                    case 4:
+                                          nextIsaacPos.x += 1.2f;
+                                          break;
+                              }
+                              //Debug.LogError(isaac);
+                              isaac = isaac != null ? isaac : FindAnyObjectByType<IsaacBody>();
+                              isaac.GetComponent<Rigidbody2D>().position = nextIsaacPos;
 
-                        collision.GetComponent<Door>().thisRoom.CurrentRoom = false;
-                        thisRoom.CurrentRoom = true;
+                              collision.GetComponent<Door>().thisRoom.CurrentRoom = false;
+                              thisRoom.CurrentRoom = true;
+                        }
 
                         SetForCameras(thisDoor);
                         break;
@@ -214,6 +223,7 @@ public class Door : MonoBehaviour
       // Special Room, doorDirection == 0
       public IEnumerator ChangeToSelectedDoor(GameObject _doorObject)
       {
+            //Debug.LogError(2);
             ChangeDoor(_doorObject);
 
             yield return null;
@@ -223,6 +233,7 @@ public class Door : MonoBehaviour
       // Change Door, doorDirection != 0
       public IEnumerator ChangeToSelectedDoorCoroutine(GameObject _doorObject)
       {
+            //Debug.LogError(1);
             ChangeDoor(_doorObject);
 
             nextRoomPosition = GetNextRoomPosition(nextRoomPosition);

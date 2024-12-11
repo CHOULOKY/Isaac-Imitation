@@ -1,5 +1,8 @@
 using PooterStates;
 using UnityEngine;
+using Photon.Pun;
+using System.Runtime.CompilerServices;
+using System;
 
 public class Pooter : Monster<Pooter>
 {
@@ -8,14 +11,44 @@ public class Pooter : Monster<Pooter>
 
       [HideInInspector] public RaycastHit2D playerHit;
       private float curAttackCooltime = 0;
+
       private bool isAttackFinished = false;
-      [HideInInspector] public bool[] isAttackTiming = { false, false };
+      public bool IsAttackFinished
+      {
+            get => isAttackFinished;
+            set {
+                  if (isAttackFinished != value) {
+                        isAttackFinished = value;
+                        photonView.RPC(nameof(RPC_SetisAttackFinished), RpcTarget.Others, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetisAttackFinished(bool value)
+      {
+            isAttackFinished = value;
+      }
+
+      private bool[] isAttackTiming = { false, false };
+      public bool[] IsAttackTiming
+      {
+            get => isAttackTiming; // 배열 전체 반환
+            set {
+                  if (value != null && value.Length == isAttackTiming.Length) {
+                        isAttackTiming = value; // 배열 전체를 교체
+                  }
+            }
+      }
 
       // For animation events
-      public void SetIsAttackFinished(int value) => isAttackFinished = value == 0 ? false : true;
+      public void SetIsAttackFinished(int value) => IsAttackFinished = value == 0 ? false : true;
       public void TriggerAttackTiming(int value) {
-            value = value != 0 ? 1 : value;
-            isAttackTiming[value] = true;
+            if (value == 0) {
+                  IsAttackTiming = new bool[] { true, isAttackTiming[1] };
+            }
+            else {
+                  IsAttackTiming = new bool[] { isAttackTiming[0], true };
+            }
       }
 
       
@@ -34,7 +67,8 @@ public class Pooter : Monster<Pooter>
 
       private void Update()
       {
-            if (curState == States.Dead) {
+            // 소유권이 바뀌어도 fsm update만 실행하면 될 수 있도록 -> OnStateEnter, OnStateExit만 실행
+            if (curState == States.Dead || !photonView.IsMine) {
                   return;
             }
 
@@ -65,8 +99,8 @@ public class Pooter : Monster<Pooter>
                         if (OnDead()) {
                               ChangeState(States.Dead);
                         }
-                        else if (isAttackFinished) {
-                              isAttackFinished = false;
+                        else if (IsAttackFinished) {
+                              IsAttackFinished = false;
                               ChangeState(States.Move);
                         }
                         break;
@@ -79,6 +113,28 @@ public class Pooter : Monster<Pooter>
       }
 
       private void ChangeState(States nextState)
+      {
+            //curState = nextState;
+
+            //switch (curState) {
+            //      case States.Idle:
+            //            fsm.ChangeState(new IdleState(this));
+            //            break;
+            //      case States.Move:
+            //            fsm.ChangeState(new MoveState(this));
+            //            break;
+            //      case States.Attack:
+            //            fsm.ChangeState(new AttackState(this));
+            //            break;
+            //      case States.Dead:
+            //            fsm.ChangeState(new DeadState(this));
+            //            break;
+            //}
+
+            photonView.RPC(nameof(RPC_ChangeState), RpcTarget.AllBuffered, nextState);
+      }
+      [PunRPC]
+      private void RPC_ChangeState(States nextState)
       {
             curState = nextState;
 
@@ -121,5 +177,20 @@ public class Pooter : Monster<Pooter>
       {
             Gizmos.color = Color.red;
             // Gizmos.DrawRay(this.transform.position, Vector2.right * 5f);
+      }
+
+
+
+      public override void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+      {
+            base.OnPhotonSerializeView(stream, info);
+
+            // 언제 소유권이 바뀌어도 문제 없도록
+            if (stream.IsWriting) {
+                  stream.SendNext(curAttackCooltime); // 현재 공격 쿨타임
+            }
+            else {
+                  curAttackCooltime = (float)stream.ReceiveNext();
+            }
       }
 }

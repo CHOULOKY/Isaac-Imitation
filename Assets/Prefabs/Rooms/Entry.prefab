@@ -1288,6 +1288,7 @@ GameObject:
   - component: {fileID: 3466538586524644696}
   - component: {fileID: 8893644543520913000}
   - component: {fileID: -1784479783684786532}
+  - component: {fileID: 177171016393053730}
   m_Layer: 0
   m_Name: Entry
   m_TagString: Room
@@ -1408,6 +1409,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &177171016393053730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042832803351786306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4785786743819402819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,6 +1945,7 @@ GameObject:
   - component: {fileID: 636499755531611519}
   - component: {fileID: 5888676263838297656}
   - component: {fileID: 7333548500121208851}
+  - component: {fileID: 8283498431967666576}
   m_Layer: 0
   m_Name: Destroyer
   m_TagString: Untagged
@@ -2028,6 +2052,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8283498431967666576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5660390886247597375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6277220047136128477
 GameObject:
   m_ObjectHideFlags: 0

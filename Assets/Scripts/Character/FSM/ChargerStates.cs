@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -5,6 +6,9 @@ namespace ChargerStates
 {
       public abstract class ChargerState : BaseState<Charger>
       {
+            protected PhotonView photonView;
+            protected ChargerFSMRPC chargerFSMRPC;
+
             protected Rigidbody2D rigid;
             protected Animator animator;
             protected SpriteRenderer spriteRenderer;
@@ -15,6 +19,9 @@ namespace ChargerStates
 
             public override void OnStateEnter()
             {
+                  photonView = monster.GetComponent<PhotonView>();
+                  chargerFSMRPC = monster.GetComponent<ChargerFSMRPC>();
+
                   rigid = monster.GetComponent<Rigidbody2D>();
                   animator = monster.GetComponent<Animator>();
                   spriteRenderer = monster.GetComponent<SpriteRenderer>();
@@ -29,6 +36,13 @@ namespace ChargerStates
                         rigid = monster.GetComponent<Rigidbody2D>();
                         animator = monster.GetComponent<Animator>();
                         spriteRenderer = monster.GetComponent<SpriteRenderer>();
+                  }
+            }
+
+            public override void OnStateExit()
+            {
+                  if (!animator) {
+                        animator = monster.GetComponent<Animator>();
                   }
             }
       }
@@ -49,6 +63,8 @@ namespace ChargerStates
 
             public override void OnStateExit()
             {
+                  base.OnStateExit();
+                  //Debug.LogError(animator);
                   animator.SetTrigger("Awake");
             }
       }
@@ -64,7 +80,7 @@ namespace ChargerStates
                   base.OnStateEnter();
 
                   SetInputVec(5);
-                  SetInputVec();
+                  if (photonView.IsMine) SetInputVec();
             }
 
             public override void OnStateUpdate()
@@ -93,7 +109,7 @@ namespace ChargerStates
                         if (isStateExit) return;
                   }
 
-                  SetInputVec();
+                  if (photonView.IsMine) SetInputVec();
                   SetInputVec(_time);
             }
 
@@ -115,9 +131,11 @@ namespace ChargerStates
                         monster.inputVec.y = 0;
                   }
 
-                  SetSpriteDirection();
+                  //SetSpriteDirection();
+                  chargerFSMRPC.FSMRPC_SetSpriteDirection(monster.inputVec);
             }
 
+            #region Disuse due to PunRPC
             private void SetSpriteDirection()
             {
                   if (spriteRenderer) {
@@ -141,6 +159,7 @@ namespace ChargerStates
                         animator.SetInteger("YAxisRaw", (int)monster.inputVec.y);
                   }
             }
+            #endregion
 
             private void MoveMonster()
             {
@@ -175,11 +194,13 @@ namespace ChargerStates
                         }
                         monster.inputVec = inputVec;
 
-                        SetSpriteDirection();
+                        //SetSpriteDirection();
+                        chargerFSMRPC.FSMRPC_SetSpriteDirection(inputVec);
+                        if (photonView.IsMine) animator.SetBool("isAttack", true);
                   }
-                  else {
+                  else if (photonView.IsMine) {
                         Debug.LogWarning($"{monster.name}: AttackState에서 monster.playerHit를 찾지 못했습니다.");
-                        monster.isAttack = true;
+                        monster.IsAttack = true;
                         isNullPlayerHit = true;
                   }
             }
@@ -188,7 +209,11 @@ namespace ChargerStates
             {
                   if (isNullPlayerHit) return;
 
-                  if (monster.inputVec != inputVec) {
+                  // 공격 도중 소유권이 바뀌었을 때 처리
+                  if (inputVec == null) {
+                        inputVec = monster.inputVec;
+                  }
+                  else if (monster.inputVec != inputVec) {
                         monster.inputVec = inputVec;
                   }
 
@@ -201,9 +226,12 @@ namespace ChargerStates
             {
                   if (isNullPlayerHit) return;
 
-                  animator.SetBool("isAttack", false);
+                  if (photonView.IsMine) {
+                        animator.SetBool("isAttack", false);
+                  }
             }
 
+            #region Disuse due to PunRPC
             private void SetSpriteDirection()
             {
                   if (inputVec.x > 0) {
@@ -224,6 +252,7 @@ namespace ChargerStates
                   animator.SetInteger("YAxisRaw", (int)inputVec.y);
                   animator.SetBool("isAttack", true);
             }
+            #endregion
 
             private void MoveMonster()
             {
@@ -236,13 +265,14 @@ namespace ChargerStates
             private void AttackPlayer()
             {
                   RaycastHit2D playerHit = monster.OnSenseForward(0.45f, "Player");
-                  if (playerHit && !monster.isAttack) {
-                        monster.isAttack = true;
+                  if (playerHit && !monster.IsAttack) {
+                        monster.IsAttack = true;
 
                         if (playerHit.transform.TryGetComponent<IsaacBody>(out var player)) {
                               if (!player.IsHurt) {
                                     player.Health -= monster.stat.attackDamage;
                                     player.IsHurt = true;
+                                    GameManager.Instance.uiManager.setKilledPlayer = "Charger";
                               }
                         }
                   }

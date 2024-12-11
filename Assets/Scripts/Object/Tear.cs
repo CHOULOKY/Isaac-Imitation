@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Reflection;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class Tear : MonoBehaviour
 {
+      protected PhotonView photonView;
+
       protected Rigidbody2D rigid;
       protected Animator animator;
 
@@ -19,22 +22,31 @@ public class Tear : MonoBehaviour
 
       protected virtual void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
       }
 
       protected virtual void OnEnable()
       {
-            rigid.simulated = true;
+            // 소유권이 있으면 실행
+            if (photonView.IsMine) {
+                  rigid.simulated = true;
 
-            SetGravitySetTimeByDirection(out float curGravitySetTime);
-            StartCoroutine(SetGravityAfter(curGravitySetTime));
-            StartCoroutine(AfterActiveTime(tearActiveTime));
+                  photonView.RequestOwnership();
+                  SetGravitySetTimeByDirection(out float curGravitySetTime);
+                  StartCoroutine(SetGravityAfter(curGravitySetTime));
+                  StartCoroutine(AfterActiveTime(tearActiveTime));
+            }
       }
 
       protected virtual void OnDisable()
       {
-            transform.position = transform.parent.position;
+            // 소유권이 있으면 실행
+            if (photonView.IsMine) {
+                  transform.position = transform.parent.position;
+            }
       }
 
       [Header("Gravity Set Time (Up: 0, Down: 1, Right: 2, Left: 3)")]
@@ -75,6 +87,16 @@ public class Tear : MonoBehaviour
             rigid.gravityScale = 0;
 
             animator.SetTrigger("Pop");
+
+            photonView.RPC(nameof(RPC_DisableTear), RpcTarget.OthersBuffered, "Pop");
+      }
+      [PunRPC]
+      protected virtual void RPC_DisableTear(string name)
+      {
+            rigid.velocity = Vector3.zero;
+            rigid.gravityScale = 0;
+
+            animator.SetTrigger(name);
       }
 
       // For animation event

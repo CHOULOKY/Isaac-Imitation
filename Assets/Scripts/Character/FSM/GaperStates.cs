@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -6,6 +7,9 @@ namespace GaperStates
 {
       public abstract class GaperState : BaseState<Gaper>
       {
+            protected PhotonView photonView;
+            protected GaperFSMRPC gaperFSMRPC;
+
             protected Rigidbody2D rigid;
             protected Animator animator;
             protected SpriteRenderer spriteRenderer;
@@ -16,6 +20,9 @@ namespace GaperStates
 
             public override void OnStateEnter()
             {
+                  photonView = monster.GetComponent<PhotonView>();
+                  gaperFSMRPC = monster.GetComponent<GaperFSMRPC>();
+
                   rigid = monster.GetComponent<Rigidbody2D>();
                   animator = monster.GetComponent<Animator>();
                   spriteRenderer = monster.GetComponent<SpriteRenderer>();
@@ -33,6 +40,13 @@ namespace GaperStates
                         rigid = monster.GetComponent<Rigidbody2D>();
                         animator = monster.GetComponent<Animator>();
                         spriteRenderer = monster.GetComponent<SpriteRenderer>();
+                  }
+            }
+
+            public override void OnStateExit()
+            {
+                  if (!animator) {
+                        animator = monster.GetComponent<Animator>();
                   }
             }
       }
@@ -55,6 +69,8 @@ namespace GaperStates
 
             public override void OnStateExit()
             {
+                  base.OnStateExit();
+                  //Debug.LogError(animator);
                   animator.SetTrigger("Awake");
             }
       }
@@ -63,11 +79,11 @@ namespace GaperStates
       {
             public MoveState(Gaper _monster) : base(_monster) { }
 
-            float moveForce, maxVelocity;
+            private float moveForce, maxVelocity;
 
             private IsaacBody player;
             private Rigidbody2D playerRigid;
-            private Queue<Vector2> followQueue = new();
+            //private Queue<Vector2> followQueue = new();
 
             private bool isJustBody = false;
             private bool isStateExit = false;
@@ -90,8 +106,11 @@ namespace GaperStates
 
                   if (OnHalfHealth() && !isJustBody) {
                         isJustBody = true;
-                        monsterHead.SetActive(false);
-                        monster.SpawnBloodEffects();
+                        //monsterHead.SetActive(false);
+                        //monster.SpawnBloodEffects();
+                        if (!gaperFSMRPC.alreadyJustBody) {
+                              gaperFSMRPC.FSMRPC_OnceIsJustBody();
+                        }
 
                         moveForce = monster.stat.moveForce - 1;
                         maxVelocity = monster.stat.maxVelocity - 0.5f;
@@ -99,11 +118,10 @@ namespace GaperStates
                   }
 
                   if (!isJustBody) {
-                        followQueue.Enqueue(playerRigid.position);
-                        if (followQueue.Count > monster.followDelay) {
+                        gaperFSMRPC.followQueue.Enqueue(playerRigid.position);
+                        if (gaperFSMRPC.followQueue.Count > monster.followDelay) {
                               SetInputVec();
                               MoveMonster();
-                              followQueue.Dequeue();
                         }
                   }
                   else {
@@ -122,10 +140,10 @@ namespace GaperStates
             {
                   if (monster.playerSearchBox == default) monster.playerSearchBox = Vector2.one * 40;
                   if (Physics2D.BoxCast(rigid.position, monster.playerSearchBox, 0, Vector2.zero, 0,
-                      LayerMask.GetMask("Player")) is RaycastHit2D _player) {
-                        player = _player.transform.GetComponent<IsaacBody>();
+                      LayerMask.GetMask("Player")).collider is Collider2D _player) {
+                        player = _player.GetComponent<IsaacBody>();
                         playerRigid = player.GetComponent<Rigidbody2D>();
-                        followQueue.Enqueue(playerRigid.position);
+                        gaperFSMRPC.followQueue.Enqueue(playerRigid.position);
                   }
             }
 
@@ -147,18 +165,23 @@ namespace GaperStates
 
             private void SetInputVec()
             {
+                  if (!photonView.IsMine) return;
+
                   if (isJustBody) {
                         monster.inputVec = new Vector2(UnityEngine.Random.Range(-1, 2), UnityEngine.Random.Range(-1, 2));
-                        SetSpriteDirection(monster.inputVec.x > monster.inputVec.y);
+                        //SetSpriteDirection(monster.inputVec.x > monster.inputVec.y);
+                        gaperFSMRPC.FSMRPC_SetSpriteDirection(monster.inputVec, monster.inputVec.x > monster.inputVec.y);
                   }
                   else {
-                        Vector2 chaseDirection = playerRigid.position - this.rigid.position;
+                        Vector2 chaseDirection = gaperFSMRPC.followQueue.Dequeue() - this.rigid.position;
                         monster.inputVec.x = Mathf.Sign(chaseDirection.x);
                         monster.inputVec.y = Mathf.Sign(chaseDirection.y);
-                        SetSpriteDirection(Mathf.Abs(chaseDirection.x) > Mathf.Abs(chaseDirection.y));
+                        //SetSpriteDirection(Mathf.Abs(chaseDirection.x) > Mathf.Abs(chaseDirection.y));
+                        gaperFSMRPC.FSMRPC_SetSpriteDirection(monster.inputVec, Mathf.Abs(chaseDirection.x) > Mathf.Abs(chaseDirection.y));
                   }
             }
 
+            #region Disuse due to PunRPC
             private void SetSpriteDirection(bool xGreaterThanY)
             {
                   if (spriteRenderer) {
@@ -181,6 +204,7 @@ namespace GaperStates
                         }
                   }
             }
+            #endregion
 
             private void MoveMonster()
             {
@@ -199,6 +223,7 @@ namespace GaperStates
                       LayerMask.GetMask("Player"))) {
                         player.Health -= monster.stat.attackDamage;
                         player.IsHurt = true;
+                        GameManager.Instance.uiManager.setKilledPlayer = "Gaper";
                   }
             }
 

@@ -1601,6 +1601,7 @@ GameObject:
   - component: {fileID: 4977151611150394560}
   - component: {fileID: -5262035403803187269}
   - component: {fileID: 8473608600843775608}
+  - component: {fileID: 4769537552649729306}
   m_Layer: 0
   m_Name: TB
   m_TagString: Room
@@ -1645,6 +1646,7 @@ MonoBehaviour:
   isClear: 0
   currentRoom: 0
   isBossRoom: 0
+  monsterCount: 0
   goldRoomDirection: 0
 --- !u!61 &-5262035403803187269
 BoxCollider2D:
@@ -1718,6 +1720,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4769537552649729306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5355076881452284135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6300000523537521894
 GameObject:
   m_ObjectHideFlags: 0

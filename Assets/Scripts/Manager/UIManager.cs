@@ -4,6 +4,13 @@ using UISpace;
 using TMPro;
 using System.Xml;
 using Photon.Realtime;
+using System;
+using UnityEngine.Playables;
+using UnityEditor.Rendering;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Linq;
+using Photon.Pun;
 
 namespace UISpace
 {
@@ -14,7 +21,7 @@ namespace UISpace
             public TMP_Text tmpText;
       }
 }
-public class UIManager : MonoBehaviour
+public class UIManager : ScriptAnimation
 {
       #region Fade
       private FadeController fadeController;
@@ -22,9 +29,14 @@ public class UIManager : MonoBehaviour
       public float fadeDuration = 2;
       #endregion
 
+      private IsaacBody player;
+
       [Header("UI")]
-      public Canvas uiCanvas; // unused
-      public Canvas clearCanvas; // unused
+      public Canvas uiCanvas;
+      public Canvas clearCanvas;
+      public Canvas deadCanvas;
+      public Canvas leftCanvas;
+      public Canvas startCanvas;
 
       [Header("UI - Heart")]
       [SerializeField] private UIStruct heartStruct;
@@ -42,37 +54,107 @@ public class UIManager : MonoBehaviour
       [SerializeField] private int bombMultiple = 3;
       [SerializeField] private int keyMultiple = 0;
 
-      private IsaacBody player;
+      [Header("UI - Dead Canvas")]
+      public int killedPlayer = 0; // { Charger, Gaper, Pooter, Monstro, Spike, Bomb }
+      public string setKilledPlayer
+      {
+            get => null;
+            set {
+                  switch (value) {
+                        case "Charger":
+                              killedPlayer = (int)MonsterType.Charger;
+                              break;
+                        case "Gaper":
+                              killedPlayer = (int)MonsterType.Gaper;
+                              break;
+                        case "Pooter":
+                              killedPlayer = (int)MonsterType.Pooter;
+                              break;
+                        case "Monstro":
+                              killedPlayer = (int)MonsterType.Monstro;
+                              break;
+                        case "Spike":
+                              killedPlayer = Enum.GetValues(typeof(MonsterType)).Length;
+                              break;
+                        case "Bomb":
+                              killedPlayer = Enum.GetValues(typeof(MonsterType)).Length + 1;
+                              break;
+                  }
 
+                  photonView.RPC(nameof(RPC_SetKilledPlayer), RpcTarget.AllBuffered, killedPlayer);
+            }
+      }
+      [PunRPC]
+      private void RPC_SetKilledPlayer(int _killedPlayer)
+      {
+            killedPlayer = _killedPlayer;
+      }
+      
 
+      private PhotonView photonView;
       private void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
             // Fade
             fadeController = GetComponentInChildren<FadeController>();
 
             player = FindAnyObjectByType<IsaacBody>();
       }
 
-      public void GameStart(float _fadeDuration = -1)
+      private void OnEnable()
+      {
+            if (PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer) {
+                  photonView.RequestOwnership();
+            }
+      }
+
+
+
+
+      public IEnumerator GameStartBefore(float _fadeDuration = -1)
       {
             // Fade
             _fadeDuration = _fadeDuration <= 0 ? fadeDuration : _fadeDuration;
-            StartCoroutine(fadeController.FadeOutCoroutine(null, fadeDuration));
+            yield return StartCoroutine(fadeController.FadeOutCoroutine(null, fadeDuration));
 
-            // UI
+            // Canvas Animation
+            RectTransform[] children = startCanvas.GetComponentsInChildren<RectTransform>(true);
+            // 마지막 3개 자식 RectTransform에 RotateAnimation 적용
+            StartCoroutine(RotateAnimation(children[^3], 0.75f, -10));
+            StartCoroutine(RotateAnimation(children[^2], 0.75f, 5));
+            StartCoroutine(RotateAnimation(children[^1], 0.75f, -5));
+
+            yield return new WaitForSecondsRealtime(3f); // 3초 대기
+
+            Debug.Log("랜덤 맵 생성 알고리즘 실행 중...");
+            yield return new WaitUntil(() => GameManager.Instance.roomTemplates.RefreshedRooms);
+            Debug.Log("랜덤 맵 생성 알고리즘 실행 완료.");
+      }
+      public IEnumerator GameStartAfter()
+      {
+            // InGame UI
             RefreshUI();
+
+            // 애니메이션이 끝날 때까지 대기
+            Animator canvasAnimator = startCanvas.transform.GetChild(0).GetComponent<Animator>();
+            canvasAnimator.SetTrigger("Start");
+            yield return new WaitForSecondsRealtime(canvasAnimator.runtimeAnimatorController.animationClips
+                        .FirstOrDefault(clip => clip.name == "AM_Start")?.length ?? 0f);
+
+            canvasAnimator.gameObject.SetActive(false);
       }
 
       private void Update()
       {
             // test code
-            if (Input.GetKeyDown(KeyCode.Space)) RefreshUI();
+            // if (Input.GetKeyDown(KeyCode.Space)) RefreshUI();
       }
 
       public void RefreshUI()
       {
             if (player == null)
-                  player = FindAnyObjectByType<IsaacBody>();
+                  player = FindObjectOfType<IsaacBody>(true);
 
             // Heart
             UpdateHeartUI(
@@ -94,9 +176,9 @@ public class UIManager : MonoBehaviour
 
             // Consumables
             bombMultiple = player.BombCount;
-            coinStruct.tmpText.text = coinMultiple.ToString("D2");
+            coinStruct.tmpText.text = coinMultiple.ToString("D2"); // not used
             bombStruct.tmpText.text = bombMultiple.ToString("D2");
-            keyStruct.tmpText.text = keyMultiple.ToString("D2");
+            keyStruct.tmpText.text = keyMultiple.ToString("D2"); // not used
       }
 
       /// <summary>
@@ -130,5 +212,78 @@ public class UIManager : MonoBehaviour
             for (int i = fullCount + halfCount; i < 4; i++) {
                   images[i].sprite = sprites[0]; // Zero heart
             }
+      }
+
+
+
+      public void GameOver()
+      {
+            deadCanvas.GetComponent<PlayableDirector>().Play();
+            SetActiveMinimap(false);
+      }
+
+      public void StageClear()
+      {
+            clearCanvas.GetComponent<PlayableDirector>().Play();
+            SetActiveMinimap(false);
+      }
+
+      private void SetActiveMinimap(bool active)
+      {
+            foreach (Camera camera in FindObjectsOfType<Camera>()) {
+                  if (camera.name == "Minimap Camera") {
+                        camera.enabled = active;
+                  }
+            }
+      }
+
+
+      // 다른 플레이어가 나갔을 때
+      public IEnumerator OnPlayerLeftRoom()
+      {
+            SetActiveMinimap(false);
+
+            Animator animator = leftCanvas.GetComponentInChildren<Animator>(true);
+            animator.gameObject.SetActive(true); // LeftBoard 오브젝트 활성화
+
+            // 애니메이션이 끝날 때까지 대기
+            yield return new WaitForSecondsRealtime(animator.runtimeAnimatorController.animationClips
+                        .FirstOrDefault(clip => clip.name == "AM_LeftAppear")?.length ?? 0f);
+
+            TMP_Text exitText = animator.GetComponentInChildren<TMP_Text>();
+            StartCoroutine(RotateAnimation(exitText.GetComponent<RectTransform>(), 0.75f, 2)); // 텍스트 애니메이션
+
+            yield return TypingCycle(animator.GetComponentInChildren<TMP_Text>(), 
+                  "<br>다른 플레이어가 게임에서 나갔습니다!<br>대기 화면으로 돌아갑니다.");
+
+            animator.SetTrigger("Disappear");
+            yield return StartCoroutine(fadeController.FadeInCoroutine(null, 3));
+      }
+
+      private IEnumerator TypingCycle(TMP_Text watingText, string text)
+      {
+            yield return StartCoroutine(TypingAnimation(watingText, null, 0.1f, true)); // untyping
+            yield return new WaitForSecondsRealtime(0.25f);
+            yield return StartCoroutine(TypingAnimation(watingText, text, 0.1f, false)); // typing
+      }
+
+
+
+
+
+      public void SetActiveBossSlider(bool active)
+      {
+            foreach (Slider slider in uiCanvas.GetComponentsInChildren<Slider>(true)) {
+                  if (slider && slider.name.Contains("Boss")) {
+                        slider.gameObject.SetActive(active);
+                        break;
+                  }
+            }
+      }
+
+
+      private void OnDisable()
+      {
+            StopAllCoroutines();
       }
 }

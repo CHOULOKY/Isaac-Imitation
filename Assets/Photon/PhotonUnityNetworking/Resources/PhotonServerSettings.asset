@@ -23,7 +23,7 @@ MonoBehaviour:
     Server: 
     Port: 0
     ProxyServer: 
-    Protocol: 0
+    Protocol: 1
     EnableProtocolFallback: 1
     AuthMode: 0
     EnableLobbyStatistics: 0
@@ -39,6 +39,99 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - RPC_BombControl
+  - RPC_SetFlipX
+  - RPC_SetHeadAlpha
+  - RPC_SetInputVec
+  - RPC_SetisHurt
+  - RPC_AttackUsingTear
+  - RPC_SetBombCount
+  - RPC_SetHealth
+  - RPC_SetMaxHealth
+  - RPC_SetSoulHealth
+  - RPC_SetTearBefore
+  - Flash
+  - RPC_SetWeb
+  - GameOver
+  - RPC_SetUIKilledPlayer
+  - RPC_SetPoop
+  - RPC_StartShake
+  - RPC_SetColliderEnabled
+  - RPC_SetObjectActive
+  - RPC_SetSprite
+  - RPC_SetKilledPlayer
+  - GetTear
+  - RPC_InitCreate
+  - RPC_SetInterpolateDisabled
+  - GetItem
+  - RPC_CreatedSet
+  - RPC_SetAnimTrigger
+  - RPC_SetisDeath
+  - RPC_SetisClear
+  - RPC_SetTrigger
+  - RPC_DisableTear
+  - RPC_SetisSpawned
+  - SetAfterDeath
+  - RPC_SetisAttack
+  - RPC_ChangeState
+  - RPC_SetSpriteDirection
+  - RPC_MoveStateVariables
+  - RPC_OnceIsJustBody
+  - RPC_SetisAttackFinished
+  - RPC_SetisAttackTiming
+  - RPC_SetDirectionVec
+  - RPC_GetTearAndAttack
+  - RPC_AddExcludeLayerToCollider
+  - RPC_AfterIsDeadFinish
+  - RPC_AnimatorPlay
+  - RPC_ControlExplosionEffect
+  - RPC_RemoveExcludeLayerFromCollider
+  - RPC_SetCurJumpCount
+  - RPC_SetCurSprayCount
+  - RPC_SetDeadAnimators
+  - RPC_SetElapsedTime
+  - RPC_SetisBigJump
+  - RPC_SetisDeadFinish
+  - RPC_SetisJumpUp
+  - RPC_SetisOnLand
+  - RPC_SetisSmallJump
+  - RPC_SetisTearSparied
+  - RPC_SetisTearSpray
+  - RPC_SetisTearTiming
+  - RPC_SetMaxJumpCount
+  - RPC_SetNextPosition
+  - RPC_SetPlayerLatePosition
+  - RPC_SetSprayCount
+  - RPC_SoryBy
+  - RPC_SpawnBloodEffects
+  - RPC_SetRefreshedRooms
+  - RPC_OnBoolChanged
+  - RPC_SetCurrentRoom
+  - RPC_SetIsBossRoom
+  - RPC_SetIsClear
+  - RPC_SetMonsterCount
+  - RPC_SetRooms
+  - RPC_SpawnMonsters
+  - SetRoomParent
+  - RPC_RemoveRoom
+  - RPC_SpawnBossClear
+  - RPC_SpawnClearExit
+  - RPC_SpawnRoomClear
+  - RefreshRooms
+  - RPC_RemoveRoomInList
+  - RPC_Debug
+  - RPC_SetCreatedRooms
+  - DestroyForSpecial
+  - SetRoomParentNetworked
+  - ActivePlayer
+  - RPC_SetParent
+  - RPC_SetIsSpecialRoom
+  - RPC_GameOver
+  - RPC_RetryGame
+  - RPC_SetCountAfter
+  - RPC_SetStatHealth
+  - RPC_SetGoldRoomDirection
+  - RPC_SetShadowOffset
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

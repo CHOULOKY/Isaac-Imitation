@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -30,6 +31,9 @@ public class ExitDoor : MonoBehaviour
 
       private void OnCollisionEnter2D(Collision2D collision)
       {
+            // 마스터 클라이언트만 실행
+            if (!PhotonNetwork.IsMasterClient) return;
+
             if (collision.transform.CompareTag("Player")) {
                   GameManager.Instance.IsClear = true;
             }

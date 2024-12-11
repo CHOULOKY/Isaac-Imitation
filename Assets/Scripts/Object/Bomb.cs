@@ -6,11 +6,15 @@ using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 using ObstacleSpace;
+using Photon.Pun;
+using Unity.Burst.CompilerServices;
 
 namespace ItemSpace
 {
       public class Bomb : MonoBehaviour
       {
+            private PhotonView photonView;
+
             private FlashEffect flashEffect;
 
             private SpriteRenderer spriteRenderer;
@@ -23,6 +27,8 @@ namespace ItemSpace
 
             private void Awake()
             {
+                  photonView = GetComponent<PhotonView>();
+
                   flashEffect = GetComponent<FlashEffect>();
 
                   spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,6 +42,11 @@ namespace ItemSpace
 
             private void OnEnable()
             {
+                  // Body인데 소유권이 없으면, 소유권 요청
+                  if (PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer) {
+                        photonView.RequestOwnership();
+                  }
+
                   spriteRenderer.color = Color.white;
                   foreach (Transform child in childs) {
                         child.gameObject.SetActive(true);
@@ -46,8 +57,8 @@ namespace ItemSpace
             public void StartFlash(int color)
             {
                   // 0 == Red, 1 == Yellow
-                  if (color == 0) flashEffect.Flash(Color.red);
-                  else flashEffect.Flash(Color.yellow);
+                  if (color == 0) flashEffect.Flash(1f, 0f, 0f, 1f); // red
+                  else flashEffect.Flash(1f, 0.92f, 0.016f, 1f); // yellow
             }
 
             public void StartExplosion()
@@ -60,7 +71,6 @@ namespace ItemSpace
                   explosionAnimator.SetTrigger("Explosion");
                   StartCoroutine(SetActiveAfterAnimation(explosionAnimator, "AM_BombExplosion", false));
 
-                  // Apply damage and knockback
                   ApplyBombImpact();
             }
             #endregion
@@ -80,22 +90,36 @@ namespace ItemSpace
                         LayerMask.GetMask("Player", "Monster", "Obstacle"))) {
                         switch (LayerMask.LayerToName(hit.transform.gameObject.layer)) {
                               case "Player":
+                                    // 마스터 클라이언트(Body)가 아니라면 return
+                                    if (!PhotonNetwork.IsMasterClient) return;
+
                                     if (hit.transform.GetComponent<IsaacBody>() is IsaacBody player) {
                                           if (player.IsHurt) { }
                                           else {
                                                 player.Health -= damage;
                                                 player.IsHurt = true;
                                                 ApplyKnockTo(player.GetComponent<Rigidbody2D>());
+                                                GameManager.Instance.uiManager.setKilledPlayer = "Bomb";
                                           }
                                     }
                                     break;
                               case "Monster":
-                                    if (TryGetMonsterFields(hit.collider, out MonoBehaviour script, out FieldInfo statField,
+                                    // 마스터 클라이언트(Body)가 아니라면 return
+                                    if (!PhotonNetwork.IsMasterClient) return;
+
+                                    if (TryGetMonsterFields(hit.collider, out MonoBehaviour script, out PropertyInfo healthProperty,
                                           out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)) {
-                                          if (statField.GetValue(script) is MonsterStat monsterStat &&
-                                                monsterTypeField.GetValue(script) is MonsterType monsterType) {
-                                                monsterStat.health -= damage;
+                                          if (monsterTypeField.GetValue(script) is MonsterType monsterType) {
+                                                //if (hit.collider.GetComponent<PhotonView>() is PhotonView pv) {
+                                                //      if (!pv.IsMine) pv.RequestOwnership();
+                                                //}
+                                                //monsterStat.health -= damage;
+                                                if (healthProperty.GetValue(script) is float currentHealth) { // float 타입으로 가정
+                                                      float newHealth = currentHealth - damage;
+                                                      healthProperty.SetValue(script, newHealth);
+                                                }
                                                 isHurtProperty.SetValue(script, true);
+
                                                 ApplyKnockTo(script.GetComponent<Rigidbody2D>(), monsterType);
                                           }
                                     }
@@ -105,32 +129,35 @@ namespace ItemSpace
                                     break;
                               case "Obstacle":
                                     SpriteRenderer hitSR = hit.collider.GetComponent<SpriteRenderer>();
-                                    switch (hit.collider.GetComponent<Obstacle>().GetType().ToString()) {
-                                          case "Poop":
-                                                Poop poopScript = hit.collider.GetComponent<Poop>();
-                                                hitSR.sprite = poopScript.poopArray[(int)poopScript.poopType].destroyed;
-                                                break;
-                                          case "Rock":
-                                                Rock rockScript = hit.collider.GetComponent<Rock>();
-                                                Sprite destroyedSprite = rockScript.rockArray[(int)rockScript.rockType].destroyed;
-                                                if (destroyedSprite) hitSR.sprite = destroyedSprite;
-                                                break;
-                                          case "Web":
-                                                Web webScript = hit.collider.GetComponent<Web>();
-                                                hitSR.sprite = webScript.destroyed;
-                                                break;
+                                    string hitName = hit.collider.GetComponent<Obstacle>().GetType().ToString();
+                                    if (hitName.Contains("Poop")) {
+                                          Poop poopScript = hit.collider.GetComponent<Poop>();
+                                          hitSR.sprite = poopScript.poopArray[(int)poopScript.poopType].destroyed;
                                     }
+                                    else if (hitName.Contains("Rock")) {
+                                          Rock rockScript = hit.collider.GetComponent<Rock>();
+                                          Sprite destroyedSprite = rockScript.rockArray[(int)rockScript.rockType].destroyed;
+                                          if (destroyedSprite) hitSR.sprite = destroyedSprite;
+                                    }
+                                    else if (hitName.Contains("Web")) {
+                                          Web webScript = hit.collider.GetComponent<Web>();
+                                          hitSR.sprite = webScript.destroyed;
+                                    }
+                                    else if (hitName.Contains("Spike")) {
+                                          break;
+                                    }
+                                    hitSR.GetComponent<Collider2D>().enabled = false;
                                     break;
                         }
                   }
             }
 
-            private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out FieldInfo statField,
+            private bool TryGetMonsterFields(Collider2D collision, out MonoBehaviour script, out PropertyInfo healthProperty,
                   out PropertyInfo isHurtProperty, out FieldInfo monsterTypeField)
             {
                   // 초기화
                   script = null;
-                  statField = null;
+                  healthProperty = null;
                   isHurtProperty = null;
                   monsterTypeField = null;
 
@@ -140,12 +167,13 @@ namespace ItemSpace
                         Type baseType = s.GetType()?.BaseType; // 부모: Monster
                         if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(Monster<>)) {
                               // stat 필드와 IsHurt 프로퍼티 찾기
-                              statField = baseType.GetField("stat", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                              //statField = baseType.GetField("stat", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                              healthProperty = baseType.GetProperty("Health", BindingFlags.Instance | BindingFlags.Public);
                               isHurtProperty = baseType.GetProperty("IsHurt", BindingFlags.Instance | BindingFlags.Public);
                               // MonsterType 열거형 필드 찾기
                               monsterTypeField = baseType.GetField("monsterType", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
 
-                              if (statField != null && isHurtProperty != null && monsterTypeField != null) {
+                              if (healthProperty != null && isHurtProperty != null && monsterTypeField != null) {
                                     script = s;
                                     return true;
                               }
@@ -157,6 +185,10 @@ namespace ItemSpace
 
             private void ApplyKnockTo(Rigidbody2D targetRigid, MonsterType? monsterType = null)
             {
+                  if (targetRigid.GetComponent<PhotonView>() is PhotonView view) {
+                        if (!view.IsMine) view.RequestOwnership();
+                  }
+
                   switch (monsterType) {
                         case MonsterType.Monstro:
                               // Knockback not applied

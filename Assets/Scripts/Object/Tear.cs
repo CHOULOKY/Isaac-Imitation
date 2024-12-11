@@ -2,6 +2,7 @@ using Photon.Pun;
 using System;
 using System.Collections;
 using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tear : MonoBehaviour
@@ -44,9 +45,10 @@ public class Tear : MonoBehaviour
       protected virtual void OnDisable()
       {
             // 소유권이 있으면 실행
-            if (photonView.IsMine) {
-                  transform.position = transform.parent.position;
-            }
+            //if (photonView.IsMine) {
+            //      transform.position = transform.parent.position;
+            //}
+            transform.position = transform.parent.position;
       }
 
       [Header("Gravity Set Time (Up: 0, Down: 1, Right: 2, Left: 3)")]

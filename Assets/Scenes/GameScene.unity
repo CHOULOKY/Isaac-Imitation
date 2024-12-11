@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tearList:
   - {fileID: 8923474546267978425, guid: 539471a3006112b4099e4d694223b3ba, type: 3}
-  poolSize: 06000000
+  poolSize: 14000000
 --- !u!114 &345865709
 MonoBehaviour:
   m_ObjectHideFlags: 0

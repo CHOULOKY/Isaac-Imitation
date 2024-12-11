@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class Minimap : MonoBehaviour
+public class Minimap : MonoBehaviour, IPunObservable
 {
       public GameObject[] miniRooms;
       public List<GameObject> miniRoomsList;
@@ -35,7 +35,9 @@ public class Minimap : MonoBehaviour
 
       private void Update()
       {
-            transform.parent.position = mainCamera.transform.position + offsetFromMain;
+            if (PhotonNetwork.IsMasterClient) {
+                  transform.parent.position = mainCamera.transform.position + offsetFromMain;
+            }
 
             if (templates.RefreshedRooms && !isSetMinimap) {
                   isSetMinimap = true;
@@ -94,5 +96,15 @@ public class Minimap : MonoBehaviour
       private void OnDisable()
       {
             StopCoroutine(nameof(CheckResolution));
+      }
+
+      public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+      {
+            //if (stream.IsWriting) {
+            //      stream.SendNext(transform.parent.position);
+            //}
+            //else {
+            //      transform.parent.position = (Vector3)stream.ReceiveNext();
+            //}
       }
 }

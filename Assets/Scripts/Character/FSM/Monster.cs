@@ -21,8 +21,8 @@ public class Monster<T> : MonoBehaviour, IPunObservable where T : class
             get => stat.health;
             set {
                   if (stat.health != value) {
-                        stat.health = value;
-                        photonView.RPC(nameof(RPC_SetStatHealth), RpcTarget.OthersBuffered, value);
+                        //stat.health = value;
+                        photonView.RPC(nameof(RPC_SetStatHealth), RpcTarget.AllBuffered, value);
                   }
             }
       }

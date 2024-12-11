@@ -86,14 +86,16 @@ namespace ItemSpace
 
             private void ApplyBombImpact()
             {
-                  foreach (RaycastHit2D hit in Physics2D.CircleCastAll(transform.position, 1, Vector2.zero, 0,
-                        LayerMask.GetMask("Player", "Monster", "Obstacle"))) {
-                        switch (LayerMask.LayerToName(hit.transform.gameObject.layer)) {
+                  int mask = LayerMask.GetMask("Player", "Monster", "Obstacle");
+                  foreach (RaycastHit2D hit in Physics2D.CircleCastAll(transform.position, 1, Vector2.zero, 0, mask)) {
+                        //Debug.LogError(hit.collider.gameObject.name + " + "
+                        //      + LayerMask.LayerToName(hit.collider.gameObject.layer));
+                        switch (LayerMask.LayerToName(hit.collider.gameObject.layer)) {
                               case "Player":
                                     // 마스터 클라이언트(Body)가 아니라면 return
                                     if (!PhotonNetwork.IsMasterClient) return;
 
-                                    if (hit.transform.GetComponent<IsaacBody>() is IsaacBody player) {
+                                    if (hit.collider.GetComponent<IsaacBody>() is IsaacBody player) {
                                           if (player.IsHurt) { }
                                           else {
                                                 player.Health -= damage;

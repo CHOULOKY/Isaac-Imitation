@@ -41,19 +41,23 @@ namespace ItemSpace
             protected override void OnEnable()
             {
                   // 마스터 클라이언트(Body)가 아니면 return
+                  if (!PhotonNetwork.IsMasterClient) return;
+
                   base.OnEnable();
 
                   heartType = (HeartType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(HeartType)).Length);
                   heartType = UnityEngine.Random.Range(0, 3) == 0 ? HeartType.Normal : heartType; // 3분의 1 확률로 다시 일반 하트
 
-                  isHalf = UnityEngine.Random.Range(0, heartArray[(int)heartType].hearts.Length) != 0;
+                  isHalf = UnityEngine.Random.Range(0, 2) != 0;
                   //spriteRenderer.sprite = heartArray[(int)heartType].hearts[isHalf ? 1 : 0];
                   photonView.RPC(nameof(RPC_SetSprite), RpcTarget.AllBuffered, heartType, isHalf);
             }
             [PunRPC]
-            private void RPC_SetSprite(HeartType heartType, bool isHalf)
+            private void RPC_SetSprite(HeartType _heartType, bool _isHalf)
             {
-                  spriteRenderer.sprite = heartArray[(int)heartType].hearts[isHalf ? 1 : 0];
+                  heartType = _heartType;
+                  isHalf = _isHalf;
+                  spriteRenderer.sprite = heartArray[(int)_heartType].hearts[_isHalf ? 1 : 0];
             }
 
             protected override void OnCollisionEnter2D(Collision2D collision)

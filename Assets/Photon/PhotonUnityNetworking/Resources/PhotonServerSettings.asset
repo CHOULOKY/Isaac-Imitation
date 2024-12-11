@@ -132,6 +132,7 @@ MonoBehaviour:
   - RPC_SetStatHealth
   - RPC_SetGoldRoomDirection
   - RPC_SetShadowOffset
+  - SpawnItemInRoom
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

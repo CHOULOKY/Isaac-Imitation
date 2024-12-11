@@ -35,31 +35,31 @@ public class IsaacBody : MonoBehaviour, IPunObservable
             set {
                   if (health > 0) {
                         if (value > health) {
-                              if (value > maxHealth) health = maxHealth;
+                              if (value > MaxHealth) health = MaxHealth;
                               else health = value;
                         }
                         else {
                               int damage = health - value;
-                              if (soulHealth > 0) soulHealth -= damage;
+                              if (SoulHealth > 0) SoulHealth -= damage;
                               else health = value;
 
-                              if (soulHealth < 0) {
-                                    health += soulHealth;
-                                    soulHealth = 0;
+                              if (SoulHealth < 0) {
+                                    health += SoulHealth;
+                                    SoulHealth = 0;
                               }
                         }
                   }
                   else health = value;
 
                   //if (value != maxHealth) GameManager.Instance.uiManager.RefreshUI();
-                  photonView.RPC(nameof(RPC_SetHealth), RpcTarget.AllBuffered, health, value);
+                  photonView.RPC(nameof(RPC_SetHealth), RpcTarget.AllBuffered, health);
             }
       }
       [PunRPC]
-      private void RPC_SetHealth(int _health, int _value)
+      private void RPC_SetHealth(int _health)
       {
             health = _health;
-            if (_value != maxHealth) GameManager.Instance.uiManager.RefreshUI();
+            GameManager.Instance.uiManager.RefreshUI();
       }
 
       [SerializeField] private int maxHealth = 6;
@@ -86,7 +86,7 @@ public class IsaacBody : MonoBehaviour, IPunObservable
       {
             get => soulHealth;
             set {
-                  if (soulHealth > 24) soulHealth = 24;
+                  if (value > 24) soulHealth = 24;
                   else soulHealth = value;
 
                   //GameManager.Instance.uiManager.RefreshUI();

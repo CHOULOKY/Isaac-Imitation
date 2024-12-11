@@ -19,7 +19,7 @@ public class AddRoom : MonoBehaviour
                         if (isClear) {
                               //OnBoolChanged(1, 1, 1, 0.5f);
                               photonView.RPC(nameof(RPC_OnBoolChanged), RpcTarget.AllBuffered, 1f, 1f, 1f, 0.5f);
-                              if(templates.RefreshedRooms) SpawnItemInRoom();
+                              if(templates.RefreshedRooms) photonView.RPC(nameof(SpawnItemInRoom), RpcTarget.AllBuffered);
                         }
                         else {
                               //OnBoolChanged(1, 1, 1, 0.2f);
@@ -273,6 +273,7 @@ public class AddRoom : MonoBehaviour
             }
       }
 
+      [PunRPC]
       private void SpawnItemInRoom()
       {
             //GameObject item = null;
@@ -283,28 +284,31 @@ public class AddRoom : MonoBehaviour
                   // 보스 체력바 제거
                   GameManager.Instance.uiManager.SetActiveBossSlider(false);
 
-                  int itemCount = UnityEngine.Random.Range(2, 4);
-                  while (itemCount-- != 0) {
-                        itemIndex = (int)ItemSpace.ItemFactory.Items.Bomb;
-                        while (itemIndex == (int)ItemSpace.ItemFactory.Items.Bomb) {
-                              // 사용하는 Bomb이 아닌 Pickup 아이템이 나올 때까지 반복
-                              itemIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ItemSpace.ItemFactory.Items)).Length);
+                  if (PhotonNetwork.IsMasterClient) {
+                        int itemCount = UnityEngine.Random.Range(2, 4);
+                        while (itemCount-- != 0) {
+                              itemIndex = (int)ItemSpace.ItemFactory.Items.Bomb;
+                              while (itemIndex == (int)ItemSpace.ItemFactory.Items.Bomb) {
+                                    // 사용하는 Bomb이 아닌 Pickup 아이템이 나올 때까지 반복
+                                    itemIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ItemSpace.ItemFactory.Items)).Length);
+                              }
+                              //item = GameManager.Instance.itemFactory.GetItem((ItemSpace.ItemFactory.Items)itemIndex, false);
+                              //if (TryGetBossScript(out MonoBehaviour script))
+                              //      item.transform.position = script.transform.position; // 보스 몬스터 위치에서 생성
+                              //item.SetActive(true);
+                              Vector2 offset = new Vector2(UnityEngine.Random.Range(-0.1f, 0.1f), UnityEngine.Random.Range(-0.1f, 0.1f));
+                              photonView.RPC(nameof(RPC_SpawnBossClear), RpcTarget.AllBuffered, itemIndex, offset);
                         }
-                        //item = GameManager.Instance.itemFactory.GetItem((ItemSpace.ItemFactory.Items)itemIndex, false);
-                        //if (TryGetBossScript(out MonoBehaviour script))
-                        //      item.transform.position = script.transform.position; // 보스 몬스터 위치에서 생성
-                        //item.SetActive(true);
-                        photonView.RPC(nameof(RPC_SpawnBossClear), RpcTarget.AllBuffered, itemIndex);
-                  }
 
-                  //// exitDoor 생성
-                  //Instantiate(templates.exitDoor, transform.position + Vector3.up * 1.5f, Quaternion.identity, transform);
-                  //// prop 생성
-                  //Instantiate(templates.prop, transform.position + Vector3.down * 1.5f, Quaternion.identity, transform);
-                  photonView.RPC(nameof(RPC_SpawnClearExit), RpcTarget.AllBuffered);
+                        //// exitDoor 생성
+                        //Instantiate(templates.exitDoor, transform.position + Vector3.up * 1.5f, Quaternion.identity, transform);
+                        //// prop 생성
+                        //Instantiate(templates.prop, transform.position + Vector3.down * 1.5f, Quaternion.identity, transform);
+                        photonView.RPC(nameof(RPC_SpawnClearExit), RpcTarget.AllBuffered);
+                  }
             }
             // 2분의 1 확률로 룸 클리어 보상
-            else if (UnityEngine.Random.Range(0, 2) == 0) {
+            else if (PhotonNetwork.IsMasterClient && UnityEngine.Random.Range(0, 2) == 0) {
                   while (itemIndex == (int)ItemSpace.ItemFactory.Items.Bomb) {
                         itemIndex = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ItemSpace.ItemFactory.Items)).Length);
                   }
@@ -315,11 +319,11 @@ public class AddRoom : MonoBehaviour
             }
       }
       [PunRPC]
-      private void RPC_SpawnBossClear(int itemIndex)
+      private void RPC_SpawnBossClear(int itemIndex, Vector2 offset)
       {
             GameObject item = GameManager.Instance.itemFactory.GetItem((ItemSpace.ItemFactory.Items)itemIndex, false);
             if (TryGetBossScript(out MonoBehaviour script))
-                  item.transform.position = script.transform.position; // 보스 몬스터 위치에서 생성
+                  item.transform.position = (Vector2)script.transform.position + offset; // 보스 몬스터 위치에서 생성
             item.SetActive(true);
       }
       [PunRPC]

@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 6809565684778324810}
   - component: {fileID: 8024058364944693446}
   - component: {fileID: 3163759612067726673}
-  - component: {fileID: 4552911171929447929}
   - component: {fileID: 6012761820577419519}
   m_Layer: 7
   m_Name: Gaper_Head
@@ -185,27 +184,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4552911171929447929
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300230038518953115}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &6012761820577419519
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -342,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86031ee9b0753b5408b6c60ab50f18ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alreadyJustBody: 0
 --- !u!212 &2996713838109201567
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -497,6 +476,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5828307153960377898}
+  - {fileID: 7392695126714410977}
   - {fileID: -4150371763230157246}
   - {fileID: 3425535525813472296}
   sceneViewId: 0

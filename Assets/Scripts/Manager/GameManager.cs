@@ -86,17 +86,19 @@ public class GameManager : MonoBehaviour
 
       private void Start()
       {
+            //PhotonNetwork.AutomaticallySyncScene = true;
+
+            Time.timeScale = 1.0f;
             StartCoroutine(GameStart());
       }
 
       public IEnumerator GameStart()
       {
             yield return StartCoroutine(uiManager.GameStartBefore());
-
             //IsaacBody player = FindObjectOfType<IsaacBody>(true);
             //player.gameObject.SetActive(true);
             photonView.RPC(nameof(ActivePlayer), RpcTarget.AllBuffered);
-
+            
             yield return StartCoroutine(uiManager.GameStartAfter());
       }
       [PunRPC]
@@ -142,14 +144,14 @@ public class GameManager : MonoBehaviour
       #region For UI Button
       public void RetryGame()
       {
-            //SceneManager.LoadScene(1);
-            photonView.RPC(nameof(RPC_RetryGame), RpcTarget.MasterClient);
+            SceneManager.LoadScene(1);
+            //photonView.RPC(nameof(RPC_RetryGame), RpcTarget.AllBuffered);
       }
-      [PunRPC]
-      private void RPC_RetryGame()
-      {
-            PhotonNetwork.LoadLevel(1);
-      }
+      //[PunRPC]
+      //private void RPC_RetryGame()
+      //{
+      //      PhotonNetwork.LoadLevel("GameScene");
+      //}
 
       public static void ExitGame()
       {

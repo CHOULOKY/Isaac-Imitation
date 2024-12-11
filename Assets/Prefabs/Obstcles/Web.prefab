@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: -347769769, guid: 15b2f2a454e822c47be7f77668b4443d, type: 3}
   - {fileID: 1500386092, guid: 15b2f2a454e822c47be7f77668b4443d, type: 3}
   - {fileID: 353093426, guid: 15b2f2a454e822c47be7f77668b4443d, type: 3}
-  destroyed: {fileID: 0}
+  destroyed: {fileID: 353093426, guid: 15b2f2a454e822c47be7f77668b4443d, type: 3}
 --- !u!212 &2908733368375880398
 SpriteRenderer:
   m_ObjectHideFlags: 0

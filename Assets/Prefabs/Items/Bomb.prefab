@@ -309,7 +309,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 4380749711666837122}
-  - {fileID: 6348510120668484939}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -441,7 +441,6 @@ GameObject:
   - component: {fileID: 4082465581780374715}
   - component: {fileID: 21049406023892325}
   - component: {fileID: 5066049240305606223}
-  - component: {fileID: 6348510120668484939}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -537,24 +536,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6348510120668484939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8776419575776519768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 9
-    SynchronizeType: 1
-    Name: Explosion
-  m_SynchronizeLayers:
-  - SynchronizeType: 0
-    LayerIndex: 0

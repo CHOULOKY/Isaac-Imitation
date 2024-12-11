@@ -1756,7 +1756,6 @@ MonoBehaviour:
   currentRoom: 0
   isBossRoom: 0
   monsterCount: 0
-  goldRoomDirection: 0
 --- !u!61 &-4526455349366364850
 BoxCollider2D:
   m_ObjectHideFlags: 0

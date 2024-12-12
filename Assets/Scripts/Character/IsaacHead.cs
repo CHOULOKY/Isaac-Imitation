@@ -1,8 +1,13 @@
+using Photon.Pun;
 using System.Threading;
 using UnityEngine;
 
+// Photon applied complete
 public class IsaacHead : MonoBehaviour, ITearShooter
 {
+      private PhotonView photonView;
+
+
       private IsaacBody body;
 
       private Animator animator;
@@ -14,20 +19,55 @@ public class IsaacHead : MonoBehaviour, ITearShooter
       [Tooltip("= tearRange")] public float tearSpeed = 6;
       private int tearWhatEye = 1;
 
-      public float attackSpeed = 0.25f;
+
+      [SerializeField] private float attackSpeed = 0.5f;
+      public float AttackSpeed
+      {
+            get => attackSpeed;
+            set {
+                  if (attackSpeed != value) {
+                        attackSpeed = value;
+                        photonView.RPC(nameof(RPC_SetAttackSpeed), RpcTarget.OthersBuffered, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetAttackSpeed(float value)
+      {
+            attackSpeed = value;
+      }
+
       private float curAttackTime = 0.25f;
+
+      #region Item
+      //private int temp;
+      #endregion
+
 
       private void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
 
             body = transform.parent.GetComponent<IsaacBody>();
       }
 
+      private void OnEnable()
+      {
+            // 마스터 클라이언트가 아니고 현재 오브젝트를 소유하고 있지 않으면
+            if (!PhotonNetwork.IsMasterClient && photonView.Owner != PhotonNetwork.LocalPlayer) {
+                  photonView.RequestOwnership();
+            }
+      }
+
       private void Update()
       {
-            if (body.IsHurt) return;
+            // 현재 오브젝트에 소유권이 없으면 return
+            if (!photonView.IsMine) return;
+
+            if (body.IsHurt || body.ingPickup) return;
 
             GetInputVec();
 
@@ -54,18 +94,32 @@ public class IsaacHead : MonoBehaviour, ITearShooter
                   inputVec.x = 0;
                   inputVec.y = -1;
             }
+
+            photonView.RPC(nameof(RPC_SetInputVec), RpcTarget.Others, inputVec);
+      }
+      [PunRPC]
+      private void RPC_SetInputVec(Vector2 _inputVec)
+      {
+            inputVec = _inputVec;
       }
 
       private void SetHeadDirection()
       {
             if (inputVec.x > 0) {
-                  spriteRenderer.flipX = false;
+                  //spriteRenderer.flipX = false;
+                  photonView.RPC(nameof(RPC_SetFlipX), RpcTarget.All, false);
             }
             else if (inputVec.x < 0) {
-                  spriteRenderer.flipX = true;
+                  //spriteRenderer.flipX = true;
+                  photonView.RPC(nameof(RPC_SetFlipX), RpcTarget.All, true);
             }
             animator.SetInteger("XAxisRaw", (int)inputVec.x);
             animator.SetInteger("YAxisRaw", (int)inputVec.y);
+      }
+      [PunRPC]
+      private void RPC_SetFlipX(bool flipX)
+      {
+            spriteRenderer.flipX = flipX;
       }
 
       public void AttackUsingTear(GameObject curTear = default)
@@ -75,16 +129,41 @@ public class IsaacHead : MonoBehaviour, ITearShooter
                   if (Input.GetButton("Horizontal Arrow") || Input.GetButton("Vertical Arrow")) {
                         curAttackTime = 0;
 
-                        curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, true);
-                        SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
-                        if (tearRigid == default) {
-                              Debug.LogWarning($"{this.name}'s tears don't have Rigidbody2D!");
-                              return;
-                        }
-                        
-                        SetTearVelocity(out Vector2 tearVelocity, tearRigid);
-                        ShootSettedTear(curTear, tearRigid, tearVelocity);
+                        //curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, true);
+                        //SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
+                        //if (tearRigid == default) {
+                        //      Debug.LogWarning($"{this.name}'s tears don't have Rigidbody2D!");
+                        //      return;
+                        //}
+
+                        //SetTearVelocity(out Vector2 tearVelocity, tearRigid);
+                        //ShootSettedTear(curTear, tearRigid, tearVelocity);
+                        photonView.RPC(nameof(RPC_SetTearBefore), RpcTarget.All, tearSpeed, tearWhatEye);
+                        photonView.RPC(nameof(RPC_AttackUsingTear), RpcTarget.All, tearType);
                   }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetTearBefore(float _tearSpeed, int _tearWhatEye)
+      {
+            tearSpeed = _tearSpeed;
+            tearWhatEye = _tearWhatEye;
+      }
+      [PunRPC]
+      private void RPC_AttackUsingTear(TearFactory.Tears tearType)
+      {
+            animator.SetTrigger("Fire1");
+
+            GameObject curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, true);
+            if (!PhotonNetwork.IsMasterClient) {
+                  SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
+                  if (tearRigid == default) {
+                        Debug.LogWarning($"{this.name}'s tears don't have Rigidbody2D!");
+                        return;
+                  }
+
+                  SetTearVelocity(out Vector2 tearVelocity, tearRigid);
+                  ShootSettedTear(curTear, tearRigid, tearVelocity);
             }
       }
 
@@ -129,10 +208,12 @@ public class IsaacHead : MonoBehaviour, ITearShooter
       {
             tearVelocity = Vector2.zero;
 
-            if (body.GetComponent<Rigidbody2D>() is Rigidbody2D bodyRigid) {
-                  tearVelocity.x = body.inputVec.x == -inputVec.x ? bodyRigid.velocity.x * 0.25f : bodyRigid.velocity.x * 0.5f;
-                  tearVelocity.y = body.inputVec.y == -inputVec.y ? bodyRigid.velocity.y * 0.25f : bodyRigid.velocity.y * 0.5f;
-            }
+            //if (body.GetComponent<Rigidbody2D>() is Rigidbody2D bodyRigid) {
+            //      tearVelocity.x = body.inputVec.x == -inputVec.x ? bodyRigid.velocity.x * 0.25f : bodyRigid.velocity.x * 0.5f;
+            //      tearVelocity.y = body.inputVec.y == -inputVec.y ? bodyRigid.velocity.y * 0.25f : bodyRigid.velocity.y * 0.5f;
+            //}
+            tearVelocity.x = body.inputVec.x == -inputVec.x ? body.bodyVelocity.x * 0.25f : body.bodyVelocity.x * 0.5f;
+            tearVelocity.y = body.inputVec.y == -inputVec.y ? body.bodyVelocity.y * 0.25f : body.bodyVelocity.y * 0.5f;
 
             tearRigid.velocity = Vector2.zero;
       }

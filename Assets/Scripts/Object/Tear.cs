@@ -1,10 +1,14 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tear : MonoBehaviour
 {
+      protected PhotonView photonView;
+
       protected Rigidbody2D rigid;
       protected Animator animator;
 
@@ -19,21 +23,31 @@ public class Tear : MonoBehaviour
 
       protected virtual void Awake()
       {
+            photonView = GetComponent<PhotonView>();
+
             rigid = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
       }
 
       protected virtual void OnEnable()
       {
-            rigid.simulated = true;
+            // 소유권이 있으면 실행
+            if (photonView.IsMine) {
+                  rigid.simulated = true;
 
-            SetGravitySetTimeByDirection(out float curGravitySetTime);
-            StartCoroutine(SetGravityAfter(curGravitySetTime));
-            StartCoroutine(AfterActiveTime(tearActiveTime));
+                  photonView.RequestOwnership();
+                  SetGravitySetTimeByDirection(out float curGravitySetTime);
+                  StartCoroutine(SetGravityAfter(curGravitySetTime));
+                  StartCoroutine(AfterActiveTime(tearActiveTime));
+            }
       }
 
       protected virtual void OnDisable()
       {
+            // 소유권이 있으면 실행
+            //if (photonView.IsMine) {
+            //      transform.position = transform.parent.position;
+            //}
             transform.position = transform.parent.position;
       }
 
@@ -67,11 +81,24 @@ public class Tear : MonoBehaviour
 
       protected virtual void DisableTear()
       {
+            StopCoroutine(nameof(SetGravityAfter));
+            StopCoroutine(nameof(AfterActiveTime));
+
             rigid.velocity = Vector3.zero;
             rigid.simulated = false;
             rigid.gravityScale = 0;
 
             animator.SetTrigger("Pop");
+
+            photonView.RPC(nameof(RPC_DisableTear), RpcTarget.OthersBuffered, "Pop");
+      }
+      [PunRPC]
+      protected virtual void RPC_DisableTear(string name)
+      {
+            rigid.velocity = Vector3.zero;
+            rigid.gravityScale = 0;
+
+            animator.SetTrigger(name);
       }
 
       // For animation event

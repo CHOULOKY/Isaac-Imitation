@@ -1,13 +1,31 @@
 using ChargerStates;
+using Photon.Pun;
 using UnityEngine;
 
-public class Charger : Monster<Charger>
+public class Charger : Monster<Charger>, IPunObservable
 {
       private enum States { Idle, Move, Attack, Dead }
       private States? curState;
 
       [HideInInspector] public RaycastHit2D playerHit;
-      [HideInInspector] public bool isAttack = false;
+
+      private bool isAttack = false;
+      public bool IsAttack
+      {
+            get { return isAttack; }
+            set {
+                  if (isAttack != value) {
+                        isAttack = value;
+                        photonView.RPC(nameof(RPC_SetisAttack), RpcTarget.Others, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetisAttack(bool value)
+      {
+            isAttack = value;
+      }
+
       private float curAttackCooltime = 0;
 
 
@@ -26,7 +44,8 @@ public class Charger : Monster<Charger>
 
       private void Update()
       {
-            if (curState == States.Dead) {
+            // 소유권이 바뀌어도 fsm update만 실행하면 될 수 있도록 -> OnStateEnter, OnStateExit만 실행
+            if (curState == States.Dead || !photonView.IsMine) {
                   return;
             }
 
@@ -71,6 +90,28 @@ public class Charger : Monster<Charger>
       }
 
       private void ChangeState(States nextState)
+      {
+            //curState = nextState;
+
+            //switch (curState) {
+            //      case States.Idle:
+            //            fsm.ChangeState(new IdleState(this));
+            //            break;
+            //      case States.Move:
+            //            fsm.ChangeState(new MoveState(this));
+            //            break;
+            //      case States.Attack:
+            //            fsm.ChangeState(new AttackState(this));
+            //            break;
+            //      case States.Dead:
+            //            fsm.ChangeState(new DeadState(this));
+            //            break;
+            //}
+
+            photonView.RPC(nameof(RPC_ChangeState), RpcTarget.AllBuffered, nextState);
+      }
+      [PunRPC]
+      private void RPC_ChangeState(States nextState)
       {
             curState = nextState;
 
@@ -124,5 +165,20 @@ public class Charger : Monster<Charger>
             Gizmos.color = Color.yellow;
             // Gizmos.DrawRay(this.transform.position, inputVec * 0.85f);
             // Gizmos.DrawRay(this.transform.position, Vector2.right * 0.4f);
+      }
+
+
+
+      public override void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+      {
+            base.OnPhotonSerializeView(stream, info);
+
+            // 언제 소유권이 바뀌어도 문제 없도록
+            if (stream.IsWriting) {
+                  stream.SendNext(curAttackCooltime); // 현재 공격 쿨타임
+            }
+            else {
+                  curAttackCooltime = (float)stream.ReceiveNext();
+            }
       }
 }

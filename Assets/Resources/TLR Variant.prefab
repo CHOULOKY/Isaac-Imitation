@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1993640327958686660
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 960620812300790707, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611227645865050449, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560438319123509035, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359027264626372094, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_Name
+      value: TLR Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763212070241544063, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121324842083010023, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200928926511538782, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249625144871640184, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173671682859433509, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863665709627319071, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456312446218414634, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713958428058734243, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977596478900174209, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 557370d3838afbd4f954f693b1e275e4, type: 3}

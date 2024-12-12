@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3858731124378774957
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4003992454327152422, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 372566905641814380, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187860446710167184, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573963784056269360, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758995901099826100, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693800163199199927, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_Name
+      value: B Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164399418834228398, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489010928032739968, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6963474033697635680, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7214157249241702920, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8707573905177535539, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b96a2160d58a294daca7aebd8d5c88d, type: 3}

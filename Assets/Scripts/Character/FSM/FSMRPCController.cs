@@ -29,6 +29,19 @@ public class FSMRPCController : MonoBehaviour
             animator.SetTrigger(name);
       }
 
+      public virtual void FSMRPC_SetBool(string name, bool value)
+      {
+            photonView.RPC(nameof(RPC_SetBool), RpcTarget.AllBuffered, name, value);
+      }
+      [PunRPC]
+      protected virtual void RPC_SetBool(string name, bool value)
+      {
+            animator.SetBool(name, value);
+      }
+
+
+
+
       public virtual void FSMRPC_SetSpriteDirection(Vector2 inputVec, bool temp = false)
       {
             photonView.RPC(nameof(RPC_SetSpriteDirection), RpcTarget.All, inputVec, temp);

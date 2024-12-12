@@ -148,6 +148,10 @@ namespace PooterStates
             private const TearFactory.Tears tearType = TearFactory.Tears.Basic;
             //private GameObject firstTear, secondTear;
 
+            // 필요 없지만, 버그를 방지하기 위한 2차 장치
+            private bool firstAttack = false, secondAttack = false;
+
+
             public override void OnStateEnter()
             {
                   base.OnStateEnter();
@@ -187,13 +191,13 @@ namespace PooterStates
                   //      secondTear = GameManager.Instance.monsterTearFactory.GetTear(tearType, true);
                   //      AttackUsingTear(secondTear);
                   //}
-                  if (monster.IsAttackTiming[0]) {
-                        //Debug.LogError(1);
+                  if (monster.IsAttackTiming[0] && !firstAttack) {
+                        firstAttack = true;
                         monster.IsAttackTiming = new bool[] { false, monster.IsAttackTiming[1] };
                         pooterFSMRPC.FSMRPC_GetTearAndAttack(tearType);
                   }
-                  else if (monster.IsAttackTiming[1]) {
-                        //Debug.LogError(2);
+                  else if (monster.IsAttackTiming[1] && !secondAttack) {
+                        secondAttack = true;
                         monster.IsAttackTiming = new bool[] { monster.IsAttackTiming[0], false };
                         pooterFSMRPC.FSMRPC_GetTearAndAttack(tearType);
                   }

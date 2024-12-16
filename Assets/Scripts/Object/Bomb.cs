@@ -87,7 +87,7 @@ namespace ItemSpace
             private void ApplyBombImpact()
             {
                   int mask = LayerMask.GetMask("Player", "Monster", "Obstacle");
-                  foreach (RaycastHit2D hit in Physics2D.CircleCastAll(transform.position, 1, Vector2.zero, 0, mask)) {
+                  foreach (RaycastHit2D hit in Physics2D.CircleCastAll(transform.position, 1.1f, Vector2.zero, 0, mask)) {
                         //Debug.LogError(hit.collider.gameObject.name + " + "
                         //      + LayerMask.LayerToName(hit.collider.gameObject.layer));
                         switch (LayerMask.LayerToName(hit.collider.gameObject.layer)) {

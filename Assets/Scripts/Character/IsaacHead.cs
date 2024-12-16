@@ -1,6 +1,10 @@
+using ItemSpace;
 using Photon.Pun;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
+using VectorUtilities;
+using static UnityEngine.GraphicsBuffer;
 
 // Photon applied complete
 public class IsaacHead : MonoBehaviour, ITearShooter
@@ -13,7 +17,7 @@ public class IsaacHead : MonoBehaviour, ITearShooter
       private Animator animator;
       private SpriteRenderer spriteRenderer;
 
-      private Vector2 inputVec;
+      [HideInInspector] public Vector2 inputVec;
 
       private TearFactory.Tears tearType = TearFactory.Tears.Basic;
       [Tooltip("= tearRange")] public float tearSpeed = 6;
@@ -37,10 +41,28 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             attackSpeed = value;
       }
 
+      [SerializeField] private int attackCount = 1;
+      public int AttackCount
+      {
+            get => attackCount;
+            set {
+                  if (attackCount != value) {
+                        attackCount = value;
+                        photonView.RPC(nameof(RPC_SetAttackCount), RpcTarget.OthersBuffered, value);
+                  }
+            }
+      }
+      [PunRPC]
+      private void RPC_SetAttackCount(int value)
+      {
+            attackCount = value;
+      }
+
       private float curAttackTime = 0.25f;
 
       #region Item
-      //private int temp;
+      [HideInInspector] public ItemVisual onionVisual;
+      [HideInInspector] public ItemVisual innerEyeVisual;
       #endregion
 
 
@@ -52,6 +74,17 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             spriteRenderer = GetComponent<SpriteRenderer>();
 
             body = transform.parent.GetComponent<IsaacBody>();
+
+            foreach (ItemVisual target in GetComponentsInChildren<ItemVisual>(true)) {
+                  switch (target.passiveType) {
+                        case PassiveType.Onion:
+                              onionVisual = target;
+                              break;
+                        case PassiveType.InnerEye:
+                              innerEyeVisual = target;
+                              break;
+                  }
+            }
       }
 
       private void OnEnable()
@@ -115,6 +148,7 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             }
             animator.SetInteger("XAxisRaw", (int)inputVec.x);
             animator.SetInteger("YAxisRaw", (int)inputVec.y);
+            ControlItemAnimator(false);
       }
       [PunRPC]
       private void RPC_SetFlipX(bool flipX)
@@ -138,8 +172,29 @@ public class IsaacHead : MonoBehaviour, ITearShooter
 
                         //SetTearVelocity(out Vector2 tearVelocity, tearRigid);
                         //ShootSettedTear(curTear, tearRigid, tearVelocity);
-                        photonView.RPC(nameof(RPC_SetTearBefore), RpcTarget.All, tearSpeed, tearWhatEye);
-                        photonView.RPC(nameof(RPC_AttackUsingTear), RpcTarget.All, tearType);
+                        for (int i = 0; i < AttackCount; i++) {
+                              photonView.RPC(nameof(RPC_SetTearBefore), RpcTarget.All, tearSpeed, tearWhatEye);
+                              photonView.RPC(nameof(RPC_AttackUsingTear), RpcTarget.All, tearType);
+                        }
+
+
+                        // 중심 방향 설정 (현재 입력 방향을 기본 방향으로 사용)
+                        Vector2 baseDirection = inputVec.normalized;
+                        if (baseDirection == Vector2.zero) {
+                              Debug.LogWarning("Attack direction is zero!");
+                              return;
+                        }
+
+                        // AttackCount에 따라 발사 방향 분배
+                        float angleStep = (AttackCount > 1) ? 45f / (AttackCount - 1) : 0f; // 45도를 AttackCount-1로 나눔
+                        float startAngle = -22.5f; // 중심 기준 좌우 대칭으로 발사 시작 각도
+
+                        for (int i = 0; i < AttackCount; i++) {
+                              float currentAngle = startAngle + (angleStep * i);
+                              Vector2 rotatedDirection = baseDirection.Rotate(currentAngle); // 각도만큼 방향 회전
+                              photonView.RPC(nameof(RPC_SetTearBefore), RpcTarget.All, tearSpeed, tearWhatEye);
+                              photonView.RPC(nameof(RPC_AttackUsingTear), RpcTarget.All, tearType, rotatedDirection);
+                        }
                   }
             }
       }
@@ -150,9 +205,10 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             tearWhatEye = _tearWhatEye;
       }
       [PunRPC]
-      private void RPC_AttackUsingTear(TearFactory.Tears tearType)
+      private void RPC_AttackUsingTear(TearFactory.Tears tearType, Vector2 direction)
       {
             animator.SetTrigger("Fire1");
+            ControlItemAnimator(true);
 
             GameObject curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, true);
             if (!PhotonNetwork.IsMasterClient) {
@@ -163,7 +219,7 @@ public class IsaacHead : MonoBehaviour, ITearShooter
                   }
 
                   SetTearVelocity(out Vector2 tearVelocity, tearRigid);
-                  ShootSettedTear(curTear, tearRigid, tearVelocity);
+                  ShootSettedTear(curTear, tearRigid, tearVelocity, direction);
             }
       }
 
@@ -197,7 +253,8 @@ public class IsaacHead : MonoBehaviour, ITearShooter
                   }
 
                   tearRigid = curRigid;
-                  tearRigid.position = (Vector2)transform.position + offset;
+                  if (attackCount == 1) tearRigid.position = (Vector2)transform.position;
+                  else tearRigid.position = (Vector2)transform.position + offset;
             }
             else {
                   tearRigid = default;
@@ -218,11 +275,26 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             tearRigid.velocity = Vector2.zero;
       }
 
-      public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity)
+      public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity, Vector2 direction = default)
       {
             float adjustedSpeed = inputVec.y < 0 ? tearSpeed * 0.75f : tearSpeed;
             // tearRigid.AddForce(inputVec * tearSpeed + Vector2.up / 2 + tearVelocity, ForceMode2D.Impulse);
-            tearRigid.AddForce(inputVec * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
+            tearRigid.AddForce(direction * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
+      }
+
+
+
+
+      private void ControlItemAnimator(bool setTrigger = false)
+      {
+            if (PhotonNetwork.IsMasterClient) return;
+
+            if (onionVisual.gameObject.activeSelf) {
+                  onionVisual.ControlAnimator(setTrigger);
+            }
+            if (innerEyeVisual.gameObject.activeSelf) {
+                  innerEyeVisual.ControlAnimator(setTrigger);
+            }
       }
       
 

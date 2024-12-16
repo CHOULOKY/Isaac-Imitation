@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using VectorUtilities;
 
 namespace MonstroStates
 {
@@ -157,7 +158,7 @@ namespace MonstroStates
                   tearRigid.velocity = Vector2.zero;
             }
 
-            public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity)
+            public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity, Vector2 direction = default)
             {
                   float rotateAngle = default;
                   if (GetType() == typeof(TearSprayState)) {
@@ -166,27 +167,27 @@ namespace MonstroStates
                   else if (GetType() == typeof(BigJumpState)) {
                         rotateAngle = UnityEngine.Random.Range(-180f, 180f);
                   }
-
-                  Vector2 inputVec = RotateVector(monstroFSMRPC.directionVec.normalized, rotateAngle);
+                  
+                  Vector2 inputVec = monstroFSMRPC.directionVec.normalized.Rotate(rotateAngle);
                   float adjustedSpeed = UnityEngine.Random.Range(monster.stat.tearSpeed - 1, monster.stat.tearSpeed + 2);
                   tearRigid.AddForce(inputVec * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
             }
 
-            protected Vector2 RotateVector(Vector2 v, float angle)
-            {
-                  // 1. 각도를 라디안으로 변환
-                  float radian = angle * Mathf.Deg2Rad;
+            //protected Vector2 RotateVector(Vector2 v, float angle)
+            //{
+            //      // 1. 각도를 라디안으로 변환
+            //      float radian = angle * Mathf.Deg2Rad;
 
-                  // 2. 회전 행렬의 요소 계산
-                  float cos = Mathf.Cos(radian);
-                  float sin = Mathf.Sin(radian);
+            //      // 2. 회전 행렬의 요소 계산
+            //      float cos = Mathf.Cos(radian);
+            //      float sin = Mathf.Sin(radian);
 
-                  // 3. 회전 행렬 적용
-                  return new Vector2(
-                      v.x * cos - v.y * sin,
-                      v.x * sin + v.y * cos
-                  );
-            }
+            //      // 3. 회전 행렬 적용
+            //      return new Vector2(
+            //          v.x * cos - v.y * sin,
+            //          v.x * sin + v.y * cos
+            //      );
+            //}
             #endregion
 
             protected async void DelaySpawnBlood(float time = 0)

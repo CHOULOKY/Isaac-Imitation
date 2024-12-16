@@ -299,14 +299,10 @@ public class UIManager : ScriptAnimation
                   //Debug.LogError($"Initialized {passiveImages?.Length ?? 0} passive images");
             }
 
-            switch (type) {
-                  case PassiveType.Onion:
-                        if (passiveIndex + 1 < passiveImages.Length) {
-                              passiveIndex++;
-                              passiveImages[passiveIndex].gameObject.SetActive(true);
-                              passiveImages[passiveIndex].sprite = passiveSprites[(int)type];
-                        }
-                        break;
+            if (passiveIndex + 1 < passiveImages.Length) {
+                  passiveIndex++;
+                  passiveImages[passiveIndex].gameObject.SetActive(true);
+                  passiveImages[passiveIndex].sprite = passiveSprites[(int)type];
             }
       }
 

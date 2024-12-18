@@ -847,7 +847,7 @@ MonoBehaviour:
   spaceTime: 0.75
   rotateAmount: -2
   fadeController: {fileID: 1487075433}
-  isTest: 0
+  isTest: 1
 --- !u!1 &1487075428
 GameObject:
   m_ObjectHideFlags: 0

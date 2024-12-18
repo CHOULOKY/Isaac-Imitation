@@ -250,7 +250,7 @@ namespace PooterStates
                   }
             }
 
-            public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid)
+            public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid, float basePosition = default)
             {
                   if (curTear.GetComponent<Tear>() is Tear tear &&
                         curTear.GetComponent<Rigidbody2D>() is Rigidbody2D curRigid) {
@@ -285,7 +285,7 @@ namespace PooterStates
                   tearRigid.velocity = Vector2.zero;
             }
 
-            public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity)
+            public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity, Vector2 direction = default)
             {
                   Vector2 inputVec = Mathf.Abs(pooterFSMRPC.directionVec.x) > Mathf.Abs(pooterFSMRPC.directionVec.y) ?
                         Vector2.right * Mathf.Sign(pooterFSMRPC.directionVec.x) : Vector2.up * Mathf.Sign(pooterFSMRPC.directionVec.y);

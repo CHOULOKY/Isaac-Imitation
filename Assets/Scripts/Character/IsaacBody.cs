@@ -2,7 +2,6 @@ using ItemSpace;
 using Photon.Pun;
 using System.Threading.Tasks;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 // Photon applied complete
 public class IsaacBody : MonoBehaviour, IPunObservable

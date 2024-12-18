@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passives:
   - {fileID: 4774987601690546843, guid: 641348899c8451e448c27dd7363ba441, type: 3}
+  - {fileID: 8118116447680686635, guid: 38a91ae1893812648aa4eec976f3dcdc, type: 3}
 --- !u!212 &1418579528047230847
 SpriteRenderer:
   m_ObjectHideFlags: 0

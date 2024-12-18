@@ -16,8 +16,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
       }
 
 
-      public bool isServerAccess = false;
-      public bool isOtherAccess = false;
+      [HideInInspector] public bool isServerAccess = false;
+      [HideInInspector] public bool isOtherAccess = false;
 
       private void Awake()
       {

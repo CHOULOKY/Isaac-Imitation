@@ -250,7 +250,7 @@ namespace PooterStates
                   }
             }
 
-            public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid)
+            public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid, float basePosition = default)
             {
                   if (curTear.GetComponent<Tear>() is Tear tear &&
                         curTear.GetComponent<Rigidbody2D>() is Rigidbody2D curRigid) {

@@ -131,6 +131,11 @@ public class GameManager : MonoBehaviour
       }
 
 
+      public IEnumerator PlayBossCutScene()
+      {
+            yield return null;
+      }
+
       public IEnumerator OnPlayerLeftRoom()
       {
             Time.timeScale = 0;

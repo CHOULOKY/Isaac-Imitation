@@ -140,6 +140,7 @@ MonoBehaviour:
   - RPC_SetBool
   - RPC_SetSpriteFlipX
   - RPC_SetAttackCount
+  - RPC_FollowPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

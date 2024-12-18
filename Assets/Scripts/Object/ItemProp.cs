@@ -13,7 +13,7 @@ namespace ItemSpace
                   if (!PhotonNetwork.IsMasterClient) return;
 
                   // 현재 활성화된 아이템은 리스트에서 삭제
-                  foreach (var passive in FindAnyObjectByType<IsaacBody>().GetComponentsInChildren<ItemVisual>()) {
+                  foreach (var passive in FindAnyObjectByType<IsaacBody>(FindObjectsInactive.Include).GetComponentsInChildren<ItemVisual>()) {
                         foreach (GameObject obj in passives) {
                               if (obj.name.Contains((passive.passiveType.ToString()))) {
                                     passives.Remove(obj);

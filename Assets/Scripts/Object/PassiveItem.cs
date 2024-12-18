@@ -12,23 +12,31 @@ namespace ItemSpace
       {
             public PassiveType passiveType;
 
+            private IsaacBody isaacBody;
+            private IsaacHead isaacHead;
+
+            private PhotonView photonView;
+
+            private void Awake()
+            {
+                  isaacBody = FindAnyObjectByType<IsaacBody>(FindObjectsInactive.Include);
+                  isaacHead = FindAnyObjectByType<IsaacHead>(FindObjectsInactive.Include);
+
+                  photonView = GetComponent<PhotonView>();
+            }
+
             private void OnCollisionEnter2D(Collision2D collision)
             {
-                  //if (!PhotonNetwork.IsMasterClient) return;
+                  if (!PhotonNetwork.IsMasterClient) return;
 
                   if (collision.collider.CompareTag("Player")) {
-                        IsaacBody isaacBody = collision.collider.GetComponent<IsaacBody>();
-                        IsaacHead isaacHead = collision.collider.GetComponentInChildren<IsaacHead>();
-
                         GameManager.Instance.uiManager.SetActivePassiveItem(passiveType);
-                        if (PhotonNetwork.IsMasterClient) {
-                              ApplyAbility(isaacBody, isaacHead);
-                        }
-                        FollowPlayer(isaacBody, isaacHead);
+                        ApplyAbility();
+                        FollowPlayer();
                   }
             }
 
-            private void ApplyAbility(IsaacBody isaacBody, IsaacHead isaacHead)
+            private void ApplyAbility()
             {
                   switch (passiveType) {
                         case PassiveType.Onion:
@@ -41,7 +49,12 @@ namespace ItemSpace
                   }
             }
 
-            private void FollowPlayer(IsaacBody isaacBody, IsaacHead isaacHead)
+            private void FollowPlayer()
+            {
+                  photonView.RPC(nameof(RPC_FollowPlayer), RpcTarget.AllBuffered);
+            }
+            [PunRPC]
+            private void RPC_FollowPlayer()
             {
                   GetComponent<Collider2D>().isTrigger = true;
                   transform.GetChild(0).gameObject.SetActive(true); // glow
@@ -49,9 +62,10 @@ namespace ItemSpace
                   this.transform.position = isaacBody.transform.position + Vector3.up;
                   this.transform.parent = isaacBody.transform;
 
-                  StartCoroutine(DestroyAfterPickup(isaacBody, isaacHead));
+                  StartCoroutine(DestroyAfterPickup());
             }
-            private IEnumerator DestroyAfterPickup(IsaacBody isaacBody, IsaacHead isaacHead)
+
+            private IEnumerator DestroyAfterPickup()
             {
                   Animator animator = isaacBody.GetComponent<Animator>();
 
@@ -60,8 +74,12 @@ namespace ItemSpace
                               .FirstOrDefault(clip => clip.name == "AM_IasscBodyPickup")?.length ?? 0f);
                   yield return new WaitForSeconds(1);
 
-                  SetActiveItem(isaacBody, isaacHead, true);
-                  this.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
+                  // 아이작에 아이템 변화 활성화
+                  SetActiveItem(true);
+
+                  foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>()) {
+                        renderer.color = Color.clear;
+                  }
 
                   yield return new WaitForSeconds(1);
 
@@ -70,7 +88,7 @@ namespace ItemSpace
                   }
             }
 
-            private void SetActiveItem(IsaacBody isaacBody, IsaacHead isaacHead, bool active = true)
+            private void SetActiveItem(bool active = true)
             {
                   switch (passiveType) {
                         case PassiveType.Onion:
@@ -78,7 +96,8 @@ namespace ItemSpace
                               isaacHead.onionVisual.gameObject.SetActive(active);
                               break;
                         case PassiveType.InnerEye:
-
+                              isaacHead.innerEyeVisual.passiveType = passiveType;
+                              isaacHead.innerEyeVisual.gameObject.SetActive(active);
                               break;
                   }
             }

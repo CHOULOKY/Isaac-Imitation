@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using UnityEngine;
 using VectorUtilities;
-using static UnityEngine.GraphicsBuffer;
 
 // Photon applied complete
 public class IsaacHead : MonoBehaviour, ITearShooter
@@ -172,10 +171,6 @@ public class IsaacHead : MonoBehaviour, ITearShooter
 
                         //SetTearVelocity(out Vector2 tearVelocity, tearRigid);
                         //ShootSettedTear(curTear, tearRigid, tearVelocity);
-                        for (int i = 0; i < AttackCount; i++) {
-                              photonView.RPC(nameof(RPC_SetTearBefore), RpcTarget.All, tearSpeed, tearWhatEye);
-                              photonView.RPC(nameof(RPC_AttackUsingTear), RpcTarget.All, tearType);
-                        }
 
 
                         // 중심 방향 설정 (현재 입력 방향을 기본 방향으로 사용)
@@ -186,14 +181,17 @@ public class IsaacHead : MonoBehaviour, ITearShooter
                         }
 
                         // AttackCount에 따라 발사 방향 분배
-                        float angleStep = (AttackCount > 1) ? 45f / (AttackCount - 1) : 0f; // 45도를 AttackCount-1로 나눔
-                        float startAngle = -22.5f; // 중심 기준 좌우 대칭으로 발사 시작 각도
+                        float PositionStep = (AttackCount > 1) ? 0.4f / (AttackCount - 1) : 0; // 눈물 발사 시작점
+                        float basePosition = (AttackCount > 1) ? -0.2f : 0f;
+                        float angleStep = (AttackCount > 1) ? 35f / (AttackCount - 1) : 0; // 35도를 AttackCount-1로 나눔
+                        float startAngle = (AttackCount > 1) ? -22.5f : 0f; // 중심 기준 좌우 대칭으로 발사 시작 각도
 
                         for (int i = 0; i < AttackCount; i++) {
+                              float currentPosition = basePosition + (PositionStep * i);
                               float currentAngle = startAngle + (angleStep * i);
                               Vector2 rotatedDirection = baseDirection.Rotate(currentAngle); // 각도만큼 방향 회전
                               photonView.RPC(nameof(RPC_SetTearBefore), RpcTarget.All, tearSpeed, tearWhatEye);
-                              photonView.RPC(nameof(RPC_AttackUsingTear), RpcTarget.All, tearType, rotatedDirection);
+                              photonView.RPC(nameof(RPC_AttackUsingTear), RpcTarget.All, tearType, currentPosition, rotatedDirection);
                         }
                   }
             }
@@ -205,14 +203,14 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             tearWhatEye = _tearWhatEye;
       }
       [PunRPC]
-      private void RPC_AttackUsingTear(TearFactory.Tears tearType, Vector2 direction)
+      private void RPC_AttackUsingTear(TearFactory.Tears tearType, float basePosition, Vector2 direction)
       {
             animator.SetTrigger("Fire1");
             ControlItemAnimator(true);
 
             GameObject curTear = GameManager.Instance.isaacTearFactory.GetTear(tearType, true);
             if (!PhotonNetwork.IsMasterClient) {
-                  SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid);
+                  SetTearPositionAndDirection(curTear, out Rigidbody2D tearRigid, basePosition);
                   if (tearRigid == default) {
                         Debug.LogWarning($"{this.name}'s tears don't have Rigidbody2D!");
                         return;
@@ -223,37 +221,32 @@ public class IsaacHead : MonoBehaviour, ITearShooter
             }
       }
 
-      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid)
+      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid, float basePosition)
       {
             if (curTear.GetComponent<Tear>() is Tear tear &&
                   curTear.GetComponent<Rigidbody2D>() is Rigidbody2D curRigid) {
-                  tearWhatEye *= -1;
+                  float positionByEye = (AttackCount == 1) ? 0.2f * (tearWhatEye *= -1) : basePosition;
                   Vector2 offset = default;
                   // Up: 0, Down: 1, Right: 2, Left: 3
                   if (inputVec.x == 1) {
-                        offset.x = 0.3f;
-                        offset.y = 0.2f * tearWhatEye;
+                        offset = new Vector2(0.3f, positionByEye);
                         tear.tearDirection = 2;
                   }
                   else if (inputVec.x == -1) {
-                        offset.x = -0.3f;
-                        offset.y = 0.2f * tearWhatEye;
+                        offset = new Vector2(-0.3f, -positionByEye);
                         tear.tearDirection = 3;
                   }
                   else if (inputVec.y == 1) {
-                        offset.x = 0.2f * tearWhatEye;
-                        offset.y = 0.3f;
+                        offset = new Vector2(-positionByEye, 0.3f);
                         tear.tearDirection = 0;
                   }
-                  else {
-                        // inputVec.y == -1
-                        offset.x = 0.2f * tearWhatEye;
-                        offset.y = -0.3f;
+                  else if (inputVec.y == -1) {
+                        offset = new Vector2(positionByEye, -0.3f);
                         tear.tearDirection = 1;
                   }
 
                   tearRigid = curRigid;
-                  if (attackCount == 1) tearRigid.position = (Vector2)transform.position;
+                  if (AttackCount != 1) tearRigid.position = (Vector2)transform.position;
                   else tearRigid.position = (Vector2)transform.position + offset;
             }
             else {
@@ -278,7 +271,6 @@ public class IsaacHead : MonoBehaviour, ITearShooter
       public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity, Vector2 direction = default)
       {
             float adjustedSpeed = inputVec.y < 0 ? tearSpeed * 0.75f : tearSpeed;
-            // tearRigid.AddForce(inputVec * tearSpeed + Vector2.up / 2 + tearVelocity, ForceMode2D.Impulse);
             tearRigid.AddForce(direction * adjustedSpeed + tearVelocity, ForceMode2D.Impulse);
       }
 

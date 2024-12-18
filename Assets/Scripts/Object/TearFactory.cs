@@ -99,7 +99,7 @@ public interface ITearShooter
 {
       public void AttackUsingTear(GameObject curTear = default);
 
-      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid);
+      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid, float basePosition = default);
 
       public void SetTearVelocity(out Vector2 tearVelocity, Rigidbody2D tearRigid);
 

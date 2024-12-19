@@ -288,7 +288,9 @@ public class UIManager : ScriptAnimation
 
       public IEnumerator PlayBossCutScene()
       {
-            yield return null;
+            bossCutCanvas.GetComponent<PlayableDirector>().Play();
+            SetActiveMinimap(false);
+            yield break;
       }
 
 

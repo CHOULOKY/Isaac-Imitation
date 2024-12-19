@@ -12,6 +12,5 @@
 
 // 눈물 그림자
 // IsaacTear의 OnTriggerEnter2D에서 몬스터 공격 처리 최적화
-// 보스 컷신
 // 아이템 획득 UI
 // 액티브 아이템

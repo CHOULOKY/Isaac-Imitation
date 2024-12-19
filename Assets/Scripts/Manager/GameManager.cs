@@ -133,7 +133,9 @@ public class GameManager : MonoBehaviour
 
       public IEnumerator PlayBossCutScene()
       {
-            yield return null;
+            Time.timeScale = 0;
+            yield return StartCoroutine(uiManager.PlayBossCutScene());
+            Time.timeScale = 1;
       }
 
       public IEnumerator OnPlayerLeftRoom()

@@ -261,6 +261,8 @@ public class IsaacBody : MonoBehaviour, IPunObservable
                               curMaxVelocity = maxVelocity + 2;
                         }
 
+                        //아이템 Visual 잠시 꺼두기
+                        photonView.RPC(nameof(RPC_SetAlphaItemVisual), RpcTarget.All, 0);
                         //this.animator.SetTrigger("Hit");
                         photonView.RPC(nameof(RPC_SetAnimTrigger), RpcTarget.All, "Hit");
                         //flashEffect.Flash(new Color(1, 1, 0, 1));
@@ -280,6 +282,15 @@ public class IsaacBody : MonoBehaviour, IPunObservable
             this.animator.SetTrigger(name);
       }
 
+      [PunRPC]
+      private void RPC_SetAlphaItemVisual(float a)
+      {
+            foreach (ItemVisual item in GetComponentsInChildren<ItemVisual>()) {
+                  item.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, a);
+            }
+      }
+
+
       // For animation event
       public async void ResetIsHurtAfterAnimation()
       {
@@ -291,6 +302,9 @@ public class IsaacBody : MonoBehaviour, IPunObservable
             IsHurt = false;
             curMoveForce = moveForce;
             curMaxVelocity = maxVelocity;
+
+            //아이템 Visual 다시 켜기
+            photonView.RPC(nameof(RPC_SetAlphaItemVisual), RpcTarget.All, 1);
       }
 
       // For animation event

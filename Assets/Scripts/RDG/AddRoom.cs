@@ -236,26 +236,7 @@ public class AddRoom : MonoBehaviour
       private void RPC_SpawnMonsters()
       {
             if (isBossRoom) {
-                  // 보스 몬스터 활성화
-                  foreach (Transform child in GetComponentsInChildren<Transform>(true)) {
-                        if (child.name.StartsWith("BossRoomSet")) {
-                              string bossType = default;
-                              switch (GameManager.Instance.CurrentStage) {
-                                    case 1:
-                                          bossType = MonsterType.Monstro.ToString();
-                                          break;
-                              }
-                              foreach (Transform child2 in GetComponentsInChildren<Transform>(true)) {
-                                    if (child2.name.Contains(bossType)) {
-                                          child2.gameObject.SetActive(true);
-                                          break;
-                                    }
-                              }
-                              break;
-                        }
-                  }
-                  // 보스 체력바 스폰
-                  GameManager.Instance.uiManager.SetActiveBossSlider(true);
+                  StartCoroutine(SpawnBossMonster());
             }
             else if (isSpecialRoom) {
                   return;
@@ -271,6 +252,31 @@ public class AddRoom : MonoBehaviour
                         }
                   }
             }
+      }
+      private IEnumerator SpawnBossMonster()
+      {
+            yield return StartCoroutine(GameManager.Instance.uiManager.PlayBossCutScene());
+
+            // 보스 몬스터 활성화
+            foreach (Transform child in GetComponentsInChildren<Transform>(true)) {
+                  if (child.name.StartsWith("BossRoomSet")) {
+                        string bossType = default;
+                        switch (GameManager.Instance.CurrentStage) {
+                              case 1:
+                                    bossType = MonsterType.Monstro.ToString();
+                                    break;
+                        }
+                        foreach (Transform child2 in GetComponentsInChildren<Transform>(true)) {
+                              if (child2.name.Contains(bossType)) {
+                                    child2.gameObject.SetActive(true);
+                                    break;
+                              }
+                        }
+                        break;
+                  }
+            }
+            // 보스 체력바 스폰
+            GameManager.Instance.uiManager.SetActiveBossSlider(true);
       }
 
       [PunRPC]

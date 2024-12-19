@@ -16,10 +16,10 @@ public class Tear : MonoBehaviour
       public float knockPower;
 
       [HideInInspector] public int tearDirection; // Up: 0, Down: 1, Right: 2, Left: 3
-      public float gravitySetTime = 0.75f;
+      public float gravitySetTime = 1f;
       public float gravityScale = 0.75f;
       
-      public float tearActiveTime = 1;
+      public float tearActiveTime = 1.25f;
 
       protected virtual void Awake()
       {
@@ -48,6 +48,7 @@ public class Tear : MonoBehaviour
             //if (photonView.IsMine) {
             //      transform.position = transform.parent.position;
             //}
+            StopAllCoroutines();
             transform.position = transform.parent.position;
       }
 
@@ -81,8 +82,8 @@ public class Tear : MonoBehaviour
 
       protected virtual void DisableTear()
       {
-            StopCoroutine(nameof(SetGravityAfter));
-            StopCoroutine(nameof(AfterActiveTime));
+            //StopCoroutine(nameof(SetGravityAfter));
+            //StopCoroutine(nameof(AfterActiveTime));
 
             rigid.velocity = Vector3.zero;
             rigid.simulated = false;

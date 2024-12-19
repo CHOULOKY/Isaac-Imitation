@@ -96,7 +96,7 @@ public class PooterFSMRPC : FSMRPCController, ITearShooter
             }
       }
 
-      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid)
+      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid, float basePosition = default)
       {
             if (curTear.GetComponent<Tear>() is Tear tear &&
                   curTear.GetComponent<Rigidbody2D>() is Rigidbody2D curRigid) {
@@ -131,7 +131,7 @@ public class PooterFSMRPC : FSMRPCController, ITearShooter
             tearRigid.velocity = Vector2.zero;
       }
 
-      public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity)
+      public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity, Vector2 direction = default)
       {
             Vector2 inputVec = Mathf.Abs(directionVec.x) > Mathf.Abs(directionVec.y) ?
                   Vector2.right * Mathf.Sign(directionVec.x) : Vector2.up * Mathf.Sign(directionVec.y);

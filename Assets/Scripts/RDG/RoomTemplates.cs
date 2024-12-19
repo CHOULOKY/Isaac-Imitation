@@ -90,9 +90,9 @@ public class RoomTemplates : MonoBehaviour
             }
 
             // Test code
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                  SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+            //if (Input.GetKeyDown(KeyCode.Escape)) {
+            //      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //}
 
             if (waitTime <= 0 && createdRooms == false) {
                   createdRooms = true;

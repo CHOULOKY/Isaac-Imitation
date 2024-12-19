@@ -38,6 +38,7 @@ public class UIManager : ScriptAnimation
       public Canvas deadCanvas;
       public Canvas leftCanvas;
       public Canvas startCanvas;
+      public Canvas bossCutCanvas;
 
       [Header("UI - Heart")]
       [SerializeField] private UIStruct heartStruct;
@@ -285,9 +286,23 @@ public class UIManager : ScriptAnimation
             }
       }
 
+      public IEnumerator PlayBossCutScene()
+      {
+            bossCutCanvas.GetComponent<PlayableDirector>().Play();
+            SetActiveMinimap(false);
+            yield break;
+      }
+
+
+
       private int passiveIndex = -1;
       private Image[] passiveImages = null;
       public void SetActivePassiveItem(PassiveType type)
+      {
+            photonView.RPC(nameof(RPC_SetActivePassiveItem), RpcTarget.AllBuffered, type);
+      }
+      [PunRPC]
+      private void RPC_SetActivePassiveItem(PassiveType type)
       {
             if (passiveImages == null || passiveImages.Length == 0) {
                   foreach (RectTransform target in uiCanvas.GetComponentsInChildren<RectTransform>(true)) {
@@ -299,14 +314,10 @@ public class UIManager : ScriptAnimation
                   //Debug.LogError($"Initialized {passiveImages?.Length ?? 0} passive images");
             }
 
-            switch (type) {
-                  case PassiveType.Onion:
-                        if (passiveIndex + 1 < passiveImages.Length) {
-                              passiveIndex++;
-                              passiveImages[passiveIndex].gameObject.SetActive(true);
-                              passiveImages[passiveIndex].sprite = passiveSprites[(int)type];
-                        }
-                        break;
+            if (passiveIndex + 1 < passiveImages.Length) {
+                  passiveIndex++;
+                  passiveImages[passiveIndex].gameObject.SetActive(true);
+                  passiveImages[passiveIndex].sprite = passiveSprites[(int)type];
             }
       }
 

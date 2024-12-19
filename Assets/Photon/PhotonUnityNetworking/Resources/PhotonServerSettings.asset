@@ -138,6 +138,10 @@ MonoBehaviour:
   - RPC_SetActivePassiveItem
   - RPC_SetPassiveUI
   - RPC_SetBool
+  - RPC_SetSpriteFlipX
+  - RPC_SetAttackCount
+  - RPC_FollowPlayer
+  - RPC_SetAlphaItemVisual
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

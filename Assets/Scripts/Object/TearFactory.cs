@@ -64,7 +64,7 @@ public class TearFactory : MonoBehaviour
             created.SetActive(active);
             pool[i].Add(created);
       }
-
+      
 
       public virtual GameObject GetTear(Tears _type, bool _setActive = true)
       {
@@ -99,9 +99,9 @@ public interface ITearShooter
 {
       public void AttackUsingTear(GameObject curTear = default);
 
-      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid);
+      public void SetTearPositionAndDirection(GameObject curTear, out Rigidbody2D tearRigid, float basePosition = default);
 
       public void SetTearVelocity(out Vector2 tearVelocity, Rigidbody2D tearRigid);
 
-      public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity);
+      public void ShootSettedTear(GameObject curTear, Rigidbody2D tearRigid, Vector2 tearVelocity, Vector2 direction = default);
 }
